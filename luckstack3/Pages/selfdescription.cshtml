@@ -121,12 +121,33 @@
     <h2>个人资料</h2>
     <form method="post" action="" novalidate enctype="multipart/form-data">
         <label>头像：（* 仅限jpg/png/gif）</label><br />
-        <input  type="file" placeholder="页面提交时上传文件" multiple name="icon" value="" /><br />
+        <input type="file" placeholder="页面提交时上传文件" multiple name="icon" value="" /><br />
         <label>性别： </label>
         <label><input type="radio" name="gender" value="男" />男</label>
-        <label><input type="radio" name="gender" value="=女"/>女</label>
-        
+        <label><input type="radio" name="gender" value="=女" />女</label>
 
+        <label>生日：</label><br />
+        <label><input type="month" /></label>
+        <select name="Constellation">
+            <option value="">--</option>
+            <option>白羊座</option>
+            <option>金牛座</option>
+            <option>双子座</option>
+            <option>巨蟹座</option>
+            <option>狮子座</option>
+            <option>处女座</option>
+            <option>天秤座</option>
+            <option>天蝎座</option>
+            <option>射手座</option>
+            <option>摩羯座</option>
+            <option>水瓶座</option>
+            <option>双鱼座</option>
+        </select>
+        <span>星座</span>
+
+
+
+        
     </form>
     <footer>
         <div>
