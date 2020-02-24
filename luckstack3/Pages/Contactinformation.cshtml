@@ -125,6 +125,15 @@
         <label><input type="radio" name="choois" value="giftfor17bang" />赠送给“一起帮”  </label>
         <a href="none">详细</a>
     </main>
+    <form method="post" action="/" novalidate>
+        <label>文字内容：（* 必填）</label><br />
+        <input type="text"placeholder="最多不超过24字符" name="推广文字内容" value=""/><br />
+        <label>链接：（* 必填）</label>
+        <input type="text"placeholder="http或https开头的网址" name="推广链接" value="" /><br />
+        <button type="submit">提交</button>
+        <button type="reset">重置</button>
+        <a href="/" style="color:deepskyblue">跳过</a>
+    </form>
     <footer>
         <div>
             <!---没有太想好为什么要加DIV，footer不是一个DIV吗？但是不想花冤枉时间去试错了，对着F12抄下来-->
