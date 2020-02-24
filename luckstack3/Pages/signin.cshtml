@@ -15,8 +15,19 @@
         <a href="http://17bang.ren/"><img src="~/img/一起帮主页logo左上角.png" alt="一起帮LOGO" /></a>
         <h1 style="color:gray"> 一起帮·</h1><span style="color:gray">网络互助平台</span>
     </header>
+    <h1>用户登录</h1>
+    <form method="post" action="/index" novalidate>
+        <label>用户名：（* 必填）</label><br />
+        <input type="text"placeholder="不是昵称，是登录用户名" name="sgin in" value="" /><br />
+        <label>密码：（* 必填）</label><br />
+        <input type="text"placeholder="不少于4个字符" name="password" value=""/><br />
+        <label>验证码：（* 必填）</label>
+        <input type="text" name="try" value="" /><br />
+        <button type="submit" formaction="/">提交</button>
+        <label><input type="checkbox" name="touch" value="true" readonly />记住我</label>
 
-
+    </form>
+ 
     <footer>
         <div>
             <!---没有太想好为什么要加DIV，footer不是一个DIV吗？但是不想花冤枉时间去试错了，对着F12抄下来-->
