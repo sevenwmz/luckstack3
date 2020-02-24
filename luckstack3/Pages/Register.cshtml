@@ -18,9 +18,22 @@
     <a href="none">为什么需要邀请</a>
     <p style="color:deepskyblue">说明</p>
 
-    <form method="post" action="/index">
+    <form method="post" action="/index" novalidate>
         <label>邀请人：（* 必填，<a href="none" title="点击由系统推荐">没有邀请人</a>）</label><br />
-        <input type="text" value="" /><br />
+        <input type="text"name="invit" value="" /><br />
+        <label>邀请码：（* 必填）</label><br />
+        <input type="text"name="invited" value="" /><br />
+        <label>用户名：（* 必填）</label><br />
+        <input type="text"name="uesname" value="" /><br />
+        <label>密码：（* 必填）</label><br />
+        <input type="password"name="password" value="" /><br />
+        <label>验证密码：（* 必填）</label><br />
+        <input type="password"name="pwdagin" value="" /><br />
+        <label>验证码：（* 必填）</label><br />
+        <input type="text"name="try" value="" />看不清楚<br />
+        <input type="hidden" name="大帅哥是"value="王月半子" />
+
+
         <!--<input type="submit" value="提交" />-->
         <button type="submit">提交</button>
         <button type="button">重置</button>
