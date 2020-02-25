@@ -120,13 +120,13 @@
     </header>
     <h2>个人资料</h2>
     <form method="post" action="" novalidate enctype="multipart/form-data">
-        <label>头像：（* 仅限jpg/png/gif）</label><br />
+        <label><strong>头像：（* 仅限jpg/png/gif）</strong></label><br />
         <input type="file" placeholder="页面提交时上传文件" multiple name="icon" value="" /><br />
-        <label>性别： </label>
+        <label><strong>性别： </strong></label>
         <label><input type="radio" name="gender" value="男" />男</label>
-        <label><input type="radio" name="gender" value="=女" />女</label>
+        <label><input type="radio" name="gender" value="=女" />女</label><br />
 
-        <label>生日：</label><br />
+        <label><strong>生日：</strong></label><br />
         <label><input type="month" /></label>
         <select name="Constellation">
             <option value="">--</option>
@@ -145,7 +145,7 @@
         </select>
         <span>星座</span><br />
         <!---你这个地方是列表实现的，我发现我不可以，就用OPTION了-->
-        <label>关键字：（* 使用空格分隔）</label><br />
+        <label><strong>关键字：（* 使用空格分隔）</strong></label><br />
         <select name="frist">
             <option>编程开发语言</option>
             <option>工具软件</option>
@@ -162,9 +162,11 @@
             <option>Photoshop</option>
             <option>PowerPoint</option>
         </select>
-        <input type="text" placeholder="自定义关键字，使用空格分隔" name="Keywords" />
+        <input type="text" placeholder="自定义关键字，使用空格分隔" name="Keywords" /><br />
 
-
+        <label><strong>自我介绍：</strong></label><br />
+        <textarea placeholder="简单介绍一下自己吧，不超过255字" name="selfdescription" rows="7"></textarea><br />
+        <button type="submit" >提交</button>
 
     </form>
     <footer>
