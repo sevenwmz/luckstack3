@@ -15,9 +15,10 @@
 
 <body>
     <header>
-        <a href="http://17bang.ren/"><img src="~/img/一起帮主页logo左上角.png" alt="一起帮LOGO" /></a>
+        <a href="/"><img src="~/img/一起帮主页logo左上角.png" alt="一起帮LOGO" /></a>
         <h1 style="color:gray"> 一起帮·</h1><span style="color:gray">网络互助平台</span>
-        <ul>
+        <nav>
+            <ul>
             <li>
                 求助
                 <ul>
@@ -121,74 +122,86 @@
                 </ul>
             </li>
         </ul>
+        </nav>
+        
     </header>
-    <article>
-        <a name="ZQ1"></a>
-        <h4><span style="color:deepskyblue">Q：邀请码是怎么一回事？</span></h4>
-        <p>为了鼓励大家宣传推广“一起帮”，现目前凡是邀请到一个用户注册成为“一起帮”会员，邀请人就会获得10个  <a href="/helppoint">帮帮点 </a></p>
 
-        <a name="ZQ2"></a>
-        <h4><span style="color:deepskyblue">Q：为什么会提示“邀请人数达到上限”？</span></h4>
-        <p>为了防止恶意用户利用邀请制度刷<a href="/helppoint">帮帮点</a> ，我们限制了用户能邀请的人数。其计算方法为：</p>
-        <ul>
-            <li>每24小时：一个用户最多能邀请10个人</li>
-            <li>合计：每个用户最多能邀请（<a href="/helppoint"> 帮帮点 </a>/10）人</li>
-        </ul>
+    <section>
+        <h1>账户</h1>
+        <hr />
+        <main>
+            <h4>注册登录</h4>
+            <div>
+                <a name="ZQ1"></a>
+                <h4 style="color:deepskyblue">Q：邀请码是怎么一回事？</h4>
+                <p>为了鼓励大家宣传推广“一起帮”，现目前凡是邀请到一个用户注册成为“一起帮”会员，邀请人就会获得10个  <a href="/credit" style="text-decoration:none">帮帮点 </a></p>
+                <p>所以，当一个用户注册时，如何判断他是被谁邀请的呢？这就需要他填写“邀请人”和“邀请码”。</p>
+                <p>邀请码在用户注册后自动生成，点击<a href="none" style="text-decoration:none">这里</a> 可以查看到你的邀请码和经你邀请已注册的用户。</p>
 
-        <a name="ZQ3"></a>
-        <!---从这里发现了似乎不加<span>也可以，没有什么意义，然后就决定不加了
-    之前的不打算改，如果抽到我可以说说加不加有什么区别-->
-        <h4 style="color:deepskyblue">Q：系统如何是确定“最后（上次）登录时间”的？</h4>
-        <p>当你注册成功之后，会自动登录，系统会把你这次的登录时间记录下来，作为你的<strong style="color:deepskyblue">最后登录时间</strong></p>
-        <p>
-            此后，每次登录——既包括你手工的输入用户名和密码，也包括你勾线“记住我”后的自动登录，
-            系统都会检查：你的<strong style="color:deepskyblue">最后登录时间</strong>距离当前时间是否已超过24小时。
-        </p>
-        <p>如果已经超过的话，系统就会更新你的<strong style="color:deepskyblue">最后登录时间。</strong></p>
-        <p>你可以简单的理解为：24小时以内的重复登录<strong style="color:deepskyblue">不</strong>会刷新最后登录时间。</p>
-
-        <a name="ZQ4"></a>
-        <h4 style="color:deepskyblue">Q：“最后登录时间”有什么用处？</h4>
-        <p>目前，最后登录时间用于：</p>
-        <ul>
-            <li>保证每24小时内只自动分配一次<a href="none" style="color:lightgreen">帮帮豆</a></li>
-            <li>系统推荐用户时排序，如：求助时<a href="none" style="color:deepskyblue">推荐好心人、</a><a href="none" style="color:yellow">帮帮币</a> 交易时<a href="none" style="color:deepskyblue">推荐卖方</a></li>
-        </ul>
-
-        <p><h1>联系方式</h1></p>
-
-        <a name="ZQ5"></a>
-        <h4 style="color:deepskyblue">Q：邮箱有什么作用？</h4>
-        <p>
-            1、重置密码。当你忘记密码时，重置密码的邮件会发送到该邮箱。<br />
-            2、接受用户消息。暂目前，出现以下事件会发送消息到你的邮箱：
-        </p>
-        <ul>
-            <li>你的求助有了新回复；</li>
-            <li>你获得了求助人的酬谢；</li>
-            <li>别人使用了你的邀请码进行注册。</li>
-        </ul>
-        <p>我们会尽快推出新功能，让你能够自主决定哪些事项发送邮件，哪些事项不发送邮件。</p>
-        <!---写到最后发现我加链接的部分，最终的下面显示页面有一个蓝色的下划线，标准的没有。
-            鉴于似乎没有学，就不费那个脑子了，保不齐是浏览器的原因或者是什么CSS的活呢-->
-        <a name="ZQ6"></a>
-        <h4 style="color:deepskyblue">Q：为什么我收不到邮件通知？</h4>
-        <p>填写邮箱地址之后，系统会自动发送一份确认邮件到你的邮箱，里面有一个激活邮箱的链接。你需要点击该链接（无法点击的话请将该链接复制粘贴到浏览器地址栏中再回车），激活该邮箱后，系统才会发送Email给你。</p>
-        <p>如果你一直没收到确认邮件的话，请检查该邮件是否被当做垃圾邮件被自动屏蔽。我们建议你将system@17help.net加入“白名单”，以避免类似事情再次发生。</p>
-        <p>这也可能是Email发送出现故障，你还可以到<a href="none" style="color:deepskyblue">联系方式</a>页面Email项下点击“验证”按钮，让系统再发送一封确认邮件。</p>
-    </article> 
+            </div>
+            <div>
+                <a name="ZQ2"></a>
+                <h4 style="color:deepskyblue">Q：为什么会提示“邀请人数达到上限”？</h4>
+                <p>为了防止恶意用户利用邀请制度刷<a href="/credit" style="text-decoration:none">帮帮点</a> ，我们限制了用户能邀请的人数。其计算方法为：</p>
+                <ul>
+                    <li>每24小时：一个用户最多能邀请10个人</li>
+                    <li>合计：每个用户最多能邀请（<a href="/credit" style="text-decoration:none"> 帮帮点 </a>/10）人</li>
+                </ul>
+            </div>
+            <div>
+                <a name="ZQ3"></a>
+                <h4 style="color:deepskyblue">Q：系统如何是确定“最后（上次）登录时间”的？</h4>
+                <p>当你注册成功之后，会自动登录，系统会把你这次的登录时间记录下来，作为你的<strong style="color:deepskyblue">最后登录时间</strong></p>
+                <p>此后，每次登录——既包括你手工的输入用户名和密码，也包括你勾线“记住我”后的自动登录，系统都会检查：你的<strong style="color:deepskyblue">最后登录时间</strong>距离当前时间是否已超过24小时。</p>
+                <p>如果已经超过的话，系统就会更新你的<strong style="color:deepskyblue">最后登录时间。</strong></p>
+                <p>你可以简单的理解为：24小时以内的重复登录<strong style="color:deepskyblue">不</strong>会刷新最后登录时间。</p>
+            </div>
+            <div>
+                <a name="ZQ4"></a>
+                <h4 style="color:deepskyblue">Q：“最后登录时间”有什么用处？</h4>
+                <p>目前，最后登录时间用于：</p>
+                <ul>
+                    <li>保证每24小时内只自动分配一次<a href="none" style="color:lightgreen;text-decoration:none">帮帮豆</a></li>
+                    <li>系统推荐用户时排序，如：求助时<a href="none" style="color:deepskyblue;text-decoration:none">推荐好心人、</a><a href="none" style="color:yellow;text-decoration:none">帮帮币</a> 交易时<a href="none" style="color:deepskyblue;text-decoration:none">推荐卖方</a></li>
+                </ul>
+            </div>
+            <h1>联系方式</h1>
+            <div>
+                <a name="ZQ5"></a>
+                <h4>Q：邮箱有什么作用？</h4>
+                <p>1、重置密码。当你忘记密码时，重置密码的邮件会发送到该邮箱。</p>
+                <p>2、接受用户消息。暂目前，出现以下事件会发送消息到你的邮箱：</p>
+                <ul>
+                    <li>你的求助有了新回复；</li>
+                    <li>你获得了求助人的酬谢；</li>
+                    <li>别人使用了你的邀请码进行注册。</li>
+                </ul>
+                <p>我们会尽快推出新功能，让你能够自主决定哪些事项发送邮件，哪些事项不发送邮件。</p>
+            </div>
+            <div>
+                <a name="ZQ6"></a>
+                <h4>Q：为什么我收不到邮件通知？</h4>
+                <p>填写邮箱地址之后，系统会自动发送一份确认邮件到你的邮箱，里面有一个激活邮箱的链接。你需要点击该链接（无法点击的话请将该链接复制粘贴到浏览器地址栏中再回车），激活该邮箱后，系统才会发送Email给你。</p>
+                <p>如果你一直没收到确认邮件的话，请检查该邮件是否被当做垃圾邮件被自动屏蔽。我们建议你将system@17help.net加入“白名单”，以避免类似事情再次发生。</p>
+                <p>这也可能是Email发送出现故障，你还可以到<a href="none" style="color:deepskyblue;text-decoration:none">联系方式</a>页面Email项下点击“验证”按钮，让系统再发送一封确认邮件。</p>
+            </div>
+        </main>
+        <hr />
+    </section> 
+    <aside>
+        <h4 style="color:dodgerblue;"><strong>人工客服</strong></h4>
+        <a href="none" style="text-decoration:none">自由飞（2282636022）</a><br />
+        <a href="none" style="text-decoration:none">cjty8281（314060063）</a>
+    </aside>
     <footer>
-        <div>
-            <!---没有太想好为什么要加DIV，footer不是一个DIV吗？但是不想花冤枉时间去试错了，对着F12抄下来-->
-            <a href="none" style="color:deepskyblue">关于我们</a> | 
-            <a href="none" style="color:deepskyblue">常见问题</a> | 
-            <a href="none" style="color:deepskyblue">意见建议</a> | 
-            <a href="none" style="color:deepskyblue">历史通知</a> | 
-            <a href="none" style="color:lawngreen">友情捐赠</a> | 
-            <a href="none" style="color:deepskyblue">融资2018</a><!---为什么是2018，不是2020吗，吐个槽-->
-            <p>友情链接：</p>
-            <a href="none" style="color:deepskyblue">老王这里（备案）</a>© 2020 - 首顾科技
-        </div>
+        <a href="none" style="color:deepskyblue">关于我们</a> |
+        <a href="none" style="color:deepskyblue">常见问题</a> |
+        <a href="none" style="color:deepskyblue">意见建议</a> |
+        <a href="none" style="color:deepskyblue">历史通知</a> |
+        <a href="none" style="color:lawngreen">友情捐赠</a> |
+        <a href="none" style="color:deepskyblue">融资2018</a><!---为什么是2018，不是2020吗，吐个槽-->
+        <p>友情链接：</p>
+        <a href="none" style="color:deepskyblue">老王这里（备案）</a>© 2020 - 首顾科技
     </footer>
 </body>
 </html>
