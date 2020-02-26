@@ -8,6 +8,11 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <style>
+        a{
+            text-decoration:none
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -119,36 +124,66 @@
             </li>
         </ul>
         </nav>
-        
     </header>
-    <h2><span>注册</span></h2>
-    <a href="none">为什么需要邀请</a>
-    <p style="color:deepskyblue">说明</p>
-
-    <form method="post" action="/index" novalidate>
-        <label>邀请人：（* 必填，<a href="none" title="点击由系统推荐">没有邀请人</a>）</label><br />
-        <input type="text"placeholder="他的用户名，模糊查询只能从头开始" name="invit" value="" /><br />
-        <label>邀请码：（* 必填）</label><br />
-        <input type="text"placeholder="4位数字" name="invited" value="" /><br />
-        <label>用户名：（* 必填）</label><br />
-        <input type="text"placeholder="登录用户名，可修改，但不能重复" name="uesname" value="" /><br />
-        <label>密码：（* 必填）</label><br />
-        <input type="password"placeholder="不少于4个字符" name="password" value="" /><br />
-        <label>验证密码：（* 必填）</label><br />
-        <input type="password"placeholder="和密码相同" name="pwdagin" value="" /><br />
-        <label>验证码：（* 必填）</label><br />
-        <input type="text"name="try" value="" />看不清楚<br />
-        <input type="hidden" name="大帅哥是"value="王月半子" />
 
 
-        <!--<input type="submit" value="提交" />-->
-        <button type="submit">提交</button>
-        <button type="button">重置</button>
-        <!--<input type="reset" value="重置" />-->
-        <a href="none">登录</a>
-
-
-    </form>
+    <h2>注册</h2>
+    <hr />
+    <section style="background-color:#f2f35c">
+        <a href="none">为什么需要邀请</a>
+        <form method="post" action="/index" novalidate>
+            <label>邀请人：（* 必填，<a href="none" title="点击由系统推荐">没有邀请人</a>）</label><br />
+            <input type="text" placeholder="他的用户名，模糊查询只能从头开始" name="invit" value="" /><br />
+            <label>邀请码：（* 必填）</label><br />
+            <input type="text" placeholder="4位数字" name="invited" value="" />
+        </form>
+    </section>
+    
+    <main>
+        <form method="post" action="/index" novalidate>
+            <label>用户名：（* 必填）</label><br />
+            <input type="text" placeholder="登录用户名，可修改，但不能重复" name="uesname" value="" /><br />
+            <label>密码：（* 必填）</label><br />
+            <input type="password" placeholder="不少于4个字符" name="password" value="" /><br />
+            <label>验证密码：（* 必填）</label><br />
+            <input type="password" placeholder="和密码相同" name="pwdagin" value="" /><br />
+            <label>验证码：（* 必填）</label><br />
+            <input type="text" name="try" value="" />看不清楚<br />
+            <input type="hidden" name="大帅哥是" value="王月半子" />
+            <button type="submit" style="background-color:dodgerblue;color:white">提交</button>
+            <button type="button">重置</button>
+            <a href="none">登录</a>
+        </form>
+    </main>
+    <aside>
+        <h1 style="color:dodgerblue">说明</h1>
+        <ol>
+            <li>
+                我们希望通过<a href="none">一起帮</a>，能<strong style="color:dodgerblue">直接解决</strong>
+                大家在<span style="color:dodgerblue">电脑操作/软件使用/编程学习</span>等方面的<strong>具体问题。</strong>
+            </li>
+            <li>
+                现在互联网远程技术<span style="color:gray">（比如QQ桌面共享）</span>已经非常成熟，当我们再遇到上述问题，
+                如果别人能<span style="color:deepskyblue">直接远程给予帮助</span>，岂不是好？
+            </li>
+            <li>
+                当然，你也可以在你熟悉的领域去<span style="color:deepskyblue">帮助别人</span>
+                。由此而形成我们这个“你帮他他帮我我帮你，大家一起帮”的网上互助社区平台。
+            </li>
+            <li>
+                公平起见，我们还引入了 帮帮<span style="color:dodgerblue">点</span>/
+                <span style="color:yellow">币</span>/
+                <span style="color:greenyellow">豆</span>
+                三级概念，以记录和衡量社区成员的收获和贡献。
+            </li>
+            <li>
+                赶快加入我们，赚取帮帮币吧！
+            </li>
+            <li>
+                <a href="none">了解更多</a>
+            </li>
+        </ol>
+    </aside>
     
     <footer>
         <div>
