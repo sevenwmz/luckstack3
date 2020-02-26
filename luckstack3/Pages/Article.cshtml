@@ -1,19 +1,20 @@
 ﻿@page
-@model luckstack3.HomePageModel
+@model luckstack3.indexModel
 @{
-    ViewData["Title"] = "HomePage";
+    ViewData["Title"] = "index";
 }
-
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
 </head>
 
 <body>
     <header>
-        <a href="http://17bang.ren/"><img src="~/img/一起帮主页logo左上角.png" alt="一起帮LOGO" /></a>
+        <a href="/"><img src="~/img/一起帮主页logo左上角.png" alt="一起帮LOGO" /></a>
         <h1 style="color:gray"> 一起帮·</h1><span style="color:gray">网络互助平台</span>
+    </header>
+    <nav>
         <ul>
             <li>
                 求助
@@ -118,20 +119,21 @@
                 </ul>
             </li>
         </ul>
-    </header>
+    </nav>
+    
+    <article>
+        <!---我要写的是文章列表页，这里不知道要写啥，主要内容都是提交的插入其他页面的链接,我也可以硬编上去，看下面show you two-->
+        <a href="http://17bang.ren/Article/629">CSS：选择器</a>
+        <p>使用CSS的方式内联式Inline（也叫行内样式）：应用内嵌样式到各个网页元素嵌入式Embedding（也叫内页样式）：在网页上创建嵌入的样式表。外联式Linking（也叫外部样式）：将网页链接到外部样式表。（推荐：便于重用，内容与表现分离）<link rel="stylesheet" href="/css/lucky.css" />（演示：略）体会：在计算机各个领域，大家对“解耦”的渴望！选择器标签（tag）h1{}属性a[href]{}还可以使用：[attribute=value]用于选取 ……</p>
+        <label>关键字： </label><span> 前端 </span><span>CSS</span><span>选择器</span>
+        <a href="http://17bang.ren/Article/630">CSS：浮动和定位</a>
+        <p>CSS 盒子模型适用样式：width/height流元素的高度和居中overflowborder：粗细/样式/颜色top/right/bottom/left为什么使用transparent？margin/padding：是否占用宽度？block和padding的不同margin合并为了避免浏览器兼容问题，通常都首先定义：margin:0;padding:0;display:block：默认宽度100%（占一行）inline：宽度随文本，不会占一行，margin有效，padding不会“撑起”父元素，hei ……</p>
+        <label>关键字： </label><span> CSS </span><span>盒子模型</span><span>浮动</span><span>定位</span>
 
-    <label><input type="text" placeholder="我来说两句" name="talking" /><span>发送</span></label>
-    <aside>
-        <p>
-            “源栈”Web开发培训班
-            火热 招生中：
-        </p>
-        <p>线上：全程直播，免费收看</p>
-        <p>线下：灵活学制，拎包入住</p>
-        <p>有意向的同学，可以加QQ群：326801052</p>
-        <img src="~/img/二维码.png" alt="QQ学习群326801052" />
+    </article>
+    <aside >
+        <span>关键字</span>
     </aside>
-
     <footer>
         <div>
             <!---没有太想好为什么要加DIV，footer不是一个DIV吗？但是不想花冤枉时间去试错了，对着F12抄下来-->

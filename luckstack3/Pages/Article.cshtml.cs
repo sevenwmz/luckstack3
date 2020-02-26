@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace luckstack3
 {
-    public class HomePageModel : PageModel
+    public class indexModel : PageModel
     {
         public void OnGet()
         {
