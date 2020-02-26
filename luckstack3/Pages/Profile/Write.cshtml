@@ -11,9 +11,10 @@
 </head>
 <body>
     <header>
-        <a href="http://17bang.ren/"><img src="~/img/一起帮主页logo左上角.png" alt="一起帮LOGO" /></a>
+        <a href="/"><img src="~/img/一起帮主页logo左上角.png" alt="一起帮LOGO" /></a>
         <h1 style="color:gray"> 一起帮·</h1><span style="color:gray">网络互助平台</span>
-        <ul>
+        <nav>
+            <ul>
             <li>
                 求助
                 <ul>
@@ -117,58 +118,61 @@
                 </ul>
             </li>
         </ul>
+        </nav>
     </header>
     <h2>个人资料</h2>
-    <form method="post" action="" novalidate enctype="multipart/form-data">
-        <label><strong>头像：（* 仅限jpg/png/gif）</strong></label><br />
-        <label><input type="file" placeholder="页面提交时上传文件" multiple name="icon" value="" /><span>浏览</span></label><br />
-        <label><strong>性别： </strong></label>
-        <label><input type="radio" name="gender" value="男" />男</label>
-        <label><input type="radio" name="gender" value="=女" />女</label><br />
+    <hr />
+    <main>
+        <form method="post" action="" novalidate enctype="multipart/form-data">
+            <label><strong>头像：（* 仅限jpg/png/gif）</strong></label><br />
+            <label><input type="file" placeholder="页面提交时上传文件" multiple name="icon" value="" /><span>浏览</span></label><br />
+            <label><strong>性别： </strong></label>
+            <label><input type="radio" name="gender" value="男" />男</label>
+            <label><input type="radio" name="gender" value="=女" />女</label><br />
+            <label><strong>生日：</strong></label><br />
+            <label><input type="month" /></label>
+            <select name="Constellation">
+                <option value="">--</option>
+                <option>白羊座</option>
+                <option>金牛座</option>
+                <option>双子座</option>
+                <option>巨蟹座</option>
+                <option>狮子座</option>
+                <option>处女座</option>
+                <option>天秤座</option>
+                <option>天蝎座</option>
+                <option>射手座</option>
+                <option>摩羯座</option>
+                <option>水瓶座</option>
+                <option>双鱼座</option>
+            </select>
+            <span>星座</span><br />
+            <!---你这个地方是列表实现的，我发现我不可以，就用OPTION了-->
+            <label><strong>关键字：（* 使用空格分隔）</strong></label><br />
+            <select name="Frist">
+                <option>编程开发语言</option>
+                <option>工具软件</option>
+                <option>顾问咨询</option>
+                <option>操作系统</option>
+            </select>
+            <select name="Second">
+                <option>visual studio</option>
+                <option>eclipse</option>
+                <option>IDEA</option>
+                <option>Excel</option>
+                <option>Word</option>
+                <option>CAD</option>
+                <option>Photoshop</option>
+                <option>PowerPoint</option>
+            </select>
+            <input type="text" placeholder="自定义关键字，使用空格分隔" name="Keywords" /><br />
 
-        <label><strong>生日：</strong></label><br />
-        <label><input type="month" /></label>
-        <select name="Constellation">
-            <option value="">--</option>
-            <option>白羊座</option>
-            <option>金牛座</option>
-            <option>双子座</option>
-            <option>巨蟹座</option>
-            <option>狮子座</option>
-            <option>处女座</option>
-            <option>天秤座</option>
-            <option>天蝎座</option>
-            <option>射手座</option>
-            <option>摩羯座</option>
-            <option>水瓶座</option>
-            <option>双鱼座</option>
-        </select>
-        <span>星座</span><br />
-        <!---你这个地方是列表实现的，我发现我不可以，就用OPTION了-->
-        <label><strong>关键字：（* 使用空格分隔）</strong></label><br />
-        <select name="frist">
-            <option>编程开发语言</option>
-            <option>工具软件</option>
-            <option>顾问咨询</option>
-            <option>操作系统</option>
-        </select>
-        <select name="second">
-            <option>visual studio</option>
-            <option>eclipse</option>
-            <option>IDEA</option>
-            <option>Excel</option>
-            <option>Word</option>
-            <option>CAD</option>
-            <option>Photoshop</option>
-            <option>PowerPoint</option>
-        </select>
-        <input type="text" placeholder="自定义关键字，使用空格分隔" name="Keywords" /><br />
-
-        <label><strong>自我介绍：</strong></label><br />
-        <textarea placeholder="简单介绍一下自己吧，不超过255字" name="selfdescription" rows="7"></textarea><br />
-        <button type="submit" >提交</button>
-
-    </form>
+            <label><strong>自我介绍：</strong></label><br />
+            <textarea placeholder="简单介绍一下自己吧，不超过255字" name="selfdescription" rows="7"></textarea><br />
+            <button type="submit" style="background-color:dodgerblue;color:white">提交</button>
+        </form>
+    </main>
+    <hr />
 
     <aside>
         <h3 style="color:blue">说明</h3>
