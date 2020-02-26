@@ -11,9 +11,10 @@
 </head>
 <body>
     <header>
-        <a href="http://17bang.ren/"><img src="~/img/一起帮主页logo左上角.png" alt="一起帮LOGO" /></a>
+        <a href="/"><img src="~/img/一起帮主页logo左上角.png" alt="一起帮LOGO" /></a>
         <h1 style="color:gray"> 一起帮·</h1><span style="color:gray">网络互助平台</span>
-        <ul>
+        <nav>
+           <ul>
             <li>
                 求助
                 <ul>
@@ -116,24 +117,30 @@
                     </li>
                 </ul>
             </li>
-        </ul>
+        </ul>   
+        </nav>
     </header>
-    <main>
+    <section>
         <h2>我的推广</h2>
+        <hr />
         <label>推广链接</label>
         <label><input type="radio" name="choois" value="later" />稍后设置</label>
         <label><input type="radio" name="choois" value="giftfor17bang" />赠送给“一起帮”  </label>
         <a href="none">详细</a>
+    </section>
+    <main>
+        <form method="post" action="/" novalidate>
+            <label>文字内容：（* 必填）</label><br />
+            <input type="text" placeholder="最多不超过24字符" name="推广文字内容" value="" /><br />
+            <label>链接：（* 必填）</label>
+            <input type="text" placeholder="http或https开头的网址" name="推广链接" value="" /><br />
+            <button type="submit" style="background-color:dodgerblue;color:white">提交</button>
+            <button type="reset" >重填</button>
+            <a href="/" style="color:deepskyblue";>跳过</a>
+        </form>
+        <hr />
+
     </main>
-    <form method="post" action="/" novalidate>
-        <label>文字内容：（* 必填）</label><br />
-        <input type="text"placeholder="最多不超过24字符" name="推广文字内容" value=""/><br />
-        <label>链接：（* 必填）</label>
-        <input type="text"placeholder="http或https开头的网址" name="推广链接" value="" /><br />
-        <button type="submit">提交</button>
-        <button type="reset">重置</button>
-        <a href="/" style="color:deepskyblue">跳过</a>
-    </form>
     <aside>
         <span><a href="none">说明</a></span>
         <ol>
