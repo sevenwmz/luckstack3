@@ -8,123 +8,132 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <style>
+        a{
+            text-decoration:none;
+        }
+    </style>
 </head>
 
 <body>
     <header>
-        <a href="http://17bang.ren/"><img src="~/img/一起帮主页logo左上角.png" alt="一起帮LOGO" /></a>
+        <a href="/"><img src="~/img/一起帮主页logo左上角.png" alt="一起帮LOGO" /></a>
         <h1 style="color:gray"> 一起帮·</h1><span style="color:gray">网络互助平台</span>
-        <ul>
-            <li>
-                求助
-                <ul>
-                    <li>
-                        督导班
-                    </li>
-                    <li>
-                        列表
-                    </li>
-                    <li>
-                        疑问发布
-                    </li>
-                    <li>
-                        疑问列表
-                    </li>
-                    <li>
-                        列表
-                    </li>
-                    <li>
-                        发布
-                    </li>
-                </ul>
-            </li>
-            <li>
-                督促
-                <ul>
-                    <li>
-                        求督促
-                    </li>
-                    <li>
-                        督促别人
-                    </li>
-                    <li>
-                        我的目标
-                    </li>
-                    <li>
-                        我的督促
-                    </li>
-                    <li>
-                        未交作业
-                    </li>
-                </ul>
-            </li>
-            <li>
-                文章
-                <ul>
-                    <li>
-                        列表
-                    </li>
-                    <li>
-                        开通
-                    </li>
-                </ul>
-            </li>
-            <li>
-                未登录
-                <ul>
-                    <li>
-                        登录
-                    </li>
-                    <li>
-                        注册
-                    </li>
-                    <li>
-                        忘记密码
-                    </li>
-                </ul>
-            </li>
-            <li>
-                后台
-                <ul>
-                    <li>
-                        邀请注册
-                    </li>
-                    <li>
-                        我的消息
-                    </li>
-                    <li>
-                        我的草稿
-                    </li>
-                    <li>广告推广</li>
-                    <li>
-                        联系方式
-                    </li>
-                    <li>
-                        侧边栏
-                    </li>
-                    <li>帮帮币</li>
-                    <li>
-                        购买
-                    </li>
-                    <li>
-                        出售
-                    </li>
-                    <li>
-                        已购买
-                    </li>
-                    <li>
-                        已出售
-                    </li>
-                </ul>
-            </li>
-        </ul>
+        <nav>
+            <ul>
+                <li>
+                    求助
+                    <ul>
+                        <li>
+                            督导班
+                        </li>
+                        <li>
+                            列表
+                        </li>
+                        <li>
+                            疑问发布
+                        </li>
+                        <li>
+                            疑问列表
+                        </li>
+                        <li>
+                            列表
+                        </li>
+                        <li>
+                            发布
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    督促
+                    <ul>
+                        <li>
+                            求督促
+                        </li>
+                        <li>
+                            督促别人
+                        </li>
+                        <li>
+                            我的目标
+                        </li>
+                        <li>
+                            我的督促
+                        </li>
+                        <li>
+                            未交作业
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    文章
+                    <ul>
+                        <li>
+                            列表
+                        </li>
+                        <li>
+                            开通
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    未登录
+                    <ul>
+                        <li>
+                            登录
+                        </li>
+                        <li>
+                            注册
+                        </li>
+                        <li>
+                            忘记密码
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    后台
+                    <ul>
+                        <li>
+                            邀请注册
+                        </li>
+                        <li>
+                            我的消息
+                        </li>
+                        <li>
+                            我的草稿
+                        </li>
+                        <li>广告推广</li>
+                        <li>
+                            联系方式
+                        </li>
+                        <li>
+                            侧边栏
+                        </li>
+                        <li>帮帮币</li>
+                        <li>
+                            购买
+                        </li>
+                        <li>
+                            出售
+                        </li>
+                        <li>
+                            已购买
+                        </li>
+                        <li>
+                            已出售
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
     </header>
-    <main>
-        <h2>首次求助测试</h2>
-        <a href="none">目的</a>
-        <hr />
 
-        <article>
+    <main>
+        <header>
+            <h2>首次求助测试</h2>
+            <a href="none">目的</a>
+            <hr />
+        </header>
+        <section>
             <form method="post">
                 <label><strong>1 、以下哪一种求助是“一起帮”鼓励的：</strong></label><br />
                 <label><input type="radio" name="1" value="1" />如何看待42岁程序员跳楼事件？（社会热点问题）</label><br />
@@ -178,34 +187,32 @@
                 <label><input type="checkbox" name="10" value="1" />别人查看你的总结，你会获得帮帮点</label><br />
                 <label><input type="checkbox" name="10" value="1" />总结只能被查看过的用户评价和评论</label><br />
 
-                <button type="submit" style="background-color:blue" bac>提交</button>
+                <button type="submit" style="background-color:blue;color:white">提交</button>
                 <button type="submit" style="color:black">重填</button>
             </form>
-
-            
-        </article>
+        </section>
     </main>
     <aside>
-        <h4>新手任务</h4>
-        <hr />
-        <p>填写：<a href="none">联系方式</a></p>
-        <p>激活：<a href="none">Email</a></p>
-        <p>邀请：<a href="none">我的小伙伴</a></p>
-        <p>参加：<a href="none">新人测试</a></p>
-        <p>发布：<a href="none">第一个求助</a></p>
-        <p>尝试： <a href="none">第一次协助</a></p>
-        <p>获得：若干<a href="none" style="color:gold">帮帮币</a></p>
-
-        <p><a href="/selfdescription">修改</a></p>
-
-        <p>
+        <div style="background-color:#eeef56;">
+            <h4>新手任务</h4>
+            <hr />
+            <p>填写：<a href="none">联系方式</a></p>
+            <p>激活：<a href="none">Email</a></p>
+            <p>邀请：<a href="none">我的小伙伴</a></p>
+            <p>参加：<a href="none">新人测试</a></p>
+            <p>发布：<a href="none">第一个求助</a></p>
+            <p>尝试： <a href="none">第一次协助</a></p>
+            <p>获得：若干<a href="none" style="color:gold">帮帮币</a></p>
+        </div>
+        <div>
+            <p><a href="/firstproblem">修改</a></p>
             <span><strong>用户：</strong></span>
             <span><a href="none">用户名</a></span>
-            <span><a href="/helppoint" title="初级学徒">①</a></span>
-            <span><a href="none" >修改</a></span>
-        </p>
+            <span><a href="/Credit" title="初级学徒">①</a></span>
+            <span><a href="none">修改</a></span>
+        </div>
     </aside>
-
+    
     <footer>
         <div>
             <!---没有太想好为什么要加DIV，footer不是一个DIV吗？但是不想花冤枉时间去试错了，对着F12抄下来-->
