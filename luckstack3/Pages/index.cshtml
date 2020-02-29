@@ -14,21 +14,20 @@
             padding: 0px;
             border:1px solid;
         }
-
+      
         a {
             text-decoration: none
         }
           
         header{
             width:100%;
-            position:fixed
-            
+            position:fixed;
+            background-color:#efe9e9;
         }
         
         .Frist-Line{
             float: left;
             padding:10px 0px;
-            position:relative
         }
 
         nav {
@@ -42,19 +41,20 @@
             content:" ";
             clear:both;
             display:block;
-
+        }
+        .saparater ::after{
+            content:" ";
+            clear:both;
+            display:block;
         }
     </style>
 </head>
 
 <body>
     <header>
-        
-            <a class="Frist-Line" href="/"><img src="~/img/一起帮主页logo左上角.png" alt="一起帮LOGO" /></a>
-            <h1 class="Frist-Line" style="color:gray"> 一起帮·</h1>
-            <span class="Frist-Line" style="color:gray;height:25px">网络互助平台</span>
-        
-        
+        <a class="Frist-Line" href="/"><img src="~/img/一起帮主页logo左上角.png" alt="一起帮LOGO" /></a>
+        <h1 class="Frist-Line" style="color: gray"> 一起帮·</h1>
+        <span class="Frist-Line" style="color:gray;height:25px">网络互助平台</span>
         <nav>
             <ul class="InNav">
                 <li class="InNav">
@@ -161,10 +161,13 @@
                 </li>
             </ul>
         </nav>
-
     </header>
-
-    <main style="width:55%">
+    <section style="padding:22% 15% 0%;width:80%;" class="saparater">
+        <p  style="float:left;background-color:gray"><a style="float:left" href="none" title="2020年2月29日 20:07:53">图片</a>
+        文章的评论如何选择/组织CSS内容？【常见面试题】你猜如果把...被叶飞赞，获得帮帮点 奖励6点</p>
+        <a style="float:right;background-color:gray" href="none">全部消息</a>
+    </section>
+    <main style="width:55%;float:left">
             <div>
                 <a href="none">更多历史</a>
                 <button type="button">@@他回复</button>
@@ -224,7 +227,7 @@
         </main>
 
 
-    <aside style="widt">
+    <aside style="width:40%;float:right;">
         <h3>“源栈”web开发培训班<span style="color:red">火热</span>招生中：</h3>
         <p>线上：全程直播，免费收看</p>
         <p>线下：灵活学制，拎包入住</p>
