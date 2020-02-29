@@ -47,6 +47,31 @@
             clear:both;
             display:block;
         }
+        /*.Make-Main-Div{
+            float:left;
+            width:35%;
+        }
+        .Make-Button {
+            float: left;
+            height: 50px;
+            width: 50px
+        }
+        .Make-Mine-Of-P{
+            float:left
+        }*/
+        main div::after{
+            content:"";
+            clear:both
+        }
+        main div button{
+            float: left;
+            height: 50px;
+            width: 50px
+        }
+        main div p{
+            float:left;
+            clear:both
+        }
     </style>
 </head>
 
@@ -169,12 +194,12 @@
     </section>
     <main style="width:55%;float:left">
             <div>
-                <a href="none">更多历史</a>
-                <button type="button">@@他回复</button>
-                <p>2020/1/29 20:08:15<a href="none">叶飞</a><a href="/credit">⑩</a></p>
-                <p>@@<a href="none"> xtayaitak</a><a href="/credit">①</a></p>
-                <p> 有没有打cs1.6的...</p>
-                <p>哈哈……没有</p>
+                <a href="none" style="position:relative;left:80%;right:20%;clear:both">更多历史</a>
+                <button type="button">@@他回复</button><br />
+                <p>2020/1/29 20:08:15 <a href="none">叶飞</a><a href="/credit">⑩</a></p><br />
+                <p>@@<a href="none"> xtayaitak</a><a href="/credit">①</a></p><br />
+                <p> 有没有打cs1.6的...</p><br />
+                <p>哈哈……没有</p><br />
             </div>
             <div>
                 <button type="button">@@他回复</button>
