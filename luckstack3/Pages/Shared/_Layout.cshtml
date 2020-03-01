@@ -1,50 +1,175 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - luckstack3</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            border: 1px solid;
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        header {
+            width: 100%;
+            position: fixed;
+            background-color: #efe9e9;
+        }
+
+        .Frist-Line {
+            float: left;
+            padding: 10px 0px;
+        }
+
+        nav {
+            float: right;
+        }
+
+        .InNav {
+            float: left;
+        }
+
+        .space::after {
+            content: " ";
+            clear: both;
+            display: block;
+        }    
+    </style>
+    @RenderSection("style", false)
+
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">luckstack3</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+    <header class="space">
+        <a class="Frist-Line" href="/"><img src="~/img/一起帮主页logo左上角.png" alt="一起帮LOGO" /></a>
+        <h1 class="Frist-Line" style="color: gray"> 一起帮·</h1>
+        <span class="Frist-Line" style="color:gray;height:25px">网络互助平台</span>
+        <nav>
+            <ul class="InNav">
+                <li class="InNav">
+                    求助
+                    <ul>
+                        <li>
+                            督导班
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        <li>
+                            列表
+                        </li>
+                        <li>
+                            疑问发布
+                        </li>
+                        <li>
+                            疑问列表
+                        </li>
+                        <li>
+                            列表
+                        </li>
+                        <li>
+                            发布
                         </li>
                     </ul>
-                </div>
-            </div>
+                </li>
+                <li class="InNav">
+                    督促
+                    <ul>
+                        <li>
+                            求督促
+                        </li>
+                        <li>
+                            督促别人
+                        </li>
+                        <li>
+                            我的目标
+                        </li>
+                        <li>
+                            我的督促
+                        </li>
+                        <li>
+                            未交作业
+                        </li>
+                    </ul>
+                </li>
+                <li class="InNav">
+                    文章
+                    <ul>
+                        <li>
+                            列表
+                        </li>
+                        <li>
+                            开通
+                        </li>
+                    </ul>
+                </li>
+                <li class="InNav">
+                    未登录
+                    <ul>
+                        <li>
+                            登录
+                        </li>
+                        <li>
+                            注册
+                        </li>
+                        <li>
+                            忘记密码
+                        </li>
+                    </ul>
+                </li>
+                <li class="InNav">
+                    后台
+                    <ul>
+                        <li>
+                            邀请注册
+                        </li>
+                        <li>
+                            我的消息
+                        </li>
+                        <li>
+                            我的草稿
+                        </li>
+                        <li>广告推广</li>
+                        <li>
+                            联系方式
+                        </li>
+                        <li>
+                            侧边栏
+                        </li>
+                        <li>帮帮币</li>
+                        <li>
+                            购买
+                        </li>
+                        <li>
+                            出售
+                        </li>
+                        <li>
+                            已购买
+                        </li>
+                        <li>
+                            已出售
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - luckstack3 - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    @RenderBody()
+
+    <footer>
+        <hr />
+        <div>
+            <a href="none" style="color:deepskyblue">关于我们</a> |
+            <a href="none" style="color:deepskyblue">常见问题</a> |
+            <a href="none" style="color:deepskyblue">意见建议</a> |
+            <a href="none" style="color:deepskyblue">历史通知</a> |
+            <a href="none" style="color:lawngreen">友情捐赠</a> |
+            <a href="none" style="color:deepskyblue">融资2018</a><!---为什么是2018，不是2020吗，吐个槽-->
+            <p>友情链接：</p>
+            <a href="none" style="color:deepskyblue">老王这里（备案）</a>© 2020 - 首顾科技
         </div>
     </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @RenderSection("Scripts", required: false)
 </body>
 </html>
