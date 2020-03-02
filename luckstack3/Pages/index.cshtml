@@ -3,28 +3,32 @@
     ViewData["Title"] = "Index";
     //Layout = null;
 }
+
+
 @section style{
     <style>
         main section {
-            width: 38%;
-        }
+            width: 49%;
+        }ha
 
-        main div div{
+        main div div {
             float: left;
         }
-            main div button {
-                float: left;
-                width: 50px;
-                height: 50px;
-            }
-        
-            main div section {
-                float: left;
-            }
+
+        main div button {
+            float: left;
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+        }
+
+        main div section {
+            float: left;
+        }
 
     </style>
-
 }
+
 
 <section style="margin-top:280px;background-color:gray;" class="space">
     <p style="float:left">
@@ -33,7 +37,7 @@
     </p>
     <a style="float:right;padding-right:50px;" href="none"> 全部消息</a>
 </section>
-<main style="width:55%;float:left;width: 55%;overflow: scroll;">
+<main style="float:left;width: 55%;overflow: scroll;" class="space">
     <section class="space">
         <a href="none" style="padding-left:50%;display:block">更多历史</a>
         <div>
@@ -43,7 +47,7 @@
             <p>2020/1/29 20:08:15 <a href="none">叶飞</a><a href="/credit">⑩</a></p>
         </div>
         <div>
-             <p>@@<a href="none"> xtayaitak</a><a href="/credit">①</a></p>
+            <p>@@<a href="none"> xtayaitak</a><a href="/credit">①</a></p>
             <p> 有没有打cs1.6的...</p>
         </div>
         <div><p>哈哈……没有</p></div>
@@ -113,8 +117,11 @@
 
     </section>
 </main>
-<section>
-    <label><input type="text" placeholder="我来说两句" name="talking" /><span>发送</span></label>
+<section style="float:left;width:55%">
+    <label>
+        <input type="text" placeholder="我来说两句" name="talking" style="width:90%;border-radius:5px;height:25px;" />
+        <span style="width:10%;border-radius:5px;height:25px;">发送</span>
+    </label>
 </section>
 
 
