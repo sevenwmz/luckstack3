@@ -1,129 +1,199 @@
 ﻿@page
 @{
     ViewData["Title"] = "Index";
-    
+
 }
 
 
 @section style{
     <style>
 
+        main section {
+            width: 49%;
+        }
+
+        ha
+
+        main div div {
+            float: left;
+        }
+
+        main div button {
+            float: left;
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+            font-size:small;
+        }
+
+
     </style>
 }
 
-<main class="container">
-    <div class="alert alert-secondary  " role="alert" style="position:relative;top:65px;padding:5px 25px;">
+@*<main class="container">
+        <div class="alert alert-secondary  " role="alert" style="position:relative;top:65px;padding:5px 25px;">
+            <span>文章<a href="#">源栈培训：ASP.NET MVC：Route和MV... </a>被<a href="#">陈百万</a>打赏<a href="#">帮帮币</a>1枚</span>
+            <a href="#" class="float-right">全部消息</a>
+        </div>
+        <section class="col-md-5">
+            <div class="overflow-auto">
+                <div class="text-primary">更多历史</div>
+                <div class="row">
+                    <button type="button" class="btn btn-outline-dark float-left">@@他回复</button>
+                    <p >2020/1/29 20:08:15<a href="none">喵了个咪</a><a href="/credit">④</a></p>
+                    <p >欢迎注册本站学习，邀请人：喵了个咪，邀请码0434</p>
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-outline-dark float-left">@@他回复</button>
+                    <p>2020/2/3 11:14:49<a href="none">喵了个咪</a><a href="/credit">④</a></p>
+                    <p>http://http://17bang.ren/register/home?name=%e5%96%b5%e4%ba%86%e4%b8%aa%e5%92%aa&code=0434</p>
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-outline-dark float-left">@@他回复</button>
+                    <p>2020/2/7 3:05:18<a href="none"> lk6321</a><a href="/credit">①</a></p>
+                    <p>啥?</p>
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-outline-dark float-left">@@他回复</button>
+                    <p>2020/2/9 14:03:27<a href="none">u33445687</a><a href="/credit">③</a></p>
+                    <p>666666</p>
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-outline-dark float-left">@@他回复</button>
+                    <p>2020/2/13 19:59:29<a href="none">云飞飞飞</a><a href="/credit">①</a></p>
+                    <p>666666666</p>
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-outline-dark float-left">@@他回复</button>
+                    <p>2020/2/17 0:24:57<a href="none">疾风小白</a><a href="/credit">①</a></p>
+                    <p>hai</p>
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-outline-dark float-left">@@他回复</button>
+                    <p>2020/2/18 15:41:29<a href="none">harriethwikk</a><a href="/credit">②</a></p>
+                    <p>6</p>
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-outline-dark float-left">@@他回复</button>
+                    <p>2020/2/19 12:39:21<a href="none">harriethwikk</a><a href="/credit">②</a></p>
+                    <p>嗨</p>
+                </div>
+            </div>
+
+        </section>
+
+        <aside class="col-md-7">
+        </aside>
+    </main>*@
+<main class="container" >
+    <div class="alert alert-secondary order-1 " role="alert" style="position:relative;top:65px;padding:5px 25px;">
         <span>文章<a href="#">源栈培训：ASP.NET MVC：Route和MV... </a>被<a href="#">陈百万</a>打赏<a href="#">帮帮币</a>1枚</span>
         <a href="#" class="float-right">全部消息</a>
     </div>
+    <div class="row">
+        <section style="width: 55%;overflow:scroll;padding-top:75px;">
+            <section>
+                <a href="none" style="padding-left:75%;display:block;">更多历史</a>
+                <div>
+                    <button type="button" class="btn btn-light border border-secondary">@@TA回复</button>
+                </div>
+                <div>
+                    <p>2020/1/29 20:08:15 <a href="none">叶飞</a><a href="/credit">⑩</a></p>
+                </div>
+                <div>
+                    <p>@@<a href="none"> xtayaitak</a><a href="/credit">①</a></p>
+                    <p> 有没有打cs1.6的...</p>
+                </div>
+                <div><p>哈哈……没有</p></div>
 
-    <section>
-    </section>
+            </section>
+            <section>
+                <div>
+                    <button type="button" class="btn btn-light border border-secondary">@@TA回复</button>
+                </div>
+                <div>
+                    <p>2020/1/29 20:08:15<a href="none">喵了个咪</a><a href="/credit">④</a></p>
+                </div>
+                <div>
+                    <p>喵了个咪</p>
+                </div>
 
-    <aside>
-    </aside>
+            </section>
+            <section>
+                <div><button type="button" class="btn btn-light border border-secondary">@@TA回复</button></div>
+                <div><p>2020/2/3 10:54:01<a href="none">喵了个咪</a><a href="/credit">④</a></p></div>
+                <div><p>欢迎注册本站学习，邀请人：喵了个咪，邀请码0434</p></div>
+
+            </section>
+            <section>
+                <div>
+                    <button type="button" class="btn btn-light border border-secondary">@@TA回复</button>
+                </div>
+                <div><p>2020/2/3 11:14:49<a href="none">喵了个咪</a><a href="/credit">④</a></p></div>
+                <div><p>http://http://17bang.ren/register/home?name=%e5%96%b5%e4%ba%86%e4%b8%aa%e5%92%aa&code=0434</p></div>
+
+            </section>
+            <section>
+                <div><button type="button" class="btn btn-light border border-secondary">@@TA回复</button></div>
+                <div><p>2020/2/7 3:05:18<a href="none"> lk6321</a><a href="/credit">①</a></p></div>
+                <div><p>啥?</p></div>
+            </section>
+            <section>
+                <div><button type="button" class="btn btn-light border border-secondary">@@TA回复</button></div>
+                <div>
+                    <p>2020/2/9 14:03:27<a href="none">u33445687</a><a href="/credit">③</a></p>
+                </div>
+                <div><p>666666</p></div>
+
+            </section>
+            <section>
+                <div><button type="button" class="btn btn-light border border-secondary">@@TA回复</button></div>
+                <div><p>2020/2/13 19:59:29<a href="none">云飞飞飞</a><a href="/credit">①</a></p></div>
+                <div><p>666666666</p></div>
+
+            </section>
+            <section>
+                <div><button type="button" class="btn btn-light border border-secondary">@@TA回复</button></div>
+                <div><p>2020/2/17 0:24:57<a href="none">疾风小白</a><a href="/credit">①</a></p></div>
+                <div><p>hai</p></div>
+
+            </section>
+            <section>
+                <div><button type="button" class="btn btn-light border border-secondary">@@TA回复</button></div>
+                <div><p>2020/2/18 15:41:29<a href="none">harriethwikk</a><a href="/credit">②</a></p></div>
+                <div><p>6</p></div>
+
+            </section>
+            <section>
+                <div><button type="button" class="btn btn-light border border-secondary">@@TA回复</button></div>
+                <div><p>2020/2/19 12:39:21<a href="none">harriethwikk</a><a href="/credit">②</a></p></div>
+                <div><p>嗨</p></div>
+
+            </section>
+        </section>
+
+        <aside class="order-2 position-relative">
+            <div class="position-absolute" style="left:50px;top:75px;">
+                <h4>“源栈”web开发培训班<span style="color:red">火热</span>招生中：</h4>
+                <p>线上：全程直播，免费收看</p>
+                <p>线下：灵活学制，拎包入住</p>
+                <p>有意向的同学，可以加qq群：326801052</p>
+                <img src="~/img/二维码.png" alt="qq学习群326801052" />
+            </div>
+            
+        </aside>
+    </div>
 </main>
 
-<section style="margin-top:280px;background-color:gray;" class="space">
-    <p style="float:left">
-        <a style="float:left;padding-left:40px;" href="none" title="2020年2月29日 20:07:53"> 图片</a>
-        文章的评论如何选择/组织CSS内容？【常见面试题】你猜如果把...被叶飞赞，获得帮帮点 奖励6点
-    </p>
-    <a style="float:right;padding-right:50px;" href="none"> 全部消息</a>
-</section>
-<main style="float:left;width: 55%;overflow: scroll;" class="space">
-    <section class="space">
-        <a href="none" style="padding-left:50%;display:block">更多历史</a>
-        <div>
-            <button type="button">@@他回复</button>
+<section class="container" style="padding:0px;">
+    <div class="input-group mb-3" style="width:55%">
+        <input type="text" class="form-control" placeholder="我来说两句" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">发送</button>
         </div>
-        <div>
-            <p>2020/1/29 20:08:15 <a href="none">叶飞</a><a href="/credit">⑩</a></p>
-        </div>
-        <div>
-            <p>@@<a href="none"> xtayaitak</a><a href="/credit">①</a></p>
-            <p> 有没有打cs1.6的...</p>
-        </div>
-        <div><p>哈哈……没有</p></div>
-
-    </section>
-    <section>
-        <div>
-            <button type="button">@@他回复</button>
-        </div>
-        <div>
-            <p>2020/1/29 20:08:15<a href="none">喵了个咪</a><a href="/credit">④</a></p>
-        </div>
-        <div>
-            <p>喵了个咪</p>
-        </div>
-
-    </section>
-    <section>
-        <div><button type="button">@@他回复</button></div>
-        <div><p>2020/2/3 10:54:01<a href="none">喵了个咪</a><a href="/credit">④</a></p></div>
-        <div><p>欢迎注册本站学习，邀请人：喵了个咪，邀请码0434</p></div>
-
-    </section>
-    <section>
-        <div>
-            <button type="button">@@他回复</button>
-        </div>
-        <div><p>2020/2/3 11:14:49<a href="none">喵了个咪</a><a href="/credit">④</a></p></div>
-        <div><p>http://http://17bang.ren/register/home?name=%e5%96%b5%e4%ba%86%e4%b8%aa%e5%92%aa&code=0434</p></div>
-
-    </section>
-    <section>
-        <div><button type="button">@@他回复</button></div>
-        <div><p>2020/2/7 3:05:18<a href="none"> lk6321</a><a href="/credit">①</a></p></div>
-        <div><p>啥?</p></div>
-    </section>
-    <section>
-        <div><button type="button">@@他回复</button></div>
-        <div>
-            <p>2020/2/9 14:03:27<a href="none">u33445687</a><a href="/credit">③</a></p>
-        </div>
-        <div><p>666666</p></div>
-
-    </section>
-    <section>
-        <div><button type="button">@@他回复</button></div>
-        <div><p>2020/2/13 19:59:29<a href="none">云飞飞飞</a><a href="/credit">①</a></p></div>
-        <div><p>666666666</p></div>
-
-    </section>
-    <section>
-        <div><button type="button">@@他回复</button></div>
-        <div><p>2020/2/17 0:24:57<a href="none">疾风小白</a><a href="/credit">①</a></p></div>
-        <div><p>hai</p></div>
-
-    </section>
-    <section>
-        <div><button type="button">@@他回复</button></div>
-        <div><p>2020/2/18 15:41:29<a href="none">harriethwikk</a><a href="/credit">②</a></p></div>
-        <div><p>6</p></div>
-
-    </section>
-    <section>
-        <div><button type="button">@@他回复</button></div>
-        <div><p>2020/2/19 12:39:21<a href="none">harriethwikk</a><a href="/credit">②</a></p></div>
-        <div><p>嗨</p></div>
-
-    </section>
-</main>
-<section style="float:left;width:55%">
-    <label>
-        <input type="text" placeholder="我来说两句" name="talking" style="width:90%;border-radius:5px;height:25px;" />
-        <span style="width:10%;border-radius:5px;height:25px;">发送</span>
-    </label>
+    </div>
 </section>
 
 
-<aside style="width:40%;float:right;">
-    <h3>“源栈”web开发培训班<span style="color:red">火热</span>招生中：</h3>
-    <p>线上：全程直播，免费收看</p>
-    <p>线下：灵活学制，拎包入住</p>
-    <p>有意向的同学，可以加qq群：326801052</p>
-    <img src="~/img/二维码.png" alt="qq学习群326801052" />
-</aside>
+
 
