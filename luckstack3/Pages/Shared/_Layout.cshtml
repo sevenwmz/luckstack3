@@ -11,6 +11,9 @@
         * {
             border: 1px solid;
         }
+        a{
+            text-decoration:none
+        }
     </style>
     @RenderSection("style", false)
 
@@ -30,7 +33,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             @*暂时未写图标部分*@
-            <div class="collapse navbar-collapse" style="flex-direction:row-reverse">
+            <div class="collapse navbar-collapse flex-row-reverse" >
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle fa-question-circle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -102,9 +105,18 @@
         </nav>
     </header>
 
+    <main>
+        <div class="container">
+            <div class="row alert alert-secondary justify-content-lg-between" style="position:relative;top:65px;height:35px;padding:5px 20px;">
+                <span><i class="fa fa-calendar" title="2020年3月4日 15:41:38"></i>文章<a href="#" class="text-muted">源栈培训：ASP.NET MVC：Route和MV... </a>被<a href="#" class="text-muted">陈百万</a>打赏<a href="#" class="text-muted"><i class="fa fa-jpy"></i>帮帮币</a>1枚</span>
+                <a href="#"><i class="fa fa-hand-o-right"></i>全部消息</a>
+            </div>
+        </div>
+        
+        @RenderBody()
+    </main>
 
 
-    @RenderBody()
 
     <footer class="container">
         <hr />
