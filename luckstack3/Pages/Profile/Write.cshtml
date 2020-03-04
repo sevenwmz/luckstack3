@@ -2,204 +2,133 @@
 @model luckstack3.selfdescriptionModel
 @{
     ViewData["Title"] = "selfdescription";
+    Layout = "_LayoutFromRegister";
 }
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
+@section style{
     <style>
         a {
             text-decoration: none
         }
+        ol li {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        *{
+            font-size:16px;
+        }
     </style>
-</head>
-<body>
-    <header>
-        <a href="/"><img src="~/img/一起帮主页logo左上角.png" alt="一起帮LOGO" /></a>
-        <h1 style="color:gray"> 一起帮·</h1><span style="color:gray">网络互助平台</span>
-        <nav>
-            <ul>
-                <li>
-                    求助
-                    <ul>
-                        <li>
-                            督导班
-                        </li>
-                        <li>
-                            列表
-                        </li>
-                        <li>
-                            疑问发布
-                        </li>
-                        <li>
-                            疑问列表
-                        </li>
-                        <li>
-                            列表
-                        </li>
-                        <li>
-                            发布
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    督促
-                    <ul>
-                        <li>
-                            求督促
-                        </li>
-                        <li>
-                            督促别人
-                        </li>
-                        <li>
-                            我的目标
-                        </li>
-                        <li>
-                            我的督促
-                        </li>
-                        <li>
-                            未交作业
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    文章
-                    <ul>
-                        <li>
-                            列表
-                        </li>
-                        <li>
-                            开通
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    未登录
-                    <ul>
-                        <li>
-                            登录
-                        </li>
-                        <li>
-                            注册
-                        </li>
-                        <li>
-                            忘记密码
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    后台
-                    <ul>
-                        <li>
-                            邀请注册
-                        </li>
-                        <li>
-                            我的消息
-                        </li>
-                        <li>
-                            我的草稿
-                        </li>
-                        <li>广告推广</li>
-                        <li>
-                            联系方式
-                        </li>
-                        <li>
-                            侧边栏
-                        </li>
-                        <li>帮帮币</li>
-                        <li>
-                            购买
-                        </li>
-                        <li>
-                            出售
-                        </li>
-                        <li>
-                            已购买
-                        </li>
-                        <li>
-                            已出售
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <h2>个人资料</h2>
-
-    <main>
-        <form method="post" action="" novalidate enctype="multipart/form-data">
-            <label><strong>头像：（* 仅限jpg/png/gif）</strong></label><br />
-            <label><input type="file" placeholder="页面提交时上传文件" multiple name="icon" value="" /><span>浏览</span></label><br />
-            <label><strong>性别： </strong></label>
-            <label><input type="radio" name="gender" value="男" />男</label>
-            <label><input type="radio" name="gender" value="=女" />女</label><br />
-            <label><strong>生日：</strong></label><br />
-            <label><input type="month" /></label>
-            <select name="Constellation">
-                <option value="">--</option>
-                <option>白羊座</option>
-                <option>金牛座</option>
-                <option>双子座</option>
-                <option>巨蟹座</option>
-                <option>狮子座</option>
-                <option>处女座</option>
-                <option>天秤座</option>
-                <option>天蝎座</option>
-                <option>射手座</option>
-                <option>摩羯座</option>
-                <option>水瓶座</option>
-                <option>双鱼座</option>
-            </select>
-            <span>星座</span><br />
-            <!---你这个地方是列表实现的，我发现我不可以，就用OPTION了-->
-            <label><strong>关键字：（* 使用空格分隔）</strong></label><br />
-            <select name="Frist">
-                <option>编程开发语言</option>
-                <option>工具软件</option>
-                <option>顾问咨询</option>
-                <option>操作系统</option>
-            </select>
-            <select name="Second">
-                <option>visual studio</option>
-                <option>eclipse</option>
-                <option>IDEA</option>
-                <option>Excel</option>
-                <option>Word</option>
-                <option>CAD</option>
-                <option>Photoshop</option>
-                <option>PowerPoint</option>
-            </select>
-            <input type="text" placeholder="自定义关键字，使用空格分隔" name="Keywords" /><br />
-
-            <label><strong>自我介绍：</strong></label><br />
-            <textarea placeholder="简单介绍一下自己吧，不超过255字" name="selfdescription" rows="7"></textarea><br />
-            <button type="submit" style="background-color:dodgerblue;color:white">提交</button>
-        </form>
-    </main>
-
-
-    <aside>
-        <h3 style="color:blue">说明</h3>
-        <ol>
-            <li>头像仅接受jpg/png/gif格式，大小不超过256KB。</li>
-            <li>头像图片的建议宽度为300像素左右，过宽或过窄都有可能失真。</li>
-            <li>自我介绍的字数不要超过255字。</li>
-        </ol>
-    </aside>
-    <footer>
-        <hr />
-        <div>
-            <a href="none" style="color:deepskyblue">关于我们</a> |
-            <a href="none" style="color:deepskyblue">常见问题</a> |
-            <a href="none" style="color:deepskyblue">意见建议</a> |
-            <a href="none" style="color:deepskyblue">历史通知</a> |
-            <a href="none" style="color:lawngreen">友情捐赠</a> |
-            <a href="none" style="color:deepskyblue">融资2018</a><!---为什么是2018，不是2020吗，吐个槽-->
-            <p>友情链接：</p>
-            <a href="none" style="color:deepskyblue">老王这里（备案）</a>© 2020 - 首顾科技
+}
+@section title{
+    <i class="fa fa-header"></i>个人资料
+}
+@section Descirption{
+    <ol>
+        <li>头像仅接受jpg/png/gif格式，大小不超过256KB。</li>
+        <li>头像图片的建议宽度为300像素左右，过宽或过窄都有可能失真。</li>
+        <li>自我介绍的字数不要超过255字。</li>
+    </ol>
+}
+<form class="col-md-4">
+    <div class="form-group">
+        <label><strong>头像：（* 仅限jpg/png/gif）</strong></label>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" aria-describedby="inputGroupFileAddon01">
+            <label class="custom-file-label" for="inputGroupFile01">页面提交时上传文件</label>
         </div>
-    </footer>
-</body>
-</html>
+        <div>
+            <label><strong>性别： </strong></label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                <label class="form-check-label" for="inlineRadio1">男</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                <label class="form-check-label" for="inlineRadio2">女</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label><strong>生日：</strong></label>
+            <div class="input-group mb-3">
+                <select class="form-control">
+                    <option>----</option>
+                    <option>2020</option>
+                    <option>2019</option>
+                    <option>2018</option>
+                    <option>2017</option>
+                    <option>2016</option>
+                </select>
+                <div class="input-group-append">
+                    <span class="input-group-text">年</span>
+                </div>
+                <select class="form-control">
+                    <option>----</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+                <div class="input-group-append">
+                    <span class="input-group-text">月</span>
+                </div>
+                <select class="form-control">
+                    <option>----</option>
+                    <option>白羊座</option>
+                    <option>金牛座</option>
+                    <option>双子座</option>
+                    <option>巨蟹座</option>
+                    <option>狮子座</option>
+                    <option>处女座</option>
+                    <option>天秤座</option>
+                    <option>天蝎座</option>
+                    <option>射手座</option>
+                    <option>摩羯座</option>
+                    <option>水瓶座</option>
+                    <option>双鱼座</option>
+                </select>
+                <div class="input-group-append">
+                    <span class="input-group-text">星座</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label><strong>关键字：（* 使用空格分隔）</strong></label>
+            <div class="input-group">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline-dark">---1级---</button>
+                    <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">编程开发语言</a>
+                        <a class="dropdown-item" href="#">工具软件</a>
+                        <a class="dropdown-item" href="#">顾问咨询</a>
+                        <a class="dropdown-item" href="#">操作系统</a>
+                    </div>
+                    <button type="button" class="btn btn-outline-dark">---2级---</button>
+                    <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">visual studio</a>
+                        <a class="dropdown-item" href="#">eclipse</a>
+                        <a class="dropdown-item" href="#">IDEA</a>
+                        <a class="dropdown-item" href="#">Excel</a>
+                        <a class="dropdown-item" href="#">Word</a>
+                        <a class="dropdown-item" href="#">CAD</a>
+                        <a class="dropdown-item" href="#">Photoshop</a>
+                        <a class="dropdown-item" href="#">PowerPoint</a>
+                    </div>
+                </div>
+                <input type="text" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label><strong>自我介绍：</strong></label>
+        <textarea class="form-control" placeholder="简单的介绍一下自己吧，不超过255字" style="line-height:4;"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">提交</button>
+</form>
 
