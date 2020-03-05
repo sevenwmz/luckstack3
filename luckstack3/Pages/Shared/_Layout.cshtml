@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/SevenWangOverride.css"/>
     <style>
 
-        /** {
-            border: 1px solid;
-        }*/
+        * {
+            font-size:small;
+        }
         a{
             text-decoration:none
         }
@@ -32,12 +32,11 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            @*暂时未写图标部分*@
             <div class="collapse navbar-collapse flex-row-reverse" >
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle fa-question-circle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            求助
+                        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-question-circle"></i>求助
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-header">督导班</a>
@@ -52,7 +51,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            督促
+                            <i class="fa fa-eye"></i>督促
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">求督促</a>
@@ -64,7 +63,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            文章
+                            <i class="fa fa-area-chart"></i>文章
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">列表</a>
@@ -73,7 +72,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            未登录
+                            <i class="fa fa-user"></i>未登录
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">登录</a>
@@ -82,8 +81,8 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown" style="padding-right:75px">
-                        <a class="nav-link dropdown-toggle fa-question-circle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            后台
+                        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-tachometer"></i>后台
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-header">邀请注册</a>

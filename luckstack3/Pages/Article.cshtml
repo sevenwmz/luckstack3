@@ -5,6 +5,13 @@
 }
 @section style{
     <style>
+        aside section span {
+            margin: 5px 20px 5px 0px;
+        }
+
+        mb {
+            margin-bottom: 10px;
+        }
     </style>
 }
 
@@ -12,7 +19,7 @@
     <article class="row">
         <div class="col-md-8" style="margin-top:90px;">
             <div>
-                <span>2020年02月26日 13点02分</span>
+                <span><i class="fa fa-calendar"></i>2020年02月26日 13点02分</span>
                 <span class="float-md-right text-info">作者：<a href="none" class="text-info">叶飞</a></span>
                 <p><a href="none" class="text-info">ASP.NET RazorPages：CSRF跨站点请求伪造</a></p>
                 <p>Cross-SiteRequestForgery：防御的核心在于除了用户的验证cookie以外，还要生成一个token，以确保链接/表单确实为服务器端生成。如何生成token？生成一个随机数从用户密码中生成……实现：操作类尽量使用Post（仅查询类使用Get）前台，Layout中传入，使用JavaScript附加后台，使用Filter进行封装。和钓鱼网站的区别MVC内置反欺骗（仅用于form表单）在form表单中添加：@@Html.AntiForgeryToken()生成一个hiden input，记录了一 <a href="none" style="color:black">……</a></p>
@@ -29,7 +36,7 @@
                 <hr />
             </div>
             <div>
-                <span>2020年02月23日 00点30分</span>
+                <span><i class="fa fa-calendar"></i>2020年02月23日 00点30分</span>
                 <span class="float-md-right text-info">作者：<a href="none" class="text-info">叶飞</a></span>
                 <p><a href="none" class="text-info">CSS：选择器</a></p>
                 <p>Cross-SiteRequestForgery：防御的核心在于除了用户的验证cookie以外，还要生成一个token，以确保链接/表单确实为服务器端生成。如何生成token？生成一个随机数从用户密码中生成……实现：操作类尽量使用Post（仅查询类使用Get）前台，Layout中传入，使用JavaScript附加后台，使用Filter进行封装。和钓鱼网站的区别MVC内置反欺骗（仅用于form表单）在form表单中添加：@@Html.AntiForgeryToken()生成一个hiden input，记录了一 <a href="none" style="color:black">……</a></p>
@@ -47,7 +54,7 @@
                 <hr />
             </div>
             <div>
-                <span>2020年02月23日 00点29分</span>
+                <span><i class="fa fa-calendar"></i>2020年02月23日 00点29分</span>
                 <span class="float-md-right text-info">作者：<a href="none" class="text-info">叶飞</a></span>
                 <p><a href="none" class="text-info">CSS：盒子模型、浮动和定位</a></p>
                 <p>CSS 盒子模型适用样式：width/height流元素的高度和居中overflowborder：粗细/样式/颜色top/right/bottom/left为什么使用transparent？margin/padding：是否占用宽度？block和padding的不同margin合并为了避免浏览器兼容问题，通常都首先定义：margin:0;padding:0;display:block：默认宽度100%（占一行）inline：宽度随文本，不会占一行，margin有效，padding不会“撑起”父元素，hei <a href="none" style="color:black">……</a></p>
@@ -66,7 +73,7 @@
                 <hr />
             </div>
             <div>
-                <span>2020年02月22日 13点49分</span>
+                <span><i class="fa fa-calendar"></i>2020年02月22日 13点49分</span>
                 <span class="float-md-right text-info">作者：<a href="none" class="text-info">叶飞</a></span>
                 <p><a href="none" class="text-info">源栈培训：ASP.NET MVC：分层架构 - CurrentUser</a></p>
                 <p>1、很多时候我们需要当前用户2、当前用户a）需要从cookie中获取b）还需要数据库支持（验证）3、发布一个求助需要当前用户作为作者所以：方案（一）public interface IProblemService{int Publish(NewModel model, int authorId);}NewModel：存Title、Body等数据authorId：-- 不能只取cookie中的userId，还得有token结论：麻烦方案（二）当前用户信息直接由SRV获取既然SRV能够获取cookie =》 <a href="none" style="color:black">……</a></p>
@@ -82,63 +89,101 @@
                     <a href="none" class="text-muted"> 踩：0 </a><br />
                 </div>
                 <hr />
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <button type="button" class="btn btn-secondary">1</button>
-                        <button type="button" class="btn btn-secondary">2</button>
-                        <button type="button" class="btn btn-secondary">3</button>
-                        <button type="button" class="btn btn-secondary">4</button>
-                        <button type="button" class="btn btn-secondary">5</button>
-                        <button type="button" class="btn btn-secondary">6</button>
-                        <button type="button" class="btn btn-secondary">7</button>
-                        <button type="button" class="btn btn-secondary">8</button>
-                        <button type="button" class="btn btn-secondary">9</button>
-                        <button type="button" class="btn btn-secondary">10</button>
-                        <button type="button" class="btn btn-secondary">>></button>
-                    </div>
-                </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item"><a class="page-link" href="#">6</a></li>
+                        <li class="page-item"><a class="page-link" href="#">7</a></li>
+                        <li class="page-item"><a class="page-link" href="#">8</a></li>
+                        <li class="page-item"><a class="page-link" href="#">9</a></li>
+                        <li class="page-item"><a class="page-link" href="#">10</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
         <aside class="col-md-4" style="margin-top:90px;">
-            <div style="border:dashed#e4e0e0 2px;">
-                <div class="container">
-                    <h4 class="lead "><i class="fa fa-tags"></i>关键字</h4>
-                    <hr />
-                    <span class="text-white badge bg-dark">编程开发语言</span><span class="text-white badge bg-dark">C#</span><span class="text-white badge bg-dark">JAVA</span><br />
-                    <span class="text-white badge bg-dark">工具软件</span><span class="text-white badge bg-dark">Javascript</span><br />
-                    <span class="text-white badge bg-dark">顾问咨询</span><span class="text-white badge bg-dark">Html</span><span class="text-white badge bg-dark">VisualStudio</span><br />
-                    <span class="text-white badge bg-dark">操作系统</span><span class="text-white badge bg-dark">SQL</span><span class="text-white badge bg-dark">职场</span><span class="text-white badge bg-dark">法律</span><br />
-                    <span class="text-white badge bg-dark">Python</span><span class="text-white badge bg-dark">.net</span><span class="text-white badge bg-dark">css</span><span class="text-white badge bg-dark">Linux</span>
-                    <hr />
-                    <div class="input-group mb-3 ">
-                        <input type="text" class="form-control" placeholder="直接输入关键字进行查找" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
-                        </div>
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-random"></i>换一批</button>
+            <div style="border:dashed#e4e0e0 1px;border-radius:5px;" class="container">
+                <h4 class="lead mt-md-4"><i class="fa fa-tags"></i>关键字</h4>
+                <hr />
+                <section>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:30px;">编程开发语言</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:30px;">C#</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:30px;">JAVA</span><br />
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:25px;">工具软件</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:25px;">Javascript</span><br />
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;height:20px;">顾问咨询</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;height:20px;">Html</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;height:20px;">VisualStudio</span><br />
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;">操作系统</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;">SQL</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;">职场</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;">法律</span><br />
+                    <span class="text-white badge bg-dark" style="border-radius:10px;">Python</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;">.net</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;">css</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;">Linux</span>
+                </section>
+                <hr />
+                <div class="input-group mb-3 text-right">
+                    <input type="text" class="form-control" placeholder="直接输入关键字进行查找" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <span class="input-group-text "><i class="fa fa-search"></i></span>
                     </div>
-
+                    <button class="btn btn-outline-dark my-2 my-sm-0 ml-4 border border-secondary" type="button"><i class="fa fa-random"></i>换一批</button>
                 </div>
 
-
             </div>
-            <div>
-                <span>每日督促</span><span>排行榜</span><span>新注册</span>
-                <p>2020年02月25日</p>
-                <span>共扫描目标：</span><span>1个</span><br />
-                <span>当天休息：</span><span>0人</span><br />
-                <span>已交作业：</span><span>0份</span><br />
-                <span>请假：</span><span>0 人</span><br />
-                <span>未交作业：</span><span><a href="none">1 人</a></span><br />
+            <div class="card text-center mt-5">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">每日督促</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">排行榜</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">新注册</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body  ">
+                    <p class="lead"><i class="fa fa-calendar"></i>2020年02月25日</p>
+                    <div class="d-flex row">
+                        <div class="col-md-4">
+                            <p class="text-left small">共扫描目标：</p>
+                            <p class="text-left small">当天休息：</p>
+                            <p class="text-left small">已交作业：</p>
+                            <p class="text-left small">请假：</p>
+                            <p class="text-left small">未交作业：</p>
+                        </div>
+                        <div class="col-md-4 offset-2">
+                            <p class="mb small"><i class="fa fa-flag-o"></i>1个</p>
+                            <p class="mb small"><i class="fa fa-ban"></i>0人</p>
+                            <p class="mb small"><i class="fa fa-check"></i>0份</p>
+                            <p class="mb small"><i class="fa fa-coffee"></i>0 人</p>
+                            <p class="mb small"><a href="none"><i class="fa fa-remove"></i>1 人</a></p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <a href="none"> 学编程，来 “源栈”！飞哥精品小班等着你……</a><br />
-                <a href="none">  免费广告位，抢到就是赚到！</a><br />
-                <a href="none">  免费广告位，抢到就是赚到！</a><br />
-                <a href="none">  免费广告位，抢到就是赚到！</a><br />
-                <a href="none">  免费广告位，抢到就是赚到！</a><br />
-                <p>本站主机由<a href="none">  西部数码</a>提供</p>
-                <a href="none">广告</a>
+            <div style="border:dashed#eae2e2 1px;border-radius:5px;padding:25px;margin-top:35px;">
+                <p><span class="badge badge-secondary mr-3">1</span><a href="none"> 学编程，来 “源栈”！飞哥精品小班等着你……</a></p>
+                <p><span class="badge badge-secondary mr-3">2</span><a href="none" class="text-warning">  免费广告位，抢到就是赚到！</a></p>
+                <p><span class="badge badge-secondary mr-3">3</span><a href="none" class="text-warning">  免费广告位，抢到就是赚到！</a><br /></p>
+                <p><span class="badge badge-secondary mr-3">4</span><a href="none" class="text-warning">  免费广告位，抢到就是赚到！</a><br /></p>
+                <p><span class="badge badge-secondary mr-3">5</span><a href="none" class="text-warning">  免费广告位，抢到就是赚到！</a><br /></p>
+                <p><span class="badge badge-secondary mr-3">6</span>本站主机由<a href="none">  西部数码</a>提供</p>
+                <p class="text-md-right small"><a href="none"><i class="fa fa-buysellads"></i> 广告</a></p>
             </div>
         </aside>
     </article>
