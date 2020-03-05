@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "luckstack3", "luckstack3\luckstack3.csproj", "{4004D508-AEE4-4FC5-871B-077782D091C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "luckstack3", "luckstack3\luckstack3.csproj", "{4004D508-AEE4-4FC5-871B-077782D091C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SevenLearnCsharp", "SevenLearnCsharp\SevenLearnCsharp.csproj", "{4FD5F1E5-27F2-4EAA-BADC-1AD9A93FE289}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4004D508-AEE4-4FC5-871B-077782D091C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4004D508-AEE4-4FC5-871B-077782D091C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4004D508-AEE4-4FC5-871B-077782D091C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FD5F1E5-27F2-4EAA-BADC-1AD9A93FE289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FD5F1E5-27F2-4EAA-BADC-1AD9A93FE289}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FD5F1E5-27F2-4EAA-BADC-1AD9A93FE289}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FD5F1E5-27F2-4EAA-BADC-1AD9A93FE289}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
