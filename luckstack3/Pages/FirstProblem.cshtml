@@ -1,139 +1,20 @@
 ﻿@page
 @model luckstack3.ReleaseModel
 @{
-    ViewData["Title"] = "Release";
+    ViewData["Title"] = "First-Problem";
+}
+@section style{
+
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <style>
-        a{
-            text-decoration:none;
-        }
-    </style>
-</head>
+<main class="container">
 
-<body>
-    <header>
-        <a href="/"><img src="~/img/一起帮主页logo左上角.png" alt="一起帮LOGO" /></a>
-        <h1 style="color:gray"> 一起帮·</h1><span style="color:gray">网络互助平台</span>
-        <nav>
-            <ul>
-                <li>
-                    求助
-                    <ul>
-                        <li>
-                            督导班
-                        </li>
-                        <li>
-                            列表
-                        </li>
-                        <li>
-                            疑问发布
-                        </li>
-                        <li>
-                            疑问列表
-                        </li>
-                        <li>
-                            列表
-                        </li>
-                        <li>
-                            发布
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    督促
-                    <ul>
-                        <li>
-                            求督促
-                        </li>
-                        <li>
-                            督促别人
-                        </li>
-                        <li>
-                            我的目标
-                        </li>
-                        <li>
-                            我的督促
-                        </li>
-                        <li>
-                            未交作业
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    文章
-                    <ul>
-                        <li>
-                            列表
-                        </li>
-                        <li>
-                            开通
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    未登录
-                    <ul>
-                        <li>
-                            登录
-                        </li>
-                        <li>
-                            注册
-                        </li>
-                        <li>
-                            忘记密码
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    后台
-                    <ul>
-                        <li>
-                            邀请注册
-                        </li>
-                        <li>
-                            我的消息
-                        </li>
-                        <li>
-                            我的草稿
-                        </li>
-                        <li>广告推广</li>
-                        <li>
-                            联系方式
-                        </li>
-                        <li>
-                            侧边栏
-                        </li>
-                        <li>帮帮币</li>
-                        <li>
-                            购买
-                        </li>
-                        <li>
-                            出售
-                        </li>
-                        <li>
-                            已购买
-                        </li>
-                        <li>
-                            已出售
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <header>
-            <h2>首次求助测试</h2>
-            <a href="none">目的</a>
+    <div class="row">
+        <section class="col-md-9">
+            <h2 style="margin-top:90px;">
+                <i class="fa fa-graduation-cap"></i>首次求助测试
+            </h2>
             <hr />
-        </header>
-        <section>
             <form method="post">
                 <label><strong>1 、以下哪一种求助是“一起帮”鼓励的：</strong></label><br />
                 <label><input type="radio" name="1" value="1" />如何看待42岁程序员跳楼事件？（社会热点问题）</label><br />
@@ -167,10 +48,10 @@
                 <label><input type="radio" name="6" value="3" />（求助人）发布求助，（好心人）应答，（求助人）确认开始协助，（好心人和求助人）开始远程协助，over</label><br />
                 <label><input type="radio" name="6" value="4" />（求助人）发布求助，（好心人）应答，（求助人）确认开始协助，（好心人和求助人）开始远程协助，（求助人）酬谢和评价，（好心人和求助人）写总结，over</label><br />
                 <label><strong>7 、开始协助的按钮在应答的旁边，是哪一个以下图标：</strong></label><br />
-                <label><input type="radio" name="7" value="1" /><img src="none" title="开始远程协助" /></label><br />
-                <label><input type="radio" name="7" value="2" /><img src="none" title="问题解决，酬谢" /></label><br />
-                <label><input type="radio" name="7" value="3" /><img src="none" title="正在协助......" /></label><br />
-                <label><input type="radio" name="7" value="4" /><img src="none" title="问题没解决重开" /></label><br />
+                <label><input type="radio" name="7" value="1" /><i class="fa fa-star-half" title="开始远程协助" ></i></label><br />
+                <label><input type="radio" name="7" value="2" /><i class="fa fa-hand-o-right" title="问题解决，酬谢" ></i></label><br />
+                <label><input type="radio" name="7" value="3" /><i class="fa fa-windows" title="正在协助......" ></i></label><br />
+                <label><input type="radio" name="7" value="4" /><i class="fa fa-window-close" title="问题没解决重开"></i></label><br />
                 <label><strong>8 、如果求助人认为问题没有解决，可以拒绝全额酬谢。拒绝全额酬谢会导致：</strong></label><br />
                 <label><input type="checkbox" name="8" value="1" />好心人得不到帮帮币奖励</label><br />
                 <label><input type="checkbox" name="8" value="2" />好心人只能得到该求助悬赏金额一半（取整）的帮帮币奖励</label><br />
@@ -186,46 +67,38 @@
                 <label><input type="checkbox" name="10" value="1" />只有求助人和好心人才能发总结</label><br />
                 <label><input type="checkbox" name="10" value="1" />别人查看你的总结，你会获得帮帮点</label><br />
                 <label><input type="checkbox" name="10" value="1" />总结只能被查看过的用户评价和评论</label><br />
+                <button type="submit" class="btn btn-primary">提交</button>
+                <button type="reset" class="btn btn-light border border-secondary">重填</button>
 
-                <button type="submit" style="background-color:blue;color:white">提交</button>
-                <button type="submit" style="color:black">重填</button>
             </form>
         </section>
-    </main>
-    <aside>
-        <div style="background-color:#eeef56;">
-            <h4>新手任务</h4>
-            <hr />
-            <p>填写：<a href="none">联系方式</a></p>
-            <p>激活：<a href="none">Email</a></p>
-            <p>邀请：<a href="none">我的小伙伴</a></p>
-            <p>参加：<a href="none">新人测试</a></p>
-            <p>发布：<a href="none">第一个求助</a></p>
-            <p>尝试： <a href="none">第一次协助</a></p>
-            <p>获得：若干<a href="none" style="color:gold">帮帮币</a></p>
-        </div>
-        <div>
-            <p><a href="/firstproblem">修改</a></p>
-            <span><strong>用户：</strong></span>
-            <a href="none">用户名</a>
-            <a href="/Credit" title="初级学徒">①</a>
-            <a href="none">修改</a>
-        </div>
-    </aside>
+        <aside class="col-md-3">
+            <div style="margin-top:90px;border:dashed#d8c8c8 3px;padding:25px;background-color:#fce98b">
+                <h4>新手任务</h4>
+                <hr />
+                <p><i class="fa fa-square-o"></i>填写：<a href="none">联系方式</a></p>
+                <p><i class="fa fa-square-o"></i>激活：<a href="none">Email</a></p>
+                <p><i class="fa fa-square-o"></i>邀请：<a href="none">我的小伙伴</a></p>
+                <p><i class="fa fa-square-o"></i>参加：<a href="none">新人测试</a></p>
+                <p><i class="fa fa-square-o"></i>发布：<a href="none">第一个求助</a></p>
+                <p><i class="fa fa-square-o"></i>尝试： <a href="none">第一次协助</a></p>
+                <p><i class="fa fa-square-o"></i>获得：若干<a href="none" style="color:gold">帮帮币</a></p>
+            </div>
+            <div class="flex-column">
+                <p class="text-right" style="padding-top:30px;"><a href="/firstproblem">修改</a></p>
+                <div class="rounded-sm border justify-content-center">
+                    <p style="padding-left:30%;padding-right:50%;"><i class="fa fa-picture-o"></i></p>
+                    <span style="padding-left:50%;">等待上传中<i class="fa fa-hourglass-start"></i>...</span>
+                </div>
+                <span><strong>用户：</strong></span>
+                <a href="none">用户名</a>
+                <a href="/Credit" title="初级学徒">①</a>
+                <a href="none">修改</a>
+            </div>
+        </aside>
+    </div>
 
-    <footer>
-        <hr />
-        <div>
-            <a href="none" style="color:deepskyblue">关于我们</a> |
-            <a href="none" style="color:deepskyblue">常见问题</a> |
-            <a href="none" style="color:deepskyblue">意见建议</a> |
-            <a href="none" style="color:deepskyblue">历史通知</a> |
-            <a href="none" style="color:lawngreen">友情捐赠</a> |
-            <a href="none" style="color:deepskyblue">融资2018</a><!---为什么是2018，不是2020吗，吐个槽-->
-            <p>友情链接：</p>
-            <a href="none" style="color:deepskyblue">老王这里（备案）</a>© 2020 - 首顾科技
-        </div>
-    </footer>
-</body>
-</html>
+</main>
+
+
 
