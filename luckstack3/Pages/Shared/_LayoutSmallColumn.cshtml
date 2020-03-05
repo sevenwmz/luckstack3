@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+    Layout = "_Layout";
+}
+
+<main class="container">
+    <div class="row">
+        <section class="col-md-7">
+            <div style="margin-top: 90px;">
+                <h3>
+                    @RenderSection("Title")
+                </h3>
+                <hr />
+            </div>
+            @RenderBody()
+        </section>
+        <aside class="col-md-4">
+            <div style="margin-top:90px;border:dashed#d8c8c8 1px;padding:25px;">
+                <h6 class="text-info"><strong><i class="fa fa-user-circle"></i>人工客服</strong></h6>
+                <a href="none" class="text-info">自由飞（2282636022）</a><br />
+                <a href="none" class="text-info">cjty8281（314060063）</a>
+            </div>
+        </aside>
+    </div>
+</main>
+@RenderSection("style",false)

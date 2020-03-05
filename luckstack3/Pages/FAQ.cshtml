@@ -2,163 +2,24 @@
 @model luckstack3.ProblemsModel
 @{
     ViewData["Title"] = "Problems";
+    Layout = "_LayoutSmallColumn";
 }
 
-<!--<h1>Problems</h1>--->
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <style>
-        a {
-            text-decoration: none
-        }
-    </style>
-</head>
+@section style{ }
+@section Title{
+    <i class="fa fa-list-alt"></i>常见问题
+}
 
-<body>
-    <header>
-        <a href="/"><img src="~/img/一起帮主页logo左上角.png" alt="一起帮LOGO" /></a>
-        <h1 style="color:gray"> 一起帮·</h1><span style="color:gray">网络互助平台</span>
-        <nav>
-            <ul>
-                <li>
-                    求助
-                    <ul>
-                        <li>
-                            督导班
-                        </li>
-                        <li>
-                            列表
-                        </li>
-                        <li>
-                            疑问发布
-                        </li>
-                        <li>
-                            疑问列表
-                        </li>
-                        <li>
-                            列表
-                        </li>
-                        <li>
-                            发布
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    督促
-                    <ul>
-                        <li>
-                            求督促
-                        </li>
-                        <li>
-                            督促别人
-                        </li>
-                        <li>
-                            我的目标
-                        </li>
-                        <li>
-                            我的督促
-                        </li>
-                        <li>
-                            未交作业
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    文章
-                    <ul>
-                        <li>
-                            列表
-                        </li>
-                        <li>
-                            开通
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    未登录
-                    <ul>
-                        <li>
-                            登录
-                        </li>
-                        <li>
-                            注册
-                        </li>
-                        <li>
-                            忘记密码
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    后台
-                    <ul>
-                        <li>
-                            邀请注册
-                        </li>
-                        <li>
-                            我的消息
-                        </li>
-                        <li>
-                            我的草稿
-                        </li>
-                        <li>广告推广</li>
-                        <li>
-                            联系方式
-                        </li>
-                        <li>
-                            侧边栏
-                        </li>
-                        <li>帮帮币</li>
-                        <li>
-                            购买
-                        </li>
-                        <li>
-                            出售
-                        </li>
-                        <li>
-                            已购买
-                        </li>
-                        <li>
-                            已出售
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <h1>常见问题</h1>
-    <hr />
-    <section>
-        <h3><a href="none">账户</a></h3>
-        <section>
-            <a href="/Account#ZQ1">Q：邀请码是怎么一回事？</a><br />
-            <a href="/Account#ZQ2">Q：为什么会提示“邀请人数达到上限”？</a><br />
-            <a href="/Account#ZQ3">Q：系统如何是确定“最后（上次）登录时间”的？</a><br />
-            <a href="/Account#ZQ4">Q：“最后登录时间”有什么用处？</a><br />
-            <a href="/Account#ZQ5">Q：邮箱有什么作用？</a><br />
-            <a href="/Account#ZQ6">Q：为什么我收不到邮件通知？</a><br />
-        </section>
-    </section>
+<div>
+    <a href="none" class="lead"><i class="fa fa-question-circle"></i> 账户</a><br />
+    <a href="/Account#ZQ1">Q：邀请码是怎么一回事？</a><br />
+    <a href="/Account#ZQ2">Q：为什么会提示“邀请人数达到上限”？</a><br />
+    <a href="/Account#ZQ3">Q：系统如何是确定“最后（上次）登录时间”的？</a><br />
+    <a href="/Account#ZQ4">Q：“最后登录时间”有什么用处？</a><br />
+    <a href="/Account#ZQ5">Q：邮箱有什么作用？</a><br />
+    <a href="/Account#ZQ6">Q：为什么我收不到邮件通知？</a><br />
+</div>
 
-    <aside>
-        <h4 style="color:dodgerblue;"><strong>人工客服</strong></h4>
-        <a href="none">自由飞（2282636022）</a><br />
-        <a href="none">cjty8281（314060063）</a>
-    </aside>
 
-    <footer>
-        <hr />
-        <div>
-            <a href="none" style="color:deepskyblue">关于我们</a> |
-            <a href="none" style="color:deepskyblue">常见问题</a> |
-            <a href="none" style="color:deepskyblue">意见建议</a> |
-            <a href="none" style="color:deepskyblue">历史通知</a> |
-            <a href="none" style="color:lawngreen">友情捐赠</a> |
-            <a href="none" style="color:deepskyblue">融资2018</a><!---为什么是2018，不是2020吗，吐个槽-->
-            <p>友情链接：</p>
-            <a href="none" style="color:deepskyblue">老王这里（备案）</a>© 2020 - 首顾科技
-        </div>
-    </footer>
-</body>
-</html>
+
+
