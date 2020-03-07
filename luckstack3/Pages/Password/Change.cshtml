@@ -1,0 +1,32 @@
+﻿@page
+@model luckstack3.ChangeModel
+@{
+    ViewData["Title"] = "Change";
+    Layout = "_LayoutBigColumn";
+}
+
+@section Title{
+    <i class="fa fa-lock"></i> 修改密码
+}
+@section Descirption{
+    <ol>
+        <li class="pt-2 b,">即使在已登录的状态下，也要再输入一次“原密码”，是出于安全性的考虑。</li>
+    </ol>
+}
+
+<form class="col-md-4 pb-5">
+    <div class="form-group">
+        <label><strong>原密码：（* 必填）</strong></label>
+        <input type="text" class="form-control" placeholder="不少于4个字符">
+    </div>
+    <div class="form-group">
+        <label><strong>新密码：（* 必填）</strong></label>
+        <input type="password" class="form-control" placeholder="不少于4个字符">
+    </div>
+    <div class="form-group">
+        <label><strong>确认密码：（* 必填）</strong></label>
+        <input type="password" class="form-control" placeholder="请再输入一次密码">
+    </div>
+    <button type="submit" class="btn btn-primary">提交</button>
+    <button type="reset" class="btn btn-light border border-secondary">重填</button>
+</form>
