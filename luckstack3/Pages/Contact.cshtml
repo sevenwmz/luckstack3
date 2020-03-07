@@ -1,0 +1,64 @@
+﻿@page
+@model luckstack3.ContactModel
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "_LayoutBigColumn";
+}
+
+
+
+@section style{
+    <style>
+        ol >li{
+            padding-bottom:7px;
+            padding-top:7px;
+        }
+    </style>
+}
+
+@section title{
+    <i class="fa fa-envelope"></i> 联系方式录入
+}
+
+@section Descirption{
+    <ol>
+        <li>
+            Email非常重要，可用于重置密码、接受用户消息（可设置取消）等，强烈建议填写。
+        </li>
+        <li>
+            Email填写之后系统稍后会发送一封确认邮件到该地址，请注意查收，建议将<span class="text-info">system@17help.net</span>加入白名单，以避免被当做垃圾邮件过滤掉。
+        </li>
+        <li>
+            因为联系方式会公开显示，我们不建议你填写电话号码，以免个人信息被泄露。
+        </li>
+        <li>
+            所以我们推荐使用QQ/微信等网络通信方式。
+        </li>
+        <li>
+            注意填写QQ作为联系方式时，不要忘了留下“添加好友”的验证条件
+        </li>
+    </ol>
+}
+
+<form class="col-md-4">
+    <div class="form-group">
+        <label><strong>QQ：</strong></label>
+        <input type="text" class="form-control" placeholder="建议填写">
+    </div>
+    <div class="form-group">
+        <label><strong>微信：</strong></label>
+        <input type="password" class="form-control" placeholder="建议填写">
+    </div>
+    <div class="form-group">
+        <label><strong>电话：</strong></label>
+        <input type="password" class="form-control" placeholder="请谨慎考虑是否填写">
+    </div>
+    <div class="form-group">
+        <label><strong>其他：</strong></label>
+        <div>
+            <textarea rows="4" class="form-control" placeholder="需要说明的情况，比如加QQ时验证问题的回答，否则别人加不了，这就尴尬了。 φ(>ω<*) 以及你能够接受的其他联系方式……"></textarea>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-info">提交</button>
+    <span class="text-info " style="padding-left:25px;"><i class="fa fa-info-circle"></i> 成功激活后自动返回<a href="#" class="text-info ">之前页面</a></span>
+</form>
