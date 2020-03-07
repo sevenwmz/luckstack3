@@ -6,10 +6,8 @@ namespace SevenLearnCsharp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Console.WriteLine("Hello World!");
-            Console.WriteLine("Hello World!");
-            Console.WriteLine("Hello World!");
+            string asdasdasdasput = Console.ReadLine();
+            int strinput = Convert.ToInt32(asdasdasdasput);
         }
     }
 }
