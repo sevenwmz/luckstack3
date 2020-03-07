@@ -110,11 +110,11 @@ namespace SevenLearnCsharp
             ///
             string VerificationCode = "wybz";
             string UserName = "飞哥最胖";
-            int Password = 8520;
+            Random random = new Random();
+            int Password = random.Next(1000,9999);
             Console.WriteLine("请输入验证码（wybz）");
             Console.WriteLine("提示，王月半子的缩写！！！你一共有三次机会输入！！");
             Console.WriteLine("王月半子出品，必属精品！！！");
-           
             for (int i = 1; i < 4; i++)
             {
                 string GetInput = Console.ReadLine();
@@ -152,9 +152,7 @@ namespace SevenLearnCsharp
                             }
                             else
                             {
-                                Console.WriteLine("再试一次，机会不多了。加油！！");
-                                Console.WriteLine($"这是你的第{i}次机会");
-
+                                Console.WriteLine("你输入的是什么玩意儿？好好写");
                             }
                         }
 
