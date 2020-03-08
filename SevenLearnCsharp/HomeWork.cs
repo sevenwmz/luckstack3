@@ -47,11 +47,6 @@ namespace SevenLearnCsharp
             //Console.WriteLine(FloatFristInput * FloatSecondInput);
             //Console.WriteLine(FloatFristInput / FloatSecondInput);
 
-            /////你以为这就完了吗，让我们尝试用更高级的方法来写一下
-            /////
-            //Console.WriteLine("请输入一个运算式，系统将会运算出这两个整数的和/差/积/商！");
-
-            //string Input = Console.ReadLine();
 
             /////2.电脑计算并输出：[(23+7)x12-8]÷6的小数值（挑战：精确到小数点以后2位）
             /////这种题目怎么会难道到我？
@@ -108,68 +103,71 @@ namespace SevenLearnCsharp
             /// 以上全部正确无误，输出：“恭喜！登录成功！”
             ///PS：验证码 / 用户名 / 密码直接预设在源代码中，输入由Console.ReadLine()完成。
             ///
-            string VerificationCode = "wybz";
-            string UserName = "飞哥最胖";
-            Random random = new Random();
-            int Password = random.Next(1000,9999);
-            Console.WriteLine("请输入验证码（wybz）");
-            Console.WriteLine("提示，王月半子的缩写！！！你一共有三次机会输入！！");
-            Console.WriteLine("王月半子出品，必属精品！！！");
-            for (int i = 1; i < 4; i++)
-            {
-                string GetInput = Console.ReadLine();
-                if (GetInput == VerificationCode)
-                {
-                    Console.WriteLine("验证码验证中......");
-                    Console.WriteLine("验证成功，请在下方输入用户名：");
-                    Console.WriteLine("请输入用户名（飞哥最胖）");
-                    string Input = Console.ReadLine();
-                    if (UserName == Input)
-                    {
-                        Console.WriteLine("用户名验证中......");
-                        Console.WriteLine("用户名验证成功，请在下方输入密码：");
-                        Console.WriteLine("请输入密码（提示：4位数，你有12次机会输入：）");
 
-                        for (int x = 1; i < 12; i++)
-                        {
-                            int Get = Convert.ToInt32(Console.ReadLine());
-                            if (Password == Get)
-                            {
-                                Console.WriteLine("密码验证中......");
-                                Console.WriteLine("密码验证成功，Load in......：");
-                                Console.WriteLine("*恭喜！登录成功");
-                                break;
-                            }
-                            else if (Get > Password)
-                            {
-                                Console.WriteLine("忘记密码了？输入有误，提示：大了！");
-                                Console.WriteLine($"这是你的第{x}次机会");
-                            }
-                            else if (Password > Get)
-                            {
-                                Console.WriteLine("忘记密码了？输入有误，提示：小了！");
-                                Console.WriteLine($"这是你的第{i}次机会");
-                            }
-                            else
-                            {
-                                Console.WriteLine("你输入的是什么玩意儿？好好写");
-                            }
-                        }
+            //这里面的代码不许动
+            //string VerificationCode = "wybz";
+            //string UserName = "飞哥最胖";
+            //Random random = new Random();
+            //int Password = random.Next(1000,9999);
+            //Console.WriteLine("请输入验证码（wybz）");
+            //Console.WriteLine("提示，王月半子的缩写！！！你一共有三次机会输入！！");
+            //Console.WriteLine("王月半子出品，必属精品！！！");
+            ////到这里为止
+            //for (int i = 1; i < 4; i++) 
+            //{
+            //    string GetInput = Console.ReadLine();
+            //    if (GetInput == VerificationCode)
+            //    {
+            //        Console.WriteLine("验证码验证中......");
+            //        Console.WriteLine("验证成功，请在下方输入用户名：");
+            //        Console.WriteLine("请输入用户名（飞哥最胖）");
+            //        string Input = Console.ReadLine();
+            //        if (UserName == Input)
+            //        {
+            //            Console.WriteLine("用户名验证中......");
+            //            Console.WriteLine("用户名验证成功，请在下方输入密码：");
+            //            Console.WriteLine("请输入密码（提示：4位数，你有12次机会输入：）");
 
-                    }
-                    else
-                    {
-                        Console.WriteLine("*用户名不存在");
-                    }
-                }
+            //            for (int x = 1; i < 12; i++)
+            //            {
+            //                int Get = Convert.ToInt32(Console.ReadLine());
+            //                if (Password == Get)
+            //                {
+            //                    Console.WriteLine("密码验证中......");
+            //                    Console.WriteLine("密码验证成功，Load in......：");
+            //                    Console.WriteLine("*恭喜！登录成功");
+            //                    break;
+            //                }
+            //                else if (Get > Password)
+            //                {
+            //                    Console.WriteLine("忘记密码了？输入有误，提示：大了！");
+            //                    Console.WriteLine($"这是你的第{x}次机会");
+            //                }
+            //                else if (Password > Get)
+            //                {
+            //                    Console.WriteLine("忘记密码了？输入有误，提示：小了！");
+            //                    Console.WriteLine($"这是你的第{i}次机会");
+            //                }
+            //                else
+            //                {
+            //                    Console.WriteLine("你输入的是什么玩意儿？好好写");
+            //                }
+            //            }
 
-                else
-                {
-                    Console.WriteLine("*验证码错误");
-                    Console.WriteLine($"这你都输入错了？这是你的第{i}次机会,看清楚了，wybz，王月半子的缩写");
+            //        }
+            //        else
+            //        {
+            //            Console.WriteLine("*用户名不存在");
+            //        }
+            //    }
+
+            //    else
+            //    {
+            //        Console.WriteLine("*验证码错误");
+            //        Console.WriteLine($"这你都输入错了？这是你的第{i}次机会,看清楚了，wybz，王月半子的缩写");
                    
-                }
-            }
+            //    }
+            //}
 
             
             
