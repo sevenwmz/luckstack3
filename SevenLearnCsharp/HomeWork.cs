@@ -69,28 +69,121 @@ namespace SevenLearnCsharp
             //#endregion
 
 
-            #region 第四题
-            //将源栈同学的成绩存入一个double数组中，用循环一次性地找到最高分和最低分
-            double[] score = { 17, 52, 13, 57, 54, 96, 41, 32 };
+            //#region 第四题
+            ////将源栈同学的成绩存入一个double数组中，用循环一次性地找到最高分和最低分
+            //double[] score = { 17, 52, 13, 57, 54, 96, 41, 32 };
 
-            double max = score[0];
-            double min = score[0];
-            for (int i = 0; i < score.Length; i++)
-            {
-                if (max < i)
-                {
-                    max = score[i];
-                }
-                if (min > i)
-                {
-                    min = score[i];
-                }
-                
-            }
-            Console.WriteLine($"max={max},min={min}");
+            //double max = score[0];
+            //double min = score[0];
+            //for (int i = 0; i < score.Length; i++)
+            //{
+            //    if (max < i)
+            //    {
+            //        max = score[i];
+            //    }
+            //    if (min > i)
+            //    {
+            //        min = score[i];
+            //    }
+
+            //}
+            //Console.WriteLine($"max={max},min={min}");
             //不行了，这个题彻底把我搞懵了，
             ///我先空着，为什么max小于i 对其重新赋值不可以呢？反而是小
+            //#endregion
+
+            //#region 第五题
+            ////设立并显示一个二维数组的值，元素值等于下标之和。
+
+            //int[,] number = { { 0, 1, 2, 3 }, { 1, 2, 3, 4 }, { 2, 3, 4, 5 } };
+            //for (int i = 0; i < 1; i++)
+            //{
+
+            //    Console.Write(number[0, 0] + " ");
+            //    Console.Write(number[0, 1] + " ");
+            //    Console.Write(number[0, 2] + " ");
+            //    Console.Write(number[0, 3] + " ");
+            //    Console.WriteLine();
+            //    Console.Write(number[1, 0] + " ");
+            //    Console.Write(number[1, 1] + " ");
+            //    Console.Write(number[1, 2] + " ");
+            //    Console.Write(number[1, 3] + " ");
+            //    Console.WriteLine();
+            //    Console.Write(number[2, 0] + " ");
+            //    Console.Write(number[2, 1] + " ");
+            //    Console.Write(number[2, 2] + " ");
+            //    Console.Write(number[2, 3] + " ");
+            //}
+
+
+            //#endregion
+
+
+            #region 第六题
+            //找到100以内的所有质数（只能被1和它自己整除的数）
+
+
             #endregion
+
+            #region 第七题
+            //生成一个元素（值随机）从小到大排列的数组并输出
+
+
+            #endregion
+
+
+            #region 第八题
+            //猜数字游戏
+            //系统生成一个谜底数字：1000以内的随机数
+            //系统将用户输入的猜测值和谜底进行比较，给出：“太大 / 太小 / 猜中”的提示
+            //如果用户在5次以内猜中，提示：太棒了
+            //8次：不错
+            //10次以内：过关
+            //= 10次：游戏结束，未能过关
+            int guess = new Random().Next(0, 999);
+            Console.WriteLine(guess);
+            for (int i = 0; i < 11; i++)
+            {
+                int input = Convert.ToInt32(Console.ReadLine());
+                if (guess > input)
+                {
+                    Console.WriteLine("小了");
+                }
+                else if (guess < input)
+                {
+                    Console.WriteLine("大了");
+                }
+                else if(guess == input)
+                {
+                    Console.WriteLine("猜中");
+                    if (input == guess && i <= 5)
+                    {
+                        Console.WriteLine("太棒了");
+                        break;
+                    }
+                    else if (input == guess && i <= 8)
+                    {
+                        Console.WriteLine("不错");
+                        break;
+                    }
+                    else if (input == guess && i <= 10)
+                    {
+                        Console.WriteLine("过关");
+                        break;
+                    }
+                    
+                }
+                else if (i == 10)
+                {
+                    Console.WriteLine("游戏结束，未能过关");
+                }
+                
+                
+            }
+
+
+            #endregion
+
 
 
 
