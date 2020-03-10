@@ -6,6 +6,140 @@ namespace SevenLearnCsharp
     {
         static void Main(string[] args)
         {
+
+
+            //#region 2020.3.10 
+            /////第一题
+            /////http://17bang.ren/Article/438
+            /////分别用for循环和while循环输出：1,2,3,4,5 和 1,3,5,7,9
+            /////
+
+
+            //for (int i = 1; i < 6; i++)
+            //{
+            //    Console.WriteLine("here is for 'for' 1 to 5 Program"+i);
+            //}
+            //Console.WriteLine("----------------");
+            //for (int i = 1; i < 10; i += 2)
+            //{
+            //    Console.WriteLine("here is for 'for' 1 to 9 Program" + i);
+            //}
+            //Console.WriteLine("-----------------");
+            //int j  = 1;
+            //int k = 1;
+            //while (j < 6)
+            //{
+
+            //    Console.WriteLine("here is for 'while' 1 to 5 Program" + j);
+            //    j++;
+            //}
+            //Console.WriteLine("-----------------");
+            //while (k<10)
+            //{
+
+            //    Console.WriteLine("here is for 'while' 1 to 9 Program" + k);
+            //    k += 2;
+            //}
+
+
+            //#endregion
+
+            //#region 第二题
+            /////用for循环输出存储在一维/二维数组里的源栈所有同学姓名/昵称
+
+            //string[,] name = { { "王明智", "刘江平", "李腾", "赵淼", "小黄", }, { "SEVEN", "川流不息", "陌尘", "推理", "ASP黄" } };
+
+            //for (int i = 0; i < name.GetLength(1)-1; i++)
+            //{
+            //    Console.WriteLine($"第{i}个同学的姓名是{name[0,i]}他的花名是{name[1,i]}");
+            //}
+
+            ////#endregion
+
+            //#region 第三题
+            ////让电脑计算并输出：99 + 97 + 95 + 93 + ...+1的值
+            //int sum = 0;
+            //for (int i = 99; i > 0; i-=2)
+            //{
+            //    sum += i;
+            //}
+            //Console.WriteLine(sum);
+            ////这个题有点点难，偷偷百度了下怎么写。一直的误区在于把所有内容写在了for里面，虽然感觉到了不妥，但是没有太清晰的思路
+            ///感觉怎么被赋值的下一次都会被清零。生气。不过理解的也更多了，脸红！！！
+            //#endregion
+
+
+            #region 第四题
+            //将源栈同学的成绩存入一个double数组中，用循环一次性地找到最高分和最低分
+            double[] score = { 17, 52, 13, 57, 54, 96, 41, 32 };
+
+            double max = score[0];
+            double min = score[0];
+            for (int i = 0; i < score.Length; i++)
+            {
+                if (max < i)
+                {
+                    max = score[i];
+                }
+                if (min > i)
+                {
+                    min = score[i];
+                }
+                
+            }
+            Console.WriteLine($"max={max},min={min}");
+            //不行了，这个题彻底把我搞懵了，
+            ///我先空着，为什么max小于i 对其重新赋值不可以呢？反而是小
+            #endregion
+
+
+
+
+
+
+
+            //// make a number group
+            //int[] array = { 23, 21, 54, 234, 75, 2346, 74, 231, 642, 35, 43, 43 };
+
+
+            //int temp = 0;
+            //for (int i = 0; i < array.Length-1; i++)
+            //{
+            //    for (int j = 0; j < array.Length - 1-i; j++)
+            //    {
+            //        if (array[j] > array[j + 1])
+            //        {
+            //            temp = array[j + 1];
+            //            array[j + 1] = array[j];
+            //            array[j] = temp;
+
+            //        }
+
+            //    }
+            //}
+
+            //Console.Write(array);
+
+
+
+
+            ////作业：
+
+            ////将源栈同学姓名 / 昵称分别：
+            ////按进栈时间装入一维数组，
+            ////按座位装入二维数组，
+            ////并输出共有多少名同学。
+
+            //string[,] OtherTeste = { { "王明智", "刘江平", "李腾", "赵淼", "小黄", }, { "2月17", "2月17", "2月18", "2月17", "2月20" } };
+
+
+            //for (int i = 1; i < OtherTeste.GetLength(1); i++)
+            //{
+
+            //        Console.WriteLine($"第{i}个同学是{OtherTeste[0,i]},入栈时间是{OtherTeste[1,i]}");
+
+            //}
+
             ///  FristDay：作业
             ///  
             ///观察一起帮个人资料页面，用合适的变量类型存储页面用户输入信息，并解释为什么。
@@ -105,24 +239,25 @@ namespace SevenLearnCsharp
             ///
 
             //这里面的代码不许动
-            //string VerificationCode = "wybz";
-            //string UserName = "飞哥最胖";
+            //string verificationcode = "wybz";
+            //string username = "飞哥最胖";
             //Random random = new Random();
-            //int Password = random.Next(1000,9999);
+            //int password = random.Next(1000, 9999);
+
             //Console.WriteLine("请输入验证码（wybz）");
             //Console.WriteLine("提示，王月半子的缩写！！！你一共有三次机会输入！！");
             //Console.WriteLine("王月半子出品，必属精品！！！");
             ////到这里为止
-            //for (int i = 1; i < 4; i++) 
+            //for (int i = 1; i < 4; i++)
             //{
-            //    string GetInput = Console.ReadLine();
-            //    if (GetInput == VerificationCode)
+            //    string getinput = Console.ReadLine();
+            //    if (getinput == verificationcode)
             //    {
             //        Console.WriteLine("验证码验证中......");
             //        Console.WriteLine("验证成功，请在下方输入用户名：");
             //        Console.WriteLine("请输入用户名（飞哥最胖）");
-            //        string Input = Console.ReadLine();
-            //        if (UserName == Input)
+            //        string input = Console.ReadLine();
+            //        if (username == input)
             //        {
             //            Console.WriteLine("用户名验证中......");
             //            Console.WriteLine("用户名验证成功，请在下方输入密码：");
@@ -130,20 +265,20 @@ namespace SevenLearnCsharp
 
             //            for (int x = 1; i < 12; i++)
             //            {
-            //                int Get = Convert.ToInt32(Console.ReadLine());
-            //                if (Password == Get)
+            //                int get = Convert.ToInt32(Console.ReadLine());
+            //                if (password == get)
             //                {
             //                    Console.WriteLine("密码验证中......");
-            //                    Console.WriteLine("密码验证成功，Load in......：");
+            //                    Console.WriteLine("密码验证成功，load in......：");
             //                    Console.WriteLine("*恭喜！登录成功");
             //                    break;
             //                }
-            //                else if (Get > Password)
+            //                else if (get > password)
             //                {
             //                    Console.WriteLine("忘记密码了？输入有误，提示：大了！");
             //                    Console.WriteLine($"这是你的第{x}次机会");
             //                }
-            //                else if (Password > Get)
+            //                else if (password > get)
             //                {
             //                    Console.WriteLine("忘记密码了？输入有误，提示：小了！");
             //                    Console.WriteLine($"这是你的第{i}次机会");
@@ -165,18 +300,17 @@ namespace SevenLearnCsharp
             //    {
             //        Console.WriteLine("*验证码错误");
             //        Console.WriteLine($"这你都输入错了？这是你的第{i}次机会,看清楚了，wybz，王月半子的缩写");
-                   
+
             //    }
             //}
 
-            
-            
-            
-            
-            
 
-            
-            
+
+
+
+
+
+
 
         }
     }
