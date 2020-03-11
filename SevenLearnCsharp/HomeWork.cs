@@ -8,6 +8,19 @@ namespace SevenLearnCsharp
         {
 
 
+
+            //int max = 0;
+            //for (int i = 0; i < some.Length; i++)
+            //{
+
+            //    if (max < some[i])
+            //    {
+            //        max = some[i];
+            //    }//else nothing
+            //}
+            //Console.WriteLine("max="+max);
+
+
             //#region 2020.3.10 
             /////第一题
             /////http://17bang.ren/Article/438
@@ -75,19 +88,24 @@ namespace SevenLearnCsharp
 
             //double max = score[0];
             //double min = score[0];
-            //for (int i = 0; i < score.Length; i++)
+            //for (int i =1; i < score.Length; i++)
             //{
-            //    if (max < i)
+            //    //17 < 52
+            //    if (max < score[i])
             //    {
             //        max = score[i];
             //    }
-            //    if (min > i)
+            //    // 17 > 52
+            //    else if (min > score[i] )
             //    {
             //        min = score[i];
             //    }
 
             //}
             //Console.WriteLine($"max={max},min={min}");
+            //Console.WriteLine();
+            ///最新消息，我搞定这个题了，原来少了东西，是我应该被打。。。生气，和自己生气。
+
             //不行了，这个题彻底把我搞懵了，
             ///我先空着，为什么max小于i 对其重新赋值不可以呢？反而是小
             //#endregion
@@ -96,23 +114,19 @@ namespace SevenLearnCsharp
             ////设立并显示一个二维数组的值，元素值等于下标之和。
 
             //int[,] number = { { 0, 1, 2, 3 }, { 1, 2, 3, 4 }, { 2, 3, 4, 5 } };
-            //for (int i = 0; i < 1; i++)
+            //for (int i = 0; i < 4; i++)
             //{
-
-            //    Console.Write(number[0, 0] + " ");
-            //    Console.Write(number[0, 1] + " ");
-            //    Console.Write(number[0, 2] + " ");
-            //    Console.Write(number[0, 3] + " ");
-            //    Console.WriteLine();
-            //    Console.Write(number[1, 0] + " ");
-            //    Console.Write(number[1, 1] + " ");
-            //    Console.Write(number[1, 2] + " ");
-            //    Console.Write(number[1, 3] + " ");
-            //    Console.WriteLine();
-            //    Console.Write(number[2, 0] + " ");
-            //    Console.Write(number[2, 1] + " ");
-            //    Console.Write(number[2, 2] + " ");
-            //    Console.Write(number[2, 3] + " ");
+            //    Console.Write(number[0, i] + " ");
+            //}
+            //Console.WriteLine();
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    Console.Write(number[1, i] + " ");
+            //}
+            //Console.WriteLine();
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    Console.Write(number[2, i] + " ");
             //}
 
 
@@ -122,13 +136,51 @@ namespace SevenLearnCsharp
             #region 第六题
             //找到100以内的所有质数（只能被1和它自己整除的数）
 
+            //for (int i = 1; i < 101; i++)
+            //{
+            //    ///如果现在是10，需要从1开始除，一直循环到10，如果他是20就需要循环到20
+            //    ///标明至少需要一个从1开始到当前数的循环，当前数可以通过i表示。
+            //    ///现在需要一个可以被循环的被除数。
+            //    ///
+            //    if (i%2 && i%1)
+            //    {
+            //        Console.WriteLine(i);
+            //    }
+            //}   
+            ///算了，绞尽脑汁也写不出来。数学实在是坑，小学的也不行。
 
             #endregion
 
             #region 第七题
             //生成一个元素（值随机）从小到大排列的数组并输出
+            int[] receive = new int[10];
 
+            //这里是问二期大佬们怎么操作生成的一堆随机数，实在想不出来
+            for (int i = 0; i < receive.Length; i++)
+            {
+                receive[i] = new Random().Next(1000); 
+            }
+            
 
+            //这里是直接把冒泡背下来，套公式写的冒泡排序。。。
+            for (int i = 0; i < receive.Length -1; i++)
+            {
+                for (int j = 0; j < receive.Length-1-i; j++)
+                {
+                    if (receive[j] < receive[j+1])
+                    {
+                        int temp = 0;
+                        temp = receive[j];
+                        receive[j] = receive[j + 1];
+                        receive[j + 1] = temp;
+                    }
+                }
+            }
+
+            for (int i = 0; i < receive.Length; i++)
+            {
+                Console.Write(receive[i]+",");
+            }
             #endregion
 
 
@@ -139,47 +191,47 @@ namespace SevenLearnCsharp
             //如果用户在5次以内猜中，提示：太棒了
             //8次：不错
             //10次以内：过关
-            //= 10次：游戏结束，未能过关
-            int guess = new Random().Next(0, 999);
-            Console.WriteLine(guess);
-            for (int i = 0; i < 11; i++)
-            {
-                int input = Convert.ToInt32(Console.ReadLine());
-                if (guess > input)
-                {
-                    Console.WriteLine("小了");
-                }
-                else if (guess < input)
-                {
-                    Console.WriteLine("大了");
-                }
-                else if(guess == input)
-                {
-                    Console.WriteLine("猜中");
-                    if (input == guess && i <= 5)
-                    {
-                        Console.WriteLine("太棒了");
-                        break;
-                    }
-                    else if (input == guess && i <= 8)
-                    {
-                        Console.WriteLine("不错");
-                        break;
-                    }
-                    else if (input == guess && i <= 10)
-                    {
-                        Console.WriteLine("过关");
-                        break;
-                    }
-                    
-                }
-                else if (i == 10)
-                {
-                    Console.WriteLine("游戏结束，未能过关");
-                }
-                
-                
-            }
+            ////= 10次：游戏结束，未能过关
+            //int guess = new Random().Next(0, 999);
+            //Console.WriteLine(guess);
+            //for (int i = 0; i < 11; i++)
+            //{
+            //    int input = Convert.ToInt32(Console.ReadLine());
+            //    if (guess > input)
+            //    {
+            //        Console.WriteLine("小了");
+            //    }
+            //    else if (guess < input)
+            //    {
+            //        Console.WriteLine("大了");
+            //    }
+            //    else if(guess == input)
+            //    {
+            //        Console.WriteLine("猜中");
+            //        if (input == guess && i <= 5)
+            //        {
+            //            Console.WriteLine("太棒了");
+            //            break;
+            //        }
+            //        else if (input == guess && i <= 8)
+            //        {
+            //            Console.WriteLine("不错");
+            //            break;
+            //        }
+            //        else if (input == guess && i <= 10)
+            //        {
+            //            Console.WriteLine("过关");
+            //            break;
+            //        }
+
+            //    }
+            //    else if (i == 10)
+            //    {
+            //        Console.WriteLine("游戏结束，未能过关");
+            //    }
+
+
+            //}
 
 
             #endregion
