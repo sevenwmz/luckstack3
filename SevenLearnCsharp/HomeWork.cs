@@ -7,37 +7,9 @@ namespace SevenLearnCsharp
 
         static void Main(string[] args)
         {
-            //int[] w = { 1, 45, 23, 64, 75, 34 };
-            //int find = 3;
-            //bool fond = false;
-            //for (int i = 0; i < w.Length; i++)
-            //{
-            //    if (w[i] == find)
-            //    {
-            //        fond =  true;
-            //        break;
-            //    }
-
-            //}
-            //if (!fond)
-            //{
-            //    Console.WriteLine("没找到");
-            //}
-            //Console.WriteLine();
 
 
 
-
-            //int max = 0;
-            //for (int i = 0; i < some.Length; i++)
-            //{
-
-            //    if (max < some[i])
-            //    {
-            //        max = some[i];
-            //    }//else nothing
-            //}
-            //Console.WriteLine("max="+max);
 
 
             //#region 2020.3.10 
@@ -132,35 +104,19 @@ namespace SevenLearnCsharp
             //#region 第五题
             ////设立并显示一个二维数组的值，元素值等于下标之和。
 
-            int[,] number = { { 0, 1, 2, 3 }, { 1, 2, 3, 4 }, { 2, 3, 4, 5 } };
+            int[,] number =new int [2,3];
 
             for (int i = 0; i < 3; i++)
             {
-                if (i == 0)
+                for (int j = 0; j < number.Length-1; j++)
                 {
-                    for (int j = 0; j < 4; j++)
-                    {
-                        Console.Write(number[0, j] + " ");
-                    }
+                    
+                    Console.WriteLine(number[i,j]);
                 }
-                else if (i == 1)
-                {
-                    Console.WriteLine();
-                    for (int k = 0; k < 4; k++)
-                    {
-                        Console.Write(number[1, k] + " ");
-                    }
-                }
-                else if (i == 2)
-                {
-                    Console.WriteLine();
-                    for (int l = 0; l < 4; l++)
-                    {
-                        Console.Write(number[2, l] + " ");
-                    }
-
-                }
+                Console.WriteLine();
             }
+
+
             ///看我闭眼瞎写
 
 
@@ -487,6 +443,41 @@ namespace SevenLearnCsharp
         }
 
 
+        /// <summary>
+        /// 查找数组中的最大数值
+        /// </summary>
+        /// <param name="array">需要先传入一个数组</param>
+        /// <param name="Key">在传入一个需要查找的值</param>
+        /// <returns></returns>
+        static int FindMax(int[] array, int Key) 
+        {
+            bool fond = false;
+            for (int i = 0; i < array.Length-1; i++)
+            {
+                if (array[i] == Key)
+                {
+                    fond = true;
+                    return array[i];
+                }
+                else
+                {
+                    return -1;
+                }
+
+            }
+            if (!fond)
+            {
+                Console.WriteLine("没找到");
+                return -1;
+            }
+            else { return -1; }
+        }
+        /// <summary>
+        /// 二分查找
+        /// </summary>
+        /// <param name="array">输入一个已经排好了的数组</param>
+        /// <param name="Key">输入要查找的数字</param>
+        /// <returns></returns>
         static int TwoPointSearch(int[] array,int Key) 
         {
             int left = 0, right = array.Length - 1;
