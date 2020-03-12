@@ -8,6 +8,61 @@ namespace SevenLearnCsharp
         {
 
 
+            //int[] power = { 432, 67, 8, 4, 5, 34, 53, 1953, 775, 34, 64, 28, 845, 346 };
+
+            //冒泡排序
+   
+
+            //int[] power = {1,121,4,634,2,351,432,2344,43,21,6,8,76,867,4457,65,8,86,45 };
+            //int temp = 0;
+            //for (int i = 0; i < power.Length-1; i++)
+            //{
+            //    for (int j = 0; j < power.Length-1-i; j++)
+            //    {
+            //        if (power[j] > power[j+1])
+            //        {
+                        
+            //            temp = power[j];
+            //            power[j] = power[j + 1];
+            //            power[j + 1] = temp;
+            //        }
+
+            //    }
+            //}
+            //for (int i = 0; i < power.Length-1; i++)
+            //{
+            //    Console.Write(power[i]+",");
+            //}
+
+            //int left = 0, right = power.Length - 1, result = 0, find = 65;
+
+            //while (power[result ] != find)
+            //{
+            //    int middle = (left + right) / 2;
+            //    if (power[middle] > find)
+            //    {//如果中间数大于了要找到的数字，那么指针需要向左走。
+            //        right = middle - 1;
+
+            //    }
+            //    else if (power[middle]<find)
+            //    {
+            //        left = middle + 1;
+            //    }
+            //    else
+            //    {
+            //        result = middle;
+            //        break;
+            //    }
+                            
+            //}
+            //Console.WriteLine(power[result]);
+            //Console.WriteLine();
+
+
+
+
+
+
 
             //int max = 0;
             //for (int i = 0; i < some.Length; i++)
@@ -113,21 +168,38 @@ namespace SevenLearnCsharp
             //#region 第五题
             ////设立并显示一个二维数组的值，元素值等于下标之和。
 
-            //int[,] number = { { 0, 1, 2, 3 }, { 1, 2, 3, 4 }, { 2, 3, 4, 5 } };
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    Console.Write(number[0, i] + " ");
-            //}
-            //Console.WriteLine();
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    Console.Write(number[1, i] + " ");
-            //}
-            //Console.WriteLine();
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    Console.Write(number[2, i] + " ");
-            //}
+            int[,] number = { { 0, 1, 2, 3 }, { 1, 2, 3, 4 }, { 2, 3, 4, 5 } };
+
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (i == 0)
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        Console.Write(number[0, j] + " ");
+                    }
+                    
+                }
+                else if (i ==1)
+                {
+                    Console.WriteLine();
+                    for (int k = 0; k < 4; k++)
+                    {
+                        Console.Write(number[1, k] + " ");
+                    }
+                }
+                else if (i==2)
+                {
+                    Console.WriteLine();
+                    for (int l = 0; l < 4; l++)
+                    {
+                        Console.Write(number[2, l] + " ");
+                    }
+                    
+                }
+            }
+            ///看我闭眼瞎写
 
 
             //#endregion
@@ -135,52 +207,45 @@ namespace SevenLearnCsharp
 
             #region 第六题
             //找到100以内的所有质数（只能被1和它自己整除的数）
-
-            //for (int i = 1; i < 101; i++)
-            //{
-            //    ///如果现在是10，需要从1开始除，一直循环到10，如果他是20就需要循环到20
-            //    ///标明至少需要一个从1开始到当前数的循环，当前数可以通过i表示。
-            //    ///现在需要一个可以被循环的被除数。
-            //    ///
-            //    if (i%2 && i%1)
-            //    {
-            //        Console.WriteLine(i);
-            //    }
-            //}   
-            ///算了，绞尽脑汁也写不出来。数学实在是坑，小学的也不行。
+            ///先把100以内的数字放入一个数组
+            ///然后用循环从1开始除，一直循环到他本身，如果余数为1就装入另一个数组里。
+            ///
+   
+            
+        
 
             #endregion
 
             #region 第七题
             //生成一个元素（值随机）从小到大排列的数组并输出
-            int[] receive = new int[10];
+            //int[] receive = new int[10];
 
-            //这里是问二期大佬们怎么操作生成的一堆随机数，实在想不出来
-            for (int i = 0; i < receive.Length; i++)
-            {
-                receive[i] = new Random().Next(1000); 
-            }
-            
+            ////这里是问二期大佬们怎么操作生成的一堆随机数，实在想不出来
+            //for (int i = 0; i < receive.Length; i++)
+            //{
+            //    receive[i] = new Random().Next(1000); 
+            //}
 
-            //这里是直接把冒泡背下来，套公式写的冒泡排序。。。
-            for (int i = 0; i < receive.Length -1; i++)
-            {
-                for (int j = 0; j < receive.Length-1-i; j++)
-                {
-                    if (receive[j] < receive[j+1])
-                    {
-                        int temp = 0;
-                        temp = receive[j];
-                        receive[j] = receive[j + 1];
-                        receive[j + 1] = temp;
-                    }
-                }
-            }
 
-            for (int i = 0; i < receive.Length; i++)
-            {
-                Console.Write(receive[i]+",");
-            }
+            ////这里是直接把冒泡背下来，套公式写的冒泡排序。。。
+            //for (int i = 0; i < receive.Length -1; i++)
+            //{
+            //    for (int j = 0; j < receive.Length-1-i; j++)
+            //    {
+            //        if (receive[j] < receive[j+1])
+            //        {
+            //            int temp = 0;
+            //            temp = receive[j];
+            //            receive[j] = receive[j + 1];
+            //            receive[j + 1] = temp;
+            //        }
+            //    }
+            //}
+
+            //for (int i = 0; i < receive.Length; i++)
+            //{
+            //    Console.Write(receive[i]+",");
+            //}
             #endregion
 
 
