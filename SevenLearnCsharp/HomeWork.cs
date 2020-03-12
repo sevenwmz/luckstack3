@@ -4,62 +4,26 @@ namespace SevenLearnCsharp
 {
     class HomeWork
     {
+
         static void Main(string[] args)
         {
-
-
-            //int[] power = { 432, 67, 8, 4, 5, 34, 53, 1953, 775, 34, 64, 28, 845, 346 };
-
-            //冒泡排序
-   
-
-            //int[] power = {1,121,4,634,2,351,432,2344,43,21,6,8,76,867,4457,65,8,86,45 };
-            //int temp = 0;
-            //for (int i = 0; i < power.Length-1; i++)
+            //int[] w = { 1, 45, 23, 64, 75, 34 };
+            //int find = 3;
+            //bool fond = false;
+            //for (int i = 0; i < w.Length; i++)
             //{
-            //    for (int j = 0; j < power.Length-1-i; j++)
+            //    if (w[i] == find)
             //    {
-            //        if (power[j] > power[j+1])
-            //        {
-                        
-            //            temp = power[j];
-            //            power[j] = power[j + 1];
-            //            power[j + 1] = temp;
-            //        }
-
-            //    }
-            //}
-            //for (int i = 0; i < power.Length-1; i++)
-            //{
-            //    Console.Write(power[i]+",");
-            //}
-
-            //int left = 0, right = power.Length - 1, result = 0, find = 65;
-
-            //while (power[result ] != find)
-            //{
-            //    int middle = (left + right) / 2;
-            //    if (power[middle] > find)
-            //    {//如果中间数大于了要找到的数字，那么指针需要向左走。
-            //        right = middle - 1;
-
-            //    }
-            //    else if (power[middle]<find)
-            //    {
-            //        left = middle + 1;
-            //    }
-            //    else
-            //    {
-            //        result = middle;
+            //        fond =  true;
             //        break;
             //    }
-                            
+
             //}
-            //Console.WriteLine(power[result]);
+            //if (!fond)
+            //{
+            //    Console.WriteLine("没找到");
+            //}
             //Console.WriteLine();
-
-
-
 
 
 
@@ -170,7 +134,6 @@ namespace SevenLearnCsharp
 
             int[,] number = { { 0, 1, 2, 3 }, { 1, 2, 3, 4 }, { 2, 3, 4, 5 } };
 
-
             for (int i = 0; i < 3; i++)
             {
                 if (i == 0)
@@ -179,9 +142,8 @@ namespace SevenLearnCsharp
                     {
                         Console.Write(number[0, j] + " ");
                     }
-                    
                 }
-                else if (i ==1)
+                else if (i == 1)
                 {
                     Console.WriteLine();
                     for (int k = 0; k < 4; k++)
@@ -189,14 +151,14 @@ namespace SevenLearnCsharp
                         Console.Write(number[1, k] + " ");
                     }
                 }
-                else if (i==2)
+                else if (i == 2)
                 {
                     Console.WriteLine();
                     for (int l = 0; l < 4; l++)
                     {
                         Console.Write(number[2, l] + " ");
                     }
-                    
+
                 }
             }
             ///看我闭眼瞎写
@@ -210,9 +172,9 @@ namespace SevenLearnCsharp
             ///先把100以内的数字放入一个数组
             ///然后用循环从1开始除，一直循环到他本身，如果余数为1就装入另一个数组里。
             ///
-   
-            
-        
+
+
+
 
             #endregion
 
@@ -521,6 +483,67 @@ namespace SevenLearnCsharp
 
 
 
+
+        }
+
+
+        static int TwoPointSearch(int[] array,int Key) 
+        {
+            int left = 0, right = array.Length - 1;
+
+            while (left <= right)
+            {
+
+                int middle = (left + right) / 2;
+                if (Key == array[middle])
+                {
+                    int result = middle;
+                    Console.WriteLine(array[middle]); //找到查找数字
+                    return middle;
+                }
+                else
+                {
+                    if (array[middle] > Key)
+                    {
+                        right = middle - 1;
+                    }
+                    else if (array[middle] < Key)
+                    {
+                        left = middle + 1;
+                    }
+                }
+            }
+            Console.WriteLine("没有这个数字");
+            return -1;// 查找失败
+        }
+
+
+
+        /// <summary>
+        /// 冒泡排序，直接传递数组或者数字就可以。
+        /// </summary>
+        /// <param name="array"></param>
+        static void BubbleSort(params int[] array)
+        {
+            int temp = 0;
+            for (int i = 0; i < array.Length - 1; i++)
+            {
+                for (int j = 0; j < array.Length - 1 - i; j++)
+                {
+                    if (array[j] > array[j + 1])
+                    {
+
+                        temp = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = temp;
+                    }
+
+                }
+            }
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.Write(array[i] + ",");
+            }
 
         }
     }
