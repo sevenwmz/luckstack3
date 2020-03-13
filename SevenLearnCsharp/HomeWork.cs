@@ -7,8 +7,7 @@ namespace SevenLearnCsharp
 
         static void Main(string[] args)
         {
-
-            GetRandomNumber(10);
+            GuessMe();
 
 
 
@@ -22,7 +21,7 @@ namespace SevenLearnCsharp
             ///3.13 最新消息，表示依然懵懵懂懂，不会做
 
             #endregion
-         
+
 
         }
 
@@ -258,42 +257,44 @@ namespace SevenLearnCsharp
         static void GuessMe()
         {
             Console.WriteLine("欢迎来到猜数字游戏");
-            Console.WriteLine("你有十次机会猜中它，如果猜不中。网线，打，懂？");
+            Console.WriteLine("你有十次机会猜中它，如果猜不中。飞哥，网线，打，懂？");
             int guess = new Random().Next(0, 999);
-            for (int i = 0; i < 11; i++)
+            for (int i = 0; i < 10; i++)
             {
                 int input = Convert.ToInt32(Console.ReadLine());
-                if (guess > input)
+                if (i == 9)
                 {
-                    Console.WriteLine("小了");
-                }
-                else if (guess < input)
-                {
-                    Console.WriteLine("大了");
-                }
-                else 
+                    Console.WriteLine("(～￣(OO)￣)ブ");
+                    Console.WriteLine("游戏结束，未能过关");
+                }//else nothing
+
+                /// Here is method main.
+                if (input == guess)
                 {
                     Console.WriteLine("猜中");
-                    if (input == guess && i <= 5)
+                    if (i < 5)
                     {
-                        Console.WriteLine("太棒了");
+                        Console.WriteLine("你真牛逼！");
                         break;
                     }
-                    else if (input == guess && i <= 8)
+                    else if (i < 8)
                     {
-                        Console.WriteLine("不错");
+                        Console.WriteLine("不错嘛！");
                         break;
                     }
-                    else if (input == guess && i <= 10)
+                    else
                     {
                         Console.WriteLine("过关");
                         break;
                     }
-
                 }
-                if (i == 10)
+                else if (guess > input)
                 {
-                    Console.WriteLine("游戏结束，未能过关");
+                    Console.WriteLine("小了");
+                }
+                else
+                {
+                    Console.WriteLine("大了");
                 }
             }
         }
