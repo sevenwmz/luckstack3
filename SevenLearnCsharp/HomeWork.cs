@@ -8,18 +8,6 @@ namespace SevenLearnCsharp
         static void Main(string[] args)
         {
 
-
-     
-            double[] GetAverage = { 50.2, 49.3, 47.5};
-            ///先把所有的成绩加入，然后除以输入成绩的位数，就可以获得平均数了，最后处理下小数点后的位数
-            ///
-            //for (int i = 0; i < GetAverage.Length; i++)
-            //{
-            //    int getnumber = 0;
-            //    getnumber = GetAverage[i];
-            //}
-
-
             //#region 2020.3.10 
             /////第一题
             /////http://17bang.ren/Article/438
@@ -111,19 +99,29 @@ namespace SevenLearnCsharp
 
             //#region 第五题
             ////设立并显示一个二维数组的值，元素值等于下标之和。
-            
-            //int[,] number = new int[2, 3];
 
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    for (int j = 0; j < number.GetLength(1); j++)
-            //    {
-                    
-            //        a = number[i,j];
-            //    }
-                
-            //}
-          
+            int[,] number = new int[3, 4];
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+
+                    number[i, j] = i + j;
+                }
+                Console.WriteLine();
+            }
+
+            for (int i = 0; i < number.GetLength(0); i++)
+            {
+                for (int j = 0; j < number.GetLength(1); j++)
+                {
+                    Console.Write(number[i, j]+ " " );
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+
 
             ///看我闭眼瞎写
 
@@ -336,6 +334,58 @@ namespace SevenLearnCsharp
 
         }
 
+
+        /// <summary>
+        /// 输出一个循环二维数组
+        /// </summary>
+        /// <param name="array">需要一个数组的长度</param>
+        /// <returns></returns>
+        static int[,] CycleArray(int[,] array)
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    array[i, j] = i + j;
+                }
+                Console.WriteLine();
+            }
+
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write(array[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+            return array;
+        }
+        
+
+
+
+        /// <summary>
+        /// 获取一个平均数，输入一个数组
+        /// </summary>
+        /// <param name="array">参数需要一个数组</param>
+        /// <returns></returns>
+        static double[] GetAverage(params double[] array)
+        {
+            double sum = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                sum = sum + array[i];
+            }
+            double scores = Math.Round((sum / array.Length), 4);
+            Console.WriteLine(scores);
+            return array;
+        }
+
+
+
+
+
         /// <summary>
         /// 输入数组获得最大值和最小值
         /// </summary>
@@ -358,7 +408,7 @@ namespace SevenLearnCsharp
             }
             Console.WriteLine("Max : " + max);
             Console.WriteLine("Min : " + min);
-            return max;
+            return max;///return只能return一个，min return不了，这个未解之谜等待飞哥。如果无解，我就考虑在写一次求最小了
         }
 
 
