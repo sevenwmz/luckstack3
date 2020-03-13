@@ -9,7 +9,15 @@ namespace SevenLearnCsharp
         {
 
 
-
+     
+            double[] GetAverage = { 50.2, 49.3, 47.5};
+            ///先把所有的成绩加入，然后除以输入成绩的位数，就可以获得平均数了，最后处理下小数点后的位数
+            ///
+            //for (int i = 0; i < GetAverage.Length; i++)
+            //{
+            //    int getnumber = 0;
+            //    getnumber = GetAverage[i];
+            //}
 
 
             //#region 2020.3.10 
@@ -103,19 +111,19 @@ namespace SevenLearnCsharp
 
             //#region 第五题
             ////设立并显示一个二维数组的值，元素值等于下标之和。
+            
+            //int[,] number = new int[2, 3];
 
-            int[,] number =new int [2,3];
-
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < number.Length-1; j++)
-                {
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    for (int j = 0; j < number.GetLength(1); j++)
+            //    {
                     
-                    Console.WriteLine(number[i,j]);
-                }
-                Console.WriteLine();
-            }
-
+            //        a = number[i,j];
+            //    }
+                
+            //}
+          
 
             ///看我闭眼瞎写
 
@@ -133,120 +141,6 @@ namespace SevenLearnCsharp
 
 
             #endregion
-
-            #region 第七题
-            //生成一个元素（值随机）从小到大排列的数组并输出
-            //int[] receive = new int[10];
-
-            ////这里是问二期大佬们怎么操作生成的一堆随机数，实在想不出来
-            //for (int i = 0; i < receive.Length; i++)
-            //{
-            //    receive[i] = new Random().Next(1000); 
-            //}
-
-
-            ////这里是直接把冒泡背下来，套公式写的冒泡排序。。。
-            //for (int i = 0; i < receive.Length -1; i++)
-            //{
-            //    for (int j = 0; j < receive.Length-1-i; j++)
-            //    {
-            //        if (receive[j] < receive[j+1])
-            //        {
-            //            int temp = 0;
-            //            temp = receive[j];
-            //            receive[j] = receive[j + 1];
-            //            receive[j + 1] = temp;
-            //        }
-            //    }
-            //}
-
-            //for (int i = 0; i < receive.Length; i++)
-            //{
-            //    Console.Write(receive[i]+",");
-            //}
-            #endregion
-
-
-            #region 第八题
-            //猜数字游戏
-            //系统生成一个谜底数字：1000以内的随机数
-            //系统将用户输入的猜测值和谜底进行比较，给出：“太大 / 太小 / 猜中”的提示
-            //如果用户在5次以内猜中，提示：太棒了
-            //8次：不错
-            //10次以内：过关
-            ////= 10次：游戏结束，未能过关
-            //int guess = new Random().Next(0, 999);
-            //Console.WriteLine(guess);
-            //for (int i = 0; i < 11; i++)
-            //{
-            //    int input = Convert.ToInt32(Console.ReadLine());
-            //    if (guess > input)
-            //    {
-            //        Console.WriteLine("小了");
-            //    }
-            //    else if (guess < input)
-            //    {
-            //        Console.WriteLine("大了");
-            //    }
-            //    else if(guess == input)
-            //    {
-            //        Console.WriteLine("猜中");
-            //        if (input == guess && i <= 5)
-            //        {
-            //            Console.WriteLine("太棒了");
-            //            break;
-            //        }
-            //        else if (input == guess && i <= 8)
-            //        {
-            //            Console.WriteLine("不错");
-            //            break;
-            //        }
-            //        else if (input == guess && i <= 10)
-            //        {
-            //            Console.WriteLine("过关");
-            //            break;
-            //        }
-
-            //    }
-            //    else if (i == 10)
-            //    {
-            //        Console.WriteLine("游戏结束，未能过关");
-            //    }
-
-
-            //}
-
-
-            #endregion
-
-
-
-
-
-
-
-
-            //// make a number group
-            //int[] array = { 23, 21, 54, 234, 75, 2346, 74, 231, 642, 35, 43, 43 };
-
-
-            //int temp = 0;
-            //for (int i = 0; i < array.Length-1; i++)
-            //{
-            //    for (int j = 0; j < array.Length - 1-i; j++)
-            //    {
-            //        if (array[j] > array[j + 1])
-            //        {
-            //            temp = array[j + 1];
-            //            array[j + 1] = array[j];
-            //            array[j] = temp;
-
-            //        }
-
-            //    }
-            //}
-
-            //Console.Write(array);
 
 
 
@@ -442,6 +336,101 @@ namespace SevenLearnCsharp
 
         }
 
+        /// <summary>
+        /// 输入数组获得最大值和最小值
+        /// </summary>
+        /// <param name="array">输入数组</param>
+        /// <returns></returns>
+        static double GetMaxAndMin(params double[] array)
+        {
+            double max = array[0];
+            double min = array[0];
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (max < array[i])
+                {
+                    max = array[i];
+                }
+                else if (min > array[i])
+                {
+                    min = array[i];
+                }
+            }
+            Console.WriteLine("Max : " + max);
+            Console.WriteLine("Min : " + min);
+            return max;
+        }
+
+
+        /// <summary>
+        /// 获得一组随机数
+        /// </summary>
+        /// <param name="Key">输入要获得随机数的个数 例：3，获得3个随机数</param>
+        /// <returns></returns>
+        static int GetRandomNumber(int Key) 
+        {
+            int[] receive = new int[Key];
+
+            for (int i = 0; i < receive.Length; i++)
+            {
+                receive[i] = new Random().Next(1000);
+            }
+            for (int i = 0; i < receive.Length; i++)
+            {
+
+                Console.Write(receive[i] + ",");
+            }
+            return receive[Key-1];
+        }
+
+        /// <summary>
+        /// 猜数字游戏，直接运行，无需参数。
+        /// </summary>
+        static void GuessMe()
+        {
+            Console.WriteLine("欢迎来到猜数字游戏");
+            Console.WriteLine("你有十次机会猜中它，如果猜不中。网线，打，懂？");
+            int guess = new Random().Next(0, 999);
+            for (int i = 0; i < 11; i++)
+            {
+                int input = Convert.ToInt32(Console.ReadLine());
+                if (guess > input)
+                {
+                    Console.WriteLine("小了");
+                }
+                else if (guess < input)
+                {
+                    Console.WriteLine("大了");
+                }
+                else 
+                {
+                    Console.WriteLine("猜中");
+                    if (input == guess && i <= 5)
+                    {
+                        Console.WriteLine("太棒了");
+                        break;
+                    }
+                    else if (input == guess && i <= 8)
+                    {
+                        Console.WriteLine("不错");
+                        break;
+                    }
+                    else if (input == guess && i <= 10)
+                    {
+                        Console.WriteLine("过关");
+                        break;
+                    }
+
+                }
+                if (i == 10)
+                {
+                    Console.WriteLine("游戏结束，未能过关");
+                }
+            }
+        }
+
+
+
 
         /// <summary>
         /// 查找数组中的最大数值
@@ -459,18 +448,16 @@ namespace SevenLearnCsharp
                     fond = true;
                     return array[i];
                 }
-                else
-                {
-                    return -1;
-                }
-
             }
             if (!fond)
             {
                 Console.WriteLine("没找到");
                 return -1;
             }
-            else { return -1; }
+            else
+            {
+                return -1;
+            }
         }
         /// <summary>
         /// 二分查找
