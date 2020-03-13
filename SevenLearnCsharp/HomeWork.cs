@@ -8,7 +8,7 @@ namespace SevenLearnCsharp
         static void Main(string[] args)
         {
 
-
+            GetRandomNumber(10);
 
 
 
@@ -22,9 +22,12 @@ namespace SevenLearnCsharp
             ///3.13 最新消息，表示依然懵懵懂懂，不会做
 
             #endregion
-            SignIn();
+         
 
         }
+
+
+
 
         /// <summary>
         /// 登录系统
@@ -113,6 +116,7 @@ namespace SevenLearnCsharp
         }
 
 
+
         /// <summary>
         /// 输入0-99的相加
         /// </summary>
@@ -132,7 +136,6 @@ namespace SevenLearnCsharp
 
 
 
-
         /// <summary>
         /// 输出二维名字循环
         /// </summary>
@@ -144,6 +147,7 @@ namespace SevenLearnCsharp
                 Console.WriteLine($"第{i}个同学是{array[0, i]},入栈时间是{array[1, i]}");
             }///实在想不出来return应该写在哪儿，尝试过写在外面。但是不行,需要返回二维数组
         }
+
 
 
         /// <summary>
@@ -175,7 +179,6 @@ namespace SevenLearnCsharp
         
 
 
-
         /// <summary>
         /// 获取一个平均数，输入一个数组
         /// </summary>
@@ -192,8 +195,6 @@ namespace SevenLearnCsharp
             Console.WriteLine(scores);
             return array;
         }
-
-
 
 
 
@@ -223,8 +224,9 @@ namespace SevenLearnCsharp
         }
 
 
+
         /// <summary>
-        /// 获得一组随机数
+        /// 获得一组随机数，并对其排序
         /// </summary>
         /// <param name="Key">输入要获得随机数的个数 例：3，获得3个随机数</param>
         /// <returns></returns>
@@ -241,8 +243,14 @@ namespace SevenLearnCsharp
 
                 Console.Write(receive[i] + ",");
             }
+            Console.WriteLine();
+            Console.WriteLine("下面是排序后的随机数");
+            BubbleSort(receive);
             return receive[Key-1];
+
         }
+
+
 
         /// <summary>
         /// 猜数字游戏，直接运行，无需参数。
@@ -292,7 +300,6 @@ namespace SevenLearnCsharp
 
 
 
-
         /// <summary>
         /// 查找数组中的最大数值
         /// </summary>
@@ -320,6 +327,9 @@ namespace SevenLearnCsharp
                 return -1;
             }
         }
+
+
+
         /// <summary>
         /// 二分查找
         /// </summary>
@@ -371,7 +381,6 @@ namespace SevenLearnCsharp
                 {
                     if (array[j] > array[j + 1])
                     {
-
                         temp = array[j];
                         array[j] = array[j + 1];
                         array[j + 1] = temp;
@@ -383,7 +392,6 @@ namespace SevenLearnCsharp
             {
                 Console.Write(array[i] + ",");
             }
-
         }
     }
 }
