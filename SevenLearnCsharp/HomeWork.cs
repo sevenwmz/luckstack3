@@ -22,9 +22,58 @@ namespace SevenLearnCsharp
             ///3.13 最新消息，表示依然懵懵懂懂，不会做
 
             #endregion
-
+            SignIn();
 
         }
+
+        /// <summary>
+        /// 登录系统
+        /// </summary>
+        static void SignIn() 
+        {
+            /// ThirdDay HomeWork.
+            /// 观察一起帮登录页面，用if...else...完成以下功能。
+            ///  用户依次由控制台输入：验证码、用户名和密码：
+            /// 如果验证码输入错误，直接输出：“*验证码错误”；
+            ///  如果用户名不存在，直接输出：“*用户名不存在”；
+            /// 如果用户名或密码错误，输出：“*用户名或密码错误”
+            /// 以上全部正确无误，输出：“恭喜！登录成功！”
+            ///PS：验证码 / 用户名 / 密码直接预设在源代码中，输入由Console.ReadLine()完成。
+            ///
+
+            string verificationcode = "wybz", username = "飞哥最胖",password = "123456";
+            Console.WriteLine("请输入验证码（wybz）");
+            string getinput = Console.ReadLine();
+            if (getinput != verificationcode)
+            {
+                Console.WriteLine("输入错误");
+                return;
+            }//else nothing
+
+            Console.WriteLine("请输入用户名（飞哥最胖）");
+            string input = Console.ReadLine();
+            if (  input != username)
+            {
+                Console.WriteLine("*用户名不存在");
+                return;
+
+            }//else nothing
+
+            Console.WriteLine("请在下方输入密码：(123456)");
+            string get = Console.ReadLine();
+            if (get != password)
+            {
+                Console.WriteLine("用户名或密码错误");
+                return;
+            }
+            else
+            {
+                Console.WriteLine("恭喜！登录成功！");
+            }
+
+        }
+
+
 
         /// <summary>
         /// 这个只是封装作业，没什么意义
