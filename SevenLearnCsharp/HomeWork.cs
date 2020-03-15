@@ -50,12 +50,41 @@ namespace SevenLearnCsharp
             #endregion
         }
 
-        static int[] FastSort(int left,int right,params int[] array) 
+
+
+        /// <summary>
+        /// 快速排序
+        /// </summary>
+        /// <param name="left">数组中的第一个下标</param>
+        /// <param name="right">数组中的最后一个下标</param>
+        /// <param name="array">待排序数组</param>
+        /// <returns></returns>
+        static void FastSort(int left,int right,params int[] array) 
         {
-            
+            if (left==right)//跳出循环条件
+            {
+                return;
+            }
+            int center = (left + right) / 2;//获得一个中间的位置
+            FastSortBody(center, left, right, array);//找到中间值后进行数组的一侧循环排序
+
+            FastSort(left,center -1,array);//对数组左侧做整理排序
+            FastSort(center + 1, right, array);//对数组右侧做整理排序 
         }
-        
-        
+
+
+        /// <summary>
+        /// 仅供FastSort使用
+        /// </summary>
+        /// <param name="center"></param>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <param name="array"></param>
+        /// <returns></returns>
+        static int FastSortBody(int center, int left,int right,int[] array) 
+        {
+            return -1;
+        }
 
         //static bool LogOn(string input,out string result)
         //{
