@@ -9,10 +9,10 @@ namespace SevenLearnCsharp
         static void Main(string[] args)
         {
 
+
+            int[] teste = { 54, 1, 13, 23, 45, 55, 67, 87, 97, 123, 234, };
+
             
-
-            int[] tests = { 54, 1, 13, 23, 45, 55, 67, 87, 97, 123, 234, };
-
 
             ///读取数组，用第一个开始比对，从右到左。如果遇到小的就换位置，把小的放到他的左面。
             ///然后就是左开始比对，遇到比他大的就放到右面。一直循环
@@ -50,49 +50,12 @@ namespace SevenLearnCsharp
             #endregion
         }
 
-
-
-
-        /// <summary>
-        /// 快速排序
-        /// </summary>
-        /// <param name="array">输入一个数组</param>
-        /// <param name="left">数组中的第一个下标</param>
-        /// <param name="right">数组中的最后一个下标</param>
-        static void FastSort(int[] array, int left, int right)
-        {///写在前面的，这是抄过来的一种方法，理解起来有一些小困难，但是主要部分都看懂了。现在自己能写出来
-         ///不过三分靠理解，七分靠记忆。轮子已有，常来熟悉，只求面试别坑。
-            if (left >= right) return;
-            int Index = FastSortBody(array, left, right);
-            FastSort(array, left, Index - 1);
-            FastSort(array, Index + 1, right);
+        static int[] FastSort(int left,int right,params int[] array) 
+        {
+            
         }
-        /// <summary>
-        /// 私有方法，服务于fastsort
-        /// </summary>
-        /// <param name="array">上个数组中传递</param>
-        /// <param name="left">获得第一个下标位置</param>
-        /// <param name="right">获得右边下标位置</param>
-        /// <returns></returns>
-        static int FastSortBody(int[] array, int left, int right)
-        {///应该算是，提前知道了private的作用，和public的功能.先不写，等讲了在写。
-            int center = array[left], i = left, j = right;
-            while (left < right)
-            {
-                while (array[right] >= center && i < j)
-                {
-                    j--;
-                    array[i] = array[j];
-                }
-                while (array[right] >= center && i < j)
-                {
-                    i++;
-                    array[j] = array[i];
-                }
-            }
-            array[i] = center;
-            return i;
-        }
+        
+        
 
         //static bool LogOn(string input,out string result)
         //{
@@ -368,7 +331,7 @@ namespace SevenLearnCsharp
         /// </summary>
         static void GuessMe()
         {
-            Console.WriteLine("欢迎来到猜数字游戏");
+            Console.WriteLine("欢迎来到猜数字游戏,这个数字是1000以内的整数");
             Console.WriteLine("你有十次机会猜中它，如果猜不中。飞哥，网线，打，懂？");
             int guess = new Random().Next(0, 999);
             for (int i = 0; i < 10; i++)
