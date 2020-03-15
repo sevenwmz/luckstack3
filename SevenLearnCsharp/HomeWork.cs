@@ -12,7 +12,7 @@ namespace SevenLearnCsharp
 
             int[] teste = { 54, 1, 13, 23, 45, 55, 67, 87, 97, 123, 234, };
 
-            
+
 
             ///读取数组，用第一个开始比对，从右到左。如果遇到小的就换位置，把小的放到他的左面。
             ///然后就是左开始比对，遇到比他大的就放到右面。一直循环
@@ -43,11 +43,42 @@ namespace SevenLearnCsharp
             ///先把100以内的数字放入一个数组
             ///然后用循环从1开始除，一直循环到他本身，如果余数为1就装入另一个数组里。
             ///
-
+            ///看了飞总的讲解后，会了，但是关于求质数本身这个解法，真的想不到。。。
 
             ///3.13 最新消息，表示依然懵懵懂懂，不会做
 
             #endregion
+
+            findPrimeNumber(230);
+        }
+
+
+        private static void findPrimeNumber(int key)
+        {
+            for (int i = 3; i < key; i++)
+            {
+                if (isPrime(i))
+                {
+                    Console.WriteLine(i);
+                }
+            }
+
+        }
+        /// <summary>
+        /// i是否是质数
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        private static bool isPrime(int number)
+        {
+            for (int i = 2; i < number / 2; i++)
+            {
+                if (number % i == 0)
+                {
+                    return false;///绝对是精华体验，这个套的太强势了。
+                }
+            }
+            return true;
         }
 
 
@@ -59,48 +90,34 @@ namespace SevenLearnCsharp
         /// <param name="right">数组中的最后一个下标</param>
         /// <param name="array">待排序数组</param>
         /// <returns></returns>
-        static void FastSort(int left,int right,params int[] array) 
+        static void fastSort(int left, int right, params int[] array)
         {
-            if (left==right)//跳出循环条件
+            if (left == right)//跳出循环条件
             {
                 return;
             }
             int center = (left + right) / 2;//获得一个中间的位置
-            FastSortBody(center, left, right, array);//找到中间值后进行数组的一侧循环排序
+            fastSortBody(center, left, right, array);//找到中间值后进行数组的一侧循环排序
 
-            FastSort(left,center -1,array);//对数组左侧做整理排序
-            FastSort(center + 1, right, array);//对数组右侧做整理排序 
+            fastSort(left, center - 1, array);//对数组左侧做整理排序
+            fastSort(center + 1, right, array);//对数组右侧做整理排序 
         }
 
 
         /// <summary>
-        /// 仅供FastSort使用
+        /// 仅供fastSort使用
         /// </summary>
         /// <param name="center"></param>
         /// <param name="left"></param>
         /// <param name="right"></param>
         /// <param name="array"></param>
         /// <returns></returns>
-        static int FastSortBody(int center, int left,int right,int[] array) 
+        static int fastSortBody(int center, int left, int right, int[] array)
         {
             return -1;
         }
 
-        //static bool LogOn(string input,out string result)
-        //{
 
-        //    input = Console.ReadLine();
-        //    result = input;
-        //    if (input)
-        //    {
-        //        ///登录
-        //    }
-        //    else
-        //    {
-        //        result;
-        //    }
-        //    return input;
-        //}
 
 
 
@@ -110,7 +127,7 @@ namespace SevenLearnCsharp
         /// </summary>
         /// <param name="a">第一个数字</param>
         /// <param name="b">第二个数字</param>
-        static void Count(double a, double b)
+        static void count(double a, double b)
         {
             ///1.输出两个整数 / 小数的和 / 差 / 积 / 商
             ///
@@ -134,7 +151,7 @@ namespace SevenLearnCsharp
         /// <summary>
         /// 登录系统
         /// </summary>
-        static void LogOn()
+        static void logOn()
         {
             /// ThirdDay HomeWork.
             /// 观察一起帮登录页面，用if...else...完成以下功能。
@@ -163,7 +180,7 @@ namespace SevenLearnCsharp
                 return;
 
             }//else nothing
-            
+
             Console.WriteLine("请在下方输入密码：(123456)");
             string get = Console.ReadLine();
             if (get != password)
@@ -173,7 +190,7 @@ namespace SevenLearnCsharp
             }
             else
             {
-                Console.WriteLine("恭喜！登录成功！"+key);
+                Console.WriteLine("恭喜！登录成功！" + key);
                 return;
             }///写在最后，竟然没做出来那个return key. 打脸啊打脸 ---ψ(╰_╯)---
 
@@ -182,7 +199,7 @@ namespace SevenLearnCsharp
         /// <summary>
         /// 这个只是封装作业，没什么意义
         /// </summary>
-        static void TriningForAndWhile()
+        static void triningForAndWhile()
         {
             /////第一题
             /////http://17bang.ren/Article/438
@@ -223,7 +240,7 @@ namespace SevenLearnCsharp
         /// </summary>
         /// <param name="number">需要相加的一个数值</param>
         /// <returns></returns>
-        static int Sum(int number)
+        static int sum(int number)
         {
             int result = number;
             int sum = 0;
@@ -241,7 +258,7 @@ namespace SevenLearnCsharp
         /// 输出二维名字循环
         /// </summary>
         /// <param name="array">输入一个string类型的二维数组</param>
-        static void NameAndData(string[,] array)
+        static void nameAndData(string[,] array)
         {
             for (int i = 0; i < array.GetLength(1); i++)
             {
@@ -256,7 +273,7 @@ namespace SevenLearnCsharp
         /// </summary>
         /// <param name="array">需要一个数组的长度</param>
         /// <returns></returns>
-        static int[,] CycleArray(int[,] array)
+        static int[,] cycleArray(int[,] array)
         {
             for (int i = 0; i < array.GetLength(0); i++)
             {
@@ -285,7 +302,7 @@ namespace SevenLearnCsharp
         /// </summary>
         /// <param name="array">参数需要一个数组</param>
         /// <returns></returns>
-        static double[] GetAverage(params double[] array)
+        static double[] getAverage(params double[] array)
         {
             double sum = 0;
             for (int i = 0; i < array.Length; i++)
@@ -305,7 +322,7 @@ namespace SevenLearnCsharp
         /// <param name="result">输入out double result就可以，这里只是多一个返回值</param>
         /// <param name="array">直接输入一个数组就好</param>
         /// <returns></returns>
-        static double GetMaxAndMin(out double result, params double[] array)
+        static double getMaxAndMin(out double result, params double[] array)
         {
             double max = array[0];
             double min = array[0];
@@ -333,7 +350,7 @@ namespace SevenLearnCsharp
         /// </summary>
         /// <param name="Key">输入要获得随机数的个数 例：3，获得3个随机数</param>
         /// <returns></returns>
-        static int GetRandomNumber(int Key)
+        static int getRandomNumber(int Key)
         {
             int[] receive = new int[Key];
 
@@ -348,7 +365,7 @@ namespace SevenLearnCsharp
             }
             Console.WriteLine();
             Console.WriteLine("下面是排序后的随机数");
-            BubbleSort(receive);
+            bubbleSort(receive);
             return receive[Key - 1];
 
         }
@@ -358,7 +375,7 @@ namespace SevenLearnCsharp
         /// <summary>
         /// 猜数字游戏，直接运行，无需参数。
         /// </summary>
-        static void GuessMe()
+        static void guessMe()
         {
             Console.WriteLine("欢迎来到猜数字游戏,这个数字是1000以内的整数");
             Console.WriteLine("你有十次机会猜中它，如果猜不中。飞哥，网线，打，懂？");
@@ -384,7 +401,7 @@ namespace SevenLearnCsharp
                     else if (i < 8)
                     {
                         Console.WriteLine("不错嘛！");
-                        return; 
+                        return;
                     }
                     else
                     {
@@ -411,7 +428,7 @@ namespace SevenLearnCsharp
         /// <param name="array">需要先传入一个数组</param>
         /// <param name="Key">在传入一个需要查找的值</param>
         /// <returns></returns>
-        static int FindMax(int[] array, int Key)
+        static int findMax(int[] array, int Key)
         {
             bool fond = false;
             for (int i = 0; i < array.Length - 1; i++)
@@ -438,7 +455,7 @@ namespace SevenLearnCsharp
         /// </summary>
         /// <param name="a">需要ref 引用参数a</param>
         /// <param name="b">需要ref 引用参数b</param>
-        static void Swap(ref int a, ref int b)
+        static void swap(ref int a, ref int b)
         {
             int temp = a;
             a = b;
@@ -452,7 +469,7 @@ namespace SevenLearnCsharp
         /// <param name="array">输入一个已经排好了的数组</param>
         /// <param name="Key">输入要查找的数字</param>
         /// <returns></returns>
-        static int BinarySeek(int[] array, int Key)
+        static int binarySeek(int[] array, int Key)
         {
             int left = 0, right = array.Length - 1, result = 0;
             while (left <= right)
@@ -486,7 +503,7 @@ namespace SevenLearnCsharp
         /// 冒泡排序，直接传递数组或者数字就可以。
         /// </summary>
         /// <param name="array"></param>
-        static void BubbleSort(params int[] array)
+        static void bubbleSort(params int[] array)
         {
             for (int i = 0; i < array.Length - 1; i++)
             {
@@ -494,7 +511,7 @@ namespace SevenLearnCsharp
                 {
                     if (array[j] > array[j + 1])
                     {
-                        Swap(ref array[j], ref array[j + 1]);
+                        swap(ref array[j], ref array[j + 1]);
                     }
                 }
             }
