@@ -26,7 +26,7 @@ namespace SevenLearnCsharp
             //        }
             //    }
             //}
-        
+
 
 
             #region 第六题
@@ -43,6 +43,9 @@ namespace SevenLearnCsharp
             #endregion
 
             //findPrimeNumber(230);
+
+
+
         }
 
         //private static (string, string[], int, int) load()
