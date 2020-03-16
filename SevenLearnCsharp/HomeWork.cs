@@ -1,4 +1,6 @@
 ﻿using System;
+//using User;
+using Entity;
 
 namespace SevenLearnCsharp
 {
@@ -8,14 +10,23 @@ namespace SevenLearnCsharp
 
         static void Main(string[] args)
         {
-
-
-
-            findMax(new int[]{23,321,123,43 },23);
+            //Article.IsTry();
+            //Class1.Problem();
 
             Console.WriteLine();
-            int[] teste = { 54, 1, 13, 23, 45, 55, 67, 87, 97, 123, 234, };
+            int[] teste = { 1, 13, 23, 45, 54, 55, 67, 87, 97, 123, 234 };
 
+            //for (int i = 0; i < teste.Length - 1; i++)
+            //{
+            //    for (int j = 0; j < teste.Length - 1 - i; j++)
+            //    {
+            //        if (teste[j] > teste[j + 1])
+            //        {
+            //            Swap(ref teste[j], ref teste[j + 1]);
+            //        }
+            //    }
+            //}
+        
 
 
             #region 第六题
@@ -33,6 +44,13 @@ namespace SevenLearnCsharp
 
             //findPrimeNumber(230);
         }
+
+        //private static (string, string[], int, int) load()
+        //{
+        //    var user = (name"wpz", 25);
+        //    Console.WriteLine(user.Item1);
+        //    return ("", new string[] { " ", " " }, 20, 20);
+        //}
 
 
 
@@ -124,7 +142,7 @@ namespace SevenLearnCsharp
         /// <returns></returns>
         private static int fastSortBody(int center, int left, int right, int[] array)
         {
-            return -1;
+            return -1;//没时间研究他，先放一边
         }
 
 
@@ -161,7 +179,7 @@ namespace SevenLearnCsharp
         /// <summary>
         /// 登录系统
         /// </summary>
-        internal static void logOn(out bool key)
+        internal static void LogOn(out bool key)
         {
             /// ThirdDay HomeWork.
             /// 观察一起帮登录页面，用if...else...完成以下功能。
@@ -210,10 +228,12 @@ namespace SevenLearnCsharp
              ///3.15最新消息，隔一天似乎竟然写出来了。
         }
 
+
+
         /// <summary>
         /// 这个只是封装作业，没什么意义
         /// </summary>
-        static void triningForAndWhile()
+        private static void triningForAndWhile()
         {
             /////第一题
             /////http://17bang.ren/Article/438
@@ -316,7 +336,7 @@ namespace SevenLearnCsharp
         /// </summary>
         /// <param name="array">参数需要一个数组</param>
         /// <returns></returns>
-        public static double[] getAverage(params double[] array)
+        public static double[] GetAverage(params double[] array)
         {
             double sum = 0;
             for (int i = 0; i < array.Length; i++)
@@ -336,8 +356,9 @@ namespace SevenLearnCsharp
         /// <param name="result">输入out double result就可以，这里只是多一个返回值</param>
         /// <param name="array">直接输入一个数组就好</param>
         /// <returns></returns>
-        public static double getMaxAndMin(out double result, params double[] array)
+        public static double GetMaxAndMin(out double result, params double[] array)
         {
+
             double max = array[0];
             double min = array[0];
             for (int i = 1; i < array.Length; i++)
@@ -354,7 +375,7 @@ namespace SevenLearnCsharp
             Console.WriteLine("Max : " + max);
             Console.WriteLine("Min : " + min);
             result = min;
-            return max;///return只能return一个，min return不了，这个未解之谜等待飞哥。如果无解，我就考虑在写一次求最小了
+            return max;
         }
 
 
@@ -367,8 +388,8 @@ namespace SevenLearnCsharp
         /// <param name="max">输入获得随机数的最大值，默认为1000</param>
         /// <param name="sort">如果需要随机数后排序输入“true”</param>
         /// <returns></returns>
-        public static int getRandomNumber(int Key, int min = 0, int max = 1000, bool sort = false)
-        {
+        public static int GetRandomNumber(int Key, int min = 0, int max = 1000, bool sort = false)
+        {//这个地方想了半天要不要用元组，但是发现3个都是可选参数，就算了吧。元组套上后反而麻烦
             int[] receive = new int[Key];
 
             for (int i = 0; i < receive.Length; i++)
@@ -384,7 +405,7 @@ namespace SevenLearnCsharp
 
             if (sort == true)
             {//这里跳转到冒泡排序
-                Console.WriteLine("下面是排序后的随机数，如果数组数大于1");
+                Console.WriteLine("下面是排序后的随机数");
                 bubbleSort(receive);
             }//else nothing 
             return receive[Key - 1];
@@ -395,7 +416,7 @@ namespace SevenLearnCsharp
         /// <summary>
         /// 猜数字游戏，直接运行，无需参数。
         /// </summary>
-        internal static void guessMe()
+        internal static void GuessMe()
         {
             Console.WriteLine("欢迎来到猜数字游戏,这个数字是1000以内的整数");
             Console.WriteLine("你有十次机会猜中它，如果猜不中。飞哥，网线，打，懂？");
@@ -448,7 +469,7 @@ namespace SevenLearnCsharp
         /// <param name="array">需要传入一个数组</param>
         /// <param name="Key">在传入一个需要查找的值</param>
         /// <returns></returns>
-        public static int findMax(int[] array, int Key)
+        public static int FindMax(int[] array, int Key)
         {
             bool fond = false;
             for (int i = 0; i < array.Length - 1; i++)
@@ -470,7 +491,7 @@ namespace SevenLearnCsharp
         /// </summary>
         /// <param name="a">需要ref 引用参数a</param>
         /// <param name="b">需要ref 引用参数b</param>
-        public static void swap(ref int a, ref int b)
+        public static void Swap(ref int a, ref int b)
         {
             int temp = a;
             a = b;
@@ -486,14 +507,13 @@ namespace SevenLearnCsharp
         /// <returns></returns>
         private static int binarySeek(int[] array, int Key)
         {
-            int left = 0, right = array.Length - 1, result = 0;
+            int left = 0, right = array.Length - 1;
             while (left <= right)
             {
                 int middle = (left + right) / 2;
                 if (Key == array[middle])
                 {
-                    //result = middle;///直接想不通怎么直接输出的是我要找的数字，而不是下标
-                    Console.WriteLine(array[middle]); //找到查找数字
+                    Console.WriteLine(middle); //找到查找数字下标
                     return middle;
                 }
                 else
@@ -526,7 +546,7 @@ namespace SevenLearnCsharp
                 {
                     if (array[j] > array[j + 1])
                     {
-                        swap(ref array[j], ref array[j + 1]);
+                        Swap(ref array[j], ref array[j + 1]);
                     }
                 }
             }
