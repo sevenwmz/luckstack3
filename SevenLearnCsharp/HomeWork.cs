@@ -10,6 +10,38 @@ namespace SevenLearnCsharp
 
         static void Main(string[] args)
         {
+
+            User wpz = new User("wpz");
+            Console.WriteLine(wpz.name);
+
+            //User Csharp = new User();
+            //Csharp.agreecount = 19;
+            //Csharp.Agree(ref Csharp);
+            //Console.WriteLine(Csharp.agreecount);
+
+
+
+
+            //User Csharp = new User();
+
+            //int fee = 986;
+
+            //Csharp.Title = " Csharp ";
+            //User sql = Csharp;
+            //sql.Title = "123123";
+            //Console.WriteLine(Csharp.Title);
+
+
+            //User test = new User();
+            //test.Tips = "zhuyi";
+            
+            //new User().Touch() = 111;
+            //User name. = new user();
+            //age++;
+
+
+           
+
             //Article.IsTry();
             //Class1.Problem();
 

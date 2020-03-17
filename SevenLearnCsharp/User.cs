@@ -6,7 +6,23 @@ namespace SevenLearnCsharp
 {
     public class User
     {
-        public string Title;//用户登录
+        public User( string name)
+        {
+            this.name = name;
+        }
+        public User()
+        {
+
+        }
+        internal void Agree(ref User user)
+        {
+            user = new User();
+            user.agreecount++;
+        }
+        public int agreecount;
+
+
+        public string name;//用户登录
 
         internal string UserName;//输入用户名提示
         public string GetUserName()
@@ -48,4 +64,5 @@ namespace SevenLearnCsharp
 
 
     }
+
 }
