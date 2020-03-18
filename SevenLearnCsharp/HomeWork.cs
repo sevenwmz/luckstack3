@@ -1,6 +1,8 @@
 ﻿using System;
 //using User;
 using Entity;
+//using SevenLearnCsharp;
+
 
 namespace SevenLearnCsharp
 {
@@ -11,8 +13,47 @@ namespace SevenLearnCsharp
         static void Main(string[] args)
         {
 
-            User wpz = new User("wpz");
-            Console.WriteLine(wpz.name);
+
+            //Article wx = new Article();
+            //wx.age = 18;
+            //wx.grow(wx);
+            //Console.WriteLine(wx.age);    
+
+            int a = 19;
+
+            Article showone = new Article();
+            showone.Show1(a);
+            Console.WriteLine(a);
+            Console.WriteLine("-----------------");
+            Article showtwo = new Article();
+            showtwo.Show2(ref a);
+            Console.WriteLine(a);
+
+            Article testOne = new Article() { Age = 26 };
+            //testOne.Age = 26;
+            testOne.GetAge(testOne);
+            Console.WriteLine(testOne.Age);
+            Console.WriteLine("-----------------");
+            Article testTwo = new Article();
+            testTwo.Age = 26;
+            testTwo.OtherGetAge(ref testTwo.Age);
+            Console.WriteLine(testTwo);
+
+
+            Console.WriteLine();
+
+            //User wpz = new User { Titlea = "yiqibang" };
+            //Console.WriteLine(wpz.Titlea);
+            //Article wpz = new Article();
+            //wpz.Age = 26;
+            //Console.WriteLine(wpz.Age);
+            //Console.WriteLine(new Article()._name);
+
+            //Article wpz = new Article("wmz", 26);
+
+            //User wpz = new User("wangpangzi");
+
+            //Console.WriteLine(wpz);
 
             //User Csharp = new User();
             //Csharp.agreecount = 19;
@@ -34,13 +75,13 @@ namespace SevenLearnCsharp
 
             //User test = new User();
             //test.Tips = "zhuyi";
-            
+
             //new User().Touch() = 111;
             //User name. = new user();
             //age++;
 
 
-           
+
 
             //Article.IsTry();
             //Class1.Problem();
@@ -243,7 +284,6 @@ namespace SevenLearnCsharp
                 Console.WriteLine("*用户名不存在");
                 key = false;
                 return;
-
             }//else nothing
 
             Console.WriteLine("请在下方输入密码：(123456)");
