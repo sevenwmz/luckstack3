@@ -29,7 +29,7 @@ namespace SevenLearnCsharp
         internal string GetInvitation { get; set; }//获得邀请人方法
 
         private int _invitationPwd;//邀请码
-        internal int GetInvitationPwd //获得邀请码方法
+        internal int GetInvitationPwd 
         {
             get
             {
@@ -43,7 +43,7 @@ namespace SevenLearnCsharp
                 }
             }
             set { _invitationPwd = value; }
-        }
+        }//获得邀请码方法
 
 
 
@@ -65,6 +65,18 @@ namespace SevenLearnCsharp
         private string _rightSideExplain;//右侧说明栏
         internal string Get_rightSideExplain{ get; set; }//获得右侧说明栏方法
 
+        internal bool Submit() //提交按钮，我怎么越写越懵逼了呢
+        {
+            return true;
+        }
+
+        internal bool Reset() //重置按钮，我怎么越写越懵逼了呢+1
+        {
+            return true;
+        }
+
+        private string _logIn;//小的登录跳转字段
+        internal string GetLogIn { get; set; }//获得登录跳转方法
 
     }
 

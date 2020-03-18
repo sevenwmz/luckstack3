@@ -6,25 +6,33 @@ namespace SevenLearnCsharp
 {
     class LogIn
     {
-        internal static void publish()
-        { 
-            
-        }
+        private string _title;//注册页面标题
+        internal string GetTitle { get; set; }//获得标题方法
 
+        private string _userName;//用户名
+        internal string GetUserName { get; set; }//获得用户名方法
 
-    }
+        private string _userPwd;//密码
+        internal string GetUserPwd { get; set; }//获得密码方法
 
-    class Student
-    {
-        static int age;                 //字段：类下面直接声明
-        static string name = "阿泰";    //可以在声明时赋值
+        private string _verification;//验证码
+        internal string GetVerification { get; set; }//获得验证码方法
 
-        public static void greet()
+        private string _change;//刷新验证码
+        internal string Getchange { get; set; }//获得刷新验证码方法
+
+        internal bool Submit() //提交按钮，我怎么越写越懵逼了呢
         {
-            int age = 18;                    //变量：方法中声明
-            age++;                           //使用的是变量
-            //如果没有age变量的声明，使用字段age
+            return true;
         }
+
+        internal bool RememberMe() //记住我，点了就返回true，不点就不生效。
+        {
+            return true;
+        }
+
     }
+
+
 
 }
