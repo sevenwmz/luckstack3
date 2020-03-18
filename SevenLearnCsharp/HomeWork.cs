@@ -19,28 +19,28 @@ namespace SevenLearnCsharp
             //wx.grow(wx);
             //Console.WriteLine(wx.age);    
 
-            int a = 19;
+            //int a = 19;
 
-            Article showone = new Article();
-            showone.Show1(a);
-            Console.WriteLine(a);
-            Console.WriteLine("-----------------");
-            Article showtwo = new Article();
-            showtwo.Show2(ref a);
-            Console.WriteLine(a);
+            //Article showone = new Article();
+            //showone.Show1(a);
+            //Console.WriteLine(a);
+            //Console.WriteLine("-----------------");
+            //Article showtwo = new Article();
+            //showtwo.Show2(ref a);
+            //Console.WriteLine(a);
 
-            Article testOne = new Article() { Age = 26 };
-            //testOne.Age = 26;
-            testOne.GetAge(testOne);
-            Console.WriteLine(testOne.Age);
-            Console.WriteLine("-----------------");
-            Article testTwo = new Article();
-            testTwo.Age = 26;
-            testTwo.OtherGetAge(ref testTwo.Age);
-            Console.WriteLine(testTwo);
+            //Article testOne = new Article() { Age = 26 };
+            ////testOne.Age = 26;
+            //testOne.GetAge(testOne);
+            //Console.WriteLine(testOne.Age);
+            //Console.WriteLine("-----------------");
+            //Article testTwo = new Article();
+            //testTwo.Age = 26;
+            //testTwo.OtherGetAge(ref testTwo.Age);
+            //Console.WriteLine(testTwo);
 
 
-            Console.WriteLine();
+            //Console.WriteLine();
 
             //User wpz = new User { Titlea = "yiqibang" };
             //Console.WriteLine(wpz.Titlea);
@@ -83,11 +83,11 @@ namespace SevenLearnCsharp
 
 
 
-            //Article.IsTry();
-            //Class1.Problem();
+            ////Article.IsTry();
+            ////Class1.Problem();
 
-            Console.WriteLine();
-            int[] teste = { 1, 13, 23, 45, 54, 55, 67, 87, 97, 123, 234 };
+            //Console.WriteLine();
+            //int[] teste = { 1, 13, 23, 45, 54, 55, 67, 87, 97, 123, 234 };
 
             //for (int i = 0; i < teste.Length - 1; i++)
             //{
@@ -117,9 +117,57 @@ namespace SevenLearnCsharp
 
             //findPrimeNumber(230);
 
+            int a = 18;
 
+            HomeWork person = new HomeWork();//值的值传递
+            person.ValuePass(a);
+            Console.WriteLine(a);
+            Console.WriteLine("------------------------");
+
+            HomeWork otherPerson = new HomeWork();//值的引用传递
+            otherPerson.ReferencePass(ref a);
+            Console.WriteLine(a);
+            Console.WriteLine("--------------------------");
+
+            HomeWork name = new HomeWork{ _name = "王月半子" };
+            ChangeName(name);
+            Console.WriteLine(name._name);
+            Console.WriteLine("--------------------------");
+
+            HomeWork newName = new HomeWork { _name = "王月半子" };
+            ChangeingName(ref newName);
+            Console.WriteLine(newName._name);
 
         }
+
+        internal int ValuePass(int value)
+        {
+            ++value;
+            Console.WriteLine(value);
+            return value;
+        }
+        internal int ReferencePass(ref int value)
+        {
+            ++value;
+            Console.WriteLine(value);
+            return value;
+        }
+
+        internal string _name;
+        internal static void ChangeName(HomeWork person) 
+        {
+            person = new HomeWork();
+            person._name = "和飞哥一样帅";
+            Console.WriteLine(person._name);
+        }
+        internal static void ChangeingName(ref HomeWork person)
+        {
+            person = new HomeWork();
+            person._name = "和飞哥一样帅";
+            Console.WriteLine(person._name);
+        }
+
+
 
         //private static (string, string[], int, int) load()
         //{
