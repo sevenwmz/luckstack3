@@ -9,155 +9,6 @@ namespace SevenLearnCsharp
     class HomeWork
     {
 
-
-        static void Main(string[] args)
-        {
-
-
-            //var wx = new
-            //{
-            //    Name = "王新",
-            //    Age = 25,
-            //};
-            //var zjq = new  /*注意：没有类名了*/
-            //{
-            //    Name = "曾俊清",
-            //    Age = 23,
-            //};
-
-
-     
-
-
-            //wx = zjq;
-            //Console.WriteLine(wx);
-
-            //Article wx = new Article();
-            //wx.age = 18;
-            //wx.grow(wx);
-            //Console.WriteLine(wx.age);    
-
-            //int a = 19;
-
-            //Article showone = new Article();
-            //showone.Show1(a);
-            //Console.WriteLine(a);
-            //Console.WriteLine("-----------------");
-            //Article showtwo = new Article();
-            //showtwo.Show2(ref a);
-            //Console.WriteLine(a);
-
-            //Article testOne = new Article() { Age = 26 };
-            ////testOne.Age = 26;
-            //testOne.GetAge(testOne);
-            //Console.WriteLine(testOne.Age);
-            //Console.WriteLine("-----------------");
-            //Article testTwo = new Article();
-            //testTwo.Age = 26;
-            //testTwo.OtherGetAge(ref testTwo.Age);
-            //Console.WriteLine(testTwo);
-
-
-            //Console.WriteLine();
-
-            //User wpz = new User { Titlea = "yiqibang" };
-            //Console.WriteLine(wpz.Titlea);
-            //Article wpz = new Article();
-            //wpz.Age = 26;
-            //Console.WriteLine(wpz.Age);
-            //Console.WriteLine(new Article()._name);
-
-            //Article wpz = new Article("wmz", 26);
-
-            //User wpz = new User("wangpangzi");
-
-            //Console.WriteLine(wpz);
-
-            //User Csharp = new User();
-            //Csharp.agreecount = 19;
-            //Csharp.Agree(ref Csharp);
-            //Console.WriteLine(Csharp.agreecount);
-
-
-
-
-            //User Csharp = new User();
-
-            //int fee = 986;
-
-            //Csharp.Title = " Csharp ";
-            //User sql = Csharp;
-            //sql.Title = "123123";
-            //Console.WriteLine(Csharp.Title);
-
-
-            //User test = new User();
-            //test.Tips = "zhuyi";
-
-            //new User().Touch() = 111;
-            //User name. = new user();
-            //age++;
-
-
-
-
-            ////Article.IsTry();
-            ////Class1.Problem();
-
-            //Console.WriteLine();
-            //int[] teste = { 1, 13, 23, 45, 54, 55, 67, 87, 97, 123, 234 };
-
-            //for (int i = 0; i < teste.Length - 1; i++)
-            //{
-            //    for (int j = 0; j < teste.Length - 1 - i; j++)
-            //    {
-            //        if (teste[j] > teste[j + 1])
-            //        {
-            //            Swap(ref teste[j], ref teste[j + 1]);
-            //        }
-            //    }
-            //}
-
-
-
-            #region 第六题
-            //找到100以内的所有质数（只能被1和它自己整除的数）
-            ///先把100以内的数字放入一个数组
-            ///然后用循环从1开始除，一直循环到他本身，如果余数为1就装入另一个数组里。
-            ///
-
-
-            ///3.13 最新消息，表示依然懵懵懂懂，不会做
-            ///3.15最新消息，看了飞总的讲解后，会了，但是关于求质数本身这个解法，真的想不到。。。
-
-
-            #endregion
-
-            //findPrimeNumber(230);
-
-            int a = 18;
-
-            HomeWork person = new HomeWork();//值的值传递
-            person.ValuePass(a);
-            Console.WriteLine(a);
-            Console.WriteLine("------------------------");
-
-            HomeWork otherPerson = new HomeWork();//值的引用传递
-            otherPerson.ReferencePass(ref a);
-            Console.WriteLine(a);
-            Console.WriteLine("--------------------------");
-
-            HomeWork name = new HomeWork { _name = "王月半子" };//引用类型的值传递
-            ChangeName(name);
-            Console.WriteLine(name._name);
-            Console.WriteLine("--------------------------");
-
-            HomeWork newName = new HomeWork { _name = "王月半子" };//引用类型的引用传递
-            ChangeingName(ref newName);
-            Console.WriteLine(newName._name);
-
-        }
-
         internal int ValuePass(int value)//值的值传递
         {
             ++value;
@@ -178,14 +29,12 @@ namespace SevenLearnCsharp
             person._name = "和飞哥一样帅";
             Console.WriteLine(person._name);
         }
-        internal static void ChangeingName(HomeWork person)//引用类型的引用传递
+        internal static void ChangeingName(ref HomeWork person)//引用类型的引用传递
         {
             person = new HomeWork();
             person._name = "和飞哥一样帅";
             Console.WriteLine(person._name);
-            return person;
         }
-
 
 
         //private static (string, string[], int, int) load()
@@ -215,10 +64,6 @@ namespace SevenLearnCsharp
             }
             return array;///抄了赵淼同学的一点思路。之前没看到这个作业
         }
-
-
-
-
 
         /// <summary>
         /// 查找质数
@@ -287,11 +132,6 @@ namespace SevenLearnCsharp
         {
             return -1;//没时间研究他，先放一边
         }
-
-
-
-
-
 
         /// <summary>
         /// 作业输出加减乘除
@@ -697,6 +537,84 @@ namespace SevenLearnCsharp
                 Console.Write(array[i] + ",");
             }
             return array;
+        }
+
+        static void Main(string[] args)
+        {
+
+
+
+            //findPrimeNumber(230);
+
+            //int a = 18;
+
+            //HomeWork person = new HomeWork();//值的值传递
+            //person.ValuePass(a);
+            //Console.WriteLine(a);
+            //Console.WriteLine("------------------------");
+
+            //HomeWork otherPerson = new HomeWork();//值的引用传递
+            //otherPerson.ReferencePass(ref a);
+            //Console.WriteLine(a);
+            //Console.WriteLine("--------------------------");
+
+            //HomeWork name = new HomeWork { _name = "王月半子" };//引用类型的值传递
+            //ChangeName(name);
+            //Console.WriteLine(name._name);
+            //Console.WriteLine("--------------------------");
+
+            //HomeWork newName = new HomeWork { _name = "王月半子" };//引用类型的引用传递
+            //ChangeingName(ref newName);
+            //Console.WriteLine(newName._name);
+
+            //new SelfTry();
+            //Console.WriteLine();
+            //Console.WriteLine(SelfTry.Belong); 
+
+            SelfTry wpz = new SelfTry("wangyuebanzi");
+            SelfTry.learn(95);
+            SelfTry.enroll(wpz);
+        }
+
+    }
+    public class SelfTry
+    {
+        private static string _name;
+        public SelfTry(string name)
+        {
+            _name = name;
+        }
+        internal static void learn(int scroe)
+        {
+            Console.WriteLine($"{_name}zai{at}xuexi");
+            scroe++;
+        }
+
+        static SelfTry[] student = new SelfTry[18];
+
+        internal static void enroll(SelfTry newbie)
+        {
+            for (int i = 0; i < student.Length - 1; i++)
+            {
+                if (student[i] == null)
+                {
+                    student[i] = newbie;
+                    return;
+                }
+            }
+        }
+
+        public static string Belong { get; set; }
+
+        static string at = "yuanz";
+        static SelfTry()
+        {
+            Belong = "yuanzhan";
+        }
+
+        public SelfTry()
+        {
+
         }
     }
 }

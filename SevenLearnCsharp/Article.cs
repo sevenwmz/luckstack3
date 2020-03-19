@@ -7,6 +7,14 @@ namespace SevenLearnCsharp
     public class Article
     {
 
+
+        public static string Belong { get; set; }
+        static Article()
+        {
+            Belong = "yuanzhan";
+        }
+
+
         //private string _name;
         //private int _age;
 
