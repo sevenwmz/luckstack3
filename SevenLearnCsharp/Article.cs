@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SevenLearnCsharp
 {
-    class Article
+    public class Article
     {
 
         //private string _name;

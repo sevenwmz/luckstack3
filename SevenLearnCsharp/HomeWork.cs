@@ -14,6 +14,24 @@ namespace SevenLearnCsharp
         {
 
 
+            //var wx = new
+            //{
+            //    Name = "王新",
+            //    Age = 25,
+            //};
+            //var zjq = new  /*注意：没有类名了*/
+            //{
+            //    Name = "曾俊清",
+            //    Age = 23,
+            //};
+
+
+     
+
+
+            //wx = zjq;
+            //Console.WriteLine(wx);
+
             //Article wx = new Article();
             //wx.age = 18;
             //wx.grow(wx);
@@ -129,24 +147,24 @@ namespace SevenLearnCsharp
             Console.WriteLine(a);
             Console.WriteLine("--------------------------");
 
-            HomeWork name = new HomeWork{ _name = "王月半子" };
+            HomeWork name = new HomeWork { _name = "王月半子" };//引用类型的值传递
             ChangeName(name);
             Console.WriteLine(name._name);
             Console.WriteLine("--------------------------");
 
-            HomeWork newName = new HomeWork { _name = "王月半子" };
+            HomeWork newName = new HomeWork { _name = "王月半子" };//引用类型的引用传递
             ChangeingName(ref newName);
             Console.WriteLine(newName._name);
 
         }
 
-        internal int ValuePass(int value)
+        internal int ValuePass(int value)//值的值传递
         {
             ++value;
             Console.WriteLine(value);
             return value;
         }
-        internal int ReferencePass(ref int value)
+        internal int ReferencePass(ref int value)//值的引用传递
         {
             ++value;
             Console.WriteLine(value);
@@ -154,17 +172,18 @@ namespace SevenLearnCsharp
         }
 
         internal string _name;
-        internal static void ChangeName(HomeWork person) 
+        internal static void ChangeName(HomeWork person) //引用类型的值传递
         {
             person = new HomeWork();
             person._name = "和飞哥一样帅";
             Console.WriteLine(person._name);
         }
-        internal static void ChangeingName(ref HomeWork person)
+        internal static void ChangeingName(HomeWork person)//引用类型的引用传递
         {
             person = new HomeWork();
             person._name = "和飞哥一样帅";
             Console.WriteLine(person._name);
+            return person;
         }
 
 
