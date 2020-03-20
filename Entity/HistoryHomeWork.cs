@@ -1,49 +1,42 @@
 ﻿using System;
-//using User;
-using Entity;
-//using SevenLearnCsharp;
+using System.Collections.Generic;
+using System.Text;
 
-
-namespace SevenLearnCsharp
+namespace Entity
 {
-    class HomeWork
+    class HistoryHomeWork
     {
 
-        internal int ValuePass(int value)//值的值传递
-        {
-            ++value;
-            Console.WriteLine(value);
-            return value;
-        }
-        internal int ReferencePass(ref int value)//值的引用传递
-        {
-            ++value;
-            Console.WriteLine(value);
-            return value;
-        }
+        #region 四大传递作业
 
-        internal string _name;
-        internal static void ChangeName(HomeWork person) //引用类型的值传递
-        {
-            person = new HomeWork();
-            person._name = "和飞哥一样帅";
-            Console.WriteLine(person._name);
-        }
-        internal static void ChangeingName(ref HomeWork person)//引用类型的引用传递
-        {
-            person = new HomeWork();
-            person._name = "和飞哥一样帅";
-            Console.WriteLine(person._name);
-        }
-
-
-        //private static (string, string[], int, int) load()
+        //internal int ValuePass(int value)//值的值传递
         //{
-        //    var user = (name"wpz", 25);
-        //    Console.WriteLine(user.Item1);
-        //    return ("", new string[] { " ", " " }, 20, 20);
+        //    ++value;
+        //    Console.WriteLine(value);
+        //    return value;
+        //}
+        //internal int ReferencePass(ref int value)//值的引用传递
+        //{
+        //    ++value;
+        //    Console.WriteLine(value);
+        //    return value;
         //}
 
+        //internal string _name;
+        //internal static void ChangeName(Program person) //引用类型的值传递
+        //{
+        //    person = new Program();
+        //    person._name = "和飞哥一样帅";
+        //    Console.WriteLine(person._name);
+        //}
+        //internal static void ChangeingName(ref Program person)//引用类型的引用传递
+        //{
+        //    person = new Program();
+        //    person._name = "和飞哥一样帅";
+        //    Console.WriteLine(person._name);
+        //}
+
+        #endregion
 
 
         /// <summary>
@@ -538,94 +531,5 @@ namespace SevenLearnCsharp
             }
             return array;
         }
-
-        static void Main(string[] args)
-        {
-
-
-
-            //findPrimeNumber(230);
-
-            //int a = 18;
-
-            //HomeWork person = new HomeWork();//值的值传递
-            //person.ValuePass(a);
-            //Console.WriteLine(a);
-            //Console.WriteLine("------------------------");
-
-            //HomeWork otherPerson = new HomeWork();//值的引用传递
-            //otherPerson.ReferencePass(ref a);
-            //Console.WriteLine(a);
-            //Console.WriteLine("--------------------------");
-
-            //HomeWork name = new HomeWork { _name = "王月半子" };//引用类型的值传递
-            //ChangeName(name);
-            //Console.WriteLine(name._name);
-            //Console.WriteLine("--------------------------");
-
-            //HomeWork newName = new HomeWork { _name = "王月半子" };//引用类型的引用传递
-            //ChangeingName(ref newName);
-            //Console.WriteLine(newName._name);
-
-            //new SelfTry();
-            //Console.WriteLine();
-            //Console.WriteLine(SelfTry.Belong); 
-
-            //SelfTry wpz = new SelfTry("wangyuebanzi");
-            //SelfTry.learn(95);
-            //SelfTry.enroll(wpz);
-            //LogIn mima = new LogIn();
-            //mima.UserPwd = "123456";
-
-            LogIn denglu = new LogIn { UserName = "王月半子", UserPwd = "123456" };//设计的是密码错误
-            denglu.SignIn();
-        }
-    }
-    public class SelfTry
-    {
-        private static string _name;
-        public SelfTry(string name)
-        {
-            _name = name;
-        }
-        internal static void learn(int scroe)
-        {
-            Console.WriteLine($"{_name}zai{at}xuexi");
-            scroe++;
-        }
-
-        static SelfTry[] student = new SelfTry[18];
-
-        internal static void enroll(SelfTry newbie)
-        {
-            for (int i = 0; i < student.Length - 1; i++)
-            {
-                if (student[i] == null)
-                {
-                    student[i] = newbie;
-                    return;
-                }
-            }
-        }
-
-        public static string Belong { get; set; }
-
-        static string at = "yuanz";
-        static SelfTry()
-        {
-            Belong = "yuanzhan";
-        }
-
-        public SelfTry()
-        {
-
-        }
-    }
-
-    public class Repoistory
-    {
-        internal const int Version = 0;
-
     }
 }
-    
