@@ -571,11 +571,15 @@ namespace SevenLearnCsharp
             //Console.WriteLine();
             //Console.WriteLine(SelfTry.Belong); 
 
-            SelfTry wpz = new SelfTry("wangyuebanzi");
-            SelfTry.learn(95);
-            SelfTry.enroll(wpz);
-        }
+            //SelfTry wpz = new SelfTry("wangyuebanzi");
+            //SelfTry.learn(95);
+            //SelfTry.enroll(wpz);
+            //LogIn mima = new LogIn();
+            //mima.UserPwd = "123456";
 
+            LogIn denglu = new LogIn { UserName = "王月半子", UserPwd = "123456" };//设计的是密码错误
+            denglu.SignIn();
+        }
     }
     public class SelfTry
     {
@@ -617,4 +621,11 @@ namespace SevenLearnCsharp
 
         }
     }
+
+    public class Repoistory
+    {
+        internal const int Version = 0;
+
+    }
 }
+    

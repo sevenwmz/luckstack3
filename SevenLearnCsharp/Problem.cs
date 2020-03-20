@@ -20,7 +20,19 @@ namespace SevenLearnCsharp
         internal string Title { get; set; }//标题获得方法
 
 
-        internal string Body { get; set; }//正文获得方法
+        internal string Body//每一个problem必须有body，其他应该也要添加到这个方法里面，但是还没想好整理。
+        {
+            get => _body;
+            set
+            {
+                if (_body == null)
+                {
+                    Console.WriteLine("请输入内容");
+                    return;
+                }//else nothing.
+                _body = value;
+            }
+        }//正文获得方法
 
         internal int Reward
         {
@@ -37,6 +49,7 @@ namespace SevenLearnCsharp
         }//悬赏获得方法
 
         private string[] _index = new string[10];
+        private string _body;
 
         public string this[int index]
         {
@@ -49,9 +62,16 @@ namespace SevenLearnCsharp
         internal string Author { get; set; }//作者字段获得方法
 
 
-        internal Problem publish(Problem publish)
+        internal void publish( )
         {
-            return publish;
+            new Problem
+            {
+                Title = "这里是系统传入",
+                Body = "这里是系统传入",
+                _reward = 0,
+                Author = "这里是系统传入",
+            };
+            return;
         }
 
     }

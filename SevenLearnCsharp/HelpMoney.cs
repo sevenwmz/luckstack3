@@ -11,17 +11,28 @@ namespace SevenLearnCsharp
 
         internal string Level { get; set; }
 
+        private string _dataTime;//以下是表格行内需要的东西
+        private int _leftUse;
+        private int _freeze;
+        private string _type;
+        private string _change;
+        private string _remarks;
 
-        internal HelpMoney Table(HelpMoney table)
-        {//这里是表头的row，不知道是具体是啥，感觉是一堆小的字段组成，但跟感觉是像方法。
-            return table;
-        }
-
-        internal HelpMoney Body(HelpMoney body) //正文部分，我这里是空的，不知道长啥样，就先写个方法放着。
+        internal void BodyShow() //表格显示正文部分，目前会写的就这么多。
         {
-            return body;
+            new HelpMoney 
+            {
+                _dataTime = "这里是系统传入" ,
+                _leftUse = 0,
+                _freeze = 0,
+                _type = "这里是系统传入",
+                _change = "这里是系统传入",
+                _remarks = "这里是系统传入"
+            };
+            //然后要有一个调用的过程，巴拉巴拉不会写了。
+            return;
         }
 
-
+        
     }
 }
