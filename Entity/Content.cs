@@ -42,15 +42,17 @@ namespace Entity
         internal string Author { set; get; }
 
         //here is "upper"  cause diffrent page call the name diffrent."agree"or"anwser".
-        internal string Upper { set; get; }
+        internal int Upper { set; get; }
 
         //here is "lower" same Reason
-        internal string Lower { set; get; }
+        internal int Lower { set; get; }
 
         //here is comment, third page same name.
-        internal string Comment { set; get; }
+        internal int Comment { set; get; }
         #endregion
 
-
+        #region function 
+        
+        #endregion
     }
 }
