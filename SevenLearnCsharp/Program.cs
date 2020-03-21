@@ -1,6 +1,6 @@
 ﻿using System;
 using Entity;
-
+using HomeWork;
 
 namespace SevenLearnCsharp
 {
@@ -79,9 +79,64 @@ namespace SevenLearnCsharp
 
             #endregion
 
+            #region Third Day Homework.  https://zhuanlan.zhihu.com/p/95261748 
+            //1.Publish()：发布一篇求助，并将其保存到数据库
+            //Entity.Problem problem = new Entity.Problem();
+            //problem.HelpMe();
 
+            ///3.设计一个类FactoryContext，保证整个程序运行过程中，
+            ///无论如何，外部只能获得它的唯一的一个实例化对象。（提示：设计模式之单例）
+            ///
+            //new Entity.FactoryContext().Show(); // probably is private function make this red line...
+
+
+            ///4.想一想，为什么Publish()方法不是放置在User类中呢？
+            ///用户（user）发布（Publish）一篇文章（article）
+            ///，不正好是user.Publish(article) 么？
+            ///
+            ///这里也有发布的啊，如果那里有需要发布，继承一个就好了，或者直接引用这里的方法就可以。
+            ///如果这么说对的话，我还可以继续说，如果说的不对那就当我没说。
+
+
+
+
+            ///5.自己实现一个模拟栈（MimicStack）类，入栈出栈数据均为int类型，包含如下功能：
+            ///5.1出栈Pop()，弹出栈顶数据
+            ///5.2入栈Push()，可以一次性压入多个数据
+            ///5.3 出 / 入栈检查，
+            ///5.4如果压入的数据已超过栈的深度（最大容量），提示“栈溢出”如果已弹出所有数据，提示“栈已空”
+            //MimicStack stack = new MimicStack();
+            //stack.push(23);
+            //stack.push(123);
+            //stack.push(223);
+            //stack.push(233);
+            //stack.push(2213);
+            //stack.push(2213);
+            //stack.push(2213);
+            //stack.push(2213);
+            //stack.push(2213);
+            //stack.push(2213);
+            //stack.push(2213);
+            //stack.push(2213);
+            //stack.pop();
+            //stack.pop();
+            //stack.pop();
+            //stack.pop();
+            //stack.pop();
+            //stack.pop();
+            //stack.pop();
+            //stack.pop();
+            //stack.pop();
+            //stack.pop();
+            //stack.pop();
+            //stack.pop();
+            //stack.pop();
+
+            #endregion
 
         }
+
+
     }
 
 
