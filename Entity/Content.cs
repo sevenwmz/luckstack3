@@ -24,10 +24,20 @@ namespace Entity
         protected string kind { set; get; }
 
         //3.Content中的createTime，不能被子类使用，但只读属性PublishTime使用它为外部提供内容的发布时间
-        private string createTime { set; get; }
-        //on teacher "fei" said,this two of field need gether in one function?
-        //I'm not sure about it.  when teacher "fei" check homework . please make sure....
-        public string PublishTime { get; }
+        private string createTime 
+        {
+            set 
+            { 
+                createTime = DateTime.Now.ToString("F");
+                PublishTime = createTime;
+            }
+            get 
+            {
+                return createTime;
+            }
+        }
+        public string PublishTime { get;private set; }
+        
 
         //keywords
         internal string KeyWords { set; get; }
@@ -52,7 +62,12 @@ namespace Entity
         #endregion
 
         #region function 
-        
+        // 尝试一下这个思路写方法。
+
+        public void fabu()
+        {
+            Summary = Console.ReadLine();
+        }
         #endregion
     }
 }
