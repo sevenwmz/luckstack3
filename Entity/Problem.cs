@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entity
 {
-    public class Problem
+    public class Problem /*:Content*/  // after inherit have some problem ... i check that ,but useless .
     {
         #region Constructer method
 

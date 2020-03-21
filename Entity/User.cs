@@ -2,7 +2,7 @@
 
 namespace Entity
 {
-    public class User
+    public sealed class User
     {
         #region constructer method
 
