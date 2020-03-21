@@ -4,34 +4,74 @@ namespace Entity
 {
     public class User
     {
-
         #region constructer method
 
+
+        #region 设计一种方式，保证： 每一个User对象一定有Name和Password赋值
+        //public User(string Name, string Password)
+        //{
+        //    this._userName = Name;
+        //    this.Password = Password;
+        //}
+        #endregion
         public User()
         {
 
         }
         public User(string parameter)
         {
-            //还没想好给哪个字段赋值，先写这里
+            _userName = parameter;
         }
+        
+
 
         #endregion
 
+
+        #region  Filed and properties
         ///注册/登录功能，定义一个User类，包含字段：Name（用户名）、
         ///Password（密码）和 邀请人（InvitedBy），和方法：Register()、Login()
         ///
-        #region 字段放在了一起
-
         //InvitedBy method
         internal string InvitedBy { get; set; }
         //InvitedBycode char.
         private int InvitedByCode { get; set; }
 
         //UserName,
-        internal string Name { get; set; }
+        //internal string userName { get; set; }
+
+        #region 2.如果user.Name为“admin”，输入时修改为“系统管理员”( Secend Day )
+        private string _userName;
+        public string UserName
+        {
+            set 
+            {
+                if ("admin" == value)
+                {
+                    value = "系统管理员";
+                    return;
+                }
+                _userName = value;
+            }
+            //set { _userName = value == "admin" ? "系统管理员" : value; }
+            // i can't understand how wrint like this.  i have to learn more.
+            get => _userName;
+        }
+
+        #endregion
+
+
         //password method
-        internal string Password { get; set; }
+        //internal string Password { get; set; }
+        #region 1.user.Password在类的外部只能改不能读( Secend Day )
+        public string Password
+        {
+            set => Password = value;
+        }
+
+        #endregion
+
+
         //Password confirm.
         internal string PasswordAgain { get; set; }
         //Verification Code
@@ -40,7 +80,8 @@ namespace Entity
 
         #endregion
 
-        #region function
+
+        #region Function
 
         //Register Page.
         public void Register()
@@ -56,21 +97,21 @@ namespace Entity
                 Console.WriteLine("邀请码不得小于4位");
                 return;
             }//else nothing
-            if (Name == null)
+            if (UserName == null)
             {
                 Console.WriteLine("输入用户名");
                 return;
             }//else nothing
-            if (Password == null)
-            {
-                Console.WriteLine("请输入密码");
-                return;
-            }//else nothing
-            if (PasswordAgain != Password)
-            {
-                Console.WriteLine("两次密码不一致");
-                return;
-            }//else nothing
+            //if (Password == null)
+            //{
+            //    Console.WriteLine("请输入密码");
+            //    return;
+            //}//else nothing
+            //if (PasswordAgain != Password)
+            //{
+            //    Console.WriteLine("两次密码不一致");
+            //    return;
+            //}//else nothing
             if (VerificationCode == null)
             {
                 Console.WriteLine("pleas Input VerificationCode at here.");
@@ -86,16 +127,16 @@ namespace Entity
         //Login Page.
         public void Login()
         {
-            if (Name == null)
+            if (UserName == null)
             {
                 Console.WriteLine("输入用户名");
                 return;
             }//else nothing
-            if (Password == null)
-            {
-                Console.WriteLine("请输入密码");
-                return;
-            }//else nothing
+            //if (Password == null)
+            //{
+            //    Console.WriteLine("请输入密码");
+            //    return;
+            //}//else nothing
             if (VerificationCode == null)
             {
                 Console.WriteLine("pleas Input VerificationCode at here.");
@@ -108,6 +149,9 @@ namespace Entity
             }
         }
 
+        
+
+        
         #endregion
 
     }

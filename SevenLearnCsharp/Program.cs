@@ -39,25 +39,51 @@ namespace SevenLearnCsharp
 
             #region 第一天作业 观察“一起帮”的： 功能作业https://zhuanlan.zhihu.com/p/92362781
             //User of class method. 
-            Entity.User User = new Entity.User();
-            User.Register();
-            User.Login();
+            //Entity.User User = new Entity.User();
+            //User.Register();
+            //User.Login();
 
-            //problem of class method ( inside null)
-            Entity.Problem Problem = new Entity.Problem();
-            Problem.Publish();
+            ////problem of class method ( inside null)
+            //Entity.Problem Problem = new Entity.Problem();
+            //Problem.Publish();
 
-            //HeloMoney of call method (inside null)
+            ////HeloMoney of call method (inside null)
 
-            Entity.HelpMoney Helomoney = new Entity.HelpMoney();
-            Helomoney.BodyShow();
+            //Entity.HelpMoney Helomoney = new Entity.HelpMoney();
+            //Helomoney.BodyShow();
+
+            #endregion
+
+            #region Secend Day Homework. https://zhuanlan.zhihu.com/p/92470130
+            //1.user.Password在类的外部只能改不能读
+            //Entity.User Password = new Entity.User();
+            //Password.Password = "123456";
+
+            //2.如果user.Name为“admin”，输入时修改为“系统管理员”
+            //Entity.User user = new Entity.User();
+            //user.UserName = "admin";
+
+            //3.problem.Reward不能为负数
+            //Entity.Problem problem = new Entity.Problem();
+            //problem.Reward = -1;
+
+
+            //调用这些类的有参/无参构造函数，生成这些类的对象，调用他们的方法
+
+            //3. 一起帮的求助可以有多个（最多10个）关键字，请为其设置索引器，以便于我们通过其整数下标进行读写
+            //Entity.Problem problem = new Entity.Problem();
+            //Console.WriteLine(problem[52]);
+
+            //设计一种方式，保证：每一个Problem对象一定有Body赋值每一个User对象一定有Name和Password赋值
+            //Go to (Problem Page) OR (User Page )watch.
 
             #endregion
 
 
+
         }
     }
-  
+
 
 
 }
