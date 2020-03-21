@@ -5,6 +5,7 @@ namespace Entity
     public class User
     {
 
+        #region constructer method
 
         public User()
         {
@@ -12,8 +13,11 @@ namespace Entity
         }
         public User(string parameter)
         {
-
+            //还没想好给哪个字段赋值，先写这里
         }
+
+        #endregion
+
         ///注册/登录功能，定义一个User类，包含字段：Name（用户名）、
         ///Password（密码）和 邀请人（InvitedBy），和方法：Register()、Login()
         ///
@@ -36,18 +40,18 @@ namespace Entity
 
         #endregion
 
-
+        #region function
 
         //Register Page.
-        internal static void Register()
+        public void Register()
         {//写在前面，想了下，获取用户输入传递给后台验证应该是前端的事情，前端提供接口，后台进行验证处理就可以。
-        //现在是简单逻辑，很多没有写，比如非法字符，密码过长等。。。
+         //现在是简单逻辑，很多没有写，比如非法字符，密码过长等。。。
             if (InvitedBy == null)
             {
                 Console.WriteLine("没有邀请人");
                 return;
             }//else nothing
-            if (InvitedByCode < 4 )
+            if (InvitedByCode < 4)
             {
                 Console.WriteLine("邀请码不得小于4位");
                 return;
@@ -80,7 +84,7 @@ namespace Entity
         }
 
         //Login Page.
-        internal static void Login()
+        public void Login()
         {
             if (Name == null)
             {
@@ -103,5 +107,8 @@ namespace Entity
                 return;
             }
         }
+
+        #endregion
+
     }
 }

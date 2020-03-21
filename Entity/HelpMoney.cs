@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entity
 {
-    class HelpMoney
+    public class HelpMoney
     {
         internal string UserName { get; set; }
 
@@ -21,7 +21,7 @@ namespace Entity
         //感觉每一个字段都需要接口传入的
         public void BodyShow()
         {
-
+            return;
         }
 
 

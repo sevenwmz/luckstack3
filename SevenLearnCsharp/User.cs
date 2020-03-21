@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SevenLearnCsharp
 {
@@ -21,18 +19,18 @@ namespace SevenLearnCsharp
 
         internal int InvitationPwd
         {
-            get{return _invitedBy < 4 ? 0 : _invitedBy;}
+            get { return _invitedBy < 4 ? 0 : _invitedBy; }
             set { _invitedBy = value; }
         }//获得邀请码方法
 
         private string _name;
-        private string _admin { set; get; } 
+        private string _admin { set; get; }
         internal string UserName
         {
             get => _name;
             set
             {
-                
+
                 if (_admin == value)
                 {
                     Console.WriteLine("系统管理员");
@@ -49,7 +47,7 @@ namespace SevenLearnCsharp
         }
 
         private string _password;
-        
+
 
         internal string UserPwd
         {

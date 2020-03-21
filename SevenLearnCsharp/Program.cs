@@ -38,8 +38,19 @@ namespace SevenLearnCsharp
             #endregion
 
             #region 第一天作业 观察“一起帮”的： 功能作业https://zhuanlan.zhihu.com/p/92362781
+            //User of class method. 
+            Entity.User User = new Entity.User();
+            User.Register();
+            User.Login();
 
-            
+            //problem of class method ( inside null)
+            Entity.Problem Problem = new Entity.Problem();
+            Problem.Publish();
+
+            //HeloMoney of call method (inside null)
+
+            Entity.HelpMoney Helomoney = new Entity.HelpMoney();
+            Helomoney.BodyShow();
 
             #endregion
 
