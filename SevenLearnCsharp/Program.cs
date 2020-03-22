@@ -105,19 +105,24 @@ namespace SevenLearnCsharp
             ///5.3 出 / 入栈检查，
             ///5.4如果压入的数据已超过栈的深度（最大容量），提示“栈溢出”如果已弹出所有数据，提示“栈已空”
             //MimicStack stack = new MimicStack();
-            //stack.push(23);
+            //stack.push(223573);
             //stack.push(123);
-            //stack.push(223);
+            //stack.push(22743);
             //stack.push(233);
-            //stack.push(2213);
-            //stack.push(2213);
-            //stack.push(2213);
-            //stack.push(2213);
-            //stack.push(2213);
-            //stack.push(2213);
-            //stack.push(2213);
+            //stack.push(22213);
+            //stack.pop();
+            //stack.push(32213);
+            //stack.push(52213);
             //stack.push(2213);
             //stack.pop();
+            //stack.push(22813);
+            //stack.push(22313);
+            //stack.push(224213);
+            //stack.push(92212463);
+            //stack.push(1);
+            //stack.push(1);
+            //stack.push(1);
+            //stack.push(1);
             //stack.pop();
             //stack.pop();
             //stack.pop();
@@ -130,12 +135,26 @@ namespace SevenLearnCsharp
             //stack.pop();
             //stack.pop();
             //stack.pop();
+            //stack.pop();
+            //stack.pop();
+
+
+            //3.实例化文章和意见建议，调用他们：继承自父类的属性和方法自己的属性和方法
+            // it's for parents 
+            Entity.Content content = new Article();//here is for article page.
+            content.Release();
+            content = new Problem();//here is for problem page.
+            content.Release();
+            content = new Suggest();//here is for suggest page.
+            content.Release();
+
 
             #endregion
 
         }
 
 
+    }
     }
 
 

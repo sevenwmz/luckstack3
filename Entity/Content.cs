@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entity
 {
-    class Content
+    public class Content
     {
 
         #region Constructer function
@@ -62,11 +62,19 @@ namespace Entity
         #endregion
 
         #region function 
-        // 尝试一下这个思路写方法。
-
-        public void fabu()
+        //Release function
+        public virtual void Release()
         {
-            Summary = Console.ReadLine();
+            Console.WriteLine(PublishTime);
+            Author = Console.ReadLine();//I think HTML provide suggest. just need get input at here.
+            ArticleName = Console.ReadLine();
+            Summary = Console.ReadLine();//database provide summary.take article frist 300,filed.
+            KeyWords = Console.ReadLine();
+            //database providing support.   why i "//"avoid this ,for inherit.just try.
+            //Comment = int.Parse(Console.ReadLine());
+
+            Upper = int.Parse(Console.ReadLine());
+            Lower = int.Parse(Console.ReadLine());
         }
         #endregion
     }

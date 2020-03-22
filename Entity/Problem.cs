@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entity
 {
-    public class Problem /*:Content*/  // after inherit have some problem ... i check that ,but useless .
+    public class Problem : Content  // after inherit have some problem ... i check that ,but useless .
     {
         #region Constructer method
 
@@ -149,9 +149,17 @@ namespace Entity
         // How?
 
 
+        #region 实例化文章和意见建议，调用他们：继承自父类的属性和方法自己的属性和方法
+
+        public override void Release()
+        {
+            base.Release();
+            Reward = int.Parse(Console.ReadLine());
+        }
+
+        #endregion
 
 
-        
 
         #endregion
 
