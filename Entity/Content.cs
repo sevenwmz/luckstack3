@@ -51,11 +51,11 @@ namespace Entity
         //Author
         internal string Author { set; get; }
 
-        //here is "upper"  cause diffrent page call the name diffrent."agree"or"anwser".
-        internal int Upper { set; get; }
+        //here is "Agree"  
+        internal int Agree { set; get; }
 
-        //here is "lower" same Reason
-        internal int Lower { set; get; }
+        //here is "Disagree"
+        internal int Disagree { set; get; }
 
         //here is comment, third page same name.
         internal int Comment { set; get; }
@@ -73,8 +73,8 @@ namespace Entity
             //database providing support.   why i "//"avoid this ,for inherit.just try.
             //Comment = int.Parse(Console.ReadLine());
 
-            Upper = int.Parse(Console.ReadLine());
-            Lower = int.Parse(Console.ReadLine());
+            Agree = int.Parse(Console.ReadLine());
+            Disagree = int.Parse(Console.ReadLine());
         }
         #endregion
     }

@@ -141,21 +141,49 @@ namespace SevenLearnCsharp
 
             //3.实例化文章和意见建议，调用他们：继承自父类的属性和方法自己的属性和方法
             // it's for parents 
-            Entity.Content content = new Article();//here is for article page.
-            content.Release();
-            content = new Problem();//here is for problem page.
-            content.Release();
-            content = new Suggest();//here is for suggest page.
-            content.Release();
+            //Entity.Content content = new Article();//here is for article page.
+            //content.Release();
+            //content = new Problem();//here is for problem page.
+            //content.Release();
+            //content = new Suggest();//here is for suggest page.
+            //content.Release();
 
+            //4.再为之前所有类（含User、HelpMoney等）抽象一个基类：Entity，
+            //包含一个只读的Id属性。试一试，Suggest能有Id属性么？
 
+            ///只是把任务要求造出来了，具体啥意思也不知道。suggest ID指的是啥？？？
+            ///这个作业后补。
+            #endregion
+
+            #region Fourth Day Homework "多态"  https://zhuanlan.zhihu.com/p/93053223
+            ///1.添加一个新类ContentService，其中有一个发布（Publish()）方法：
+            /// 如果发布Article，需要消耗一个帮帮币
+            /// 如果发布Problem，需要消耗其设置悬赏数量的帮帮币
+            /// 如果发布Suggest，不需要消耗帮帮币
+            ///最后将内容存到数据库中，三个类存数据库的方法是完全一样的，
+            ///现在用Console.WriteLine()代替。根据我们学习的继承和多态知识，实现上述功能。
+            ///
+            /// 
+            ///maybe i made big mistake.homework write not like this.---T_T||... 
+            //ContentService contentService = new ContentService("Article",20);
+            //contentService.publish();
+
+            #endregion
+
+            
+
+            #region practies area.. Here is not homeword,just selftry.
+            Person person = new Student();
+            person.Eat();
+            person = new Teacher();
+            person.Eat();
             #endregion
 
         }
 
 
     }
-    }
+    
 
 
 
