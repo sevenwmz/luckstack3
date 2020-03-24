@@ -9,7 +9,7 @@ namespace Entity
 
         #region Constructer
 
-        public Suggest()
+        public Suggest():base("Suggest")
         {
 
         }
@@ -24,7 +24,7 @@ namespace Entity
         public override void Release()
         {
             base.Release();
-            Comment = int.Parse(Console.ReadLine());
+            //Comments = int.Parse(Console.ReadLine());
             Level = int.Parse(Console.ReadLine());//console.readline is database.
         }
         #endregion

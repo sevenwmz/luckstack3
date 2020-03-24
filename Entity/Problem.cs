@@ -8,21 +8,23 @@ namespace Entity
     {
         #region Constructer method
 
-        public Problem()
+        public Problem():base("Problem")
         {
 
         }
 
-        //public Problem(string parameter)
-        //{
-        //    Title = parameter;
-        //}
+        public Problem(string parameter):base("Problem")
+        {
+            Title = parameter;
+        }
+
+
         #region (Secend Day)设计一种方式，保证：每一个Problem对象一定有Body赋值
 
-        public Problem(string body)
-        {
-            this.Body = body;
-        }
+        //public Problem(string body) : base("Problem")
+        //{
+        //    this.Body = body;
+        //}
         #endregion
 
         #endregion
@@ -34,13 +36,12 @@ namespace Entity
         ///和作者（Author），和方法Publish()
 
         //Title filed;
-        internal string Title { get; set; }
+        private string Title { get; set; }
 
         //Body filed.
-        internal string Body { get; set; }
+        private string Body { get; set; }
 
-        //Reward filed
-        //internal int Reward { get; set; }
+
         #region 3.problem.Reward不能为负数(Secend Day Homework )
 
         private int _reward;
@@ -63,8 +64,7 @@ namespace Entity
         //PublishDataTime filed.
         internal string PublishDataTime { get; set; }
 
-        //Author filed..
-        internal string Author { get; set; }
+
         internal string TargetedHelp { get; set; }//for third day homework
         #endregion
 
@@ -154,7 +154,7 @@ namespace Entity
         public override void Release()
         {
             base.Release();
-            Reward = int.Parse(Console.ReadLine());
+            Author.HelpMoney -= Reward;
         }
 
         #endregion

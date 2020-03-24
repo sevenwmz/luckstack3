@@ -147,7 +147,7 @@ namespace SevenLearnCsharp
             //content.Release();
             //content = new Suggest();//here is for suggest page.
             //content.Release();
-
+            //Article article = new Article();
             //4.再为之前所有类（含User、HelpMoney等）抽象一个基类：Entity，
             //包含一个只读的Id属性。试一试，Suggest能有Id属性么？
 
@@ -170,20 +170,45 @@ namespace SevenLearnCsharp
 
             #endregion
 
-            
+            #region Fifth Day  思考之前的Content类，该将其抽象成抽象类还是接口？https://zhuanlan.zhihu.com/p/93224519
+            ///1.思考之前的Content类，该将其抽象成抽象类还是接口？为什么？并按你的想法实现。
+            /// 
+            //思考应该用interface接口，但是一改Errors爆满，无从下手改。。。。
+
+            ///2.一起帮里的求助总结、文章和意见建议，以及他们的评论，
+            ///都有一个点赞（Agree）/踩（Disagree）的功能，赞和踩都会增减作者及评价者的帮帮点。
+            ///能不能对其进行抽象？如何实现？
+            ///
+
+            #endregion
+
+            #region Six Day 栈的学费是按周计费的，所以请实现这两个功能：
+            ///	1.函数GetDate()，能计算一个日期若干（日/周/月）后的日期
+            ///2.给定任意一个年份，就能按周排列显示每周的起始日期，如下图所示：
+            Console.WriteLine(DateTime.Now.AddDays(5));
+
+            #endregion
 
             #region practies area.. Here is not homeword,just selftry.
-            Person person = new Student();
-            person.Eat();
-            person = new Teacher();
-            person.Eat();
+            //Person person = new Student();
+            //person.Eat();
+            //person = new Teacher();
+            //person.Eat();
+
+
             #endregion
+
+
+            Article CSharp = new Article();
+            Problem sql = new Problem();
+            new ContentService().Publish(sql);
+
 
         }
 
 
     }
-    
+
 
 
 

@@ -8,20 +8,20 @@ namespace Entity
 
 
         #region 设计一种方式，保证： 每一个User对象一定有Name和Password赋值
-        //public User(string Name, string Password)
-        //{
-        //    this._userName = Name;
-        //    this.Password = Password;
-        //}
+        public User(string Name, string Password)
+        {
+            this._userName = Name;
+            this.Password = Password;
+        }
         #endregion
-        public User()
-        {
+        //public User()
+        //{
 
-        }
-        public User(string parameter)
-        {
-            _userName = parameter;
-        }
+        //}
+        //public User(string parameter)
+        //{
+        //    _userName = parameter;
+        //}
         
 
 
@@ -77,7 +77,9 @@ namespace Entity
         //Verification Code
         internal string VerificationCode { get; set; }
 
-
+        public int HelpCredit { set; get; }
+        public int HelpBean { set; get; }
+        public int HelpMoney { get; internal set; }
         #endregion
 
 

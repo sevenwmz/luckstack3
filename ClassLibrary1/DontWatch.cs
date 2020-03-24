@@ -4,76 +4,44 @@ namespace DontWatch
 {
 
 
-    abstract class selftry
+    public class Person 
     {
-        internal abstract void eat();
-
-        public int some { set; get; }
-
-        internal virtual void greet()
-        {
-
-        }
-
-        public selftry()
-        {
-
-        }
-
-    }
-
-    internal interface ILearn
-    {
-        void practies();
-    }
-
-
-    internal interface IPlay
-    {
-        void practies();
-    }
-
-
-
-    public class Person : ILearn, IPlay
-    {
-
-
-
+        internal string abc;
 
         public virtual void Eat()     //注意关键字 virtual
         {
             Console.WriteLine("人吃饭");
         }
 
-        void IPlay.practies()
-        {
-            throw new NotImplementedException();
-        }
-
-        void ILearn.practies()
-        {
-            throw new NotImplementedException();
-        }
+     
     }
 
 
 
-    public class Student : Person
+    public class Student
     {
-        public override void Eat()   //注意关键字 override
+        public int age { set; get; }
+
+        //public override void Eat()   //注意关键字 override
+        //{
+        //    base.Eat();
+        //    Console.WriteLine("学生吃饭");
+        //}
+        public static implicit operator Person(Student student)
         {
-            base.Eat();
-            Console.WriteLine("学生吃饭");
+            return new Person
+            {
+                abc = student.age.ToString()
+            };
         }
     }
 
-    public class Teacher : Student
-    {
-        public override void Eat()
-        {
-            base.Eat();
-            Console.WriteLine("super teacher");
-        }
-    }
+    //public class Teacher : Student
+    //{
+    //    public override void Eat()
+    //    {
+    //        base.Eat();
+    //        Console.WriteLine("super teacher");
+    //    }
+    //}
 }

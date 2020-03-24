@@ -9,15 +9,14 @@ namespace Entity
 
         #region Constructer
 
-        public Article()// I forget how to give parameter....ignore error.
+        public Article(): base("article")
         {
 
         }
         #endregion
 
         #region Field and properties
-
-
+        
 
         #endregion
 
@@ -25,8 +24,9 @@ namespace Entity
         public override void Release()
         {
             base.Release();
-            Comment = int.Parse(Console.ReadLine());
+            _helpMoney -= 1;
         }
+        
         #endregion
 
     }
