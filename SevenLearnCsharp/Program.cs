@@ -1,5 +1,5 @@
 ﻿using System;
-using Entity;
+using Entity ;
 using HomeWork;
 using DontWatch;
 
@@ -199,13 +199,12 @@ namespace SevenLearnCsharp
             #endregion
 
 
-            Article CSharp = new Article();
-            Problem sql = new Problem();
-            new ContentService().Publish(sql);
+            //Article CSharp = new Article();
+            ////Problem sql = new Problem();
+            //new ContentService().Publish(CSharp);
 
 
         }
-
 
     }
 
