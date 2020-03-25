@@ -27,9 +27,11 @@ namespace Entity
         {
             _tokens = Role ^ _tokens;
         }
+        private Token _watch;
         public void Has(Token Role)
         {
-            _tokens = Role & _tokens;
+            _watch = Role & _tokens;//这里好像不对。
+            Console.WriteLine(_watch);
         }
 
     }

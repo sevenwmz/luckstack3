@@ -104,7 +104,7 @@ namespace Entity
 
         #region 实例化文章和意见建议，调用他们：继承自父类的属性和方法自己的属性和方法
 
-        public void Publish(User Author)
+        public override void Publish()
         {
             base.Publish();
             Author.HelpMoney -= Reward;

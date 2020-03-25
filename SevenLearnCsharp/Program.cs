@@ -213,14 +213,15 @@ namespace SevenLearnCsharp
 
             #endregion
 
-
+            //DataTimeCount.GetDate(2003,12,2,2);
             //Article CSharp = new Article();
             //Problem sql = new Problem();
             //new ContentService().Publish(CSharp);
 
             //DataTimeCount.GetDate(2018);
             //Console.WriteLine(DateTime.Now.AddDays(5));
-
+            //DateTime dateTime = new DateTime(2019,1,1);
+            //Console.WriteLine(dateTime.DayOfWeek != DayOfWeek.Monday);
 
         }
         struct MyStruct
