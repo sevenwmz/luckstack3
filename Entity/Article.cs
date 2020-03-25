@@ -25,11 +25,22 @@ namespace Entity
         public override void Publish()
         {
             base.Publish();
-            base.Agree(voter);
-            base.Disagree(voter);
-            User Author = new User("", "");
             Author.HelpMoney--;
             Console.WriteLine("database");
+        }
+
+        internal override int DisAgree(User voter)
+        {
+            Author.HelpBean--;
+            voter.HelpBean++;
+            return Author.HelpBean;
+        }
+
+        internal override int Agree(User voter)
+        {
+            Author.HelpBean++;
+            voter.HelpBean--;
+            return Author.HelpBean;
         }
 
         #endregion

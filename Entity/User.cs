@@ -14,14 +14,6 @@ namespace Entity
             this.Password = Password;
         }
         #endregion
-        //public User()
-        //{
-
-        //}
-        //public User(string parameter)
-        //{
-        //    _userName = parameter;
-        //}
 
 
 

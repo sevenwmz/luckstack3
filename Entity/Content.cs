@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Entity
 {
-    public abstract class Content
+    public abstract class Content :Entity
     {
 
         #region Constructor
 
-        public Content()
+        public Content() :base(32)
         {
             _createTime = DateTime.Now;
         }
@@ -33,6 +33,12 @@ namespace Entity
         {
             get { return _createTime; }
         }
+
+
+        //Author
+        public User Author { set; get; }
+
+        internal string[] Comments { set; get; }
         public int HelpMoney { set; get; }
 
 
@@ -44,11 +50,6 @@ namespace Entity
 
         //Summary
         internal string Summary { set; get; }
-
-        //Author
-        public User Author { set; get; }
-
-        internal string[] Comments { set; get; }
         #endregion
 
         #region function 
@@ -57,21 +58,13 @@ namespace Entity
         {
 
         }
-        //here is "Agree"  
-        internal int Agree(User voter)
-        {
-            Author.HelpBean++;
-            voter.HelpBean--;
-            return Author.HelpBean;
-        }
+        ////here is "Agree"  
+        internal abstract int Agree(User voter);
 
-        //here is "Disagree"
-        internal int Disagree(User voter)
-        {
-            Author.HelpBean--;
-            voter.HelpBean++;
-            return Author.HelpBean;
-        }
+
+        ////here is "Disagree"
+        internal abstract int DisAgree(User voter);
+
 
         #endregion
     }

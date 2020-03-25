@@ -213,7 +213,6 @@ namespace SevenLearnCsharp
             //DataTimeCount.GetDate(2018);
             Console.WriteLine(DateTime.Now.AddDays(5));
 
-
         }
 
     }

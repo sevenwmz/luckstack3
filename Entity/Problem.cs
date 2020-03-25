@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entity
 {
-    public class Problem : Content  // after inherit have some problem ... i check that ,but useless .
+    public class Problem : Content 
     {
         #region Constructer method
 
@@ -13,28 +13,16 @@ namespace Entity
 
         }
 
-        public Problem(string parameter):base("Problem")
+        public Problem(string body) : this()
         {
-            Title = parameter;
+            Body = body;
         }
-
-
-        #region (Secend Day)设计一种方式，保证：每一个Problem对象一定有Body赋值
-
-        //public Problem(string body) : base("Problem")
-        //{
-        //    this.Body = body;
-        //}
         #endregion
-
-        #endregion
-
 
         #region Filed and properties
         ///求助版块，定义一个类Problem，包含字段：标题（Title）、
         ///正文（Body）、悬赏（Reward）、发布时间（PublishDateTime）
         ///和作者（Author），和方法Publish()
-
         //Title filed;
         private string Title { get; set; }
 
@@ -68,7 +56,6 @@ namespace Entity
         internal string TargetedHelp { get; set; }//for third day homework
         #endregion
 
-
         #region Function
 
         #region 第一天作业 设置一个problem方法
@@ -95,57 +82,23 @@ namespace Entity
         #endregion
 
         #region （Third day）考虑求助（Problem）的以下方法/属性，哪些适合实例，哪些适合静态，然后添加到类中：
-        //1.Publish()：发布一篇求助，并将其保存到数据库
-        //public string HelpMe(string[] keyword)
-        //{
-        //    //Now use (console.readline) recevie user input. after get new knowledge change function.
-        //    // probably interface？
-        //    Title = Console.ReadLine();//Get title. 
 
-        //    Body = Console.ReadLine();//Get body .same at title.
-
-        //    _keyWords = keyword;//Get keyword
-
-        //    TargetedHelp = Console.ReadLine();// get targetedHelp people name
-
-        //    Reward = int.Parse(Console.ReadLine());// get Reward
-
-        //    //保存到数据库应该是在return里面，但是怎么保存到数据库里面？？？？
-        //    return "";
-        //}
 
         //2.Load(int Id)：根据Id从数据库获取一条求助
         public static int Load(int Id)
-        {//假设这里有个所谓的数据库
-            if (Id == int.Parse(Console.ReadLine()))//数据库写不了,cr代替
-            {
-                return 0;//这里是瞎写的，飞哥说不用实现
-            }
-            else
-            {
-                Console.WriteLine("Id不存在");
-            }
+        {
+            Console.WriteLine("take some...");
             return Id;
         }
 
-
         //3.Delete(int Id)：根据Id删除某个求助
         public static int Delete(int Id)
-        {// I don't know where is database....
-
-            if (Id == int.Parse(Console.ReadLine()))//数据库写不了,cr代替
-            {
-                return 0;//这里是瞎写的，飞哥说不用实现
-            }
-            else
-            {
-                Console.WriteLine("Id不存在");
-            }
+        {
+            Console.WriteLine("Remove some ...");
             return Id;
         }
 
         //4.repoistory：可用于在底层实现上述方法和数据库的连接操作等
-
         // How?
 
 
@@ -157,13 +110,29 @@ namespace Entity
             Author.HelpMoney -= Reward;
             Console.WriteLine("database");
         }
-
         #endregion
 
 
 
         #endregion
 
+        #region Fifth Day   Agree And DisAgree
+        //一起帮里的求助总结、文章和意见建议，以及他们的评论，都有一个点赞（Agree）/
+        internal override int DisAgree(User voter)
+        {
+            Author.HelpBean--;
+            voter.HelpBean++;
+            return Author.HelpBean;
+        }
+
+        internal override int Agree(User voter)
+        {
+            Author.HelpBean++;
+            voter.HelpBean--;
+            return Author.HelpBean;
+        }
+
+        #endregion
         #endregion
 
 
