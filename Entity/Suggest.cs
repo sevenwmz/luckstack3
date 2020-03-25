@@ -21,11 +21,11 @@ namespace Entity
         #endregion
 
         #region Function
-        public override void Release()
+        public void Publish(User Author)
         {
-            base.Release();
-            //Comments = int.Parse(Console.ReadLine());
-            Level = int.Parse(Console.ReadLine());//console.readline is database.
+            base.Publish();
+            Author.HelpBean++;
+            Console.WriteLine("database");
         }
         #endregion
 

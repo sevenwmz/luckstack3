@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entity
 {
-    class TokenManager
+    public class TokenManager
     {
 
 
@@ -16,7 +16,7 @@ namespace Entity
 
         private Token _tokens { set; get; }//1.使用私有的Token枚举_tokens存储所具有的权限
 
-        
+
         ///2.暴露Add(Token)、Remove(Token)和Has(Token)方法，可以添加、删除和查看其权限 
         public void Add(Token Role)
         {
@@ -31,12 +31,12 @@ namespace Entity
         {
             _tokens = Role & _tokens;
         }
-        
+
     }
-    enum Token
+    public enum Token
     {//1.声明一个令牌（Token）枚举，包含值：SuperAdmin、Admin、Blogger、Newbie、Registered。
         SuperAdmin = 1,
-        Admin  = 2,
+        Admin = 2,
         Blogger = 4,
         Newbie = 8,
         Registered = 12

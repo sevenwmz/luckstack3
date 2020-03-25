@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entity
 {
-    public class Content
+    public abstract class Content
     {
 
         #region Constructor
@@ -33,7 +33,7 @@ namespace Entity
         {
             get { return _createTime; }
         }
-        public int _helpMoney { set; get; }
+        public int HelpMoney { set; get; }
 
 
         //keywords
@@ -48,6 +48,15 @@ namespace Entity
         //Author
         public User Author { set; get; }
 
+        internal string[] Comments { set; get; }
+        #endregion
+
+        #region function 
+        //Release function
+        public virtual void Publish()
+        {
+
+        }
         //here is "Agree"  
         internal int Agree(User voter)
         {
@@ -63,17 +72,6 @@ namespace Entity
             voter.HelpBean++;
             return Author.HelpBean;
         }
-
-        internal string[] Comments { set; get; }
-        #endregion
-
-        #region function 
-        //Release function
-        public virtual void Release()
-        {
-
-        }
-
 
         #endregion
     }

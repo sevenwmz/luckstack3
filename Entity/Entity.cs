@@ -16,7 +16,7 @@ namespace Entity
         #endregion
 
         #region Filed and properties
-        internal int Id { get; }
+        public int Id { get; }
         #endregion
 
     }

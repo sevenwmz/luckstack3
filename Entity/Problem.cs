@@ -151,10 +151,11 @@ namespace Entity
 
         #region 实例化文章和意见建议，调用他们：继承自父类的属性和方法自己的属性和方法
 
-        public override void Release()
+        public void Publish(User Author)
         {
-            base.Release();
+            base.Publish();
             Author.HelpMoney -= Reward;
+            Console.WriteLine("database");
         }
 
         #endregion

@@ -27,10 +27,9 @@ namespace Entity
         #region Function
 
 
-        public  void Publish(Content content)
+        public void Publish(Content content)
         {
-            content.Release();//变化的
-            Console.WriteLine("database");//不变的
+            content.Publish();
         }
         #endregion
     }

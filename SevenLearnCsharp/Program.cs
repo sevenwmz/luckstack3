@@ -200,8 +200,18 @@ namespace SevenLearnCsharp
 
 
             //Article CSharp = new Article();
-            ////Problem sql = new Problem();
+            //Problem sql = new Problem();
             //new ContentService().Publish(CSharp);
+
+            //TokenManager tokenManager = new TokenManager();
+            //tokenManager.Add(Token.Admin);
+            //tokenManager.Add(Token.Blogger);
+            //tokenManager.Add(Token.Registered);
+            //tokenManager.Remove(Token.Blogger);
+            //tokenManager.Has(Token.Admin);
+
+            //DataTimeCount.GetDate(2018);
+            Console.WriteLine(DateTime.Now.AddDays(5));
 
 
         }

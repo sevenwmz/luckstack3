@@ -22,7 +22,7 @@ namespace Entity
         //{
         //    _userName = parameter;
         //}
-        
+
 
 
         #endregion
@@ -44,7 +44,7 @@ namespace Entity
         private string _userName;
         public string UserName
         {
-            set 
+            set
             {
                 if ("admin" == value)
                 {
@@ -71,7 +71,7 @@ namespace Entity
 
         #endregion
 
-
+        public TokenManager Manager { get; set; }
         //Password confirm.
         internal string PasswordAgain { get; set; }
         //Verification Code
@@ -151,9 +151,9 @@ namespace Entity
             }
         }
 
-        
 
-        
+
+
         #endregion
 
     }

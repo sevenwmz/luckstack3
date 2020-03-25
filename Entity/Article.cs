@@ -4,29 +4,34 @@ using System.Text;
 
 namespace Entity
 {
-    public class Article :Content 
+    public class Article : Content
     {
+        
 
         #region Constructer
 
-        public Article(): base("article")
+        public Article() : base("article")
         {
 
         }
         #endregion
 
         #region Field and properties
-        
 
+        private User voter;
         #endregion
 
         #region Function
-        public override void Release()
+        public override void Publish()
         {
-            base.Release();
-            _helpMoney -= 1;
+            base.Publish();
+            base.Agree(voter);
+            base.Disagree(voter);
+            User Author = new User("", "");
+            Author.HelpMoney--;
+            Console.WriteLine("database");
         }
-        
+
         #endregion
 
     }
