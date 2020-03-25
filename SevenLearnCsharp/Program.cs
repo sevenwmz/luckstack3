@@ -182,11 +182,26 @@ namespace SevenLearnCsharp
 
             #endregion
 
-            #region Six Day 栈的学费是按周计费的，所以请实现这两个功能：
+            #region Six Day 1.用代码证明struct定义的类型是值类型 栈的学费是按周计费的，所以请实现这两个功能：
+            //1.用代码证明struct定义的类型是值类型     (MyClass and MyStruct at this page.)
+            MyClass myClass = new MyClass();
+            myClass._test = 23;//这里的23是赋值到一个地址里面去。
+            MyStruct myStruct = new MyStruct();
+            myStruct._test = 23;//这里是值类型。
+
             ///	1.函数GetDate()，能计算一个日期若干（日/周/月）后的日期
             ///2.给定任意一个年份，就能按周排列显示每周的起始日期，如下图所示：
             Console.WriteLine(DateTime.Now.AddDays(5));
 
+            #endregion
+
+            #region Seven Day homework   about Token
+            //TokenManager tokenManager = new TokenManager();
+            //tokenManager.Add(Token.Admin);
+            //tokenManager.Add(Token.Blogger);
+            //tokenManager.Add(Token.Registered);
+            //tokenManager.Remove(Token.Blogger);
+            //tokenManager.Has(Token.Admin);
             #endregion
 
             #region practies area.. Here is not homeword,just selftry.
@@ -203,18 +218,19 @@ namespace SevenLearnCsharp
             //Problem sql = new Problem();
             //new ContentService().Publish(CSharp);
 
-            //TokenManager tokenManager = new TokenManager();
-            //tokenManager.Add(Token.Admin);
-            //tokenManager.Add(Token.Blogger);
-            //tokenManager.Add(Token.Registered);
-            //tokenManager.Remove(Token.Blogger);
-            //tokenManager.Has(Token.Admin);
-
             //DataTimeCount.GetDate(2018);
-            Console.WriteLine(DateTime.Now.AddDays(5));
+            //Console.WriteLine(DateTime.Now.AddDays(5));
+
 
         }
-
+        struct MyStruct
+        {
+            public int _test;
+        }
+        class MyClass
+        {
+            public int _test;
+        }
     }
 
 
