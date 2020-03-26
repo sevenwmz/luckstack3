@@ -106,6 +106,8 @@ namespace SevenLearnCsharp
             ///5.4如果压入的数据已超过栈的深度（最大容量），提示“栈溢出”如果已弹出所有数据，提示“栈已空”
             //MimicStack stack = new MimicStack();
             //stack.push(223573);
+            //stack.pop();
+            //stack.pop();
             //stack.push(123);
             //stack.push(22743);
             //stack.push(233);
@@ -123,8 +125,6 @@ namespace SevenLearnCsharp
             //stack.push(1);
             //stack.push(1);
             //stack.push(1);
-            //stack.pop();
-            //stack.pop();
             //stack.pop();
             //stack.pop();
             //stack.pop();
@@ -191,7 +191,6 @@ namespace SevenLearnCsharp
 
             ///	1.函数GetDate()，能计算一个日期若干（日/周/月）后的日期
             ///2.给定任意一个年份，就能按周排列显示每周的起始日期，如下图所示：
-            Console.WriteLine(DateTime.Now.AddDays(5));
 
             #endregion
 
@@ -213,15 +212,6 @@ namespace SevenLearnCsharp
 
             #endregion
 
-            //DataTimeCount.GetDate(2003,12,2,2);
-            //Article CSharp = new Article();
-            //Problem sql = new Problem();
-            //new ContentService().Publish(CSharp);
-
-            //DataTimeCount.GetDate(2018);
-            //Console.WriteLine(DateTime.Now.AddDays(5));
-            //DateTime dateTime = new DateTime(2019,1,1);
-            //Console.WriteLine(dateTime.DayOfWeek != DayOfWeek.Monday);
 
         }
         struct MyStruct

@@ -12,42 +12,38 @@ namespace HomeWork
         ///5.3 出 / 入栈检查，
         ///5.4如果压入的数据已超过栈的深度（最大容量），提示“栈溢出”如果已弹出所有数据，提示“栈已空”
         private int[] stack = new int[10];
-        public int pop()
+        private int top = 0;
+        public int pop(/*out bool empty*/)
         {
-            for (int i = 0; i < stack.Length; i++)
-            {//如果遇到了空位子，或者数组最后一位不是0，那就弹出
-                if (stack[i] == 0)
-                {
-                    Console.WriteLine("小伙砸，“栈已空”你还弹个锤子呦！");
-                    return 0;
-                }
-                if (stack[9] != 0)
-                {
-                    stack[9] = 0;
-                    return 0;
-                }
-                if (stack[i+1] == 0)
-                {
-                    Console.WriteLine(stack[i]);
-                    stack[i] = 0;
-                    return stack[i];
-                }
-
-            }
-            return 0;
-        }
-        public int push(int value)
-        {
-            for (int i = 0; i < stack.Length; i++)
+            //empty = top == 0;
+            if (top == stack[0])
             {
-                if (stack[i] == 0)
-                {
-                    stack[i] = value;
-                    return stack[i];
-                }
+                Console.WriteLine("stack null");
+                return stack[top];
             }
-            Console.WriteLine("小伙子，你遇到了传说中的“栈溢出”！");
-            return -1;
+            else
+            {
+                top--;
+                stack[top] = 0;
+                return stack[top];
+            }
         }
+
+        public void push(int value)
+        {
+            if (top == stack.Length)
+            {
+                Console.WriteLine("stack overflow");
+                return;
+            }
+            else/* if (stack[top] != stack.Length-1)*/
+            {
+                stack[top] = value;
+                top++;
+                return;
+            }//else nothing
+        }
+
+
     }
 }
