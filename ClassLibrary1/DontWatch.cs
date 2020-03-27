@@ -2,60 +2,68 @@
 
 namespace DontWatch
 {
-
-
-    public class Person 
+    public class NowTry
     {
-        internal string abc;
-
-        public virtual void Eat()     //注意关键字 virtual
+        public static void Praise(object person)
         {
-            Console.WriteLine("人吃饭");
+            var attributeOnPerson = WPZAttribute.GetCustomAttribute(person.GetType(), typeof(WPZAttribute));
+            if (attributeOnPerson == null)
+            {
+                Console.WriteLine("no flag");
+            }
+            else
+            {
+                WPZAttribute wPZAttribute = attributeOnPerson as WPZAttribute;
+                Console.WriteLine($"Female{wPZAttribute.IsFemale},age{wPZAttribute.Age}");
+                wPZAttribute.WhoIsMe();
+            }
         }
-
-     
     }
-
-
-
-    public class Student :Person
+  
+    [WPZ("王月半子",Age =23,IsFemale =true)]
+    public class Student
     {
-        public int age { set; get; }
 
-        //public override bool Equals(object obj)
-        //{
-        //    return age == ((Student)obj).age;
-        //}
-        //public static bool operator ==(Student a, Student b)
-        //{
-        //    return a.age == b.age;
-        //}
-        //public static bool operator !=(Student a, Student b)
-        //{
-        //    return a.age != b.age;
-        //}
-
-
-        //public override void Eat()   //注意关键字 override
-        //{
-        //    base.Eat();
-        //    Console.WriteLine("学生吃饭");
-        //}
-        //public static implicit operator Person(Student student)
-        //{
-        //    return new Person
-        //    {
-        //        abc = student.age.ToString()
-        //    };
-        //}
     }
 
-    //public class Teacher : Student
-    //{
-    //    public override void Eat()
-    //    {
-    //        base.Eat();
-    //        Console.WriteLine("super teacher");
-    //    }
-    //}
+
+    public class Teacher
+    {
+
+    }
+    public class WPZAttribute : Attribute
+    {
+        private string _name;
+
+        public WPZAttribute()
+        {
+
+        }
+        public WPZAttribute(string name)
+        {
+            _name = name;
+        }
+        public void WhoIsMe()
+        {
+            _name = "王月半子";
+            Console.WriteLine(_name);
+        }
+        public int Age { set; get; }
+        public bool IsFemale { set; get; }
+
+    }
+
+    public class Self
+    {
+        private string _try;
+        private static int _iTry;
+        public Self()
+        {
+            _try = "wpz";
+            _iTry = 32;
+        }
+    }
+
+
+
 }

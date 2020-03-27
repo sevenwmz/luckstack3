@@ -1,7 +1,8 @@
 ﻿using System;
-using Entity ;
+using Entity;
 using HomeWork;
 using DontWatch;
+using System.Reflection;
 
 namespace SevenLearnCsharp
 {
@@ -186,7 +187,7 @@ namespace SevenLearnCsharp
             //1.用代码证明struct定义的类型是值类型     (MyClass and MyStruct at this page.)
             //MyClass myClass = new MyClass();
             /*myClass._test = 23;*///这里的23是赋值到一个地址里面去。
-            MyStruct myStruct = new MyStruct();
+                                   //MyStruct myStruct = new MyStruct();
             /*myStruct._test = 23;*///这里是值类型。
 
             ///	1.函数GetDate()，能计算一个日期若干（日/周/月）后的日期
@@ -203,7 +204,7 @@ namespace SevenLearnCsharp
             //tokenManager.Has(Token.Admin);
             #endregion
 
-            #region practies area.. Here is not homeword,just selftry.
+            #region Practies area.. Here is not homeword,just selftry.
             //int a = 23;
             //int b = 23;
             //Student a = new Student { age = 23 };
@@ -220,39 +221,42 @@ namespace SevenLearnCsharp
             ////string wpz = age.ToString();
             //Console.WriteLine(new Student());
 
-            dynamic o = "986";
-            Console.WriteLine(o.GetType() );
+            //dynamic o = "986";
+            //Console.WriteLine(o.GetType());
             //Console.WriteLine(o - 88);
 
-            Self wang = new Self();
-            Type typeinfo = typeof(Self);
+            //Self wang = new Self();
+            //Type typeinfo = typeof(Self);
+            //FieldInfo wangpz = typeinfo.GetField("_try", BindingFlags.NonPublic | BindingFlags.Instance);
+            //object Try = wangpz.GetValue(wang);
+            //Console.WriteLine(Try);
 
-            typeinfo.GetField("_try", System.Reflection.BindingFlags);
+            //Self yb = new Self();
+            //Type diyibu = typeof(Self);
+            //FieldInfo dierbu = diyibu.GetField("_iTry", BindingFlags.Static | BindingFlags.NonPublic);
+            //object disubu = dierbu.GetValue(yb);
+            //Console.WriteLine(disubu);
 
+
+            //object tlzz = new Student();
+            //NowTry.Praise(tlzz);
+            //object wpz = new Teacher();
+            //NowTry.Praise(wpz);
             #endregion
 
 
         }
-        public class Self
-        {
-            private string _try;
-            public Self()
-            {
-                _try = "wpz";
-            }
-        }
-        struct MyStruct
-        {
-            public int _test;
-        }
-        class MyClass
-        {
-            public int _test;
-        }
+
+    }
+
+    struct MyStruct
+    {
+        public int _test;
+    }
+    class MyClass
+    {
+        public int _test;
     }
 
 
-
-
 }
-
