@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Entity
 {
-    public abstract class Content :Entity
+    public /*abstract */class Content :Entity
     {
 
         #region Constructor
-
+        [Time]
         public Content() :base(32)
         {
             _createTime = DateTime.Now;
@@ -59,13 +59,37 @@ namespace Entity
 
         }
         ////here is "Agree"  
-        internal abstract int Agree(User voter);
+        internal virtual int Agree(User voter)
+        {
+            return 0;
+        }
 
 
         ////here is "Disagree"
-        internal abstract int DisAgree(User voter);
+        internal virtual int DisAgree(User voter)
+        {
+            return 0;
+        }
 
 
         #endregion
     }
+
+    public class TimeAttribute :Attribute
+    {
+
+
+
+
+        //private DateTime _creatTime;
+        //public TimeAttribute()
+        //{
+        //    _creatTime = DateTime.Now;
+        //}
+        //public TimeAttribute(int year,int mouth,int day)
+        //{
+        //    _creatTime = new DateTime(year, mouth, day);
+        //}
+    }
+
 }

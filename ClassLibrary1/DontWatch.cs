@@ -55,8 +55,9 @@ namespace DontWatch
 
     public class Self
     {
+
         private string _try;
-        private static int _iTry;
+        private int _iTry { get; }
         public Self()
         {
             _try = "wpz";

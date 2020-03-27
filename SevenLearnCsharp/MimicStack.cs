@@ -23,6 +23,7 @@ namespace HomeWork
             }
             top--;
             stack[top] = 0;
+            Console.WriteLine(stack[top]);
             return stack[top];
         }
 

@@ -220,30 +220,37 @@ namespace SevenLearnCsharp
             //Console.WriteLine(Di-8);
 
 
-            //2.2.构造一个能装任何数据的数组，并完成数据的读写
+            //2.构造一个能装任何数据的数组，并完成数据的读写
             //我不知道还有什么类型了，字符串，数字，元组，bool,小数，数组，应该差不多了。
-            object[] AnyArray = { "王胖子很帅", 26, (23, "17cm"), true ,888.8,new int [17,18,19,20,22]};
-            for (int i = 0; i < AnyArray.Length-1; i++)
-            {//想不到我现在竟然可以随手就写一个完美的循环出来。
-                Console.WriteLine(AnyArray[i]);
-            }
-            Console.WriteLine(AnyArray);
+            //object[] AnyArray = { "王胖子很帅", 26, (23, "17cm"), new Student() ,true ,888.8,new int [17,18,19,20,22]};
+            //for (int i = 0; i < AnyArray.Length-1; i++)
+            //{//想不到我现在竟然可以随手就写一个完美的循环出来。
+            //    Console.WriteLine(AnyArray[i]);
+            //}
+            //Console.WriteLine(AnyArray);
+
+            //3.使用object改造数据结构栈（Stack），并在出栈时获得出栈元素
+            //都已经如此完美了，还怎么优化。。。
 
             ///
             #endregion
 
-            #region Practies area.. Here is not homeword,just selftry.
-            //int a = 23;
-            //int b = 23;
-            //Student a = new Student { age = 23 };
-            //Student b = new Student { age = 23 };
-            //Person wpz = new Student();
-            //Console.WriteLine(wpz.GetType().Name);
-            //Console.WriteLine(typeof(Person).Name);
+            #region MyRegion 
+            //2.在Content之外封装一个方法，可以修改Content的CreateTime和PublishTime
 
-            //Console.WriteLine(a.GetHashCode());
-            //Console.WriteLine(b.GetHashCode());
-            //Console.WriteLine(a == b);
+            //我把content类设置为abstract类了，没办法有改回来了，抽象的不能反射
+            //Content content = new Content();
+            //Type Frist = typeof(Content);
+            //FieldInfo Secend = Frist.GetField("_createTime", BindingFlags.NonPublic | BindingFlags.Instance);
+            //object Third = Secend.GetValue(content);
+            //Third = new DateTime(2020, 12, 12);
+            //Console.WriteLine(Third);
+
+
+            #endregion
+
+            #region Practies area.. Here is not homeword,just selftry.
+
 
             //int age = 23;
             ////string wpz = age.ToString();
@@ -261,9 +268,13 @@ namespace SevenLearnCsharp
 
             //Self yb = new Self();
             //Type diyibu = typeof(Self);
-            //FieldInfo dierbu = diyibu.GetField("_iTry", BindingFlags.Static | BindingFlags.NonPublic);
+            //FieldInfo dierbu = diyibu.GetField("_iTry", BindingFlags.NonPublic |BindingFlags.Instance| BindingFlags.GetProperty);
             //object disubu = dierbu.GetValue(yb);
             //Console.WriteLine(disubu);
+            //disubu = 222;
+            //Console.WriteLine(disubu);
+            //Self self = new Self();
+            //Console.WriteLine(self);
 
 
             //object tlzz = new Student();
