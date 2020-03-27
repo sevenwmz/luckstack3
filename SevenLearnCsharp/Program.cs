@@ -221,6 +221,13 @@ namespace SevenLearnCsharp
 
 
             //2.2.构造一个能装任何数据的数组，并完成数据的读写
+            //我不知道还有什么类型了，字符串，数字，元组，bool,小数，数组，应该差不多了。
+            object[] AnyArray = { "王胖子很帅", 26, (23, "17cm"), true ,888.8,new int [17,18,19,20,22]};
+            for (int i = 0; i < AnyArray.Length-1; i++)
+            {//想不到我现在竟然可以随手就写一个完美的循环出来。
+                Console.WriteLine(AnyArray[i]);
+            }
+            Console.WriteLine(AnyArray);
 
             ///
             #endregion
