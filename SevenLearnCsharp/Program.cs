@@ -184,10 +184,10 @@ namespace SevenLearnCsharp
 
             #region Six Day 1.用代码证明struct定义的类型是值类型 栈的学费是按周计费的，所以请实现这两个功能：
             //1.用代码证明struct定义的类型是值类型     (MyClass and MyStruct at this page.)
-            MyClass myClass = new MyClass();
-            myClass._test = 23;//这里的23是赋值到一个地址里面去。
+            //MyClass myClass = new MyClass();
+            /*myClass._test = 23;*///这里的23是赋值到一个地址里面去。
             MyStruct myStruct = new MyStruct();
-            myStruct._test = 23;//这里是值类型。
+            /*myStruct._test = 23;*///这里是值类型。
 
             ///	1.函数GetDate()，能计算一个日期若干（日/周/月）后的日期
             ///2.给定任意一个年份，就能按周排列显示每周的起始日期，如下图所示：
@@ -204,15 +204,42 @@ namespace SevenLearnCsharp
             #endregion
 
             #region practies area.. Here is not homeword,just selftry.
-            //Person person = new Student();
-            //person.Eat();
-            //person = new Teacher();
-            //person.Eat();
+            //int a = 23;
+            //int b = 23;
+            //Student a = new Student { age = 23 };
+            //Student b = new Student { age = 23 };
+            //Person wpz = new Student();
+            //Console.WriteLine(wpz.GetType().Name);
+            //Console.WriteLine(typeof(Person).Name);
 
+            //Console.WriteLine(a.GetHashCode());
+            //Console.WriteLine(b.GetHashCode());
+            //Console.WriteLine(a == b);
+
+            //int age = 23;
+            ////string wpz = age.ToString();
+            //Console.WriteLine(new Student());
+
+            dynamic o = "986";
+            Console.WriteLine(o.GetType() );
+            //Console.WriteLine(o - 88);
+
+            Self wang = new Self();
+            Type typeinfo = typeof(Self);
+
+            typeinfo.GetField("_try", System.Reflection.BindingFlags);
 
             #endregion
 
 
+        }
+        public class Self
+        {
+            private string _try;
+            public Self()
+            {
+                _try = "wpz";
+            }
         }
         struct MyStruct
         {

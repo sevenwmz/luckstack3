@@ -21,12 +21,9 @@ namespace HomeWork
                 Console.WriteLine("stack null");
                 return stack[top];
             }
-            else
-            {
-                top--;
-                stack[top] = 0;
-                return stack[top];
-            }
+            top--;
+            stack[top] = 0;
+            return stack[top];
         }
 
         public void push(int value)
@@ -36,12 +33,9 @@ namespace HomeWork
                 Console.WriteLine("stack overflow");
                 return;
             }
-            else/* if (stack[top] != stack.Length-1)*/
-            {
-                stack[top] = value;
-                top++;
-                return;
-            }//else nothing
+            stack[top] = value;
+            top++;
+            return;
         }
 
 
