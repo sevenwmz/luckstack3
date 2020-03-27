@@ -204,6 +204,27 @@ namespace SevenLearnCsharp
             //tokenManager.Has(Token.Admin);
             #endregion
 
+            #region https://zhuanlan.zhihu.com/p/93458057C#-面向对象-万物皆对象：Object和装箱拆箱
+
+            ///1.思考dynamic和var的区别，并用代码予以演示
+            ///
+            //请忽略命名，命名采用var的第一个字母，和一个随便的i,dynamic也是一样
+            //var Vi = "88";
+            //dynamic Di = "88";
+
+            //区别在于，var是推倒类型，在使用中因为vi被推导为string类型所以无法完成表达式
+            //无法通过编译，所以直接报错。
+            //Console.WriteLine(Vi - 8);
+            //dynamic是动态类型，在编译时默认跳过，所以不会有报错的发生，但如果运行时候会报运行错误
+            //结果是一样的。
+            //Console.WriteLine(Di-8);
+
+
+            //2.2.构造一个能装任何数据的数组，并完成数据的读写
+
+            ///
+            #endregion
+
             #region Practies area.. Here is not homeword,just selftry.
             //int a = 23;
             //int b = 23;
