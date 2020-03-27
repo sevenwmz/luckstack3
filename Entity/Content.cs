@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace Entity
 {
-    public /*abstract */class Content :Entity
+    public /*abstract */class Content : Entity
     {
 
         #region Constructor
-        [Time]
-        public Content() :base(32)
+
+        public Content() : base(32)
         {
             _createTime = DateTime.Now;
         }
@@ -29,7 +30,7 @@ namespace Entity
 
         //3.Content中的createTime，不能被子类使用，但只读属性PublishTime使用它为外部提供内容的发布时间
         private DateTime _createTime;
-        public DateTime PublishTime 
+        public DateTime PublishTime
         {
             get { return _createTime; }
         }
@@ -75,21 +76,25 @@ namespace Entity
         #endregion
     }
 
-    public class TimeAttribute :Attribute
+    public class FixTime
     {
+        /// <summary>
+        /// 通过反射来修改ContentTime
+        /// </summary>
+        /// <param name="year">输入起始年</param>
+        /// <param name="mouth">输入起始月</param>
+        /// <param name="day">输入起始日</param>
+        public static void FixContentTime(int year,int mouth,int day)
+        {
+            //我把content类设置为abstract类了，没办法有改回来了，抽象的不能反射
+            Content content = new Content();
+            Type Frist = typeof(Content);
+            FieldInfo Secend = Frist.GetField("_createTime", BindingFlags.NonPublic | BindingFlags.Instance);
+            object Third = Secend.GetValue(content);
+            Third = new DateTime(year, mouth, day);
+            Console.WriteLine(Third);
+        }
 
-
-
-
-        //private DateTime _creatTime;
-        //public TimeAttribute()
-        //{
-        //    _creatTime = DateTime.Now;
-        //}
-        //public TimeAttribute(int year,int mouth,int day)
-        //{
-        //    _creatTime = new DateTime(year, mouth, day);
-        //}
     }
 
 }

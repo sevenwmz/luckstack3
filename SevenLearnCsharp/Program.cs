@@ -235,16 +235,17 @@ namespace SevenLearnCsharp
             ///
             #endregion
 
-            #region MyRegion 
+            #region https://zhuanlan.zhihu.com/p/93440022C#-面向对象-反射和特性 
             //2.在Content之外封装一个方法，可以修改Content的CreateTime和PublishTime
+            FixTime.FixContentTime(2019,10,19);
 
-            //我把content类设置为abstract类了，没办法有改回来了，抽象的不能反射
-            //Content content = new Content();
-            //Type Frist = typeof(Content);
-            //FieldInfo Secend = Frist.GetField("_createTime", BindingFlags.NonPublic | BindingFlags.Instance);
-            //object Third = Secend.GetValue(content);
-            //Third = new DateTime(2020, 12, 12);
-            //Console.WriteLine(Third);
+            ///3.自定义一个特性HelpMoneyChanged（帮帮币变化）：
+            ///1.该特性只能用于方法
+            ///2.有一个构造函数，可以接受一个int类型的参数amount，表示帮帮币变化的数量
+            ///3.有一个string类型的Message属性，记录帮帮币变化的原因
+            ///
+
+
 
 
             #endregion
