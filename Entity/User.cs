@@ -149,17 +149,19 @@ namespace Entity
 
     }
 
-    [HelpMoneyChanged(2, Message = "发布文章")]
+    [HelpMoneyChanged(2, AttributeTargets.Method)]
     public class HelpMoneyChangedAttribute : Attribute
     {
         ///1.该特性只能用于方法
         ///2.有一个构造函数，可以接受一个int类型的参数amount，表示帮帮币变化的数量
         ///3.有一个string类型的Message属性，记录帮帮币变化的原因
         private int _helpMoneyAmount;
-        public string Message { set; get; }
 
-        public HelpMoneyChangedAttribute(int amount)
+        public string Message { set; get; }
+        private readonly AttributeTargets _attributeTarget;
+        public HelpMoneyChangedAttribute(int amount, AttributeTargets validOn)
         {
+            _attributeTarget = AttributeTargets.Method;//我源代码里面看是这样写一行，我就抄过来了，不知道对不对。
             _helpMoneyAmount = amount;
         }
 

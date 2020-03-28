@@ -26,7 +26,7 @@ namespace Entity
 
         #region Function
 
-
+        [HelpMoneyChanged(2,AttributeTargets.Method)]
         public void Publish(Content content)
         {
             content.Publish();
