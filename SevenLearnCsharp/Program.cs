@@ -192,6 +192,7 @@ namespace SevenLearnCsharp
 
             ///	1.函数GetDate()，能计算一个日期若干（日/周/月）后的日期
             ///2.给定任意一个年份，就能按周排列显示每周的起始日期，如下图所示：
+            DataTimeCount.GetWeek(2000);
 
             #endregion
 
@@ -289,10 +290,10 @@ namespace SevenLearnCsharp
             //object wpz = new Teacher();
             //NowTry.Praise(wpz);
 
-            HistoryHomeWork.FindMax(23, 531, 23, 5331, 123, 3212, 211, 215);
+            //HistoryHomeWork.FindMax(23, 531, 23, 5331, 123, 3212, 211, 215);
+
             #endregion
 
-            HistoryHomeWork.isPrime(100);
         }
 
     }
