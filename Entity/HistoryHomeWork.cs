@@ -80,12 +80,11 @@ namespace Entity
         /// <returns></returns>
         public static bool isPrime(int number)
         {
-            for (int i = 2; i < number / 2; i++)
+            bool s = true;
+            for (int i = 1; i < number; i++)
             {
-                if (number % i == 0)
-                {
-                    return false;///绝对是精华体验，这个套的太强势了。
-                }
+                if (i % 2 == 0) continue;
+                Console.WriteLine(i + "\t");
             }
             return true;
         }

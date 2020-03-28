@@ -65,5 +65,15 @@ namespace EntityTest
 
         }
 
+
+        [Test]
+        public void Test2()
+        {
+            HistoryHomeWork.isPrime(100);
+            HistoryHomeWork.isPrime(-100);
+            HistoryHomeWork.isPrime(100000);
+            HistoryHomeWork.isPrime(23);
+        }
+
     }
 }
