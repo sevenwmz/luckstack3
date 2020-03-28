@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace Entity
 {
@@ -165,5 +166,33 @@ namespace Entity
             _helpMoneyAmount = amount;
         }
 
+    }
+
+    public class GetPublish
+    {
+        public static void GetHM(object Money)
+        {   //这里获取HelpMoneyChangedAttribute的附着和上面是否有内容
+            var MoneyOnPublish =
+                HelpMoneyChangedAttribute.GetCustomAttribute
+                (Money.GetType(), typeof(HelpMoneyChangedAttribute));
+
+            //这里获得HelpMoneyChangedAttribute里面的内容   顺便说一下，我也不知道这么写是不是对的，
+            //但是外部只能获得public的内容，我想把私有的也搞出来试试看.
+            //如果下面的写错了，那就哈哈哈哈。。。辣眼睛的屎山
+            HelpMoneyChangedAttribute Frist = new HelpMoneyChangedAttribute(2,AttributeTargets.Method);
+            Type Secend = typeof(HelpMoneyChangedAttribute);
+            FieldInfo Third = Secend.GetField("_helpMoneyAmount", 
+                BindingFlags.NonPublic | BindingFlags.Instance);
+            object Get_helpMoneyAmount = Third.GetValue(Frist);
+
+            if (MoneyOnPublish != null)
+            {
+                HelpMoneyChangedAttribute change = MoneyOnPublish as HelpMoneyChangedAttribute;
+                Console.WriteLine($"Message is:{change.Message},{change.TypeId}");
+                Console.Write(Get_helpMoneyAmount);
+                return;
+            }
+            Console.WriteLine("No flag");
+        }
     }
 }

@@ -244,10 +244,16 @@ namespace SevenLearnCsharp
             ///2.有一个构造函数，可以接受一个int类型的参数amount，表示帮帮币变化的数量
             ///3.有一个string类型的Message属性，记录帮帮币变化的原因
             ///
+            //作业在User页面
 
-            
-
-
+            ///5.用反射获取Publish()上的特性实例，输出其中包含的信息
+            ///
+            //这个地方有BUG，把自己写迷糊了。歇会儿换个思路，如果换不出来就等飞哥来换。
+            //思路是这样的，我要使用GetHM这个函数，必须有一个参数，参数需要找Publish这个方法要
+            //要找publish方法首先我需要有一个contentservice这个对象，有了这个对象，还得给publish传参...我的天
+            //ContentService service = new ContentService();
+            //service = service.Publish(Article article);
+            //GetPublish.GetHM(service);
             #endregion
 
             #region Practies area.. Here is not homeword,just selftry.
