@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeWork", "SevenLearnCshar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity", "Entity\Entity.csproj", "{A69CD2B7-DD70-4F44-878E-3F4800178A08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PracticeProject", "ClassLibrary1\PracticeProject.csproj", "{F963AD21-3A94-40ED-BB90-292F26EC3FA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PracticeProject", "ClassLibrary1\PracticeProject.csproj", "{F963AD21-3A94-40ED-BB90-292F26EC3FA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityTest", "EntityTest\EntityTest.csproj", "{B8C18B50-C35A-4EF2-A3DF-FC5A181DA706}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F963AD21-3A94-40ED-BB90-292F26EC3FA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F963AD21-3A94-40ED-BB90-292F26EC3FA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F963AD21-3A94-40ED-BB90-292F26EC3FA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8C18B50-C35A-4EF2-A3DF-FC5A181DA706}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8C18B50-C35A-4EF2-A3DF-FC5A181DA706}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8C18B50-C35A-4EF2-A3DF-FC5A181DA706}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8C18B50-C35A-4EF2-A3DF-FC5A181DA706}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

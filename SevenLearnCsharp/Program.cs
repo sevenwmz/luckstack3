@@ -288,9 +288,11 @@ namespace SevenLearnCsharp
             //NowTry.Praise(tlzz);
             //object wpz = new Teacher();
             //NowTry.Praise(wpz);
+
+            HistoryHomeWork.FindMax(23, 531, 23, 5331, 123, 3212, 211, 215);
             #endregion
 
-
+            HistoryHomeWork.isPrime(100);
         }
 
     }

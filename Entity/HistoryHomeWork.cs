@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entity
 {
-    class HistoryHomeWork
+    public class HistoryHomeWork
     {
 
         #region 四大传递作业
@@ -78,7 +78,7 @@ namespace Entity
         /// </summary>
         /// <param name="i"></param>
         /// <returns></returns>
-        private static bool isPrime(int number)
+        public static bool isPrime(int number)
         {
             for (int i = 2; i < number / 2; i++)
             {
@@ -89,8 +89,6 @@ namespace Entity
             }
             return true;
         }
-
-
 
         /// <summary>
         /// 快速排序
@@ -111,7 +109,6 @@ namespace Entity
             fastSort(left, center - 1, array);//对数组左侧做整理排序
             fastSort(center + 1, right, array);//对数组右侧做整理排序 
         }
-
 
         /// <summary>
         /// 仅供fastSort使用
@@ -326,7 +323,7 @@ namespace Entity
 
 
         /// <summary>
-        /// 
+        /// 获得最大最小数字
         /// </summary>
         /// <param name="result">输入out double result就可以，这里只是多一个返回值</param>
         /// <param name="array">直接输入一个数组就好</param>
@@ -391,7 +388,7 @@ namespace Entity
         /// <summary>
         /// 猜数字游戏，直接运行，无需参数。
         /// </summary>
-        internal static void GuessMe()
+        public static void GuessMe()
         {
             Console.WriteLine("欢迎来到猜数字游戏,这个数字是1000以内的整数");
             Console.WriteLine("你有十次机会猜中它，如果猜不中。飞哥，网线，打，懂？");
@@ -436,15 +433,31 @@ namespace Entity
             }
         }
 
-
+        /// <summary>
+        /// 查找最大数
+        /// </summary>
+        /// <param name="array">传入一个数组</param>
+        /// <returns></returns>
+        public static int FindMax(params int[] array)
+        {
+            int max = 0;
+            for (int i = 0; i < array.Length-1; i++)
+            {
+                if (max < array[i])
+                {
+                    max = array[i];
+                }
+            }
+            return max;
+        }
 
         /// <summary>
-        /// 查找数组中的最大数值
+        /// 查找数组中是否有这个数字
         /// </summary>
         /// <param name="array">需要传入一个数组</param>
         /// <param name="Key">在传入一个需要查找的值</param>
         /// <returns></returns>
-        public static int FindMax(int[] array, int Key)
+        public static int FindNumber(int[] array, int Key)
         {
             bool fond = false;
             for (int i = 0; i < array.Length - 1; i++)
@@ -480,7 +493,7 @@ namespace Entity
         /// <param name="array">输入一个已经排好了的数组</param>
         /// <param name="Key">输入要查找的数字</param>
         /// <returns></returns>
-        private static int binarySeek(int[] array, int Key)
+        public static int binarySeek(int[] array, int Key)
         {
             int left = 0, right = array.Length - 1;
             while (left <= right)
@@ -513,7 +526,7 @@ namespace Entity
         /// 冒泡排序，直接传递数组或者数字就可以。
         /// </summary>
         /// <param name="array"></param>
-        private static int[] bubbleSort(params int[] array)
+        public static int[] bubbleSort(params int[] array)
         {
             for (int i = 0; i < array.Length - 1; i++)
             {
