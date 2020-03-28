@@ -29,7 +29,7 @@ namespace Entity
         protected string kind;
 
         //3.Content中的createTime，不能被子类使用，但只读属性PublishTime使用它为外部提供内容的发布时间
-        private DateTime _createTime;
+        private DateTime _createTime { get; }
         public DateTime PublishTime
         {
             get { return _createTime; }
@@ -89,7 +89,8 @@ namespace Entity
             //我把content类设置为abstract类了，没办法有改回来了，抽象的不能反射
             Content content = new Content();
             Type Frist = typeof(Content);
-            FieldInfo Secend = Frist.GetField("_createTime", BindingFlags.NonPublic | BindingFlags.Instance);
+            //FieldInfo Secend = Frist.GetField("_createTime", BindingFlags.NonPublic | BindingFlags.Instance);
+            PropertyInfo Secend = Frist.GetProperty("_createTime", BindingFlags.NonPublic | BindingFlags.Instance);
             object Third = Secend.GetValue(content);
             Third = new DateTime(year, mouth, day);
             Console.WriteLine(Third);

@@ -245,7 +245,7 @@ namespace SevenLearnCsharp
             ///3.有一个string类型的Message属性，记录帮帮币变化的原因
             ///
 
-
+            
 
 
             #endregion
