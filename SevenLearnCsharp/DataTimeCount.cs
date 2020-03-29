@@ -31,11 +31,6 @@ namespace HomeWork
         /// <param name="year">输入一个int类型的年份整数</param>
         public static void GetWeek(int year)
         {
-            ///首先需要一个这一年的第一周是在几号的东西。dayofweek
-            ///然后从这一周开始打印这是第一周，输入当前日期
-            ///然后输入这一天的后7天日期。
-            ///目前掌握的知识结构只够我完成 （输入这一天的后7天日期。）adddays(7)
-            ///又了解到了dayofweek这个好东西。
 
             //这个地方借鉴了LJP大佬的作业，我比较认同这个地方，其他地方我不太想借鉴，不符合我的思路
             DateTime dateTime = new DateTime(year, 1, 1);
