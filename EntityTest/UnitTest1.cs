@@ -75,5 +75,14 @@ namespace EntityTest
             HistoryHomeWork.isPrime(23);
         }
 
+        [Test]
+        public void test3()
+        {
+            HomeWork.DataTimeCount.GetWeek(2000);
+            HomeWork.DataTimeCount.GetWeek(1959);
+            HomeWork.DataTimeCount.GetWeek(2100);
+            HomeWork.DataTimeCount.GetWeek(1);
+
+        }
     }
 }
