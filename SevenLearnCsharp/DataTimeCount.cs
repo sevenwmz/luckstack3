@@ -34,13 +34,9 @@ namespace HomeWork
 
             //这个地方借鉴了LJP大佬的作业，我比较认同这个地方，其他地方我不太想借鉴，不符合我的思路
             DateTime dateTime = new DateTime(year, 1, 1);
-
-            for (int i = 0; i < 7; i++)
-            {//先循环找到了这一年第一周的第一天，上面i<7是随手写的，这点计算量也影响不了啥性能。
-                if (dateTime.DayOfWeek != DayOfWeek.Monday)
-                {
-                    dateTime = dateTime.AddDays(1);
-                }//else nothing .
+            while (dateTime.DayOfWeek == DayOfWeek.Monday)
+            {
+                dateTime = dateTime.AddDays(1);
             }
             getWeekBody(dateTime);
         }
@@ -50,7 +46,8 @@ namespace HomeWork
         /// <param name="dateTime"></param>
         private static void getWeekBody(DateTime dateTime)
         {
-            for (int i = 1; i < 366/7; i++)
+            int i = 1,year = dateTime.Year;
+            while (dateTime.Year == year)
             {
                 Console.WriteLine($"第{i}周：{dateTime.ToString("yyyy年MM月dd日")} - {dateTime.AddDays(6).ToString("yyyy年MM月dd日")}\n");
                 dateTime = dateTime.AddDays(7);
