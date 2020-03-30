@@ -12,7 +12,7 @@ namespace HomeWork
 
         public DoubleLinkNode Id { get; private set; }
 
-        public bool IsHead 
+        public bool IsHead
         {
             get => Previous == null;
         }
@@ -73,19 +73,76 @@ namespace HomeWork
                 this.Previous.Next = this.Next;//3前面的后面 = 3后面
                 this.Next.Previous = this.Previous;//3后面的前面 = 3前面
             }
-            
-        }
-
-
-        public void Swap(DoubleLinkNode a, DoubleLinkNode b)
-        {
 
         }
 
-        
+
+        //public void Swap(DoubleLinkNode a, DoubleLinkNode b)
+        //{                   //1 2 3 4 5
+        //    DoubleLinkNode aNext = a.Next;
+        //    DoubleLinkNode aPrevies = a.Previous;
+        //    DoubleLinkNode nodeBAffter = b.Next.Previous;
+        //    DoubleLinkNode nodeBBefore = b.Previous.Next;
+
+
+        //    DoubleLinkNode nodeAAffter = a.Next.Previous;
+        //    DoubleLinkNode nodeABefore = a.Previous.Next;
+
+
+        //    ///找到原因了，现在是把他们位置和线连好了，但是之前元素的记忆还是之前的位置的成员.
+        //    //1 2 3 4 5
+        //    //1 4 3 2 5
+        //    a.Next = b.Next;
+        //    a.Previous = b.Previous;
+        //    b.Next = aNext;
+        //    b.Previous = aPrevies;
+        //    nodeBAffter = a.Next;
+        //    nodeBBefore = a.Previous;
+        //    nodeAAffter = b.Next;
+        //    nodeABefore = b.Previous;
+
+
+        //    //node2.Swap(node2, node4);
+        //    //Assert.AreEqual(node2.Next, node5);
+        //    //Assert.AreEqual(node2.Previous, node3);
+        //    //Assert.AreEqual(node4.Next, node3);
+        //    //Assert.AreEqual(node4.Previous, node1);
+        //    //Assert.AreEqual(node3.Next, node2);     ????????????
+        //    //Assert.AreEqual(node5.Previous, node2);
 
 
 
+
+        //}
+
+
+        public void Swap(DoubleLinkNode node)
+        {//1 2 3 4 5 : this2 node:4
+            // 1 4 3 2 5
+            DoubleLinkNode Next = this.Next;
+            DoubleLinkNode Previes = this.Previous;
+            DoubleLinkNode nodeNext = node.Previous.Next;//3后面
+            DoubleLinkNode nodePrevious = node.Next.Previous;//5前面
+            this.Next = node.Next;
+            this.Previous = node.Previous;
+            node.Next = Next;
+            node.Previous = Previes;
+
+            nodeNext = this.Previous.Next;
+            nodePrevious = this.Next.Previous;
+
+
+        }
+
+        //node2.Swap(node4);
+        //    Assert.AreEqual(node2.Next, node5);
+        //    Assert.AreEqual(node2.Previous, node3);
+        //    Assert.AreEqual(node4.Next, node3);
+        //    Assert.AreEqual(node4.Previous, node1);
+        //    Assert.AreEqual(node3.Next, node2);
+        //    Assert.AreEqual(node5.Previous, node2);
+        //    Assert.AreEqual(node3.Previous, node4);
+        //    Assert.AreEqual(node1.Next, node4);
 
 
 

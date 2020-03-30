@@ -23,6 +23,8 @@ namespace EntityTest
             node2.InsertAffter(node1);
             node3.InsertAffter(node2);
             node4.InsertAffter(node3);
+            node5.InsertAffter(node4);
+
 
 
             Assert.IsNull(node1.Previous);
@@ -77,9 +79,33 @@ namespace EntityTest
             //Assert.AreEqual(node2.Next, node3);
 
             //删除尾
-            node4.Delete(node4);
-            Assert.AreEqual(node3.Previous, node2);
-            Assert.AreEqual(node3.Next, null);
+            //node4.Delete(node4);
+            //Assert.AreEqual(node3.Previous, node2);
+            //Assert.AreEqual(node3.Next, null);
+
+            //中间交换1 2 3 4 5   //这个的做法有问题，看下面那个，也实现了一半
+            //node2.Swap(node2, node4);
+            //Assert.AreEqual(node2.Next, node5);
+            //Assert.AreEqual(node2.Previous, node3);
+            //Assert.AreEqual(node4.Next, node3);
+            //Assert.AreEqual(node4.Previous, node1);
+            //Assert.AreEqual(node3.Next, node2);
+            //Assert.AreEqual(node5.Previous, node2);
+            //Assert.AreEqual(node3.Previous, node4);
+            //Assert.AreEqual(node1.Next, node4);
+
+            //Swap交换
+            node2.Swap(node4);
+            Assert.AreEqual(node2.Next, node5);
+            Assert.AreEqual(node2.Previous, node3);
+            Assert.AreEqual(node4.Next, node3);
+            Assert.AreEqual(node4.Previous, node1);
+            Assert.AreEqual(node3.Next, node2);
+            Assert.AreEqual(node5.Previous, node2);
+            Assert.AreEqual(node3.Previous, node4);
+            Assert.AreEqual(node1.Next, node4);
+
+
         }
 
 
