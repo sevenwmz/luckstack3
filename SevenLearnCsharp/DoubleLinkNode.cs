@@ -60,6 +60,13 @@ namespace HomeWork
 
         public void Delete(DoubleLinkNode node)
         {//1 2 3 4      
+
+            if (node.IsHead & node.IsTail)
+            {
+                Console.WriteLine("寻思啥呢，再删没了");
+                return;
+            }
+
             if (node.IsHead)
             {
                 this.Next.Previous = null;//1后面的前面等于空
@@ -119,17 +126,27 @@ namespace HomeWork
         public void Swap(DoubleLinkNode node)
         {//1 2 3 4 5 : this2 node:4
             // 1 4 3 2 5
-            DoubleLinkNode Next = this.Next;
-            DoubleLinkNode Previes = this.Previous;
-            DoubleLinkNode nodeNext = node.Previous.Next;//3后面
-            DoubleLinkNode nodePrevious = node.Next.Previous;//5前面
-            this.Next = node.Next;
-            this.Previous = node.Previous;
-            node.Next = Next;
-            node.Previous = Previes;
 
-            nodeNext = this.Previous.Next;
-            nodePrevious = this.Next.Previous;
+            DoubleLinkNode thisPrevies = this.Previous;
+            DoubleLinkNode nodeprevies = node.Previous;
+
+            this.Delete(this);
+            node.Delete(node);
+            thisPrevies.InsertBefore(node);
+            nodeprevies.InsertBefore(this);
+
+
+            //DoubleLinkNode Next = this.Next;
+            //DoubleLinkNode Previes = this.Previous;
+            //DoubleLinkNode nodeNext = node.Previous.Next;//3后面
+            //DoubleLinkNode nodePrevious = node.Next.Previous;//5前面
+            //this.Next = node.Next;
+            //this.Previous = node.Previous;
+            //node.Next = Next;
+            //node.Previous = Previes;
+
+            //nodeNext = this.Previous.Next;
+            //nodePrevious = this.Next.Previous;
 
 
         }

@@ -68,10 +68,15 @@ namespace EntityTest
             //Assert.AreEqual(node1.Previous, node5);
             //Assert.AreEqual(node5.Previous, null);
 
-            ///删除中间的一个节点
-            //node2.Delete(node2);
-            //Assert.AreEqual(node1.Next,node3);
-            //Assert.AreEqual(node3.Previous,node1);
+            ///删除中间的一个节点 1 2 3 4
+            node2.Delete(node2);
+            node3.Delete(node3);
+            node4.Delete(node4);
+            node5.Delete(node5);
+            node1.Delete(node1);
+            System.Console.WriteLine();
+            Assert.AreEqual(node1.Next, null);
+            Assert.AreEqual(node1.Previous, null);
 
             //删除头
             //node1.Delete(node1);
@@ -95,15 +100,15 @@ namespace EntityTest
             //Assert.AreEqual(node1.Next, node4);
 
             //Swap交换
-            node2.Swap(node4);
-            Assert.AreEqual(node2.Next, node5);
-            Assert.AreEqual(node2.Previous, node3);
-            Assert.AreEqual(node4.Next, node3);
-            Assert.AreEqual(node4.Previous, node1);
-            Assert.AreEqual(node3.Next, node2);
-            Assert.AreEqual(node5.Previous, node2);
-            Assert.AreEqual(node3.Previous, node4);
-            Assert.AreEqual(node1.Next, node4);
+            //node2.Swap(node4);
+            //Assert.AreEqual(node2.Next, node5);
+            //Assert.AreEqual(node2.Previous, node3);
+            //Assert.AreEqual(node4.Next, node3);
+            //Assert.AreEqual(node4.Previous, node1);
+            //Assert.AreEqual(node3.Next, node2);
+            //Assert.AreEqual(node5.Previous, node2);
+            //Assert.AreEqual(node3.Previous, node4);
+            //Assert.AreEqual(node1.Next, node4);
 
 
         }
