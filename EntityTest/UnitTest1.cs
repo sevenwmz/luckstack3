@@ -66,9 +66,20 @@ namespace EntityTest
             //Assert.AreEqual(node1.Previous, node5);
             //Assert.AreEqual(node5.Previous, null);
 
+            ///删除中间的一个节点
+            //node2.Delete(node2);
+            //Assert.AreEqual(node1.Next,node3);
+            //Assert.AreEqual(node3.Previous,node1);
 
+            //删除头
+            //node1.Delete(node1);
+            //Assert.AreEqual(node2.Previous,null);
+            //Assert.AreEqual(node2.Next, node3);
 
-
+            //删除尾
+            node4.Delete(node4);
+            Assert.AreEqual(node3.Previous, node2);
+            Assert.AreEqual(node3.Next, null);
         }
 
 

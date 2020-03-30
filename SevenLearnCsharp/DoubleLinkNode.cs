@@ -41,7 +41,7 @@ namespace HomeWork
         }
 
         public void InsertBefore(DoubleLinkNode node)
-        {//1 2 [5] 3 4
+        {
             if (node.IsHead)
             {
                 this.Next = node;
@@ -50,7 +50,6 @@ namespace HomeWork
             else
             {
                 DoubleLinkNode nodePrevious = node.Previous;
-                node.Previous = nodePrevious;
                 this.Next = node;
                 node.Previous = this;
 
@@ -59,15 +58,31 @@ namespace HomeWork
             }
         }
 
+        public void Delete(DoubleLinkNode node)
+        {//1 2 3 4      
+            if (node.IsHead)
+            {
+                this.Next.Previous = null;//1后面的前面等于空
+            }
+            else if (node.IsTail)
+            {
+                this.Previous.Next = null;//4前面的后面等于空
+            }
+            else
+            {
+                this.Previous.Next = this.Next;//3前面的后面 = 3后面
+                this.Next.Previous = this.Previous;//3后面的前面 = 3前面
+            }
+            
+        }
+
+
         public void Swap(DoubleLinkNode a, DoubleLinkNode b)
         {
 
         }
 
-        public void Delete()
-        {
-
-        }
+        
 
 
 
