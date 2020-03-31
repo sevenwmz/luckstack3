@@ -192,7 +192,7 @@ namespace SevenLearnCsharp
 
             ///	1.函数GetDate()，能计算一个日期若干（日/周/月）后的日期
             ///2.给定任意一个年份，就能按周排列显示每周的起始日期，如下图所示：
-            DataTimeCount.GetWeek(2000);
+            //DataTimeCount.GetWeek(2000);
 
             #endregion
 
@@ -257,6 +257,22 @@ namespace SevenLearnCsharp
             //GetPublish.GetHM(service);
             #endregion
 
+            #region https://zhuanlan.zhihu.com/p/93747718 C#-面向对象：string还是StringBuilder？
+            ///确保文章（Article）的标题不能为null值，也不能为一个或多个空字符组成的字符串，
+            ///而且如果标题前后有空格，也予以删除
+            ///
+            Article wpz1 = new Article(string.Empty);
+            Article wpz2 = new Article("    ");
+            Article wpz3 = new Article(null);
+            Article wpz4 = new Article("");
+            Article wpz5 = new Article(" ");
+
+            Article wpz = new Article("   王胖子比飞哥帅的多   ");
+            
+
+
+            #endregion
+
             #region Practies area.. Here is not homeword,just selftry.
 
 
@@ -295,17 +311,5 @@ namespace SevenLearnCsharp
             #endregion
 
         }
-
     }
-
-    struct MyStruct
-    {
-        public int _test;
-    }
-    class MyClass
-    {
-        public int _test;
-    }
-
-
 }
