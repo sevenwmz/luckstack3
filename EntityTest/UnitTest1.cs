@@ -182,7 +182,6 @@ namespace EntityTest
             Assert.AreEqual(node4.Next, null);
             Assert.AreEqual(node4.Previous, null);
         }
-
         [Test]
         public void SwapTest()
         {

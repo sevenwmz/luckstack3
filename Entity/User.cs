@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace Entity
 {
@@ -11,7 +12,7 @@ namespace Entity
         #region 设计一种方式，保证： 每一个User对象一定有Name和Password赋值
         public User(string Name, string Password)
         {
-            this._userName = Name;
+            UserName = Name;
             this.Password = Password;
         }
         #endregion
@@ -36,18 +37,26 @@ namespace Entity
         #region 2.如果user.Name为“admin”，输入时修改为“系统管理员”( Secend Day )
         private string _userName;
         public string UserName
-        {
+        {//设计一个适用的机制，能确保用户（User）的昵称（Name）不能含有admin、17bang、管理员等敏感词。
             set
             {
                 if ("admin" == value)
                 {
                     value = "系统管理员";
+                    Console.WriteLine("我经过这里了");
                     return;
+                }
+                if (value.IndexOf("admin") == -1 && value.IndexOf("17bang") == -1)
+                {
+                    Console.WriteLine("传入数据库");
+                }
+                else
+                {
+                    Console.WriteLine("请不要输入带有特殊字符命令");
                 }
                 _userName = value;
             }
             //set { _userName = value == "admin" ? "系统管理员" : value; }
-            // i can't understand how wrint like this.  i have to learn more.
             get => _userName;
         }
 
@@ -59,7 +68,27 @@ namespace Entity
         #region 1.user.Password在类的外部只能改不能读( Secend Day )
         public string Password
         {
-            set => Password = value;
+            set
+            {
+                string regex = @"[\w~!@#$%^&*()_+]";
+                bool Ismatch = Regex.IsMatch(value, regex);
+                if (value.Length < 6)
+                {
+                    Console.WriteLine("密码长度不能小于6位数");
+                    return;
+                }
+                else if (Ismatch)
+                {
+                    Console.WriteLine($"传入数据库");
+                }
+                else
+                {
+                    Console.WriteLine("密码必须由大小写英语单词、数字和特殊符号（~!@#$%^&*()_+）组成");
+
+                }
+            }
+
+
         }
 
         #endregion
@@ -179,9 +208,9 @@ namespace Entity
             //这里获得HelpMoneyChangedAttribute里面的内容   顺便说一下，我也不知道这么写是不是对的，
             //但是外部只能获得public的内容，我想把私有的也搞出来试试看.
             //如果下面的写错了，那就哈哈哈哈。。。辣眼睛的屎山
-            HelpMoneyChangedAttribute Frist = new HelpMoneyChangedAttribute(2,AttributeTargets.Method);
+            HelpMoneyChangedAttribute Frist = new HelpMoneyChangedAttribute(2, AttributeTargets.Method);
             Type Secend = typeof(HelpMoneyChangedAttribute);
-            FieldInfo Third = Secend.GetField("_helpMoneyAmount", 
+            FieldInfo Third = Secend.GetField("_helpMoneyAmount",
                 BindingFlags.NonPublic | BindingFlags.Instance);
             object Get_helpMoneyAmount = Third.GetValue(Frist);
 
@@ -195,4 +224,7 @@ namespace Entity
             Console.WriteLine("No flag");
         }
     }
+
+
+
 }

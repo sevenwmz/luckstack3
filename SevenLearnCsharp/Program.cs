@@ -238,7 +238,7 @@ namespace SevenLearnCsharp
 
             #region https://zhuanlan.zhihu.com/p/93440022C#-面向对象-反射和特性 
             //2.在Content之外封装一个方法，可以修改Content的CreateTime和PublishTime
-            FixTime.FixContentTime(2019,10,19);
+            FixTime.FixContentTime(2019, 10, 19);
 
             ///3.自定义一个特性HelpMoneyChanged（帮帮币变化）：
             ///1.该特性只能用于方法
@@ -261,16 +261,33 @@ namespace SevenLearnCsharp
             ///确保文章（Article）的标题不能为null值，也不能为一个或多个空字符组成的字符串，
             ///而且如果标题前后有空格，也予以删除
             ///
-            Article wpz1 = new Article(string.Empty);
-            Article wpz2 = new Article("    ");
-            Article wpz3 = new Article(null);
-            Article wpz4 = new Article("");
-            Article wpz5 = new Article(" ");
-
-            Article wpz = new Article("   王胖子比飞哥帅的多   ");
-            
+            //Article wpz1 = new Article(string.Empty);
+            //Article wpz2 = new Article("    ");
+            //Article wpz3 = new Article(null);
+            //Article wpz4 = new Article("");
+            //Article wpz5 = new Article(" ");
+            //Article wpz = new Article("   王胖子比飞哥帅的多   ");
 
 
+            //设计一个适用的机制，能确保用户（User）的昵称（Name）不能含有admin、17bang、管理员等敏感词。
+            //User wpz4 = new User("qqadminw", "~qweqwe");
+            //User wpz5 = new User("wwadminw", "!qweqwe");
+            //User wpz6 = new User("adminee", "@qwe123");
+            //User wpz7 = new User("adminee", "@qwe123");
+            //User wpz8 = new User("qq17bang", "@qwe123");
+            //User wpz9 = new User("qq17bangww", "@qwe123");
+
+
+            ///确保用户（User）的密码（Password）：长度不低于6
+            ///必须由大小写英语单词、数字和特殊符号（~!@#$%^&*()_+）组成
+            ///
+            User user = new User("", "abcabc");
+            User user1 = new User("", "==abcabc");
+
+            User wpz = new User("admin", "~!@#  $%^&*()_+");
+            User wpz1 = new User("admin", "~qw---eqwe");
+            User wpz2 = new User("admin", "!qweqwe");
+            User wpz3 = new User("admin", "@qwe123");
             #endregion
 
             #region Practies area.. Here is not homeword,just selftry.
@@ -308,6 +325,12 @@ namespace SevenLearnCsharp
 
             //HistoryHomeWork.FindMax(23, 531, 23, 5331, 123, 3212, 211, 215);
 
+            //string name = "admin17bang";
+            //string name1 = "wpzadmin";
+            //string name2 = "17bangzbdmin";
+            //string name3 = "wpz17bang";
+
+            //string name4 = "wp17bangn";
             #endregion
 
         }
