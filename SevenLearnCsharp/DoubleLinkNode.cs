@@ -123,17 +123,42 @@ namespace HomeWork
         //}
 
 
-        public void Swap(DoubleLinkNode node)
-        {//1 2 3 4 5 : this2 node:4
-            // 1 4 3 2 5
+        public void Swap(DoubleLinkNode nodea, DoubleLinkNode nodeb)
+        {//1 2 3 4  : this2 node:3
+            // 1 3 2     2 3 4
 
-            DoubleLinkNode thisPrevies = this.Previous;
-            DoubleLinkNode nodeprevies = node.Previous;
+            //DoubleLinkNode thisData = this.Previous.Next;//先把这两个节点数据存储下来
+            //DoubleLinkNode nodeData = node.Previous.Next;
 
-            this.Delete();
-            node.Delete();
-            thisPrevies.InsertBefore(node);
-            nodeprevies.InsertBefore(this);
+            //DoubleLinkNode thisData = this;//先把这两个节点数据存储下来
+            //DoubleLinkNode nodeData = node;
+
+            //DoubleLinkNode thisPrevious = this.Previous;//记录下他们的旁边位置来
+            //DoubleLinkNode nodeNext = node.Next; 
+
+            ///我的思路--交换的本质是2条数据换位置，把要换位的数据COPY下来，插入到新的位置，
+            ///把老位置数据删除。为啥就不对呢，单独插入和这个也没什么区别，都是直接联系下来旁边的位置
+            ///
+            DoubleLinkNode nodex = nodea;
+            DoubleLinkNode nodey = nodeb;
+
+            nodea.InsertBefore(nodey);
+            nodeb.InsertBefore(nodex);
+            nodea.Delete();
+            nodeb.Delete();
+
+            //thisPrevious.InsertAffter(nodeData);
+            //nodeNext.InsertBefore(thisData);
+            //if (true)
+            //{
+            //    thisNext.Previous = nodeData;
+            //    nodeNext.Previous = thisData;
+            //}
+
+            //if ((this.IsHead & this.IsTail)&(node.IsTail & node.IsHead))
+            //{
+
+            //}
 
 
             //DoubleLinkNode Next = this.Next;

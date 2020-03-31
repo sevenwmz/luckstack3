@@ -186,15 +186,15 @@ namespace EntityTest
         [Test]
         public void SwapTest()
         {
-            node2.Swap(node4);
-            Assert.AreEqual(node2.Next, node5);
-            Assert.AreEqual(node2.Previous, node3);
-            Assert.AreEqual(node4.Next, node3);
-            Assert.AreEqual(node4.Previous, node1);
+            node2.Swap(node2,node3);// 1 3 2 4
+            Assert.AreEqual(node2.Next, node4);
+            Assert.AreEqual(node4.Previous, node2);
             Assert.AreEqual(node3.Next, node2);
-            Assert.AreEqual(node5.Previous, node2);
-            Assert.AreEqual(node3.Previous, node4);
-            Assert.AreEqual(node1.Next, node4);
+            Assert.AreEqual(node2.Previous, node3);
+            Assert.AreEqual(node1.Next, node3);
+            Assert.AreEqual(node3.Previous, node1);
+            Assert.AreEqual(node1.Previous, null);
+            Assert.AreEqual(node1.Next, node3);
         }
         [Test]
         public void FindMaxTest()
