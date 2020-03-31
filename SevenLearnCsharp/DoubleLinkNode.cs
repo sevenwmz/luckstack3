@@ -58,20 +58,20 @@ namespace HomeWork
             }
         }
 
-        public void Delete(DoubleLinkNode node)
+        public void Delete()
         {//1 2 3 4      
 
-            if (node.IsHead & node.IsTail)
+            if (this.IsHead & this.IsTail)
             {
                 Console.WriteLine("寻思啥呢，再删没了");
                 return;
             }
 
-            if (node.IsHead)
+            if (this.IsHead)
             {
                 this.Next.Previous = null;//1后面的前面等于空
             }
-            else if (node.IsTail)
+            else if (this.IsTail)
             {
                 this.Previous.Next = null;//4前面的后面等于空
             }
@@ -130,8 +130,8 @@ namespace HomeWork
             DoubleLinkNode thisPrevies = this.Previous;
             DoubleLinkNode nodeprevies = node.Previous;
 
-            this.Delete(this);
-            node.Delete(node);
+            this.Delete();
+            node.Delete();
             thisPrevies.InsertBefore(node);
             nodeprevies.InsertBefore(this);
 
