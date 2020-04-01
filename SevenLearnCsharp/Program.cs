@@ -281,13 +281,14 @@ namespace SevenLearnCsharp
             ///确保用户（User）的密码（Password）：长度不低于6
             ///必须由大小写英语单词、数字和特殊符号（~!@#$%^&*()_+）组成
             ///
-            User user = new User("", "abcabc");
-            User user1 = new User("", "==abcabc");
+            //这个密码应该还差点东西没写对
+            //User user = new User("", "abcabc");
+            //User user1 = new User("", "==abcabc");
 
-            User wpz = new User("admin", "~!@#  $%^&*()_+");
-            User wpz1 = new User("admin", "~qw---eqwe");
-            User wpz2 = new User("admin", "!qweqwe");
-            User wpz3 = new User("admin", "@qwe123");
+            //User wpz = new User("admin", "~!@#  $%^&*()_+");
+            //User wpz1 = new User("admin", "~qw---eqwe");
+            //User wpz2 = new User("admin", "!qweqwe");
+            //User wpz3 = new User("admin", "@qwe123");
             #endregion
 
             #region Practies area.. Here is not homeword,just selftry.
@@ -323,14 +324,7 @@ namespace SevenLearnCsharp
             //object wpz = new Teacher();
             //NowTry.Praise(wpz);
 
-            //HistoryHomeWork.FindMax(23, 531, 23, 5331, 123, 3212, 211, 215);
-
-            //string name = "admin17bang";
-            //string name1 = "wpzadmin";
-            //string name2 = "17bangzbdmin";
-            //string name3 = "wpz17bang";
-
-            //string name4 = "wp17bangn";
+            HistoryHomeWork.isPrime(100);
             #endregion
 
         }

@@ -93,7 +93,7 @@ namespace EntityTest
             node8.InsertBefore(node4);//7 1 2 6 5 3 8 4
             Assert.AreEqual(node8.Next, node4);
             Assert.AreEqual(node4.Previous, node8);
-            Assert.AreEqual(node8.Previous,node3);
+            Assert.AreEqual(node8.Previous, node3);
             Assert.IsNotNull(node8.Next);
         }
         [Test]
@@ -185,7 +185,7 @@ namespace EntityTest
         [Test]
         public void SwapTest()
         {
-            node2.Swap(node2,node3);// 1 3 2 4
+            node2.Swap(node2, node3);// 1 3 2 4
             Assert.AreEqual(node2.Next, node4);
             Assert.AreEqual(node4.Previous, node2);
             Assert.AreEqual(node3.Next, node2);
@@ -199,50 +199,66 @@ namespace EntityTest
         public void FindMaxTest()
         {
             Assert.AreEqual(5331, HistoryHomeWork.FindMax(23, 131, 532, 5331, 123, 521));
-
-            ///2.找到100以内的所有质数
-            //Assert.AreEqual(11, HistoryHomeWork.isPrime(100));
-            //Assert.AreEqual(100, HistoryHomeWork.isPrime(100));
-            //Assert.AreEqual(20, HistoryHomeWork.isPrime(100));
-            //Assert.AreEqual(13, HistoryHomeWork.isPrime(100));
-            //Assert.AreEqual(53, HistoryHomeWork.isPrime(100));
-
-
-            ///3.猜数字游戏
-            HistoryHomeWork.GuessMe();//这个怎么断言
-
-            ///4.二分查找
-            ///  想了半天为啥一直是错的，结果发现原来当时写的是查找下标。。。郁闷
-            int[] array = new int[] { 23, 43, 56, 66, 77, 88, 99 };
-            Assert.AreEqual(1, HistoryHomeWork.binarySeek(array, 43));
-
-            ///5.栈的压入弹出
-            ///
-            MimicStack test = new MimicStack();
-            test.pop();
-            test.push(23);
-            test.pop();
-            test.push(232);
-            test.push(23);
-            test.push(23);
-            test.push(213541233);
-            test.push(23);
-            test.push(23);
-            test.push(23);
-            test.push(23);
-            test.push(23);
-            test.push(23);
-            test.push(23);
-            test.push(23);
-            test.push(23);
-            test.push(23);
-            test.pop();
-
+            Assert.AreEqual(532, HistoryHomeWork.FindMax(23, 131, 532, 531, 123, 521));
+            Assert.AreNotEqual(-1, HistoryHomeWork.FindMax(23, 131, 532, 5331, 123, 521));
+            Assert.AreEqual(5333, HistoryHomeWork.FindMax(23, 131, 532, 5331, 123, 521,5333));
+            Assert.AreEqual(5444, HistoryHomeWork.FindMax(5444,23, 131, 532, 5331, 123, 521));
         }
 
+        [Test]
+        public void BinarySeekText()
+        {
+            ///4.二分查找
+            int[] array = new int[] { 23, 43, 56, 66, 66, 77, 88, 99, 5331 };
+            Assert.AreEqual(1, HistoryHomeWork.binarySeek(array, 43));
+            Assert.AreEqual(-1, HistoryHomeWork.binarySeek(array, -1));
+            Assert.AreEqual(8, HistoryHomeWork.binarySeek(array, 5331));
+            Assert.AreEqual(0, HistoryHomeWork.binarySeek(array, 23));
+            Assert.AreEqual(4, HistoryHomeWork.binarySeek(array, 66));
+            Assert.AreEqual(5, HistoryHomeWork.binarySeek(array, 77));
+            Assert.AreEqual(7, HistoryHomeWork.binarySeek(array, 99));
+        }
 
+        [Test]
+        public void MimicStaticText()
+        {
+            ///5.栈的压入弹出
+            MimicStack test = new MimicStack();
+            Assert.AreEqual(0, test.pop());
+            test.push(23);
+            Assert.AreEqual(23, test.pop());
+            test.push(232);
+            Assert.AreEqual(232, test.pop());
+            Assert.AreNotEqual(23, test.pop());
+            test.push(23);
+            test.push(26);
+            test.push(213541233);
+            test.push(23);
+            test.push(24);
+            test.push(231);
+            test.push(2324);
+            test.push(2563);
+            test.push(273);
+            test.push(233);
+            test.push(223);//here already stack overflow.
+            test.push(253);//here already stack overflow.
+            Assert.AreEqual(233, test.pop());
+            Assert.AreNotEqual(253, test.pop());
+            Assert.AreEqual(2563, test.pop());
+            Assert.AreEqual(2324, test.pop());
+            Assert.AreNotEqual(2153, test.pop());
+        }
 
+        [Test]
+        public void IsPrimeTest()
+        {
+            ///2.找到100以内的所有质数
+            Assert.IsTrue(HistoryHomeWork.isPrime(53));
+            Assert.IsFalse(HistoryHomeWork.isPrime(96));
+            Assert.IsTrue(HistoryHomeWork.isPrime(46));
+            Assert.IsFalse(HistoryHomeWork.isPrime(-1));
+            Assert.IsTrue(HistoryHomeWork.isPrime(1001));
 
-
+        }
     }
 }

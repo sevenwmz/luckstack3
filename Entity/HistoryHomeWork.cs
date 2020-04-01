@@ -80,13 +80,18 @@ namespace Entity
         /// <returns></returns>
         public static bool isPrime(int number)
         {
-            bool s = true;
-            for (int i = 1; i < number; i++)
+            for (int i = 3; i < number; i++)
             {
-                if (i % 2 == 0) continue;
-                Console.WriteLine(i + "\t");
+                if (i % 2 == 0) 
+                {
+                    Console.WriteLine(i + "\t");
+                    continue;
+                }
+                else
+                {
+                    return true;
+                }
             }
-            return true;
         }
 
         /// <summary>
@@ -440,7 +445,7 @@ namespace Entity
         public static int FindMax(params int[] array)
         {
             int max = 0;
-            for (int i = 0; i < array.Length-1; i++)
+            for (int i = 0; i < array.Length; i++)
             {
                 if (max < array[i])
                 {

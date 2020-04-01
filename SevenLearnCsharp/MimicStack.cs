@@ -13,16 +13,14 @@ namespace HomeWork
         ///5.4如果压入的数据已超过栈的深度（最大容量），提示“栈溢出”如果已弹出所有数据，提示“栈已空”
         private int[] stack = new int[10];
         private int top = 0;
-        public int pop(/*out bool empty*/)
+        public int pop()
         {
-            //empty = top == 0;
-            if (top == stack[0])
+            if (top == 0)
             {
                 Console.WriteLine("stack null");
                 return stack[top];
             }
             top--;
-            stack[top] = 0;
             return stack[top];
         }
 
