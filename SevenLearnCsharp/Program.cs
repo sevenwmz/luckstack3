@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace SevenLearnCsharp
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -291,13 +291,7 @@ namespace SevenLearnCsharp
             //User wpz3 = new User("admin", "@qwe123");
 
 
-            //实现GetCount(string container, string target)方法，可以统计出container中有多少个target
-
-            //string text = "天今天，是昨天的明天，是明天的前一天", find = "天";
-            //GetCount(text, find);
-
-            //string text1 = "天今天，是昨天的明天，是明天的前一天", find1 = "有";
-            //GetCount(text1, find1);
+            
 
             #endregion
 
@@ -326,23 +320,24 @@ namespace SevenLearnCsharp
             //object wpz = new Teacher();
             //NowTry.Praise(wpz);
 
+            //string name = string.Empty;
+            //if (student ==null)
+            //{
+            //    name = "无姓名";
+            //}
+            //else
+            //{
+            //    name = student.name;
+            //} 
 
+            //string name = student == null ? "无姓名" : student.name;
+            student student =null;
 
+            Console.WriteLine(student?.IsMale);
+            bool? gender = student?.IsMale;
+            gender = false;
             #endregion
 
-
-        }
-
-        public static int GetCount(string container, string target)
-        {
-            int count = 0;
-            int lenght = target.Length;
-            while (container.Contains(target))
-            {
-                count++;
-                container = container.Remove(0, container.IndexOf(target)+lenght);
-            }
-            return count;
         }
 
 

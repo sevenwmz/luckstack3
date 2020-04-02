@@ -53,7 +53,19 @@ namespace HomeWork
                 dateTime = dateTime.AddDays(7);
             }
         }
-        
+
+
+        public static int GetCount(string container, string target)
+        {
+            int count = 0;
+            int lenght = target.Length;
+            while (container.Contains(target))
+            {
+                count++;
+                container = container.Remove(0, container.IndexOf(target) + lenght);
+            }
+            return count;
+        }
     }
 
 }

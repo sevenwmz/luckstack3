@@ -4,21 +4,21 @@ using NUnit.Framework;
 
 namespace EntityTest
 {
-    public class Tests
+    public class DoubleLinkNode
     {
-        DoubleLinkNode node1, node2, node3, node4, node5, node6, node7, node8, node9;
+        HomeWork.DoubleLinkNode node1, node2, node3, node4, node5, node6, node7, node8, node9;
         [SetUp]
         public void Setup()
         {
-            node1 = new DoubleLinkNode();
-            node2 = new DoubleLinkNode();
-            node3 = new DoubleLinkNode();
-            node4 = new DoubleLinkNode();
-            node5 = new DoubleLinkNode();
-            node6 = new DoubleLinkNode();
-            node7 = new DoubleLinkNode();
-            node8 = new DoubleLinkNode();
-            node9 = new DoubleLinkNode();
+            node1 = new HomeWork.DoubleLinkNode();
+            node2 = new HomeWork.DoubleLinkNode();
+            node3 = new HomeWork.DoubleLinkNode();
+            node4 = new HomeWork.DoubleLinkNode();
+            node5 = new HomeWork.DoubleLinkNode();
+            node6 = new HomeWork.DoubleLinkNode();
+            node7 = new HomeWork.DoubleLinkNode();
+            node8 = new HomeWork.DoubleLinkNode();
+            node9 = new HomeWork.DoubleLinkNode();
 
             node2.InsertAffter(node1);
             node3.InsertAffter(node2);
@@ -198,7 +198,7 @@ namespace EntityTest
             //我就需要考虑把Swap和insertAfter揉在一起了。
             node5.InsertAffter(node4);
 
-            node2.Swap( node3);// 1 3 2 4 5
+            node2.Swap(node3);// 1 3 2 4 5
             Assert.AreEqual(node2.Next, node4);
             Assert.AreEqual(node4.Previous, node2);
             Assert.AreEqual(node3.Next, node2);
@@ -229,72 +229,6 @@ namespace EntityTest
             Assert.AreEqual(node3.Previous, node5);
             Assert.AreEqual(node1.Previous, node4);
             Assert.AreEqual(node4.Next, node1);
-        }
-
-        [Test]
-        public void FindMaxTest()
-        {
-            Assert.AreEqual(5331, HistoryHomeWork.FindMax(23, 131, 532, 5331, 123, 521));
-            Assert.AreEqual(532, HistoryHomeWork.FindMax(23, 131, 532, 531, 123, 521));
-            Assert.AreNotEqual(-1, HistoryHomeWork.FindMax(23, 131, 532, 5331, 123, 521));
-            Assert.AreEqual(5333, HistoryHomeWork.FindMax(23, 131, 532, 5331, 123, 521,5333));
-            Assert.AreEqual(5444, HistoryHomeWork.FindMax(5444,23, 131, 532, 5331, 123, 521));
-        }
-
-        [Test]
-        public void BinarySeekText()
-        {
-            ///4.二分查找
-            int[] array = new int[] { 23, 43, 56, 66, 66, 77, 88, 99, 5331 };
-            Assert.AreEqual(1, HistoryHomeWork.binarySeek(array, 43));
-            Assert.AreEqual(-1, HistoryHomeWork.binarySeek(array, -1));
-            Assert.AreEqual(8, HistoryHomeWork.binarySeek(array, 5331));
-            Assert.AreEqual(0, HistoryHomeWork.binarySeek(array, 23));
-            Assert.AreEqual(4, HistoryHomeWork.binarySeek(array, 66));
-            Assert.AreEqual(5, HistoryHomeWork.binarySeek(array, 77));
-            Assert.AreEqual(7, HistoryHomeWork.binarySeek(array, 99));
-        }
-
-        [Test]
-        public void MimicStaticText()
-        {
-            ///5.栈的压入弹出
-            MimicStack test = new MimicStack();
-            Assert.AreEqual(0, test.pop());
-            test.push(23);
-            Assert.AreEqual(23, test.pop());
-            test.push(232);
-            Assert.AreEqual(232, test.pop());
-            Assert.AreNotEqual(23, test.pop());
-            test.push(23);
-            test.push(26);
-            test.push(213541233);
-            test.push(23);
-            test.push(24);
-            test.push(231);
-            test.push(2324);
-            test.push(2563);
-            test.push(273);
-            test.push(233);
-            test.push(223);//here already stack overflow.
-            test.push(253);//here already stack overflow.
-            Assert.AreEqual(233, test.pop());
-            Assert.AreNotEqual(253, test.pop());
-            Assert.AreEqual(2563, test.pop());
-            Assert.AreEqual(2324, test.pop());
-            Assert.AreNotEqual(2153, test.pop());
-        }
-
-        [Test]
-        public void IsPrimeTest()
-        {
-            ///2.找到100以内的所有质数
-            Assert.IsTrue(HistoryHomeWork.isPrime(53));
-            Assert.IsFalse(HistoryHomeWork.isPrime(96));
-            Assert.IsTrue(HistoryHomeWork.isPrime(46));
-            Assert.IsFalse(HistoryHomeWork.isPrime(-1));
-            Assert.IsTrue(HistoryHomeWork.isPrime(1001));
-
         }
     }
 }

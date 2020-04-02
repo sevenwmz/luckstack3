@@ -9,7 +9,8 @@ namespace DontWatch
     
     public class student :propen
     {
-
+        public string name { set; get; }
+        public bool IsMale { set; get; }
     }
     public interface ILearn
     {

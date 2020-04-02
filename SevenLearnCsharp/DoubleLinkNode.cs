@@ -24,20 +24,24 @@ namespace HomeWork
 
         public void InsertAffter(DoubleLinkNode node)
         {// 1 2 [5] 3 4   :5 = this
-            if (node.IsTail)
-            {
-                node.Next = this;
-                this.Previous = node;
-            }
-            else
-            {//2.5 c.3
+            //if (node.IsTail)
+            //{
+            //    node.Next = this;
+            //    this.Previous = node;
+            //}
+            //else
+            //{
                 DoubleLinkNode nodeNext = node.Next;
                 node.Next = this;
                 this.Previous = node;
 
                 this.Next = nodeNext;
+
+            if (this.Next != null)
+            {
                 this.Next.Previous = this;
-            }
+            }         
+            //}
         }
 
         public void InsertBefore(DoubleLinkNode node)
@@ -70,84 +74,35 @@ namespace HomeWork
             if (this.IsHead)
             {
                 this.Next.Previous = null;//1后面的前面等于空
+                this.Next = null;
             }
             else if (this.IsTail)
             {
                 this.Previous.Next = null;//4前面的后面等于空
+                this.Previous = null;
             }
             else
             {
                 this.Previous.Next = this.Next;//3前面的后面 = 3后面
                 this.Next.Previous = this.Previous;//3后面的前面 = 3前面
+                this.Next = null;
+                this.Previous = null;
             }
 
         }
-
-
-        //public void Swap(DoubleLinkNode a, DoubleLinkNode b)
-        //{                   //1 2 3 4 5
-        //    DoubleLinkNode aNext = a.Next;
-        //    DoubleLinkNode aPrevies = a.Previous;
-        //    DoubleLinkNode nodeBAffter = b.Next.Previous;
-        //    DoubleLinkNode nodeBBefore = b.Previous.Next;
-
-
-        //    DoubleLinkNode nodeAAffter = a.Next.Previous;
-        //    DoubleLinkNode nodeABefore = a.Previous.Next;
-
-
-        //    ///找到原因了，现在是把他们位置和线连好了，但是之前元素的记忆还是之前的位置的成员.
-        //    //1 2 3 4 5
-        //    //1 4 3 2 5
-        //    a.Next = b.Next;
-        //    a.Previous = b.Previous;
-        //    b.Next = aNext;
-        //    b.Previous = aPrevies;
-        //    nodeBAffter = a.Next;
-        //    nodeBBefore = a.Previous;
-        //    nodeAAffter = b.Next;
-        //    nodeABefore = b.Previous;
-
-
-        //    //node2.Swap(node2, node4);
-        //    //Assert.AreEqual(node2.Next, node5);
-        //    //Assert.AreEqual(node2.Previous, node3);
-        //    //Assert.AreEqual(node4.Next, node3);
-        //    //Assert.AreEqual(node4.Previous, node1);
-        //    //Assert.AreEqual(node3.Next, node2);     ????????????
-        //    //Assert.AreEqual(node5.Previous, node2);
-
-
-
-
-        //}
-
 
         public void Swap(DoubleLinkNode node)
         {//1 2 3 4  : this2 node:3
             // 1 3 2     2 3 4
 
-            //DoubleLinkNode thisData = this.Previous.Next;//先把这两个节点数据存储下来
-            //DoubleLinkNode nodeData = node.Previous.Next;
-
-            //DoubleLinkNode thisData = this;//先把这两个节点数据存储下来
-            //DoubleLinkNode nodeData = node;
-
-            //DoubleLinkNode thisPrevious = this.Previous;//记录下他们的旁边位置来
-            //DoubleLinkNode nodeNext = node.Next; 
-
-            ///我的思路--交换的本质是2条数据换位置，把要换位的数据COPY下来，插入到新的位置，
-            ///把老位置数据删除。为啥就不对呢，单独插入和这个也没什么区别，都是直接联系下来旁边的位置
-            ///
-            
-            if ((!this.IsHead && !this.IsTail)&&(!node.IsHead && !node.IsTail))//是中间交换
+            if ((!this.IsHead && !this.IsTail) && (!node.IsHead && !node.IsTail))//是中间交换
             {// 1 2 3 4  --- 1 3 2 4 5
                 DoubleLinkNode thisPrevious = this.Previous;//记录下他们的旁边位置来
                 DoubleLinkNode nodeNext = node.Next;
 
                 this.Delete();
                 node.Delete();
-                
+
                 this.InsertBefore(nodeNext);
                 node.InsertAffter(thisPrevious);
             }
@@ -163,48 +118,6 @@ namespace HomeWork
                 node.InsertBefore(thisNext);
             }
 
-
-            //thisPrevious.InsertAffter(nodeData);
-            //nodeNext.InsertBefore(thisData);
-            //if (true)
-            //{
-            //    thisNext.Previous = nodeData;
-            //    nodeNext.Previous = thisData;
-            //}
-
-            //if ((this.IsHead & this.IsTail)&(node.IsTail & node.IsHead))
-            //{
-
-            //}
-
-
-            //DoubleLinkNode Next = this.Next;
-            //DoubleLinkNode Previes = this.Previous;
-            //DoubleLinkNode nodeNext = node.Previous.Next;//3后面
-            //DoubleLinkNode nodePrevious = node.Next.Previous;//5前面
-            //this.Next = node.Next;
-            //this.Previous = node.Previous;
-            //node.Next = Next;
-            //node.Previous = Previes;
-
-            //nodeNext = this.Previous.Next;
-            //nodePrevious = this.Next.Previous;
-
-
         }
-
-        //node2.Swap(node4);
-        //    Assert.AreEqual(node2.Next, node5);
-        //    Assert.AreEqual(node2.Previous, node3);
-        //    Assert.AreEqual(node4.Next, node3);
-        //    Assert.AreEqual(node4.Previous, node1);
-        //    Assert.AreEqual(node3.Next, node2);
-        //    Assert.AreEqual(node5.Previous, node2);
-        //    Assert.AreEqual(node3.Previous, node4);
-        //    Assert.AreEqual(node1.Next, node4);
-
-
-
-
     }
 }

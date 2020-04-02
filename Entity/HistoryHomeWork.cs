@@ -58,49 +58,31 @@ namespace Entity
             return array;///抄了赵淼同学的一点思路。之前没看到这个作业
         }
 
-        /// <summary>
-        /// 查找质数
-        /// </summary>
-        /// <param name="key"></param>
-        private static void findPrimeNumber(int key)
-        {
-            for (int i = 3; i < key; i++)
-            {
-                if (isPrime(i))
-                {
-                    Console.WriteLine(i);
-                }
-            }
 
-        }
         /// <summary>
         /// i是否是质数
         /// </summary>
         /// <param name="i"></param>
         /// <returns></returns>
-        public static bool isPrime(int number)
+        public static int IsPrime(int number)
         {
-            string strResult = "";  // 存储输出的结果
-            for (int i = 2; i < 101; i++)
+            bool isprime; //表示是否为素数
+            for (int i = 1; i < number; i++)
             {
-                bool isPrimeNUmber = true;  // 先默认每一个数都是质数
-                                            // 每个数除以它之前的所有数
-                for (int j = 2; j < i - 1; j++)
+                isprime = true;//假设当前的i为素数
+                for (int j = 2; j < i; j++)
                 {
-                    // 取余的结果为 0 ，说明能被整除，即不是质数
                     if (i % j == 0)
                     {
-                        isPrimeNUmber = false;
-                        return false;
-                    }
-                    return false;
+                        isprime = false;
+                    }//else nothing
                 }
-                return false;
-                // 如果是质数，则记录到结果中
-                
+                if (isprime)
+                {
+                    Console.WriteLine(i.ToString());
+                }//else nothing
             }
-            return false;
-            Console.Write("1-100之内的质数有：" + strResult);
+            return number;
         }
 
         /// <summary>

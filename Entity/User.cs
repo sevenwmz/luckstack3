@@ -96,8 +96,6 @@ namespace Entity
                 Console.WriteLine($"传入数据库");
                 Password = value;
             }
-
-
         }
 
         #endregion
