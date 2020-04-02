@@ -53,7 +53,7 @@ namespace Entity
 
             }
             //set { _userName = value == "admin" ? "系统管理员" : value; }
-            get 
+            get
             {
                 if (_userName == "admin")
                 {
@@ -74,22 +74,27 @@ namespace Entity
         {
             set
             {
-                string regex = @"[\w~!@#$%^&*()_+]";
-                bool Ismatch = Regex.IsMatch(value, regex);
+                //string regex = @"[\w~!@#$%^&*()_+]";
+                //bool Ismatch = Regex.IsMatch(value, regex);
+                string whitelist =
+                    "0123456789QWERTYUIOPLKJHGFDSAZXC" +
+                    "VBNMqwertyuioplkjhgfdsazxcvbnm" +
+                    "~!@#$%^&*()_+";
                 if (value.Length < 6)
                 {
                     Console.WriteLine("密码长度不能小于6位数");
                     return;
                 }
-                else if (Ismatch)
+                for (int i = 0; i < value.Length; i++)
                 {
-                    Console.WriteLine($"传入数据库");
+                    if (!whitelist.Contains(value[i]))
+                    {
+                        Console.WriteLine("密码必须由大小写英语单词、数字和特殊符号（~!@#$%^&*()_+）组成");
+                        return;
+                    }//else nothing
                 }
-                else
-                {
-                    Console.WriteLine("密码必须由大小写英语单词、数字和特殊符号（~!@#$%^&*()_+）组成");
-
-                }
+                Console.WriteLine($"传入数据库");
+                Password = value;
             }
 
 

@@ -36,6 +36,7 @@ namespace EntityTest
             Assert.IsFalse(node3.IsHead);
             Assert.IsFalse(node3.IsTail);
         }
+
         [Test]
         public void InsertAffterTest()
         {
@@ -69,6 +70,7 @@ namespace EntityTest
             Assert.IsNotNull(node9.Previous);
             Assert.IsNull(node9.Next);
         }
+
         [Test]
         public void InsertBeforeTest()
         {
@@ -96,6 +98,7 @@ namespace EntityTest
             Assert.AreEqual(node8.Previous, node3);
             Assert.IsNotNull(node8.Next);
         }
+
         [Test]
         public void DeleteHeadTest()
         {
@@ -120,6 +123,7 @@ namespace EntityTest
             Assert.IsNull(node4.Previous);
             Assert.IsNull(node4.Next);
         }
+
         [Test]
         public void DeleteTailTest()
         {
@@ -145,6 +149,7 @@ namespace EntityTest
             Assert.IsNull(node1.Previous);
             Assert.IsNull(node1.Next);
         }
+
         [Test]
         public void DeleteTest()
         {
@@ -182,6 +187,7 @@ namespace EntityTest
             Assert.AreEqual(node4.Next, null);
             Assert.AreEqual(node4.Previous, null);
         }
+
         [Test]
         public void SwapTest()
         {
