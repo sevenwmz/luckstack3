@@ -6,7 +6,7 @@ namespace EntityTest
 {
     public class DoubleLinkNode
     {
-        HomeWork.DoubleLinkNode node1, node2, node3, node4, node5, node6, node7, node8, node9;
+        HomeWork.DoubleLinkNode node1, node2, node3, node4, node5;
         [SetUp]
         public void Setup()
         {
@@ -15,10 +15,7 @@ namespace EntityTest
             node3 = new HomeWork.DoubleLinkNode();
             node4 = new HomeWork.DoubleLinkNode();
             node5 = new HomeWork.DoubleLinkNode();
-            node6 = new HomeWork.DoubleLinkNode();
-            node7 = new HomeWork.DoubleLinkNode();
-            node8 = new HomeWork.DoubleLinkNode();
-            node9 = new HomeWork.DoubleLinkNode();
+
 
             node2.InsertAffter(node1);
             node3.InsertAffter(node2);
@@ -40,35 +37,30 @@ namespace EntityTest
         [Test]
         public void InsertAffterTest()
         {
-            node5.InsertAffter(node1);//1 5 2 3 4
+            node5.InsertAffter(node1);//1 2 3 4 5
             Assert.AreEqual(node1.Next, node5);
             Assert.AreEqual(node5.Previous, node1);
             Assert.AreEqual(node5.Next, node2);
             Assert.AreEqual(node2.Previous, node5);
 
-            node6.InsertAffter(node3);//1 5 2 3 6 4
-            Assert.AreEqual(node3.Next, node6);
-            Assert.AreEqual(node4.Previous, node6);
-            Assert.AreEqual(node6.Next, node4);
-            Assert.AreEqual(node4.Previous, node6);
+            //1 4 3 2 5
+            node1.InsertAffter(node5);
+            Assert.AreEqual(node1.Next, null);
+            Assert.AreEqual(node5.Next, node1);
+            Assert.AreEqual(node1.Previous, node5);
+            //node2.InsertAffter(node3);
+            //Assert.AreEqual(node1.Next, node4);
+            //Assert.AreEqual(node4.Next, node3);
+            //Assert.AreEqual(node3.Next, node2);
+            //Assert.AreEqual(node2.Next, node5);
 
-            node7.InsertAffter(node6);//1 5 2 3 6 7 4
-            Assert.AreEqual(node6.Next, node7);
-            Assert.AreEqual(node4.Previous, node7);
-            Assert.AreEqual(node7.Next, node4);
-            Assert.AreEqual(node4.Previous, node7);
+            //Assert.AreEqual(node5.Previous, node2);
+            //Assert.AreEqual(node2.Previous, node3);
+            //Assert.AreEqual(node3.Previous, node4);
+            //Assert.AreEqual(node4.Previous, node1);
 
-            node8.InsertAffter(node1);//1 8 5 2 3 6 7 4
-            Assert.AreEqual(node8.Next, node5);
-            Assert.IsNull(node1.Previous);
-            Assert.AreEqual(node8.Previous, node1);
-            Assert.IsNotNull(node8.Next);
 
-            node9.InsertAffter(node4);//8 1 5 2 3 6 7 4 9
-            Assert.AreEqual(node4.Next, node9);
-            Assert.AreEqual(node9.Previous, node4);
-            Assert.IsNotNull(node9.Previous);
-            Assert.IsNull(node9.Next);
+
         }
 
         [Test]
@@ -80,23 +72,7 @@ namespace EntityTest
             Assert.AreEqual(node5.Previous, node2);
             Assert.AreEqual(node2.Next, node5);
 
-            node6.InsertBefore(node5);//1 2 6 5 3 4
-            Assert.AreEqual(node6.Next, node5);
-            Assert.AreEqual(node5.Previous, node6);
-            Assert.AreEqual(node6.Previous, node2);
-            Assert.AreEqual(node2.Next, node6);
-
-            node7.InsertBefore(node1);//7 1 2 6 5 3 4
-            Assert.AreEqual(node7.Next, node1);
-            Assert.AreEqual(node1.Previous, node7);
-            Assert.IsNull(node7.Previous);
-            Assert.IsNotNull(node7.Next);
-
-            node8.InsertBefore(node4);//7 1 2 6 5 3 8 4
-            Assert.AreEqual(node8.Next, node4);
-            Assert.AreEqual(node4.Previous, node8);
-            Assert.AreEqual(node8.Previous, node3);
-            Assert.IsNotNull(node8.Next);
+    
         }
 
         [Test]
@@ -161,27 +137,6 @@ namespace EntityTest
             Assert.AreEqual(node1.Next, node4);
             Assert.AreEqual(node4.Previous, node1);
 
-            node6.InsertAffter(node1);//1 6 4
-            Assert.AreEqual(node1.Next, node6);
-            Assert.AreEqual(node6.Previous, node1);
-            Assert.AreEqual(node4.Previous, node6);
-
-            node1.Delete();//6 4
-            Assert.AreEqual(node6.Next, node4);
-            Assert.AreEqual(node4.Previous, node6);
-
-            node7.InsertBefore(node6);//7 6 4
-            Assert.AreEqual(node7.Next, node6);
-            Assert.AreEqual(node6.Previous, node7);
-            Assert.IsNull(node7.Previous);
-
-            node7.Delete();//6 4
-            Assert.AreEqual(node6.Next, node4);
-            Assert.AreEqual(node4.Previous, node6);
-
-            node6.Delete();// 4
-            Assert.IsNull(node4.Next);
-            Assert.IsNull(node4.Previous);
 
             node4.Delete();//只有一个的时候不能被删除
             Assert.AreEqual(node4.Next, null);
