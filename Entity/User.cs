@@ -40,24 +40,28 @@ namespace Entity
         {//设计一个适用的机制，能确保用户（User）的昵称（Name）不能含有admin、17bang、管理员等敏感词。
             set
             {
-                if ("admin" == value)
+                string[] blacklist = new string[] { "admin", "17bang" };
+                for (int i = 0; i < blacklist.Length; i++)
                 {
-                    value = "系统管理员";
-                    Console.WriteLine("我经过这里了");
-                    return;
-                }
-                if (value.IndexOf("admin") == -1 && value.IndexOf("17bang") == -1)
-                {
-                    Console.WriteLine("传入数据库");
-                }
-                else
-                {
-                    Console.WriteLine("请不要输入带有特殊字符命令");
+                    if (value.Contains(blacklist[i]))
+                    {
+                        Console.WriteLine("请不要输入带有特殊字符命令");
+                        return;
+                    }
                 }
                 _userName = value;
+
             }
             //set { _userName = value == "admin" ? "系统管理员" : value; }
-            get => _userName;
+            get 
+            {
+                if (_userName == "admin")
+                {
+                    string output = "系统管理员";
+                    return output;
+                }
+                return _userName;
+            }
         }
 
         #endregion

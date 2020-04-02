@@ -185,7 +185,14 @@ namespace EntityTest
         [Test]
         public void SwapTest()
         {
-            node2.Swap(node2, node3);// 1 3 2 4
+            //这里先痛批飞哥，1 2 3 4，把3插入到1后面，这个本质是交换，把3交换到2前面。
+            //飞-脚-头-墙！！！
+
+            //这个存在着重大的语病，交换的本质是已经存在的节点交换，如果要完成那个方法
+            //我就需要考虑把Swap和insertAfter揉在一起了。
+            node5.InsertAffter(node4);
+
+            node2.Swap( node3);// 1 3 2 4 5
             Assert.AreEqual(node2.Next, node4);
             Assert.AreEqual(node4.Previous, node2);
             Assert.AreEqual(node3.Next, node2);
@@ -194,7 +201,30 @@ namespace EntityTest
             Assert.AreEqual(node3.Previous, node1);
             Assert.AreEqual(node1.Previous, null);
             Assert.AreEqual(node1.Next, node3);
+
+            node3.Swap(node4);// 1 4 2 3 5
+            Assert.AreEqual(node1.Next, node4);
+            Assert.AreEqual(node4.Previous, node1);
+            Assert.AreEqual(node3.Next, node5);
+            Assert.AreEqual(node5.Previous, node3);
+            Assert.AreEqual(node2.Next, node3);
+            Assert.AreEqual(node3.Previous, node2);
+            Assert.AreEqual(node2.Previous, node4);
+            Assert.AreEqual(node2.Next, node3);
         }
+
+        [Test]
+        public void SwapHeadAndTailText()
+        {
+            node1.Swap(node4);// 2 3 4 1
+            Assert.IsNull(node5.Previous);
+            Assert.IsNull(node1.Next);
+            Assert.AreEqual(node5.Next, node3);
+            Assert.AreEqual(node3.Previous, node5);
+            Assert.AreEqual(node1.Previous, node4);
+            Assert.AreEqual(node4.Next, node1);
+        }
+
         [Test]
         public void FindMaxTest()
         {
