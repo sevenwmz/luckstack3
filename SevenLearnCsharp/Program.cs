@@ -289,18 +289,20 @@ namespace SevenLearnCsharp
             //User wpz1 = new User("admin", "~qw---eqwe");
             //User wpz2 = new User("admin", "!qweqwe");
             //User wpz3 = new User("admin", "@qwe123");
+
+
+            //实现GetCount(string container, string target)方法，可以统计出container中有多少个target
+
+            string text = "天今天，是昨天的明天，是明天的前一天", find = "天";
+            GetCount(text, find);
+
+            string text1 = "天今天，是昨天的明天，是明天的前一天", find1 = "有";
+            GetCount(text1, find1);
+
             #endregion
 
             #region Practies area.. Here is not homeword,just selftry.
 
-
-            //int age = 23;
-            ////string wpz = age.ToString();
-            //Console.WriteLine(new Student());
-
-            //dynamic o = "986";
-            //Console.WriteLine(o.GetType());
-            //Console.WriteLine(o - 88);
 
             //Self wang = new Self();
             //Type typeinfo = typeof(Self);
@@ -324,9 +326,26 @@ namespace SevenLearnCsharp
             //object wpz = new Teacher();
             //NowTry.Praise(wpz);
 
-            HistoryHomeWork.isPrime(100);
+
+
             #endregion
 
+
         }
+
+        public static int GetCount(string container, string target)
+        {
+            int count = 0;
+            int lenght = target.Length;
+            while (container.Contains(target))
+            {
+                count++;
+                container = container.Remove(0, container.IndexOf(target)+lenght);
+            }
+            return count;
+        }
+
+
+
     }
 }
