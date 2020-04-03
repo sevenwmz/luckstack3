@@ -3,6 +3,8 @@ using Entity;
 using HomeWork;
 using DontWatch;
 using System.Reflection;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace SevenLearnCsharp
 {
@@ -331,16 +333,28 @@ namespace SevenLearnCsharp
             //} 
 
             //string name = student == null ? "无姓名" : student.name;
-            student student =null;
+            //student student =null;
 
-            Console.WriteLine(student?.IsMale);
-            bool? gender = student?.IsMale;
-            gender = false;
+            //Console.WriteLine(student?.IsMale);
+            //bool? gender = student?.IsMale;
+            //gender = false;
+
+            //int[] vs = new int[] { 16, 23, 25, 22 };
+            //List<int> ages = new List<int> {16,23,25,22 };
+
+            //IEnumerator<int> enumerator = ages.GetEnumerator();
+            //while (enumerator.MoveNext())
+            //{
+            //    Console.WriteLine(enumerator.Current);
+            //}
+
+
+        
             #endregion
 
         }
-
-
+        
 
     }
+
 }

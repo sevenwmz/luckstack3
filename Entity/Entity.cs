@@ -4,20 +4,14 @@ using System.Text;
 
 namespace Entity
 {
-    public class Entity
+    public class Entity<T> 
     {
+        private T Id { get; }
 
-        #region Constructer
-        public Entity(int number)
+        public Entity(T number)
         {
             Id = number;
         }
-
-        #endregion
-
-        #region Filed and properties
-        public int Id { get; }
-        #endregion
 
     }
 }
