@@ -46,7 +46,7 @@ namespace HomeWork
         /// <param name="dateTime"></param>
         private static void getWeekBody(DateTime dateTime)
         {
-            int i = 1,year = dateTime.Year;
+            int i = 1, year = dateTime.Year;
             while (dateTime.Year == year)
             {
                 Console.WriteLine($"第{i}周：{dateTime.ToString("yyyy年MM月dd日")} - {dateTime.AddDays(6).ToString("yyyy年MM月dd日")}\n");
@@ -66,6 +66,25 @@ namespace HomeWork
             }
             return count;
         }
+
+        public static string MimicJoin(string insert, string[] array)
+        {
+            int i = 0;
+            string result=string.Empty;
+            while (i != array.Length)
+            {//1- 2- 3- 4
+                if (i==array.Length-1)
+                {//一旦使用了generic，这里就会报错，普通的运算符+=不能用于两个泛型之间。运算符重载也不对。
+                    result += array[i];
+                    return result;
+                }
+                array[i] = array[i] + insert;
+                result += array[i];
+                i++;
+            }
+            return result;
+        }
+
     }
 
 }
