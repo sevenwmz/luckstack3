@@ -21,6 +21,19 @@ namespace HomeWork
         {
             get => Next == null;
         }
+
+        public bool Max()
+        {
+            bool result = false;
+            ///具体实现以后再想先把方法调用写出来，我太难了
+            //if (this > )
+            //{
+            //    result == true;
+            //    return result;
+            //}
+            return result;
+        }
+
         //DoubleLinkNode nodeNext = node.Next;
         //node.Next = this;//3的后面是6
         //        this.Previous = node;//6前面是3
