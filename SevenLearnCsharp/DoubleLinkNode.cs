@@ -29,35 +29,7 @@ namespace HomeWork
         //        this.Next.Previous = this;//6的后面的前面是6
         public void InsertAffter(DoubleLinkNode node)
         {// 1 2 3 4 [5]   :5 = this :4 =node
-            //if (node.IsTail)
-            //{
-            //    node.Next = this;
-            //    this.Previous = node;
-            //}
-            //else  // 1 2 3 4 5
-            //{//:5 = this :1 = node
-            //    DoubleLinkNode nodeNext = node.Next;
-            //    node.Next = this;//3的后面是6
-            //    this.Previous = node;//6前面是3
-
-            //    this.Next = nodeNext;//6的后面是3的后面
-            //    this.Next.Previous = this;//6的后面的前面是6
-
-            //}
-
             DoubleLinkNode nodeNext = node.Next;
-            //DoubleLinkNode thisX = this;
-            //if (this.Next != null)//[1] 2 3 4 5[1] //记录插入数字的位置，如果它是原本存在的节点
-            //{
-            //    this.Delete();
-
-            //}
-            //else if (this.Previous != null)//记录插入数字的位置，如果它是原本存在的节点
-            //{
-            //    this.Delete();
-            //}//else nothing
-            //if (this.Next == null && this.Previous ==null)
-            //{
             if (this.Next == null && this.Previous == null)
             {
                 if (node.IsTail)
@@ -80,7 +52,6 @@ namespace HomeWork
 
             }
 
-            //}
 
         }
 

@@ -12,7 +12,7 @@ namespace EntityTest
         public void IsPrimeTest()
         {
             // 2.找到100以内的所有质数---真的质数写不出来，一步一个坎，暂时先不管。
-            //Assert.IsTrue(HistoryHomeWork.IsPrime(53),23);
+            //Assert.IsTrue(HistoryHomeWork<int>.IsPrime(53), 23);
             //Assert.IsFalse(HistoryHomeWork.IsPrime(96));
             //Assert.IsTrue(HistoryHomeWork.IsPrime(46));
             //Assert.IsFalse(HistoryHomeWork.IsPrime(-1));

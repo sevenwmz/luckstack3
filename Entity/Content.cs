@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entity
 {
-    public /*abstract */class Content : Entity
+    public class Content : Entity<int>
     {
 
         #region Constructor
@@ -84,7 +84,7 @@ namespace Entity
         /// <param name="year">输入起始年</param>
         /// <param name="mouth">输入起始月</param>
         /// <param name="day">输入起始日</param>
-        public static void FixContentTime(int year,int mouth,int day)
+        public static void FixContentTime(int year, int mouth, int day)
         {
             //我把content类设置为abstract类了，没办法有改回来了，抽象的不能反射
             Content content = new Content();

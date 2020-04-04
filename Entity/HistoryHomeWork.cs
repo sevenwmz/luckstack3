@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entity
 {
-    public class HistoryHomeWork
+    public class HistoryHomeWork<T> where T : struct, IComparable
     {
 
         #region 四大传递作业
@@ -433,12 +433,12 @@ namespace Entity
         /// </summary>
         /// <param name="array">传入一个数组</param>
         /// <returns></returns>
-        public static int FindMax(params int[] array)
+        public T FindMax(params T[] array)
         {
-            int max = 0;
+            T max = array[0];
             for (int i = 0; i < array.Length; i++)
             {
-                if (max < array[i])
+                if (max.CompareTo(array[i]) < 0)
                 {
                     max = array[i];
                 }
@@ -488,24 +488,24 @@ namespace Entity
         /// <param name="array">输入一个已经排好了的数组</param>
         /// <param name="Key">输入要查找的数字</param>
         /// <returns></returns>
-        public static int binarySeek(int[] array, int Key)
+        public static int binarySeek(T[] array, T Key)
         {
             int left = 0, right = array.Length - 1;
             while (left <= right)
             {
                 int middle = (left + right) / 2;
-                if (Key == array[middle])
+                if (Key.CompareTo(array[middle]) == 0)
                 {
                     Console.WriteLine(middle); //找到查找数字下标
                     return middle;
                 }
                 else
                 {
-                    if (array[middle] > Key)
+                    if (array[middle].CompareTo(Key) > 0)
                     {
                         right = middle - 1;
                     }
-                    else if (array[middle] < Key)
+                    else if (array[middle].CompareTo(Key) < 0)
                     {
                         left = middle + 1;
                     }
@@ -514,9 +514,7 @@ namespace Entity
             Console.WriteLine("没有这个数字");
             return -1;// 查找失败
         }
-
-
-
+        
         /// <summary>
         /// 冒泡排序，直接传递数组或者数字就可以。
         /// </summary>
@@ -539,5 +537,10 @@ namespace Entity
             }
             return array;
         }
+
+
+
+
+
     }
 }

@@ -11,8 +11,8 @@ namespace EntityTest
         [Test]
         public void MimicStaticText()
         {
-            ///5.栈的压入弹出
-            MimicStack test = new MimicStack();
+            // 5.栈的压入弹出
+            MimicStack<int> test = new MimicStack<int>();
             Assert.AreEqual(0, test.pop());
             test.push(23);
             Assert.AreEqual(23, test.pop());
