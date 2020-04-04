@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace HomeWork
 {
-    public class DoubleLinkNode
+    public class DoubleLinkNode :IEnumerable
     {
         public DoubleLinkNode Next { get; private set; }
 
@@ -142,6 +143,11 @@ namespace HomeWork
                 node.InsertBefore(thisNext);
             }
 
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
 }

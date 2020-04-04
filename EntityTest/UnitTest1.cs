@@ -31,6 +31,7 @@ namespace EntityTest
             Assert.IsFalse(node3.Max());
             Assert.IsFalse(node4.Max());
             Assert.IsTrue(node5.Max());
+
         }
 
         [Test]
