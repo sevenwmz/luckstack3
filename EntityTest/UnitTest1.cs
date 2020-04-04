@@ -22,6 +22,17 @@ namespace EntityTest
             node4.InsertAffter(node3);
         }
 
+
+        [Test]
+        public void MaxTest()
+        {
+            Assert.IsTrue(node1.Max());
+            Assert.IsFalse(node2.Max());
+            Assert.IsFalse(node3.Max());
+            Assert.IsFalse(node4.Max());
+            Assert.IsTrue(node5.Max());
+        }
+
         [Test]
         public void IsHeadAndTailTest()
         {
@@ -174,16 +185,5 @@ namespace EntityTest
             Assert.AreEqual(node2.Next, node3);
         }
 
-        [Test]
-        public void SwapHeadAndTailText()
-        {
-            node1.Swap(node4);// 2 3 4 1
-            Assert.IsNull(node5.Previous);
-            Assert.IsNull(node1.Next);
-            Assert.AreEqual(node5.Next, node3);
-            Assert.AreEqual(node3.Previous, node5);
-            Assert.AreEqual(node1.Previous, node4);
-            Assert.AreEqual(node4.Next, node1);
-        }
     }
 }
