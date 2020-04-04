@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entity
 {
-    public class Content : Entity<int>
+    public class  Content : Entity<int>
     {
 
         #region Constructor
