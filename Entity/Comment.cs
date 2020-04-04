@@ -6,9 +6,9 @@ namespace Entity
 {
     public class Comment
     {
-        public Comment()
+        public Comment(Article article)
         {
-
+            this.article = article;
         }
 
         public Article article { set; get; }
