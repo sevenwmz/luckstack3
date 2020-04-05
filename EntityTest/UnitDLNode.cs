@@ -179,14 +179,11 @@ namespace EntityTest
         [Test]
         public void SwapTest()
         {
-            //这里先痛批飞哥，1 2 3 4，把3插入到1后面，这个本质是交换，把3交换到2前面。
-            //飞-脚-头-墙！！！
 
-            //这个存在着重大的语病，交换的本质是已经存在的节点交换，如果要完成那个方法
-            //我就需要考虑把Swap和insertAfter揉在一起了。
-            node5.InsertAffter(node4);
+            node5.InsertAffter(node4);//增加一个节点可以方便交换
 
-            node2.Swap(node3);// 1 3 2 4 5
+            //1 2 3 4 5 初始数字
+            node2.Swap(node3);// 1 3 2 4 5    当前交换后的数字
             Assert.AreEqual(node2.Next, node4);
             Assert.AreEqual(node4.Previous, node2);
             Assert.AreEqual(node3.Next, node2);
@@ -196,7 +193,7 @@ namespace EntityTest
             Assert.AreEqual(node1.Previous, null);
             Assert.AreEqual(node1.Next, node3);
 
-            node3.Swap(node4);// 1 4 2 3 5
+            node3.Swap(node4);//当前交换后的数字 1 4 2 3 5  再一次测试，这个有点没必要。
             Assert.AreEqual(node1.Next, node4);
             Assert.AreEqual(node4.Previous, node1);
             Assert.AreEqual(node3.Next, node5);
@@ -206,13 +203,42 @@ namespace EntityTest
             Assert.AreEqual(node2.Previous, node4);
             Assert.AreEqual(node2.Next, node3);
 
-            node1.Swap(node5);// 5 4 2 3 1
+            node1.Swap(node5);//当前交换后的数字 5 4 2 3 1   这里是头尾交换，就不在新开一个测试项目了
             Assert.IsNull(node1.Next);
             Assert.IsNull(node5.Previous);
             Assert.AreEqual(node4.Previous, node5);
             Assert.AreEqual(node5.Next, node4);
             Assert.AreEqual(node1.Previous, node3);
             Assert.AreEqual(node3.Next, node1);
+
+            node1.Swap(node2);//当前交换后的数字 5 4 1 3 2    这里是尾部和中间交换
+            Assert.IsNull(node2.Next);
+            Assert.IsNotNull(node1.Next);
+            Assert.AreEqual(node2.Previous, node3);
+            Assert.AreEqual(node3.Next, node2);
+            Assert.AreEqual(node3.Previous, node1);
+            Assert.AreEqual(node1.Next, node3);
+            Assert.AreEqual(node4.Next, node1);
+            Assert.AreEqual(node1.Previous, node4);
+
+
+            node5.Swap(node1);//当前交换后的数字 1 4 5 3 2   这里头部和中间的交换
+            Assert.IsNull(node1.Previous);
+            Assert.IsNotNull(node5.Previous);
+            Assert.AreEqual(node5.Previous, node4);
+            Assert.AreEqual(node4.Next, node5);
+            Assert.AreEqual(node4.Previous, node1);
+            Assert.AreEqual(node1.Next, node4);
+
+            //当前交换后的数字 4 1 5 3 2   这里相邻交换，
+            //node1.Swap(node4);
+            
+            //Assert.IsNotNull(node1.Previous);
+            //Assert.IsNull(node4.Previous);
+            //Assert.AreEqual(node1.Previous, node4);
+            //Assert.AreEqual(node4.Next, node1);
+            //Assert.AreEqual(node5.Previous, node1);
+            //Assert.AreEqual(node1.Next, node5);
 
         }
 

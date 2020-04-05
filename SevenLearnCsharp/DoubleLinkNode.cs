@@ -58,9 +58,10 @@ namespace HomeWork
 
         public void InsertBefore(DoubleLinkNode node)
         {// [5] 1 2 3 4 
-            if (node.Previous!=null)
+            if (node.Previous != null)
             {
                 this.InsertAffter(node.Previous);
+                return;
             }
             this.Delete();
             this.Next = node;
@@ -102,46 +103,35 @@ namespace HomeWork
 
         public void Swap(DoubleLinkNode node)
         {//1 2 3 4  : this2 node:3
-         //1 3 2     2 3 4
-            
-            if (node.Next ==null && this.Previous ==null)//5 后面是空
+
+            if (node.IsTail && this.IsHead)//如果头尾交换
             {//1 4 2 3 5    5 4 2 3 1
                 DoubleLinkNode thisNext = this.Next;//记录下他们的旁边位置来
                 DoubleLinkNode nodePrevious = node.Previous;
+
                 this.Delete();
                 node.Delete();
                 node.InsertBefore(thisNext);
                 this.InsertAffter(nodePrevious);
+                return;
             }
-            DoubleLinkNode thisPrevious = this.Previous;//记录下他们的旁边位置来
+            if (this.IsHead)//如果头和中间的交换 // 5 4 1 3 2   这里在写相邻交换的时候有点小bug，比如第一个和第二个交换。
+            {
+                DoubleLinkNode thisHead = this.Next;
+                DoubleLinkNode nodeIsNext = node.Next;
+                this.Delete();
+                node.Delete();
+                this.InsertBefore(nodeIsNext);
+                node.InsertBefore(thisHead);
+                return;
+            }
+            DoubleLinkNode thisPrevious = this.Previous;
             DoubleLinkNode nodeNext = node.Next;
             this.Delete();
             node.Delete();
             this.InsertBefore(nodeNext);
             node.InsertAffter(thisPrevious);
 
-            //if ((!this.IsHead && !this.IsTail) && (!node.IsHead && !node.IsTail))//是中间交换
-            //{// 1 2 3 4  --- 1 3 2 4 5
-            //    DoubleLinkNode thisPrevious = this.Previous;//记录下他们的旁边位置来
-            //    DoubleLinkNode nodeNext = node.Next;
-
-            //    this.Delete();
-            //    node.Delete();
-
-            //    this.InsertBefore(nodeNext);
-            //    node.InsertAffter(thisPrevious);
-            //}
-            //else if (this.IsHead && node.IsTail)//如果头尾交换
-            //{//5 2 3 4 1
-            //    DoubleLinkNode thisNext = this.Next;//记录下他们的旁边位置来
-            //    DoubleLinkNode nodePrevious = node.Previous;
-
-            //    this.Delete();
-            //    node.Delete();
-
-            //    this.InsertAffter(nodePrevious);
-            //    node.InsertBefore(thisNext);
-            //}
 
         }
 
