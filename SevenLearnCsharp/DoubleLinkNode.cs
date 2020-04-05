@@ -41,7 +41,7 @@ namespace HomeWork
 
         //        this.Next = nodeNext;//6的后面是3的后面
         //        this.Next.Previous = this;//6的后面的前面是6
-        public void InsertAffter(DoubleLinkNode node)
+        public void InsertAfter(DoubleLinkNode node)
         {// 1 2 3 [5] 4    :5 = this :3 =node
             DoubleLinkNode nodeNext = node.Next;
             this.Delete();
@@ -60,7 +60,7 @@ namespace HomeWork
         {// [5] 1 2 3 4 
             if (node.Previous != null)
             {
-                this.InsertAffter(node.Previous);
+                this.InsertAfter(node.Previous);
                 return;
             }
             this.Delete();
@@ -69,36 +69,20 @@ namespace HomeWork
         }
 
         public void Delete()
-        {//1 2 3 4      
+        {
+            DoubleLinkNode oldPrevious = Previous;
+            DoubleLinkNode oldNext = Next;
 
-            if (this.Next == null && this.Previous == null)
+            if (oldPrevious != null)
             {
-                return;
-            }
-            if (this.IsHead & this.IsTail)
+                oldPrevious.Next = oldNext;
+            }//else nothing
+            if (oldNext != null)
             {
-                Console.WriteLine("寻思啥呢，再删没了");
-                return;
-            }
+                oldNext.Previous = oldPrevious;
+            }//else nothing
 
-            if (this.IsHead)
-            {
-                this.Next.Previous = null;//1后面的前面等于空
-                this.Next = null;
-            }
-            else if (this.IsTail)
-            {
-                this.Previous.Next = null;//4前面的后面等于空
-                this.Previous = null;
-            }
-            else
-            {
-                this.Previous.Next = this.Next;//3前面的后面 = 3后面
-                this.Next.Previous = this.Previous;//3后面的前面 = 3前面
-                this.Next = null;
-                this.Previous = null;
-            }
-
+            Previous = Next = null;
         }
 
         public void Swap(DoubleLinkNode node)
@@ -112,7 +96,7 @@ namespace HomeWork
                 this.Delete();
                 node.Delete();
                 node.InsertBefore(thisNext);
-                this.InsertAffter(nodePrevious);
+                this.InsertAfter(nodePrevious);
                 return;
             }
             if (this.IsHead)//如果头和中间的交换 // 5 4 1 3 2   这里在写相邻交换的时候有点小bug，比如第一个和第二个交换。
@@ -130,7 +114,7 @@ namespace HomeWork
             this.Delete();
             node.Delete();
             this.InsertBefore(nodeNext);
-            node.InsertAffter(thisPrevious);
+            node.InsertAfter(thisPrevious);
 
 
         }
