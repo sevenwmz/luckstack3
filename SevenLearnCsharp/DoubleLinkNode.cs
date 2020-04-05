@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HomeWork
 {
-    public class DoubleLinkNode :IEnumerable
+    public class DoubleLinkNode
     {
         public DoubleLinkNode Next { get; private set; }
 
@@ -42,54 +42,38 @@ namespace HomeWork
         //        this.Next = nodeNext;//6的后面是3的后面
         //        this.Next.Previous = this;//6的后面的前面是6
         public void InsertAffter(DoubleLinkNode node)
-        {// 1 2 3 4 [5]   :5 = this :4 =node
+        {// 1 2 3 [5] 4    :5 = this :3 =node
             DoubleLinkNode nodeNext = node.Next;
-            if (this.Next == null && this.Previous == null)
+            this.Delete();
+
+            node.Next = this;
+            this.Previous = node;
+            this.Next = nodeNext;
+            if (nodeNext != null)
             {
-                if (node.IsTail)
-                {
-                    node.Next = this;
-                    this.Previous = node;
-                }
-                else  // 1 2 3 4 5
-                {//:5 = this :1 = node
-                 //DoubleLinkNode nodeNext = node.Next;
-                    node.Next = this;//3的后面是6
-                    this.Previous = node;//6前面是3
-
-                    this.Next = nodeNext;//6的后面是3的后面
-                    this.Next.Previous = this;//6的后面的前面是6
-                }
+                nodeNext.Previous = this;
+                return;
             }
-            else if (this.Next != null || this.Previous != null)
-            {
-
-            }
-
-
         }
 
         public void InsertBefore(DoubleLinkNode node)
-        {
-            if (node.IsHead)
+        {// [5] 1 2 3 4 
+            if (node.Previous!=null)
             {
-                this.Next = node;
-                node.Previous = this;
+                this.InsertAffter(node.Previous);
             }
-            else
-            {
-                DoubleLinkNode nodePrevious = node.Previous;
-                this.Next = node;
-                node.Previous = this;
-
-                this.Previous = nodePrevious;
-                this.Previous.Next = this;
-            }
+            this.Delete();
+            this.Next = node;
+            node.Previous = this;
         }
 
         public void Delete()
         {//1 2 3 4      
 
+            if (this.Next == null && this.Previous == null)
+            {
+                return;
+            }
             if (this.IsHead & this.IsTail)
             {
                 Console.WriteLine("寻思啥呢，再删没了");
@@ -118,36 +102,49 @@ namespace HomeWork
 
         public void Swap(DoubleLinkNode node)
         {//1 2 3 4  : this2 node:3
-            // 1 3 2     2 3 4
-
-            if ((!this.IsHead && !this.IsTail) && (!node.IsHead && !node.IsTail))//是中间交换
-            {// 1 2 3 4  --- 1 3 2 4 5
-                DoubleLinkNode thisPrevious = this.Previous;//记录下他们的旁边位置来
-                DoubleLinkNode nodeNext = node.Next;
-
-                this.Delete();
-                node.Delete();
-
-                this.InsertBefore(nodeNext);
-                node.InsertAffter(thisPrevious);
-            }
-            else if (this.IsHead && node.IsTail)//如果头尾交换
-            {//5 2 3 4 1
+         //1 3 2     2 3 4
+            
+            if (node.Next ==null && this.Previous ==null)//5 后面是空
+            {//1 4 2 3 5    5 4 2 3 1
                 DoubleLinkNode thisNext = this.Next;//记录下他们的旁边位置来
                 DoubleLinkNode nodePrevious = node.Previous;
-
                 this.Delete();
                 node.Delete();
-
-                this.InsertAffter(nodePrevious);
                 node.InsertBefore(thisNext);
+                this.InsertAffter(nodePrevious);
             }
+            DoubleLinkNode thisPrevious = this.Previous;//记录下他们的旁边位置来
+            DoubleLinkNode nodeNext = node.Next;
+            this.Delete();
+            node.Delete();
+            this.InsertBefore(nodeNext);
+            node.InsertAffter(thisPrevious);
+
+            //if ((!this.IsHead && !this.IsTail) && (!node.IsHead && !node.IsTail))//是中间交换
+            //{// 1 2 3 4  --- 1 3 2 4 5
+            //    DoubleLinkNode thisPrevious = this.Previous;//记录下他们的旁边位置来
+            //    DoubleLinkNode nodeNext = node.Next;
+
+            //    this.Delete();
+            //    node.Delete();
+
+            //    this.InsertBefore(nodeNext);
+            //    node.InsertAffter(thisPrevious);
+            //}
+            //else if (this.IsHead && node.IsTail)//如果头尾交换
+            //{//5 2 3 4 1
+            //    DoubleLinkNode thisNext = this.Next;//记录下他们的旁边位置来
+            //    DoubleLinkNode nodePrevious = node.Previous;
+
+            //    this.Delete();
+            //    node.Delete();
+
+            //    this.InsertAffter(nodePrevious);
+            //    node.InsertBefore(thisNext);
+            //}
 
         }
 
-        public IEnumerator GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

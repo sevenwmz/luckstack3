@@ -49,28 +49,49 @@ namespace EntityTest
         [Test]
         public void InsertAffterTest()
         {
-            node5.InsertAffter(node1);//1 2 3 4 5
+            //这里是一个新节点5
+            node5.InsertAffter(node1);//1 5 2 3 4 
             Assert.AreEqual(node1.Next, node5);
-            Assert.AreEqual(node5.Previous, node1);
-            Assert.AreEqual(node5.Next, node2);
+
             Assert.AreEqual(node2.Previous, node5);
 
-            //1 4 3 2 5
+            Assert.AreEqual(node5.Previous, node1);
+            Assert.AreEqual(node5.Next, node2);
+
+            //5 1 2 3 4 
             node1.InsertAffter(node5);
-            Assert.AreEqual(node1.Next, null);
-            Assert.AreEqual(node5.Next, node1);
+            Assert.AreEqual(node1.Next, node2);
             Assert.AreEqual(node1.Previous, node5);
-            //node2.InsertAffter(node3);
-            //Assert.AreEqual(node1.Next, node4);
-            //Assert.AreEqual(node4.Next, node3);
-            //Assert.AreEqual(node3.Next, node2);
-            //Assert.AreEqual(node2.Next, node5);
 
-            //Assert.AreEqual(node5.Previous, node2);
-            //Assert.AreEqual(node2.Previous, node3);
-            //Assert.AreEqual(node3.Previous, node4);
-            //Assert.AreEqual(node4.Previous, node1);
+            Assert.AreEqual(node2.Previous, node1);
 
+            Assert.IsNull(node4.Next);
+
+            Assert.AreEqual(node5.Next, node1);
+            Assert.IsNull(node5.Previous);
+
+
+            node2.InsertAffter(node3);//5 1 3 2 4 
+            Assert.AreEqual(node1.Next, node3);
+
+            Assert.AreEqual(node2.Next, node4);
+            Assert.AreEqual(node2.Previous,node3);
+
+            Assert.AreEqual(node3.Next, node2);
+            Assert.AreEqual(node3.Previous, node1);
+
+            Assert.AreEqual(node4.Previous, node2);
+            Assert.IsNull(node4.Next);
+
+
+
+            node5.InsertAffter(node4);//1 3 2 4 5 
+            Assert.IsNull(node1.Previous);
+
+            Assert.AreEqual(node4.Next, node5);
+
+            Assert.AreEqual(node5.Previous, node4);
+            Assert.IsNull(node5.Next);
 
 
         }
@@ -84,7 +105,7 @@ namespace EntityTest
             Assert.AreEqual(node5.Previous, node2);
             Assert.AreEqual(node2.Next, node5);
 
-    
+
         }
 
         [Test]
@@ -184,6 +205,15 @@ namespace EntityTest
             Assert.AreEqual(node3.Previous, node2);
             Assert.AreEqual(node2.Previous, node4);
             Assert.AreEqual(node2.Next, node3);
+
+            node1.Swap(node5);// 5 4 2 3 1
+            Assert.IsNull(node1.Next);
+            Assert.IsNull(node5.Previous);
+            Assert.AreEqual(node4.Previous, node5);
+            Assert.AreEqual(node5.Next, node4);
+            Assert.AreEqual(node1.Previous, node3);
+            Assert.AreEqual(node3.Next, node1);
+
         }
 
     }
