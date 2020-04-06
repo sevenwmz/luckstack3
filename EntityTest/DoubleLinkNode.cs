@@ -343,28 +343,6 @@ namespace EntityTest
         }
 
         /// <summary>
-        /// SwapTest相邻交换
-        /// </summary>
-        [Test]
-        public void SwapNeighborTest()
-        {
-            //交换前的数字 1 2 3 4 5 
-            node2.Swap(node3);
-            //交换后的数字 1 [3] [2] 4 5 
-
-            Assert.AreEqual(node1.Next, node3);
-            Assert.AreEqual(node3.Previous, node1);
-
-            Assert.AreEqual(node3.Next, node2);
-            Assert.AreEqual(node3.Previous, node1);
-
-            Assert.AreEqual(node2.Next, node4);
-            Assert.AreEqual(node2.Previous, node3);
-            
-            Assert.AreEqual(node4.Previous, node2);
-        }
-
-        /// <summary>
         /// SwapTest头尾交换
         /// </summary>
         [Test]

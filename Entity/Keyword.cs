@@ -12,6 +12,6 @@ namespace Entity
         }
 
         IList<Article> articles { set; get; }
-
+        public string KeyWord { set; get; }
     }
 }

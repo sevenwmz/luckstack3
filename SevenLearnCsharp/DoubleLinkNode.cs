@@ -87,36 +87,30 @@ namespace HomeWork
 
         public void Swap(DoubleLinkNode node)
         {//1 2 3 4  : this2 node:3
-
-            if (node.IsTail && this.IsHead)//如果头尾交换
-            {//1 4 2 3 5    5 4 2 3 1
-                DoubleLinkNode thisNext = this.Next;//记录下他们的旁边位置来
-                DoubleLinkNode nodePrevious = node.Previous;
-
+            DoubleLinkNode thisNext = this.Next;
+            DoubleLinkNode thisPrevious = this.Previous;
+            DoubleLinkNode nodeNext = node.Next;
+            DoubleLinkNode nodePrevious = node.Previous;
+            if (this.IsHead && node.IsTail)
+            {
                 this.Delete();
                 node.Delete();
                 node.InsertBefore(thisNext);
                 this.InsertAfter(nodePrevious);
                 return;
             }
-            if (this.IsHead)//如果头和中间的交换 // 5 4 1 3 2   这里在写相邻交换的时候有点小bug，比如第一个和第二个交换。
+            if (this.IsHead)
             {
-                DoubleLinkNode thisHead = this.Next;
-                DoubleLinkNode nodeIsNext = node.Next;
                 this.Delete();
                 node.Delete();
-                this.InsertBefore(nodeIsNext);
-                node.InsertBefore(thisHead);
+                node.InsertBefore(thisNext);
+                this.InsertBefore(nodeNext);
                 return;
             }
-            DoubleLinkNode thisPrevious = this.Previous;
-            DoubleLinkNode nodeNext = node.Next;
             this.Delete();
             node.Delete();
             this.InsertBefore(nodeNext);
             node.InsertAfter(thisPrevious);
-
-
         }
 
 

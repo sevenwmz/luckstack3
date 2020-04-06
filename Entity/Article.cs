@@ -25,7 +25,8 @@ namespace Entity
 
         #region Field and properties
         private string _title;
-        private User voter;
+        private User voter { set; get; }
+
         #endregion
 
         #region Function

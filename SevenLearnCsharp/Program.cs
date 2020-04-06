@@ -5,6 +5,7 @@ using DontWatch;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 
 namespace SevenLearnCsharp
 {
@@ -354,8 +355,40 @@ namespace SevenLearnCsharp
 
             #endregion
 
+            Teacher fg = new Teacher { Name = "大飞哥" };
+            Teacher fish = new Teacher { Name = "小鱼" };
+            Teacher waiting = new Teacher { Name = "诚聘", Age = 0 };
+            IEnumerable<Teacher> teachers = new List<Teacher> { fg, fish, waiting };
+
+            Major csharp = new Major { Name = "C#", Teacher = fg };
+            Major SQL = new Major { Name = "SQL", Teacher = fg };
+            Major Javascript = new Major { Name = "Javascript", Teacher = fg };
+            Major UI = new Major { Name = "UI", Teacher = fish };
+            IEnumerable<Major> majors = new List<Major> { csharp, SQL, Javascript, UI };
+
+            IList<Student> students = new List<Student>
+            {
+                new Student{Score = 98, Name = "屿", Majors=new List<Major>{csharp,SQL } },
+                new Student{Score = 86, Name = "行人", Majors=new List<Major>{Javascript, csharp, SQL} },
+                new Student{Score = 78, Name = "王平", Majors=new List<Major>{csharp}},
+                new Student{Score = 89, Name = "王枫", Majors=new List<Major>{Javascript, csharp, SQL,UI}},
+                new Student{Score = 98, Name = "蒋宜蒙", Majors=new List<Major>{Javascript, csharp}},
+            };
+
+            var x = from s in majors
+                    group s by s.Teacher into gm
+                    select new
+                    {
+                        major = gm.Key.Name,
+                        count = gm.Count()
+                    };
+            foreach (var item in students)
+            {
+                Console.WriteLine(item.Name);
+            }
+
         }
-        
+
 
     }
 
