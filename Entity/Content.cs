@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entity
 {
-    public class  Content : Entity<int>
+    public class Content : Entity<int>
     {
 
         #region Constructor
@@ -32,25 +32,32 @@ namespace Entity
         private DateTime _createTime { get; }
         public DateTime PublishTime
         {
-            get { return _createTime; }
+            //get { return _createTime; }
+            //set
+            //{
+
+            //}
+            get; set;
         }
 
 
         //Author
         public User Author { set; get; }
 
-        internal string[] Comments { set; get; }
         public int HelpMoney { set; get; }
 
 
         //keywords
-        internal string[] KeyWords { set; get; }
 
         //article name
-        internal string Name { set; get; }
+        public string Body { set; get; }
 
         //Summary
-        internal string Summary { set; get; }
+        public string Summary { set; get; }
+
+        // Title
+        public string Title { set; get; }
+
         #endregion
 
         #region function 
@@ -73,6 +80,11 @@ namespace Entity
         }
 
 
+        public Appraise appraise { set; get; }
+
+        public IList<Comment> comments { set; get; }
+
+        public IList<Keyword> Keywords { set; get; }
         #endregion
     }
 
@@ -97,5 +109,9 @@ namespace Entity
         }
 
     }
+
+
+
+
 
 }

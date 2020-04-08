@@ -6,6 +6,10 @@ namespace Entity
 {
     public class Comment
     {
+        public Comment()
+        {
+
+        }
         public Comment(Article article)
         {
             this.article = article;
@@ -15,5 +19,6 @@ namespace Entity
 
         public Appraise appraise { set; get; }
 
+        public string comments { set; get; }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HomeWork
 {
-    public class DoubleLinkNode
+    public class DoubleLinkNode :IEnumerable
     {
         public DoubleLinkNode Next { get; private set; }
 
@@ -113,6 +113,9 @@ namespace HomeWork
             node.InsertAfter(thisPrevious);
         }
 
-
+        public IEnumerator GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

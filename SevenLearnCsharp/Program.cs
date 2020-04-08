@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
+using Mono.CSharp.Linq;
 
 namespace SevenLearnCsharp
 {
@@ -13,6 +14,120 @@ namespace SevenLearnCsharp
     {
         static void Main(string[] args)
         {
+            #region C#   http://17bang.ren/Article/520  C#进阶：Linq-1：where/order/group/select
+
+            User dfg = new User("飞哥", "123456");
+            User xiaoyu = new User("小鱼", "123456");
+            IEnumerable<User> users = new List<User> { dfg, xiaoyu };
+
+
+            Keyword sql = new Keyword { Name = "SQL" };
+            Keyword csharp = new Keyword { Name = "C#" };
+            Keyword linq = new Keyword { Name = "linq" };
+            Keyword net = new Keyword { Name = "net" };
+            Keyword ui = new Keyword { Name = "ui" };
+            Keyword html = new Keyword { Name = "html" };
+            IEnumerable<Keyword> Keywords = new List<Keyword> { sql, csharp, linq, net, ui, html };
+
+            Comment better = new Comment() { comments = "i can't say anything" };
+            Comment normal = new Comment() { comments = "normal article" };
+            Comment soso = new Comment() { comments = "just so so" };
+            Comment cool = new Comment() { comments = "especial article" };
+            Comment nice = new Comment() { comments = "nice article" };
+            Comment great = new Comment() { comments = "great article" };
+            Comment super = new Comment() { comments = "super nice article" };
+            IEnumerable<Comment> comments = new List<Comment> { better, normal, soso, cool, nice, great, super };
+
+            Article csharpBasics = new Article("C#基础介绍")
+            {
+                Author = dfg,
+                Body = "基础简介",
+                PublishTime = new DateTime(2019, 10, 3),
+                Title = "C#",
+                Keywords = new List<Keyword> { sql, csharp, net },
+                comments = new List<Comment> { better, super, great, nice }
+            };
+            Article csharpHigh = new Article("C#高阶")
+            {
+                Author = dfg,
+                Body = "something",
+                PublishTime = new DateTime(2019, 11, 10),
+                Keywords = new List<Keyword> { linq, net },
+                comments = new List<Comment> { better, super, great }
+            };
+            Article htmlBasics = new Article("html基础介绍")
+            {
+                Author = xiaoyu,
+                Body = "html简介",
+                PublishTime = new DateTime(2018, 12, 21),
+                Keywords = new List<Keyword> { html },
+                comments = new List<Comment> { soso, cool }
+            };
+            Article uiBasics = new Article("UI介绍")
+            {
+                Author = xiaoyu,
+                Body = "UI简介",
+                PublishTime = new DateTime(2019, 5, 23),
+                Keywords = new List<Keyword> { ui },
+                comments = new List<Comment> { cool }
+            };
+            Article aboutYU = new Article("小鱼老师简介")
+            {
+                Author = xiaoyu,
+                Body = "小鱼老师简介",
+                PublishTime = new DateTime(2019, 1, 3),
+                Keywords = new List<Keyword> { html, ui },
+                comments = new List<Comment> { nice }
+            };
+            Article aboutFEI = new Article("飞哥简介")
+            {
+                Author = dfg,
+                Body = "自由飞简介",
+                PublishTime = new DateTime(2019, 1, 3),
+                Keywords = new List<Keyword> { csharp, linq, sql, net },
+                comments = new List<Comment> { better, super, great, nice, cool }
+            };
+            IEnumerable<Article> articles = new List<Article>
+            { csharpBasics, csharpHigh, htmlBasics, uiBasics,aboutYU,aboutFEI };
+
+
+
+
+            //1.找出“飞哥”发布的文章
+            var find_DFG = articles.Where(s => s.Author == dfg);
+
+            //2.找出2019年1月1日以后“小鱼”发布的文章
+            var find_YU = articles.Where(s => s.Author == xiaoyu && s.PublishTime > new DateTime(2019, 1, 1));
+
+            //3.按发布时间升序 / 降序排列显示文章
+            var ascendingArticle = articles.OrderBy(s => s.PublishTime);
+            var descendingArticle = articles.OrderByDescending(s => s.PublishTime);
+
+            //4.统计每个用户各发布了多少篇文章
+
+            var DFG_Article = articles.Where(s => s.Author == dfg).GroupBy(s => s.Author);
+            var YU_Article = articles.Where(s => s.Author == xiaoyu).GroupBy(s => s.Author);
+
+
+            //5.找出包含关键字“C#”或“.NET”的文章
+            var csharp_Keywords = articles.Where(s => s.Keywords.Contains(csharp));
+            var net_Keywords = articles.Where(s => s.Keywords.Contains(net));
+
+
+            //6.找出评论数量最多的文章
+            var articleComment = articles.OrderByDescending(a => a.comments.Count()).First();
+
+            //7.找出每个作者评论数最多的文章
+            var DFG_CommentMax = articles.Where(s => s.Author == dfg).OrderByDescending(s => s.comments.Count()).First();
+            var YU_CommentMax = articles.Where(s => s.Author == xiaoyu).OrderByDescending(s => s.comments.Count()).First();
+            Console.WriteLine();
+            #endregion
+
+
+
+
+            #region 面向对象和C#基础作业（old）
+
             #region 值的值传递和引用  之前作业完结
 
             //int a = 18;
@@ -298,6 +413,9 @@ namespace SevenLearnCsharp
 
             #endregion
 
+
+            #endregion
+
             #region Practies area.. Here is not homeword,just selftry.
 
 
@@ -354,38 +472,6 @@ namespace SevenLearnCsharp
 
 
             #endregion
-
-            Teacher fg = new Teacher { Name = "大飞哥" };
-            Teacher fish = new Teacher { Name = "小鱼" };
-            Teacher waiting = new Teacher { Name = "诚聘", Age = 0 };
-            IEnumerable<Teacher> teachers = new List<Teacher> { fg, fish, waiting };
-
-            Major csharp = new Major { Name = "C#", Teacher = fg };
-            Major SQL = new Major { Name = "SQL", Teacher = fg };
-            Major Javascript = new Major { Name = "Javascript", Teacher = fg };
-            Major UI = new Major { Name = "UI", Teacher = fish };
-            IEnumerable<Major> majors = new List<Major> { csharp, SQL, Javascript, UI };
-
-            IList<Student> students = new List<Student>
-            {
-                new Student{Score = 98, Name = "屿", Majors=new List<Major>{csharp,SQL } },
-                new Student{Score = 86, Name = "行人", Majors=new List<Major>{Javascript, csharp, SQL} },
-                new Student{Score = 78, Name = "王平", Majors=new List<Major>{csharp}},
-                new Student{Score = 89, Name = "王枫", Majors=new List<Major>{Javascript, csharp, SQL,UI}},
-                new Student{Score = 98, Name = "蒋宜蒙", Majors=new List<Major>{Javascript, csharp}},
-            };
-
-            var x = from s in majors
-                    group s by s.Teacher into gm
-                    select new
-                    {
-                        major = gm.Key.Name,
-                        count = gm.Count()
-                    };
-            foreach (var item in students)
-            {
-                Console.WriteLine(item.Name);
-            }
 
         }
 

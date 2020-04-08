@@ -52,11 +52,6 @@ namespace Entity
         }
 
 
-        public Appraise appraise { set; get; }
-
-        public IList<Comment> comments { set; get; }
-        
-        public IList<Keyword> keywords { set; get; }
 
 
         #endregion

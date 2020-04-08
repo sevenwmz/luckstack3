@@ -10,8 +10,7 @@ namespace Entity
         {
 
         }
-
+        public string Name { get; set; }
         IList<Article> articles { set; get; }
-        public string KeyWord { set; get; }
     }
 }

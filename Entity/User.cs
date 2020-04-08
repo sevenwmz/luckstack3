@@ -10,9 +10,13 @@ namespace Entity
 
 
         #region 设计一种方式，保证： 每一个User对象一定有Name和Password赋值
-        public User(string Name, string Password)
+        //public User()
+        //{
+                
+        //}
+        public User(string UserName, string Password)
         {
-            UserName = Name;
+            this.UserName = UserName;
             this.Password = Password;
         }
         #endregion
@@ -70,12 +74,11 @@ namespace Entity
         //password method
         //internal string Password { get; set; }
         #region 1.user.Password在类的外部只能改不能读( Secend Day )
+        private string _password;
         public string Password
         {
             set
             {
-                //string regex = @"[\w~!@#$%^&*()_+]";
-                //bool Ismatch = Regex.IsMatch(value, regex);
                 string whitelist =
                     "0123456789QWERTYUIOPLKJHGFDSAZXC" +
                     "VBNMqwertyuioplkjhgfdsazxcvbnm" +
@@ -94,7 +97,7 @@ namespace Entity
                     }//else nothing
                 }
                 Console.WriteLine($"传入数据库");
-                Password = value;
+                _password = value;
             }
         }
 
