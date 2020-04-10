@@ -11,7 +11,7 @@ namespace HomeWork
         ///5.2入栈Push()，可以一次性压入多个数据
         ///5.3 出 / 入栈检查，
         ///5.4如果压入的数据已超过栈的深度（最大容量），提示“栈溢出”如果已弹出所有数据，提示“栈已空”
-        private T[] stack = new T[10];
+        private static T[]  stack = new T[10];
         private int top = 0;
         public T pop()
         {

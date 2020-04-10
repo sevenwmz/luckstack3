@@ -82,7 +82,7 @@ namespace Entity
 
         public Appraise appraise { set; get; }
 
-        public IList<Comment> comments { set; get; }
+        public IList<Comment> Comments { set; get; }
 
         public IList<Keyword> Keywords { set; get; }
         #endregion

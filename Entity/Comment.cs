@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entity
 {
-    public class Comment
+    public class Comment :Content
     {
         public Comment()
         {
@@ -19,6 +19,6 @@ namespace Entity
 
         public Appraise appraise { set; get; }
 
-        public string comments { set; get; }
+        public string Comments { set; get; }
     }
 }

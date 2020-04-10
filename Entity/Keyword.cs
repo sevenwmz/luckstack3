@@ -11,6 +11,6 @@ namespace Entity
 
         }
         public string Name { get; set; }
-        IList<Article> articles { set; get; }
+        public IList<Article> articles { set; get; }
     }
 }
