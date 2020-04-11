@@ -41,6 +41,12 @@ namespace SevenLearnCsharp
         static void Main(string[] args)
         {
 
+
+            #region http://17bang.ren/Article/537    C#进阶：Linq方法   找出每个作者最近发布的一篇文章
+            LinqMethod.find_AuthorRecentlyArticle();
+
+            #endregion
+
             #region Generic Method Homework Area
             //1.声明一个委托：打水（ProvideWater），可以接受一个Person类的参数，返回值为int类型 【已完成】
             ProvideWater getWater = TakeWater;

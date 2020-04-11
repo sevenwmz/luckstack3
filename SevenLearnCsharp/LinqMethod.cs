@@ -93,6 +93,27 @@ namespace HomeWork
 
         }
 
+
+
+        /// <summary>
+        /// 找出每个作者最近发布的一篇文章
+        /// </summary>
+        public static void find_AuthorRecentlyArticle()
+        {
+            var find_AuthorRecentlyArticle = from s in articles
+                                             orderby s.PublishTime descending
+                                             group s by s.Author into gm
+                                             select new
+                                             {
+                                                 author = gm.Key,
+                                                 title = gm.First()
+                                             };
+            foreach (var item in find_AuthorRecentlyArticle)
+            {
+                Console.WriteLine(item.author.UserName + "\t" + item.title.PublishTime);
+            }
+        }
+
         /// <summary>
         /// 1.找出“飞哥”发布的文章
         /// </summary>
