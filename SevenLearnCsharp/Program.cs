@@ -40,12 +40,9 @@ namespace SevenLearnCsharp
         }
         static void Main(string[] args)
         {
+            
 
-
-            #region http://17bang.ren/Article/537    C#进阶：Linq方法   找出每个作者最近发布的一篇文章
-            LinqMethod.find_AuthorRecentlyArticle();
-
-            #endregion
+            
 
             #region Generic Method Homework Area
             //1.声明一个委托：打水（ProvideWater），可以接受一个Person类的参数，返回值为int类型 【已完成】
@@ -62,221 +59,25 @@ namespace SevenLearnCsharp
             GetWater(getWater);
             #endregion
 
+            #region http://17bang.ren/Article/537    C#进阶：Linq方法   找出每个作者最近发布的一篇文章
+            LinqMethod.find_AuthorRecentlyArticle();
+
+            #endregion
+
             #region C#   http://17bang.ren/Article/520  C#进阶：Linq-1：where/order/group/select
+            LinqMethod.Find_DFG_Article();
 
-            #region 集合的数据
-            User dfg = new User("飞哥", "123456");
-            User xiaoyu = new User("小鱼", "123456");
-            IEnumerable<User> users = new List<User> { dfg, xiaoyu };
+            LinqMethod.Find_YU_Article();
 
+            LinqMethod.AscendingAndDescendingArticle();
 
+            LinqMethod.CountArticle();
 
-            Keyword sql = new Keyword { Name = "SQL" };
-            Keyword csharp = new Keyword { Name = "C#" };
-            Keyword linq = new Keyword { Name = "linq" };
-            Keyword net = new Keyword { Name = ".NET" };
-            Keyword ui = new Keyword { Name = "ui" };
-            Keyword html = new Keyword { Name = "html" };
-            IEnumerable<Keyword> Keywords = new List<Keyword> { sql, csharp, linq, net, ui, html };
+            LinqMethod.FindSpecefiedKeyWord();
 
+            LinqMethod.MaxCommentsOfArticle();
 
-            Comment better = new Comment() { Comments = "i can't say anything" };
-            Comment normal = new Comment() { Comments = "normal article" };
-            Comment soso = new Comment() { Comments = "just so so" };
-            Comment cool = new Comment() { Comments = "especial article" };
-            Comment nice = new Comment() { Comments = "nice article" };
-            Comment great = new Comment() { Comments = "great article" };
-            Comment super = new Comment() { Comments = "super nice article" };
-            IEnumerable<Comment> Comments = new List<Comment> { better, normal, soso, cool, nice, great, super };
-
-            Article csharpBasics = new Article("C#基础介绍")
-            {
-                Author = dfg,
-                Body = "基础简介",
-                PublishTime = new DateTime(2019, 10, 3),
-                Title = "C#基础介绍",
-                Keywords = new List<Keyword> { sql, csharp, net },
-                Comments = new List<Comment> { better, super, great, nice }
-            };
-
-
-            sql.articles = new List<Article> { csharpBasics };
-            csharp.articles = new List<Article> { csharpBasics };
-            net.articles = new List<Article> { csharpBasics };
-
-
-            Article csharpHigh = new Article("C#高阶")
-            {
-                Author = dfg,
-                Body = "something",
-                PublishTime = new DateTime(2019, 11, 10),
-                Title = "C#高阶",
-                Keywords = new List<Keyword> { linq, net },
-                Comments = new List<Comment> { better, super, great }
-            };
-            linq.articles = new List<Article> { csharpHigh };
-            net.articles = new List<Article> { csharpHigh };
-
-            Article htmlBasics = new Article("html基础介绍")
-            {
-                Title = "html基础介绍",
-                Author = xiaoyu,
-                Body = "html简介",
-                PublishTime = new DateTime(2018, 12, 21),
-                Keywords = new List<Keyword> { html },
-                Comments = new List<Comment> { soso, cool }
-            };
-            html.articles = new List<Article> { htmlBasics };
-
-
-            Article uiBasics = new Article("UI介绍")
-            {
-                Title = "UI介绍",
-                Author = xiaoyu,
-                Body = "UI简介",
-                PublishTime = new DateTime(2019, 5, 23),
-                Keywords = new List<Keyword> { ui },
-                Comments = new List<Comment> { cool }
-            };
-            ui.articles = new List<Article> { uiBasics };
-
-
-            Article aboutYU = new Article("小鱼老师简介")
-            {
-                Title = "小鱼老师简介",
-                Author = xiaoyu,
-                Body = "小鱼老师de 简介",
-                PublishTime = new DateTime(2019, 1, 3),
-                Keywords = new List<Keyword> { html, ui },
-                Comments = new List<Comment> { nice }
-            };
-            html.articles = new List<Article> { aboutYU };
-            ui.articles = new List<Article> { aboutYU };
-
-
-            Article aboutFEI = new Article("飞哥简介")
-            {
-                Title = "飞哥简介",
-                Author = dfg,
-                Body = "自由飞简介",
-                PublishTime = new DateTime(2019, 1, 3),
-                Keywords = new List<Keyword> { csharp, linq, sql, net },
-                Comments = new List<Comment> { better, super, great, nice, cool }
-            };
-            csharp.articles = new List<Article> { aboutFEI };
-            linq.articles = new List<Article> { aboutFEI };
-            sql.articles = new List<Article> { aboutFEI };
-            net.articles = new List<Article> { aboutFEI };
-
-            IEnumerable<Article> articles = new List<Article>
-            { csharpBasics, csharpHigh, htmlBasics, uiBasics,aboutYU,aboutFEI };
-            #endregion
-
-            #region 1-7homework
-
-            //1.找出“飞哥”发布的文章
-            var find_DFG = from s in articles
-                           where s.Author == dfg
-                           select s;
-
-            Console.WriteLine("\t ------------saparete line--------------\t");
-            foreach (var item in find_DFG)
-            {
-                Console.WriteLine(item.Body);
-            }
-
-            //var find_DFG = articles.Where(s => s.Author == dfg);
-
-            //2.找出2019年1月1日以后“小鱼”发布的文章
-            var find_YU = from s in articles
-                          where s.Author == xiaoyu && s.PublishTime > new DateTime(2019, 1, 1)
-                          select s;
-            Console.WriteLine("\t ------------saparete line--------------\t");
-            foreach (var item in find_YU)
-            {
-                Console.WriteLine(item.Body);
-            }
-
-            //var find_YU = articles.Where(s => s.Author == xiaoyu && s.PublishTime > new DateTime(2019, 1, 1));
-
-            //3.按发布时间升序 / 降序排列显示文章
-            var ascendingArticle = from s in articles
-                                   orderby s.PublishTime
-                                   select s;
-
-            Console.WriteLine("\t ------------saparete line--------------\t");
-            foreach (var item in ascendingArticle)
-            {
-                Console.WriteLine(item.Title + "发布时间" + item.Author + item.PublishTime);
-            }
-
-            var descendingArticle = from s in articles
-                                    orderby s.PublishTime descending
-                                    select s;
-
-
-            Console.WriteLine("\t ------------saparete line--------------\t");
-            foreach (var item in descendingArticle)
-            {
-                Console.WriteLine(item.Title + "发布时间" + item.Author + item.PublishTime);
-            }
-            //var ascendingArticle = articles.OrderBy(s => s.PublishTime);
-            //var descendingArticle = articles.OrderByDescending(s => s.PublishTime);
-
-            //4.统计每个用户各发布了多少篇文章
-            var DFG_Article = from s in articles
-                              group s by s.Author;
-
-            Console.WriteLine("\t ------------saparete line--------------\t");
-            foreach (var item in DFG_Article)
-            {
-                Console.WriteLine(item.Key.UserName);
-                foreach (var i in item)
-                {
-                    Console.WriteLine(i.Title);
-                }
-            }
-
-            //var DFG_Article = articles.Where(s => s.Author == dfg).GroupBy(s => s.Author);
-            //var YU_Article = articles.Where(s => s.Author == xiaoyu).GroupBy(s => s.Author);
-
-            //5.找出包含关键字“C#”或“.NET”的文章
-            Console.WriteLine("\t ------------saparete line--------------\t");
-            var csharp_Keywords = from s in articles
-                                  where s.Keywords.Any(s => s.Name == "C#") ||
-                                  s.Keywords.Any(s => s.Name == ".NET")
-                                  select s;
-
-            foreach (var item in csharp_Keywords)
-            {
-                Console.WriteLine(item.Title);
-            }
-
-            //var csharp_Keywords = articles.Where(s => s.Keywords.Contains(csharp));
-            //var net_Keywords = articles.Where(s => s.Keywords.Contains(net));
-
-
-            //6.找出评论数量最多的文章
-
-            Console.WriteLine("\n ------------saparete line--------------\t");
-            var articleComment = (from s in articles
-                                  orderby s.Comments.Count() descending
-                                  select s).First();
-            Console.WriteLine(articleComment.Title);
-
-            //var articleComment = articles.OrderByDescending(a => a.Comments.Count()).First();
-
-            //7.找出每个作者评论数最多的文章
-            //Console.WriteLine("\n ------------saparete line--------------\t");
-            //var CommentMax = from s in articles
-            //                 group s by s.Author.UserName into gc
-            //                 select ;
-
-            //var DFG_CommentMax = articles.Where(s => s.Author == dfg).OrderByDescending(s => s.Comments.Count()).First();
-            //var YU_CommentMax = articles.Where(s => s.Author == xiaoyu).OrderByDescending(s => s.Comments.Count()).First();
-            //Console.WriteLine();
-            #endregion
-
+            LinqMethod.MaxCommentsOfAuthor();
             #endregion
 
             #region 面向对象和C#基础作业（old）

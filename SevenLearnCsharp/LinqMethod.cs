@@ -14,7 +14,7 @@ namespace HomeWork
     static class LinqMethod
     {
 
-     
+
         public static Article csharpBasics, csharpHigh, htmlBasics, uiBasics, aboutYU, aboutFEI;
         private static IEnumerable<Article> articles;
 
@@ -44,7 +44,7 @@ namespace HomeWork
                 Author = dfg,
                 Body = "基础简介",
                 PublishTime = new DateTime(2019, 10, 3),
-                Title = "C#",
+                Title = "C#基础介绍",
                 Keywords = new List<Keyword> { sql, csharp, net },
                 Comments = new List<Comment> { better, super, great, nice }
             };
@@ -53,6 +53,7 @@ namespace HomeWork
                 Author = dfg,
                 Body = "something",
                 PublishTime = new DateTime(2019, 11, 10),
+                Title = "C#高阶",
                 Keywords = new List<Keyword> { linq, net },
                 Comments = new List<Comment> { better, super, great }
             };
@@ -61,6 +62,7 @@ namespace HomeWork
                 Author = xiaoyu,
                 Body = "html简介",
                 PublishTime = new DateTime(2018, 12, 21),
+                Title = "html基础介绍",
                 Keywords = new List<Keyword> { html },
                 Comments = new List<Comment> { soso, cool }
             };
@@ -69,6 +71,7 @@ namespace HomeWork
                 Author = xiaoyu,
                 Body = "UI简介",
                 PublishTime = new DateTime(2019, 5, 23),
+                Title = "UI介绍",
                 Keywords = new List<Keyword> { ui },
                 Comments = new List<Comment> { cool }
             };
@@ -77,6 +80,7 @@ namespace HomeWork
                 Author = xiaoyu,
                 Body = "小鱼老师简介",
                 PublishTime = new DateTime(2019, 1, 3),
+                Title = "小鱼老师简介",
                 Keywords = new List<Keyword> { html, ui },
                 Comments = new List<Comment> { nice }
             };
@@ -85,6 +89,7 @@ namespace HomeWork
                 Author = dfg,
                 Body = "自由飞简介",
                 PublishTime = new DateTime(2019, 1, 3),
+                Title = "飞哥简介",
                 Keywords = new List<Keyword> { csharp, linq, sql, net },
                 Comments = new List<Comment> { better, super, great, nice, cool }
             };
@@ -117,8 +122,8 @@ namespace HomeWork
         /// <summary>
         /// 1.找出“飞哥”发布的文章
         /// </summary>
-        public static void Find_DFG_Article() 
-        { 
+        public static void Find_DFG_Article()
+        {
             var find_DFG = from s in articles
                            where s.Author == dfg
                            select s;
@@ -183,7 +188,7 @@ namespace HomeWork
         public static void CountArticle()
         {
             var user_Article = from s in articles
-                              group s by s.Author;
+                               group s by s.Author;
 
             Console.WriteLine("\t ------------saparete line--------------\t");
             foreach (var item in user_Article)
@@ -236,19 +241,26 @@ namespace HomeWork
         /// </summary>
         public static void MaxCommentsOfAuthor()
         {
-            //这个没写出来
+            Console.WriteLine("\n ------------saparete line--------------\t");
+            var CommentMax = from s in articles
+                             orderby s.Comments.Count() descending
+                             group s by s.Author into gm
+                             select new
+                             {
+                                 Author = gm.Key,
+                                 MaxComments = gm.First()
+                             };
+            foreach (var item in CommentMax)
+            {
+                Console.WriteLine(item.Author.UserName + "\t" + item.MaxComments.Title);
+            }
+            
+            var CommentMax1 = articles.GroupBy(s => s.Author).Select(a => a.OrderByDescending(s => s.Comments.Count()).First());
+            //foreach (var item in CommentMax1)
+            //{
+            //    Console.WriteLine(item.Author.UserName + "\t" + item.Title);
+            //}
 
-            //Console.WriteLine("\n ------------saparete line--------------\t");
-
-
-
-            //找出每个作者评论数最多的文章
-            //var CommentMax = from s in articles
-            //                 group s by s.Author.UserName into gc
-            //                 select ;
-
-            //var DFG_CommentMax = articles.Where(s => s.Author == dfg).OrderByDescending(s => s.Comments.Count()).First();
-            //var YU_CommentMax = articles.Where(s => s.Author == xiaoyu).OrderByDescending(s => s.Comments.Count()).First();
 
         }
 
