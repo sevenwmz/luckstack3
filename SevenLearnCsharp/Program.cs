@@ -11,31 +11,50 @@ using Mono.CSharp.Linq;
 namespace SevenLearnCsharp
 {
 
-
-    static class Mimic
+    public class Person
     {
-        static int MimicCount<T>(this IEnumerable<T> source, Func<T, bool> predicate)
-        {
-            int count = 0;
-            foreach (var item in source)
-            {
-                if (predicate(item))
-                {
-                    ++count;
-                }
-
-            }
-            return count;
-        }
-
+        public int Water { set; get; }
     }
 
     public class Program
     {
+        public static int TakeWater(Person waterCount)
+        {
+            return -1;
+        }
 
+        public delegate int ProvideWater(Person person);
+
+        static ProvideWater ProvideOtherWater = delegate (Person person)
+        {
+            return -1;
+        };
+        static ProvideWater ProvideLambdaWater = (Person water) =>
+        {
+            return -1;
+        };
+
+        public static ProvideWater GetWater(ProvideWater provide)
+        {
+            return provide;
+        }
         static void Main(string[] args)
         {
 
+            #region Generic Method Homework Area
+            //1.声明一个委托：打水（ProvideWater），可以接受一个Person类的参数，返回值为int类型 【已完成】
+            ProvideWater getWater = TakeWater;
+
+            Person water = new Person();
+            //2-1.方法 【已完成】
+            getWater(water);
+            //2-2.匿名方法 【已完成】
+            ProvideOtherWater(water);
+            //2-3.lambda表达式 
+            ProvideLambdaWater(water);
+            //3.声明一个方法GetWater()，该方法接受ProvideWater作为参数，并能将ProvideWater的返回值输出 
+            GetWater(getWater);
+            #endregion
 
             #region C#   http://17bang.ren/Article/520  C#进阶：Linq-1：where/order/group/select
 
@@ -602,8 +621,6 @@ namespace SevenLearnCsharp
             #endregion
 
         }
-
-
 
     }
 
