@@ -40,7 +40,7 @@ namespace SevenLearnCsharp
         }
         static void Main(string[] args)
         {
-            
+
 
             
 
@@ -60,8 +60,11 @@ namespace SevenLearnCsharp
             #endregion
 
             #region http://17bang.ren/Article/537    C#进阶：Linq方法   找出每个作者最近发布的一篇文章
+            //找出每个作者最近发布的一篇文章
             LinqMethod.find_AuthorRecentlyArticle();
 
+            //为求助（Problem）添加悬赏（Reward）属性，并找出每一篇求助的悬赏都大于5个帮帮币的文章作者
+            LinqMethod.SearchReward();
             #endregion
 
             #region C#   http://17bang.ren/Article/520  C#进阶：Linq-1：where/order/group/select

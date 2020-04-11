@@ -13,8 +13,6 @@ namespace HomeWork
 {
     static class LinqMethod
     {
-
-
         public static Article csharpBasics, csharpHigh, htmlBasics, uiBasics, aboutYU, aboutFEI;
         private static IEnumerable<Article> articles;
 
@@ -36,9 +34,12 @@ namespace HomeWork
         static Comment great = new Comment() { Comments = "great article" };
         static Comment super = new Comment() { Comments = "super nice article" };
 
+
+
+        public static IEnumerable<Problem> problems;
+        public static Problem aboutCSharp, aboutLinq, aboutSQL, aboutUI;
         static LinqMethod()
         {
-
             csharpBasics = new Article("C#基础介绍")
             {
                 Author = dfg,
@@ -46,7 +47,7 @@ namespace HomeWork
                 PublishTime = new DateTime(2019, 10, 3),
                 Title = "C#基础介绍",
                 Keywords = new List<Keyword> { sql, csharp, net },
-                Comments = new List<Comment> { better, super, great, nice }
+                Comments = new List<Comment> { better, super, great, nice },
             };
             csharpHigh = new Article("C#高阶")
             {
@@ -96,9 +97,55 @@ namespace HomeWork
             articles = new List<Article>
             { csharpBasics, csharpHigh, htmlBasics, uiBasics,aboutYU,aboutFEI };
 
+
+            aboutCSharp = new Problem
+            {
+                Title = "C# Learning question",
+                Author = xiaoyu,
+                Reward = 4,
+                PublishTime = new DateTime(2019, 5, 5)
+            };
+            aboutLinq = new Problem
+            {
+                Title = "Linq Learning question",
+                Author = xiaoyu,
+                Reward = 7,
+                PublishTime = new DateTime(2019, 4, 5)
+            };
+            aboutSQL = new Problem
+            {
+                Title = "SQL Learning question",
+                Author = xiaoyu,
+                Reward = 0,
+                PublishTime = new DateTime(2019, 5, 5)
+            };
+            aboutUI = new Problem
+            {
+                Title = "UI Learning question",
+                Author = dfg,
+                Reward = 10,
+                PublishTime = new DateTime(2019, 5, 5)
+            };
+            problems = new List<Problem> { aboutCSharp, aboutLinq, aboutSQL, aboutUI };
         }
-
-
+        /// <summary>
+        /// 为求助（Problem）添加悬赏（Reward）属性，并找出每一篇求助的悬赏都大于5个帮帮币的文章作者
+        /// </summary>
+        public static void SearchReward()
+        {
+            var rewardGreaterThanFive = from s in problems
+                                        where s.Reward > 5
+                                        select s;
+            foreach (var item in rewardGreaterThanFive)
+            {
+                Console.WriteLine(item.Author.UserName + "\t" + item.Title);
+            }
+            //var rewardGreaterThanFive1 = problems.Where(s => s.Reward > 5);
+            //foreach (var item in rewardGreaterThanFive1)
+            //{
+            //    Console.WriteLine(item.Author.UserName + "\t" + item.Title);
+            //}
+        }
 
         /// <summary>
         /// 找出每个作者最近发布的一篇文章
@@ -254,7 +301,7 @@ namespace HomeWork
             {
                 Console.WriteLine(item.Author.UserName + "\t" + item.MaxComments.Title);
             }
-            
+
             var CommentMax1 = articles.GroupBy(s => s.Author).Select(a => a.OrderByDescending(s => s.Comments.Count()).First());
             //foreach (var item in CommentMax1)
             //{
@@ -264,5 +311,10 @@ namespace HomeWork
 
         }
 
+
     }
 }
+
+
+
+
