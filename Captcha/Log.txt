@@ -1,0 +1,15 @@
+异常时间2020-20-13 21:20:53
+异常对象Captcha
+调用堆栈at Captcha.Captcha.CaptchaInsertException(String custom) in C:\Users\Administrator\source\repos\luckstack3\Captcha\Captcha.cs:line 84
+调用堆栈System.ArgumentException: 传入的验证码请不要超过4个字符
+   at Captcha.Captcha.CaptchaInsertException(String custom) in C:\Users\Administrator\source\repos\luckstack3\Captcha\Captcha.cs:line 84
+异常时间2020-22-13 21:22:35
+异常对象Captcha
+调用堆栈at Captcha.Captcha.CaptchaInsertException(String custom) in C:\Users\Administrator\source\repos\luckstack3\Captcha\Captcha.cs:line 84
+调用堆栈System.ArgumentException: 传入的验证码请不要超过4个字符
+   at Captcha.Captcha.CaptchaInsertException(String custom) in C:\Users\Administrator\source\repos\luckstack3\Captcha\Captcha.cs:line 84
+异常时间2020-46-13 21:46:46
+异常对象Captcha
+调用堆栈at Captcha.Captcha.CaptchaInsertException(String custom) in C:\Users\Administrator\source\repos\luckstack3\Captcha\Captcha.cs:line 84
+调用堆栈System.ArgumentException: 传入的验证码请不要超过4个字符
+   at Captcha.Captcha.CaptchaInsertException(String custom) in C:\Users\Administrator\source\repos\luckstack3\Captcha\Captcha.cs:line 84
