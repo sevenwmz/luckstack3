@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1B23D317-B806-4A6A-A9D0-FD39FFDDD254}</ProjectGuid>
+    <ProjectGuid>{CEBA0830-F956-49D5-B460-180613784DE4}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Caphcha</RootNamespace>
-    <AssemblyName>Caphcha</AssemblyName>
+    <RootNamespace>Captcha</RootNamespace>
+    <AssemblyName>Captcha</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -44,7 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Captcha.cs" />
+    <Compile Include="ProgramNetFromWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
