@@ -63,8 +63,11 @@ namespace Entity
         #region function 
         //Release function
         public virtual void Publish()
-        {
-
+        {//2.内容（Content）发布（Publish）的时候检查其作者（Author）是否为空，如果为空抛出“参数为空”异常 
+            if (Author == null)
+            {
+                throw new ArgumentNullException("参数为空,请输入author");
+            }//else nothing...
         }
         ////here is "Agree"  
         internal virtual int Agree(User voter)
