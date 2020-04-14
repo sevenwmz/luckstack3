@@ -39,8 +39,7 @@ namespace Entity
             {
                 if (value < 0)
                 {
-                    Console.WriteLine("悬赏不能为负数");
-                    return;
+                    throw new ArgumentException("不能输入负数的悬赏");
                 }
                 _reward = value;
             }
