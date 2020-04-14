@@ -46,7 +46,7 @@ namespace Entity
 
         public int HelpMoney { set; get; }
 
-
+        public Problem Reward { set; get; }
         //keywords
 
         //article name

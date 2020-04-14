@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LanguageExt;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -26,11 +27,25 @@ namespace Entity
 
         #region Function
 
-        [HelpMoneyChanged(2,AttributeTargets.Method)]
+        [HelpMoneyChanged(2, AttributeTargets.Method)]
         public void Publish(Content content)
         {
-            content.Publish();
+            try
+            {
+                content.Publish();
+            }
+            catch (ArgumentNullException e)
+            {
+                throw new InnerException(e.InnerException);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                Console.WriteLine("求助的Reward为负数（-XX）是无效的");
+            }
         }
         #endregion
+
+
+
     }
 }

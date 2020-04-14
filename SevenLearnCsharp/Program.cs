@@ -41,6 +41,13 @@ namespace SevenLearnCsharp
         {
 
 
+            User wpz = new User("wpzwpz", "1231231");
+            Problem problem = new Problem() { Reward = -2};
+            Content content = new Content("王月半子") {Reward = problem, Author = wpz };
+
+            ContentService contentService = new ContentService();
+            contentService.Publish(content);
+            
             
 
             #region Generic Method Homework Area
