@@ -30,16 +30,7 @@ namespace Entity
 
         //3.Content中的createTime，不能被子类使用，但只读属性PublishTime使用它为外部提供内容的发布时间
         private DateTime _createTime { get; }
-        public DateTime PublishTime
-        {
-            //get { return _createTime; }
-            //set
-            //{
-
-            //}
-            get; set;
-        }
-
+        public DateTime PublishTime { set; get; }
 
         //Author
         public User Author { set; get; }

@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Entity
 {
-    public class Entity<T> 
+    public class Entity<T>
     {
-        private T Id { get; }
+        public T Id { get; }
 
         public Entity(T number)
         {
