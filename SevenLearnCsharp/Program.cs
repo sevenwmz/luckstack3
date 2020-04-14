@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using Mono.CSharp.Linq;
+using System.IO;
 
 namespace SevenLearnCsharp
 {
@@ -40,15 +41,41 @@ namespace SevenLearnCsharp
         static void Main(string[] args)
         {
 
+            #region 2020.4.14  5.在Main()函数调用ContentService时，捕获一切异常，并记录异常的消息和堆栈信息
 
             User wpz = new User("wpzwpz", "1231231");
-            Problem problem = new Problem() { Reward = -2};
-            Content content = new Content("王月半子") {Reward = problem, Author = wpz };
+            Problem problem = new Problem() { Reward = 2 };
+            Content content = new Content("王月半子") { Reward = problem, Author = wpz };
+            try
+            {
+                ContentService contentService = new ContentService();
+                //我的理解，这个方法调用里已经有了各种抛异常的机制，
+                //那我这里就不用在写Throw了，如果有意外的异常catch就可以用了
+                contentService.Publish(content);
+            }
+            catch (Exception Record)
+            {
+                string path = @"C:\Users\Administrator\source\repos\luckstack3\Captcha\ForContentService.txt";
+                using (StreamWriter writer = File.AppendText(path))
+                {
+                    DateTime date = DateTime.Now;//设置日志时间
+                    string time = date.ToString("yyyy-mm-dd HH:mm:ss");
 
-            ContentService contentService = new ContentService();
-            contentService.Publish(content);
-            
-            
+
+                    //日志存放
+                    //writer = File.AppendText(path);
+                    writer.WriteLine("异常时间" + time);
+                    writer.WriteLine("异常对象" + Record.Source);
+                    writer.WriteLine("调用堆栈" + Record.StackTrace.Trim());
+                    writer.WriteLine("调用堆栈" + Record.ToString());
+
+                    writer.Flush();
+                }
+                throw;
+            }
+            #endregion
+
+
 
             #region Generic Method Homework Area
             //1.声明一个委托：打水（ProvideWater），可以接受一个Person类的参数，返回值为int类型 【已完成】
