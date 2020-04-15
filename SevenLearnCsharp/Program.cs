@@ -40,8 +40,21 @@ namespace SevenLearnCsharp
         }
         static void Main(string[] args)
         {
+            DoubleLinkNode node1 = new DoubleLinkNode { value = 1};
+            DoubleLinkNode node2 = new DoubleLinkNode { value = 2 };
+            DoubleLinkNode node3 = new DoubleLinkNode { value = 3 };
+            DoubleLinkNode node4 = new DoubleLinkNode { value = 4 };
+            DoubleLinkNode node5 = new DoubleLinkNode { value = 5 };
+
+            node2.InsertAfter(node1);
+            node3.InsertAfter(node2);
+            node5.InsertAfter(node3);
 
 
+            foreach (var item in node1)
+            {
+                Console.WriteLine(((DoubleLinkNode)item).value);
+            }
 
 
             #region 2020.4.14  5.在Main()函数调用ContentService时，捕获一切异常，并记录异常的消息和堆栈信息

@@ -5,8 +5,10 @@ using System.Text;
 
 namespace HomeWork
 {
-    public class DoubleLinkNode :IEnumerable
+    public class DoubleLinkNode : IEnumerable
     {
+        public int? value;
+
         public DoubleLinkNode Next { get; private set; }
 
         public DoubleLinkNode Previous { get; private set; }
@@ -114,6 +116,70 @@ namespace HomeWork
         }
 
         public IEnumerator GetEnumerator()
+        {
+            return new NodeEnumerator(this);
+        }
+    }
+    public class NodeEnumerator : IEnumerator
+    {
+        private DoubleLinkNode node;
+        private bool end;
+
+        public NodeEnumerator(DoubleLinkNode node)
+        {
+            this.node = node;
+        }
+        public object Current => node.Previous;
+
+        int i = 0, j = 0, k = 0;
+        public bool MoveNext()
+        {///这里是飞哥写的宝码；不要乱动
+            if (end)
+            {
+                return false;
+            }
+
+            if (node.IsTail)
+            {
+                DoubleLinkNode fakeTail = new DoubleLinkNode();
+                fakeTail.InsertAfter(node);
+                end = true;
+            }//else nothing
+
+            node = node.Next;
+            return true;
+
+            //if (node.IsHead && i =_ 0)
+            //{
+            //    i++;
+            //    j++;
+            //    k++;
+            //    node = node.Next.Previous;
+            //    return true;
+            //}
+            //if (node.IsTail && k ==0)
+            //{
+            //    k++;
+            //    j++;
+            //    node = node.Previous.Next;
+            //    return true;
+            //}
+            //if (!node.IsHead && j == 0)
+            //{
+            //    j++;
+            //    k++;
+            //    node = node.Next.Previous;
+            //    return true;
+            //}
+            //if (!node.IsTail)
+            //{
+            //    node = node.Next;
+            //    return true;
+            //}
+            //return false;
+        }
+
+        public void Reset()
         {
             throw new NotImplementedException();
         }
