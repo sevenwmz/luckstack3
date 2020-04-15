@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Captcha.cs" />
+    <Compile Include="EmailSettle.cs" />
     <Compile Include="ProgramNetFromWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

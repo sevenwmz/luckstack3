@@ -41,6 +41,9 @@ namespace SevenLearnCsharp
         static void Main(string[] args)
         {
 
+
+
+
             #region 2020.4.14  5.在Main()函数调用ContentService时，捕获一切异常，并记录异常的消息和堆栈信息
 
             User wpz = new User("wpzwpz", "1231231");
@@ -74,8 +77,6 @@ namespace SevenLearnCsharp
                 throw;
             }
             #endregion
-
-
 
             #region Generic Method Homework Area
             //1.声明一个委托：打水（ProvideWater），可以接受一个Person类的参数，返回值为int类型 【已完成】
