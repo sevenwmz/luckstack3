@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -53,13 +54,13 @@ namespace Captcha
             image.Save(@"C:\Users\Administrator\source\repos\luckstack3\Captcha\Captcha.jpg", ImageFormat.Jpeg);
         }
 
-
+        #region 屎山一样的异常验证码作业
         /// <summary>
         /// 将生成验证码的代码拆分成若干个方法，并为其添加异常机制，要求能够：o显式的抛出一个自定义异常 
         /// 捕获并包裹一个被抛出的异常，记入日志文件，然后再次抛出，o根据不同的异常，给用户相应的友好的异常提示 
         /// 使用using释放文件资源
         /// </summary>
-        public static void CaptchaInsertException(string custom = null)
+        public static void CaptchaInsertException(string custom = null)//需要自己传入一个验证码，要求不得大于4个字符
         {
             //主方法，生成画布添加背景颜色
             Bitmap image = new Bitmap(200, 100);
@@ -69,32 +70,33 @@ namespace Captcha
             //添加随机种子
             Random random = new Random();
 
-
             //生成背景像素点
             Captcha.captchaBackGroundPixel(image, random);
 
             //生成背景干扰线条
             Captcha.captchaBackgroundDrawing(drawing, random);
 
+
+
             //为了捕获异常特意声明的一个Try catch
             try
             {
-                if ( custom.Length > 4)
-                {
-                    throw new ArgumentException("传入的验证码请不要超过4个字符");
+                if (custom.Length > 4)
+                {//自定义的异常
+                    throw new HomeworkException("传入的验证码请不要超过4个字符");
                 }
                 else
-                {
+                {//输入正确就跑到正常的执行手段里面去。
                     Captcha.captchaMaker(random, drawing, image, custom);
                 }
             }
-            catch (ArgumentException Record)
+            catch (HomeworkException Record)
             {
                 string path = @"C:\Users\Administrator\source\repos\luckstack3\Captcha\Log.txt";
                 using (StreamWriter writer = File.AppendText(path))
                 {
                     DateTime date = DateTime.Now;//设置日志时间
-                    string time = date.ToString("yyyy-mm-dd HH:mm:ss");
+                    string time = date.ToString("yyyy-MM-dd HH:mm:ss");
 
 
                     //日志存放
@@ -106,9 +108,9 @@ namespace Captcha
 
                     writer.Flush();
                 }
-                
+
                 //重新抛出
-                throw new ArgumentException("传入的验证码请不要超过4个字符");
+                throw new HomeworkException("传入的验证码请不要超过4个字符");
             }
             catch (Exception)
             {
@@ -116,7 +118,7 @@ namespace Captcha
             }
             //生成随机验证码
             Captcha.captchaMaker(random, drawing, image);
-            
+
             //存储图片
             image.Save(@"C:\Users\Administrator\source\repos\luckstack3\Captcha\Captcha.jpg", ImageFormat.Jpeg);
 
@@ -181,6 +183,28 @@ namespace Captcha
                 new SolidBrush(Color.SaddleBrown), 45, 25);
 
             return drawing;
+        }
+        #endregion
+
+    }
+
+    [Serializable]
+    internal class HomeworkException : Exception
+    {
+        public HomeworkException()
+        {
+        }
+
+        public HomeworkException(string message) : base(message)
+        {
+        }
+
+        public HomeworkException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected HomeworkException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
         }
     }
 }

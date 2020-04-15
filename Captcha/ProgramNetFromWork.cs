@@ -16,7 +16,7 @@ namespace Captcha
             #region MyRegion
             /// 现有一个txt文件，里面存放了若干email地址，使用分号（;）或者换行进行了分隔。
             /// 请删除其中重复的email地址，并按每30个email一行（行内用;分隔）重新组织
-          
+
             //EmailSettle.MakerEail();
 
 
@@ -31,7 +31,7 @@ namespace Captcha
 
 
             //Captcha Exception Method
-            //Captcha.CaptchaInsertException("52plk");
+            Captcha.CaptchaInsertException("52plk");
             #endregion
 
 
