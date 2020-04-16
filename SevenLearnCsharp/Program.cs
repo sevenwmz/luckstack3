@@ -40,7 +40,11 @@ namespace SevenLearnCsharp
         }
         static void Main(string[] args)
         {
-            DoubleLinkNode node1 = new DoubleLinkNode { value = 1};
+
+
+            #region 双链foreach和max作业
+
+            DoubleLinkNode node1 = new DoubleLinkNode { value = 1 };
             DoubleLinkNode node2 = new DoubleLinkNode { value = 2 };
             DoubleLinkNode node3 = new DoubleLinkNode { value = 3 };
             DoubleLinkNode node4 = new DoubleLinkNode { value = 4 };
@@ -55,6 +59,10 @@ namespace SevenLearnCsharp
             {
                 Console.WriteLine(((DoubleLinkNode)item).value);
             }
+            //DoubleLink Max
+            DoubleLinkNode.Max(node1);
+
+            #endregion
 
 
             #region 2020.4.14  5.在Main()函数调用ContentService时，捕获一切异常，并记录异常的消息和堆栈信息

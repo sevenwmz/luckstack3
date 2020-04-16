@@ -25,24 +25,21 @@ namespace HomeWork
             get => Next == null;
         }
 
-        public bool Max()
+        public static DoubleLinkNode Max(DoubleLinkNode node)
         {
-            bool result = false;
-            ///具体实现以后再想先把方法调用写出来，我太难了
-            //if (this > )
-            //{
-            //    result == true;
-            //    return result;
-            //}
-            return result;
+            DoubleLinkNode Max = node;
+
+            foreach (DoubleLinkNode item in node)
+            {
+                if (item.value > Max.value)
+                {
+                    Max.value = item.value;
+                }
+            }
+            return Max;
         }
 
-        //DoubleLinkNode nodeNext = node.Next;
-        //node.Next = this;//3的后面是6
-        //        this.Previous = node;//6前面是3
 
-        //        this.Next = nodeNext;//6的后面是3的后面
-        //        this.Next.Previous = this;//6的后面的前面是6
         public void InsertAfter(DoubleLinkNode node)
         {// 1 2 3 [5] 4    :5 = this :3 =node
             DoubleLinkNode nodeNext = node.Next;
