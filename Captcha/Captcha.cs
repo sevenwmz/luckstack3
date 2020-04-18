@@ -6,12 +6,169 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Captcha
 {
     class Captcha
     {
+        public delegate Graphics DraingMap(Bitmap image);
+        #region CaptchaAsync
+        public static void CaptchaAsync()
+        {
+            Thread thread = new Thread(new ThreadStart(Captcha.RefreshCaptcha));
+            Bitmap image = new Bitmap(200, 100);
+            Graphics drawing = Graphics.FromImage(image);
+            drawing.Clear(Color.White);
+            Random random = new Random();
+            //int random_0_To_200 = random.Next(0, 200);
+            //int random_0_To_100 = random.Next(0, 100);
+            //2.在一个任务（Task）中生成画布
+            //DraingMap draingMap = _draingMap;
+
+            //其实这里做异步的画板生成有点坑后面的。
+            _draingMap(image);
+
+
+            ///3.使用生成的画布，用两个任务完成：
+            ///1.在画布上添加干扰线条
+            ///2.在画布上添加干扰点
+            ///
+
+            _Pixel(image, random);
+            _line(drawing, random);
+            _captcha(random, drawing, image);
+
+
+            //4.将生成的验证码图片异步的存入文件
+            //5.能捕获抛出的若干异常，并相应的处理
+            //6.以上作业，需要在控制台输出线程和Task的Id，以演示异步并发的运行。
+            _saveImage(image);
+        }
+
+        /// <summary>
+        /// 生成画布
+        /// </summary>
+        /// <param name="image"></param>
+        private static async /*Task<Graphics>*/ void _draingMap(Bitmap image)
+        {
+            Graphics drawing;
+
+            /*Graphics resule = */
+            await Task<Graphics>.Run(() =>
+            {
+                Console.WriteLine("当前线程ID是： " + Thread.CurrentThread.ManagedThreadId);
+
+                drawing = Graphics.FromImage(image);
+            });
+            //return resule;
+        }
+
+        /// <summary>
+        /// 生成像素点
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="random"></param>
+        /// <returns></returns>
+        private static async Task<Bitmap> _Pixel(Bitmap image, Random random)
+        {
+            await Task<Graphics>.Run(() =>
+            {
+                for (int i = 0; i < 25; i++)
+                {
+                    image.SetPixel(random.Next(0, 200), random.Next(0, 200), Color.BurlyWood);
+                    image.SetPixel(random.Next(0, 200), random.Next(0, 200), Color.IndianRed);
+                    image.SetPixel(random.Next(0, 200), random.Next(0, 200), Color.DarkCyan);
+                    image.SetPixel(random.Next(0, 200), random.Next(0, 200), Color.DarkViolet);
+                }
+            });
+            return image;
+        }
+        /// <summary>
+        /// 生成干扰线条
+        /// </summary>
+        /// <param name="drawing"></param>
+        /// <param name="random"></param>
+        /// <returns></returns>
+        private static async Task<Graphics> _line(Graphics drawing, Random random)
+        {
+            await Task<Graphics>.Run(() =>
+            {
+                for (int i = 0; i < 25; i++)
+                {
+                    Console.WriteLine("当前线程ID是： " + Thread.CurrentThread.ManagedThreadId);
+
+                    drawing.DrawCurve(new Pen(new SolidBrush(Color.Gray), 1),
+                        new Point[] {
+                            new Point(random.Next(0,200),random.Next(0,100)),
+                            new Point(random.Next(0,200),random.Next(0,100)),
+                            new Point(random.Next(0,200), random.Next(0,100)) });
+
+                    drawing.DrawCurve(new Pen(new SolidBrush(Color.Chocolate), 1),
+                        new Point[] {
+                            new Point(random.Next(0,200),random.Next(0,100)),
+                            new Point(random.Next(0,200),random.Next(0,100)),
+                            new Point(random.Next(0,200), random.Next(0,100)) });
+                }
+            });
+            return drawing;
+        }
+        /// <summary>
+        /// 生成随机验证码
+        /// </summary>
+        /// <param name="random"></param>
+        /// <param name="drawing"></param>
+        /// <param name="image"></param>
+        /// <returns></returns>
+        private static async Task<Graphics> _captcha(Random random, Graphics drawing, Bitmap image)
+        {
+            //随机验证码。
+            await Task<Graphics>.Run(() =>
+            {
+                Console.WriteLine("当前线程ID是： " + Thread.CurrentThread.ManagedThreadId);
+
+                string subCaptcha = "1234567890QAZWSXEDCRFVTGBYHNUJMIKOLP";
+                string captcha = "";
+                for (int i = 0; i < 4; i++)
+                {
+                    captcha = captcha + subCaptcha.Substring(random.Next(subCaptcha.Length), 1);
+                }
+                drawing = Graphics.FromImage(image);
+                drawing.DrawString(
+                    captcha, new Font("微软雅黑", 35),
+                    new SolidBrush(Color.SaddleBrown), 45, 25);
+            });
+            return drawing;
+        }
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <param name="image"></param>
+        private static async void _saveImage(Bitmap image)
+        {
+            await Task<Graphics>.Run(() =>
+            {
+                Console.WriteLine("当前线程ID是： " + Thread.CurrentThread.ManagedThreadId);
+                try
+                {
+                    Console.WriteLine("当前线程ID是： " + Thread.CurrentThread.ManagedThreadId);
+                    image.Save(@"C:\Users\Administrator\source\repos\luckstack3\Captcha\CaptchaAsync.jpg",
+                                        ImageFormat.Jpeg);
+                    throw new Exception("人家大佬的作业要求");
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("我是一只异常，只是输出给你看，");
+                }
+            });
+        }
+        #endregion
+
+
+
+
+
         /// <summary>
         ///  参考一起帮的登录页面，绘制一个验证码图片，存放到当前项目中。验证码应包含：随机字符串,
         ///  混淆用的各色像素点,混淆用的直线（或曲线）
@@ -24,6 +181,7 @@ namespace Captcha
             drawing.Clear(Color.White);
 
             Random random = new Random();
+
             for (int i = 0; i < 200; i++)
             {
                 image.SetPixel(random.Next(0, 200), random.Next(0, 100), Color.BurlyWood);
@@ -33,15 +191,21 @@ namespace Captcha
             }
             for (int i = 0; i < 25; i++)
             {
-                drawing.DrawCurve(new Pen(new SolidBrush(Color.Gray), 1), new Point[] { new Point
-                    (random.Next(0, 200), random.Next(0, 100)), new Point(random.Next(0, 200),
-                    random.Next(0, 100)),new Point(random.Next(0, 200), random.Next(0, 100)) });
+                drawing.DrawCurve(new Pen(new SolidBrush(Color.Gray), 1),
+                    new Point[]
+                    {
+                        new Point(random.Next(0, 200), random.Next(0, 100)),
+                        new Point(random.Next(0, 200), random.Next(0, 100)),
+                        new Point(random.Next(0, 200), random.Next(0, 100))
+                    });
 
-                drawing.DrawCurve(new Pen(new SolidBrush(Color.Chocolate), 1), new Point[] { new Point
-                    (random.Next(0, 200), random.Next(0, 100)), new Point(random.Next(0, 200), random.Next(0, 100)), new Point(random.Next(0, 200), random.Next(0, 100)) });
+                drawing.DrawCurve(new Pen(new SolidBrush(Color.Chocolate), 1), new Point[]
+                    {
+                        new Point(random.Next(0, 200), random.Next(0, 100)),
+                        new Point(random.Next(0, 200), random.Next(0, 100)),
+                        new Point(random.Next(0, 200), random.Next(0, 100))
+                    });
             }
-
-
             string subCaptcha = "1234567890QAZWSXEDCRFVTGBYHNUJMIKOLP";
             string captcha = "";
             for (int i = 0; i < 4; i++)
@@ -49,8 +213,9 @@ namespace Captcha
                 captcha = captcha + subCaptcha.Substring(random.Next(subCaptcha.Length), 1);
             }
 
-            drawing.DrawString(captcha, new Font("微软雅黑", 35),
-                new SolidBrush(Color.SaddleBrown), 45, 25);
+            drawing.DrawString(captcha,
+                new Font("微软雅黑", 35),
+                new SolidBrush(Color.DarkOliveGreen), 45, 25);
             image.Save(@"C:\Users\Administrator\source\repos\luckstack3\Captcha\Captcha.jpg", ImageFormat.Jpeg);
         }
 
