@@ -11,14 +11,14 @@ namespace Captcha
     /// 现有一个txt文件，里面存放了若干email地址，使用分号（;）或者换行进行了分隔。
     /// 请删除其中重复的email地址，并按每30个email一行（行内用;分隔）重新组织
     /// </summary>
-    class EmailSettle
+    public class EmailSettle
     {
 
         /// <summary>
         /// Email生成随机数量
         /// </summary>
         /// <param name="value">生成的Email随机数量，不指定默认为300</param>
-        public static void MakerEail(int value = 300)
+        public static void MakerEmail(int value = 300)
         {
             //文件存放路径
             string path = @"C:\Users\Administrator\source\repos\luckstack3\Captcha\Email.txt";
@@ -66,5 +66,61 @@ namespace Captcha
             //FileStream fileStream = File.ReadAllText(path);
         }
 
+        //读写同一个文档
+        public EmailSettle(string path)
+        {
+            _path = path;
+        }
+
+        private string _path;
+
+        public IList<string> GetEmail()
+        {
+            if (!File.Exists(this._path))
+            {
+                throw new FileNotFoundException("没有找到文件");
+            }
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+
+            string target = ";";
+            string[] getEmail = File.ReadAllLines(this._path);
+            string get = getEmail[0];
+            IList<string> saveEmail = new List<string>();
+            //IList<string> getEmail = File.ReadAllLines(this._path);
+            int start = 0,end;
+            string content;
+            for (int i = 0; i < get.Length; i++)
+            {
+                if (get[i].Equals(target))
+                {
+                    //end = (get[start]+get[i]);
+                    //content = get[start,end];
+                    //saveEmail.Append(content);
+                }
+            }
+            return saveEmail;
+
+        }
+
+        public IList<string> Filter(IEnumerable<string> emails)
+        {
+            IList<string> result = new List<string>();
+            foreach (var item in emails)
+            {
+                if (!result.Contains(item.Trim()))
+                {
+                    result.Add(item.Trim());
+                }
+            }
+            return result;
+        }
+
+        public string[] Write(string path, IEnumerable<string> emails)
+        {
+            //StreamWriter writer = emails;
+            throw new Exception();
+        }
     }
 }
