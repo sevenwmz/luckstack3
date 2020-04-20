@@ -15,6 +15,10 @@ namespace Captcha
 
         static void Main(string[] args)
         {
+
+            EmailSettle emailSettle = new EmailSettle(@"C:\Users\Administrator\source\repos\luckstack3\Captcha\Email.txt");
+            emailSettle.GetEmail();
+
             Captcha.RefreshCaptcha();
             #region 2020.4.16异步作业
 

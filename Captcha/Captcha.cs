@@ -28,7 +28,7 @@ namespace Captcha
             //DraingMap draingMap = _draingMap;
 
             //其实这里做异步的画板生成有点坑后面的。
-            _draingMap(image);
+            draingMap(image);
 
 
             ///3.使用生成的画布，用两个任务完成：
@@ -36,22 +36,22 @@ namespace Captcha
             ///2.在画布上添加干扰点
             ///
 
-            _Pixel(image, random);
-            _line(drawing, random);
-            _captcha(random, drawing, image);
+            pixel(image, random);
+            line(drawing, random);
+            captcha(random, drawing, image);
 
 
             //4.将生成的验证码图片异步的存入文件
             //5.能捕获抛出的若干异常，并相应的处理
             //6.以上作业，需要在控制台输出线程和Task的Id，以演示异步并发的运行。
-            _saveImage(image);
+            saveImage(image);
         }
 
         /// <summary>
         /// 生成画布
         /// </summary>
         /// <param name="image"></param>
-        private static async /*Task<Graphics>*/ void _draingMap(Bitmap image)
+        private static async /*Task<Graphics>*/ void draingMap(Bitmap image)
         {
             Graphics drawing;
 
@@ -71,7 +71,7 @@ namespace Captcha
         /// <param name="image"></param>
         /// <param name="random"></param>
         /// <returns></returns>
-        private static async Task<Bitmap> _Pixel(Bitmap image, Random random)
+        private static async Task<Bitmap> pixel(Bitmap image, Random random)
         {
             await Task<Graphics>.Run(() =>
             {
@@ -91,7 +91,7 @@ namespace Captcha
         /// <param name="drawing"></param>
         /// <param name="random"></param>
         /// <returns></returns>
-        private static async Task<Graphics> _line(Graphics drawing, Random random)
+        private static async Task<Graphics> line(Graphics drawing, Random random)
         {
             await Task<Graphics>.Run(() =>
             {
@@ -121,7 +121,7 @@ namespace Captcha
         /// <param name="drawing"></param>
         /// <param name="image"></param>
         /// <returns></returns>
-        private static async Task<Graphics> _captcha(Random random, Graphics drawing, Bitmap image)
+        private static async Task<Graphics> captcha(Random random, Graphics drawing, Bitmap image)
         {
             //随机验证码。
             await Task<Graphics>.Run(() =>
@@ -145,7 +145,7 @@ namespace Captcha
         /// 保存
         /// </summary>
         /// <param name="image"></param>
-        private static async void _saveImage(Bitmap image)
+        private static async void saveImage(Bitmap image)
         {
             await Task<Graphics>.Run(() =>
             {

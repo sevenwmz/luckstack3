@@ -6,13 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Captcha
-{
-    /// <summary>
-    /// 现有一个txt文件，里面存放了若干email地址，使用分号（;）或者换行进行了分隔。
-    /// 请删除其中重复的email地址，并按每30个email一行（行内用;分隔）重新组织
-    /// </summary>
+{        
+
     public class EmailSettle
     {
+        //读写同一个文档
+        public EmailSettle(string path)
+        {
+            _path = path;
+        }
+
+        private string _path;
 
         /// <summary>
         /// Email生成随机数量
@@ -40,87 +44,33 @@ namespace Captcha
 
 
         /// <summary>
-        /// 现有一个txt文件，里面存放了若干email地址，使用分号（;）或者换行进行了分隔。
-        /// 请删除其中重复的email地址，并按每30个email一行（行内用;分隔）重新组织
+        /// 读取和删除其中重复的email地址，2个方法
         /// </summary>
-        public static void DeleteDuplicateEmail()
-        {
-            string path = @"C:\Users\Administrator\source\repos\luckstack3\Captcha\Email.txt";
-
-            string copyPath = @"C:\Users\Administrator\source\repos\luckstack3\Captcha\CopyEmail.txt";
-
-            ///需要先计算从0开始到；位置的字符串长度，然后去匹配，
-            ///先和一样长度的匹配，如果长度一样，在匹配所有位置的数字是否一样，一样就删除掉匹配字符串
-            ///一直删除到最后没有为止
-            ///
-            //File.Copy(path, copyPath);
-
-            //File.OpenRead(path);
-            //Distinct();
-        }
-
-        public static void SkipEmail()
-        {
-            string path = @"C:\Users\Administrator\source\repos\luckstack3\Captcha\Email.txt";
-            //File.OpenRead(path);
-            //FileStream fileStream = File.ReadAllText(path);
-        }
-
-        //读写同一个文档
-        public EmailSettle(string path)
-        {
-            _path = path;
-        }
-
-        private string _path;
-
-        public IList<string> GetEmail()
+        public void GetEmail()
         {
             if (!File.Exists(this._path))
             {
                 throw new FileNotFoundException("没有找到文件");
             }
 
-            StringBuilder stringBuilder = new StringBuilder();
-
-
-            string target = ";";
+            //读取文件内容 字符串拆分
             string[] getEmail = File.ReadAllLines(this._path);
             string get = getEmail[0];
-            IList<string> saveEmail = new List<string>();
-            //IList<string> getEmail = File.ReadAllLines(this._path);
-            int start = 0,end;
-            string content;
-            for (int i = 0; i < get.Length; i++)
-            {
-                if (get[i].Equals(target))
-                {
-                    //end = (get[start]+get[i]);
-                    //content = get[start,end];
-                    //saveEmail.Append(content);
-                }
-            }
-            return saveEmail;
+            getEmail = get.Split(';');
 
+            filter(getEmail);
+        }
+        private string[] filter(string[] emails)
+        {
+            emails =  emails.Distinct().ToArray();
+            return emails;
         }
 
-        public IList<string> Filter(IEnumerable<string> emails)
-        {
-            IList<string> result = new List<string>();
-            foreach (var item in emails)
-            {
-                if (!result.Contains(item.Trim()))
-                {
-                    result.Add(item.Trim());
-                }
-            }
-            return result;
-        }
 
-        public string[] Write(string path, IEnumerable<string> emails)
+
+        public void Write(string path, string[] emails)
         {
-            //StreamWriter writer = emails;
-            throw new Exception();
+
         }
     }
 }
