@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "17bang", "luckstack3\17bang.csproj", "{4004D508-AEE4-4FC5-871B-077782D091C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_17bang", "luckstack3\_17bang.csproj", "{4004D508-AEE4-4FC5-871B-077782D091C9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeWork", "SevenLearnCsharp\HomeWork.csproj", "{4FD5F1E5-27F2-4EAA-BADC-1AD9A93FE289}"
 EndProject

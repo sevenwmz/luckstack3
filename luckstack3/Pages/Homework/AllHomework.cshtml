@@ -1,0 +1,45 @@
+﻿@page
+@model _17bang.AllHomeworkModel
+@{
+    ViewData["Title"] = "AllHomework";
+}
+
+<h1>AllHomework</h1>
+
+
+
+@{
+    int wantLine = 10, changeColor = 3;
+}
+
+
+@for (int i = 0; i <= wantLine; i++)
+{ /*利用循环分支，实现如下图所示的页面效果：*/
+    if (i % 2 != 0)
+    {
+        for (int j = 0; j < wantLine - (i / 2); j++)
+        {
+            <span>&nbsp;</span>
+        }
+
+        if (changeColor % 2 != 0)
+        {
+            for (int k = 0; k < i; k++)
+            {
+                <span style="color:blue">i</span>
+            }
+            ++changeColor;
+        }
+        else
+        {
+            for (int k = 0; k < i; k++)
+            {
+                <span style="color:red">i</span>
+            }
+            ++changeColor;
+        }
+        <br />
+    }
+}
+
+
