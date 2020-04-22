@@ -18,6 +18,10 @@
     <None Include="wwwroot\FontAwesome\fonts\fontawesome-webfont.woff2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Entity\Entity.csproj" />
+  </ItemGroup>
+
 
 
 </Project>

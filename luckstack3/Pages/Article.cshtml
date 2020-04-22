@@ -1,5 +1,5 @@
 ﻿@page
-@model luckstack3.indexModel
+@model luckstack3.AreicleModel
 @{
     ViewData["Title"] = "index";
 }
@@ -18,93 +18,65 @@
 <main class="container">
     <article class="row">
         <div class="col-md-8" style="margin-top:90px;">
-            <div>
-                <span><i class="fa fa-calendar"></i>2020年02月26日 13点02分</span>
-                <span class="float-md-right text-info">作者：<a href="none" class="text-info">叶飞</a></span>
-                <p><a href="none" class="text-info">ASP.NET RazorPages：CSRF跨站点请求伪造</a></p>
-                <p>Cross-SiteRequestForgery：防御的核心在于除了用户的验证cookie以外，还要生成一个token，以确保链接/表单确实为服务器端生成。如何生成token？生成一个随机数从用户密码中生成……实现：操作类尽量使用Post（仅查询类使用Get）前台，Layout中传入，使用JavaScript附加后台，使用Filter进行封装。和钓鱼网站的区别MVC内置反欺骗（仅用于form表单）在form表单中添加：@@Html.AntiForgeryToken()生成一个hiden input，记录了一 <a href="none" style="color:black">……</a></p>
-                <label>
-                    <strong><i class="fa fa-tags"></i>关键字： </strong>
-                    <span class="text-white badge bg-dark">CSRF</span>
-                    <span class="text-white badge bg-dark">跨站点请求伪造</span>
-                </label>
-                <div class="text-md-right">
-                    <a href="none" class="text-info"> 评论：0 </a>
-                    <a href="none" class="text-success"> 赞： 0  </a>
-                    <a href="none" class="text-muted"> 踩：0 </a><br />
+            @foreach (var article in Model.Items)
+            {
+                <div>
+                    <span><i class="fa fa-calendar"></i>@article.PublishTime</span>
+                    <span class="float-md-right text-info">作者：<a href="none" class="text-info">@article.Author.NickName</a></span>
+                    <p><a href="none" class="text-info">@article.Title</a></p>
+                    <p>@article.Summary<a href="none" style="color:black">……</a></p>
+                    <label>
+                        <strong><i class="fa fa-tags"></i>关键字： </strong>
+                        @foreach (var item in article.Keywords)
+                        {
+                            <span class="text-white badge bg-dark">@item.Name</span>
+                        }
+                    </label>
+                    <div class="text-md-right">
+                        <a href="none" class="text-info"> 评论：0 </a>
+                        <a href="none" class="text-success"> 赞： 0  </a>
+                        <a href="none" class="text-muted"> 踩：0 </a><br />
+                    </div>
+                    <hr />
                 </div>
-                <hr />
-            </div>
+
+            }
+            @{
+                int currentPageIndex = Convert.ToInt32(Request.Query["pageIndex"]) + 1;
+                int sumOfArticle = Model.SumOfArticle;
+                const string PAGE_INDEX = "pageIndex";
+                const int PAGE_SIZE = 2;
+            }
             <div>
-                <span><i class="fa fa-calendar"></i>2020年02月23日 00点30分</span>
-                <span class="float-md-right text-info">作者：<a href="none" class="text-info">叶飞</a></span>
-                <p><a href="none" class="text-info">CSS：选择器</a></p>
-                <p>Cross-SiteRequestForgery：防御的核心在于除了用户的验证cookie以外，还要生成一个token，以确保链接/表单确实为服务器端生成。如何生成token？生成一个随机数从用户密码中生成……实现：操作类尽量使用Post（仅查询类使用Get）前台，Layout中传入，使用JavaScript附加后台，使用Filter进行封装。和钓鱼网站的区别MVC内置反欺骗（仅用于form表单）在form表单中添加：@@Html.AntiForgeryToken()生成一个hiden input，记录了一 <a href="none" style="color:black">……</a></p>
-                <label>
-                    <strong><i class="fa fa-tags"></i>关键字： </strong>
-                    <span class="text-white badge bg-dark">前端</span>
-                    <span class="text-white badge bg-dark">CSS</span>
-                    <span class="text-white badge bg-dark">选择器</span>
-                </label>
-                <div class="text-md-right">
-                    <a href="none" class="text-info"> 评论：0 </a>
-                    <a href="none" class="text-success"> 赞： 0  </a>
-                    <a href="none" class="text-muted"> 踩：0 </a><br />
-                </div>
-                <hr />
-            </div>
-            <div>
-                <span><i class="fa fa-calendar"></i>2020年02月23日 00点29分</span>
-                <span class="float-md-right text-info">作者：<a href="none" class="text-info">叶飞</a></span>
-                <p><a href="none" class="text-info">CSS：盒子模型、浮动和定位</a></p>
-                <p>CSS 盒子模型适用样式：width/height流元素的高度和居中overflowborder：粗细/样式/颜色top/right/bottom/left为什么使用transparent？margin/padding：是否占用宽度？block和padding的不同margin合并为了避免浏览器兼容问题，通常都首先定义：margin:0;padding:0;display:block：默认宽度100%（占一行）inline：宽度随文本，不会占一行，margin有效，padding不会“撑起”父元素，hei <a href="none" style="color:black">……</a></p>
-                <label>
-                    <strong><i class="fa fa-tags"></i>关键字： </strong>
-                    <span class="text-white badge bg-dark">CSS</span>
-                    <span class="text-white badge bg-dark">盒子模型</span>
-                    <span class="text-white badge bg-dark">浮动</span>
-                    <span class="text-white badge bg-dark">定位</span>
-                </label>
-                <div class="text-md-right">
-                    <a href="none" class="text-info"> 评论：0 </a>
-                    <a href="none" class="text-success"> 赞： 0  </a>
-                    <a href="none" class="text-muted"> 踩：0 </a><br />
-                </div>
-                <hr />
-            </div>
-            <div>
-                <span><i class="fa fa-calendar"></i>2020年02月22日 13点49分</span>
-                <span class="float-md-right text-info">作者：<a href="none" class="text-info">叶飞</a></span>
-                <p><a href="none" class="text-info">源栈培训：ASP.NET MVC：分层架构 - CurrentUser</a></p>
-                <p>1、很多时候我们需要当前用户2、当前用户a）需要从cookie中获取b）还需要数据库支持（验证）3、发布一个求助需要当前用户作为作者所以：方案（一）public interface IProblemService{int Publish(NewModel model, int authorId);}NewModel：存Title、Body等数据authorId：-- 不能只取cookie中的userId，还得有token结论：麻烦方案（二）当前用户信息直接由SRV获取既然SRV能够获取cookie =》 <a href="none" style="color:black">……</a></p>
-                <label>
-                    <strong><i class="fa fa-tags"></i>关键字： </strong>
-                    <span class="text-white badge bg-dark">ASP.NET</span>
-                    <span class="text-white badge bg-dark">MVC</span>
-                    <span class="text-white badge bg-dark">当前用户</span>
-                </label>
-                <div class="text-md-right">
-                    <a href="none" class="text-info"> 评论：0 </a>
-                    <a href="none" class="text-success"> 赞： 0  </a>
-                    <a href="none" class="text-muted"> 踩：0 </a><br />
-                </div>
-                <hr />
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                        <li class="page-item"><a class="page-link" href="#">6</a></li>
-                        <li class="page-item"><a class="page-link" href="#">7</a></li>
-                        <li class="page-item"><a class="page-link" href="#">8</a></li>
-                        <li class="page-item"><a class="page-link" href="#">9</a></li>
-                        <li class="page-item"><a class="page-link" href="#">10</a></li>
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
+                            @if (currentPageIndex - 1 > 1)
+                            {
+                                <a class="page-link" aria-label="Private" href="Article?@PAGE_INDEX=@(currentPageIndex-2)">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            }@*/*else nothing*/*@
+                        </li>
+                        @for (int i = 1; i < (sumOfArticle / PAGE_SIZE) + 1; i++)
+                        {
+                            if (currentPageIndex-1 == i)
+                            {
+                                <li class="page-item page-link" style="background-color:rgba(0, 0, 0, 0.72);color:white">@(i)</li>
+                            }
+                            else
+                            {
+                                <li class="page-item"><a class="page-link" href="Article?@PAGE_INDEX=@i">@(i)</a></li>
+                            }
+
+                        }
+                        <li class="page-item">
+                            @if (currentPageIndex <= (sumOfArticle / 2))
+                            {
+                                <a class="page-link" aria-label="Next" href="Article?@PAGE_INDEX=@(currentPageIndex)">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            }@*/*else nothing*/*@
                         </li>
                     </ul>
                 </nav>
@@ -189,4 +161,3 @@
     </article>
 </main>
 
-<

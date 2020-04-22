@@ -7,30 +7,26 @@ namespace Entity
 {
     public class Content : Entity<int>
     {
-
-        #region Constructor
-
-        public Content() : base(32)
+        public Content():base(32)
         {
-            _createTime = DateTime.Now;
-        }
-        // 2.确保每个Content对象都有kind的非空值
 
+        }
         public Content(string name) : this()
         {
             kind = name;
+            PublishTime = DateTime.Now;
         }
 
-        #endregion
 
         #region Filed and Properties
         //3.21Homework 
         //1.Content中有一个字段：kind，记录内容的种类（problem/article/suggest等），只能被子类使用
         protected string kind;
 
-        //3.Content中的createTime，不能被子类使用，但只读属性PublishTime使用它为外部提供内容的发布时间
-        private DateTime _createTime { get; }
-        public DateTime PublishTime { set; get; }
+        
+        public DateTime PublishTime { get; }
+
+        public int Id { set; get; }
 
         //Author
         public User Author { set; get; }

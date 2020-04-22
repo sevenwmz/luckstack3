@@ -37,96 +37,96 @@ namespace HomeWork
 
         public static IEnumerable<Problem> problems;
         public static Problem aboutCSharp, aboutLinq, aboutSQL, aboutUI;
-        static LinqMethod()
-        {
-            csharpBasics = new Article("C#基础介绍")
-            {
-                Author = dfg,
-                Body = "基础简介",
-                PublishTime = new DateTime(2019, 10, 3),
-                Title = "C#基础介绍",
-                Keywords = new List<Keyword> { sql, csharp, net },
-                Comments = new List<Comment> { better, super, great, nice },
-            };
-            csharpHigh = new Article("C#高阶")
-            {
-                Author = dfg,
-                Body = "something",
-                PublishTime = new DateTime(2019, 11, 10),
-                Title = "C#高阶",
-                Keywords = new List<Keyword> { linq, net },
-                Comments = new List<Comment> { better, super, great }
-            };
-            htmlBasics = new Article("html基础介绍")
-            {
-                Author = xiaoyu,
-                Body = "html简介",
-                PublishTime = new DateTime(2018, 12, 21),
-                Title = "html基础介绍",
-                Keywords = new List<Keyword> { html },
-                Comments = new List<Comment> { soso, cool }
-            };
-            uiBasics = new Article("UI介绍")
-            {
-                Author = xiaoyu,
-                Body = "UI简介",
-                PublishTime = new DateTime(2019, 5, 23),
-                Title = "UI介绍",
-                Keywords = new List<Keyword> { ui },
-                Comments = new List<Comment> { cool }
-            };
-            aboutYU = new Article("小鱼老师简介")
-            {
-                Author = xiaoyu,
-                Body = "小鱼老师简介",
-                PublishTime = new DateTime(2019, 1, 3),
-                Title = "小鱼老师简介",
-                Keywords = new List<Keyword> { html, ui },
-                Comments = new List<Comment> { nice }
-            };
-            aboutFEI = new Article("飞哥简介")
-            {
-                Author = dfg,
-                Body = "自由飞简介",
-                PublishTime = new DateTime(2019, 1, 3),
-                Title = "飞哥简介",
-                Keywords = new List<Keyword> { csharp, linq, sql, net },
-                Comments = new List<Comment> { better, super, great, nice, cool }
-            };
-            articles = new List<Article>
-            { csharpBasics, csharpHigh, htmlBasics, uiBasics,aboutYU,aboutFEI };
+        //static LinqMethod()
+        //{
+        //    csharpBasics = new Article("C#基础介绍")
+        //    {
+        //        Author = dfg,
+        //        Body = "基础简介",
+        //        PublishTime = new DateTime(2019, 10, 3),
+        //        Title = "C#基础介绍",
+        //        Keywords = new List<Keyword> { sql, csharp, net },
+        //        Comments = new List<Comment> { better, super, great, nice },
+        //    };
+        //    csharpHigh = new Article("C#高阶")
+        //    {
+        //        Author = dfg,
+        //        Body = "something",
+        //        PublishTime = new DateTime(2019, 11, 10),
+        //        Title = "C#高阶",
+        //        Keywords = new List<Keyword> { linq, net },
+        //        Comments = new List<Comment> { better, super, great }
+        //    };
+        //    htmlBasics = new Article("html基础介绍")
+        //    {
+        //        Author = xiaoyu,
+        //        Body = "html简介",
+        //        PublishTime = new DateTime(2018, 12, 21),
+        //        Title = "html基础介绍",
+        //        Keywords = new List<Keyword> { html },
+        //        Comments = new List<Comment> { soso, cool }
+        //    };
+        //    uiBasics = new Article("UI介绍")
+        //    {
+        //        Author = xiaoyu,
+        //        Body = "UI简介",
+        //        PublishTime = new DateTime(2019, 5, 23),
+        //        Title = "UI介绍",
+        //        Keywords = new List<Keyword> { ui },
+        //        Comments = new List<Comment> { cool }
+        //    };
+        //    aboutYU = new Article("小鱼老师简介")
+        //    {
+        //        Author = xiaoyu,
+        //        Body = "小鱼老师简介",
+        //        PublishTime = new DateTime(2019, 1, 3),
+        //        Title = "小鱼老师简介",
+        //        Keywords = new List<Keyword> { html, ui },
+        //        Comments = new List<Comment> { nice }
+        //    };
+        //    aboutFEI = new Article("飞哥简介")
+        //    {
+        //        Author = dfg,
+        //        Body = "自由飞简介",
+        //        PublishTime = new DateTime(2019, 1, 3),
+        //        Title = "飞哥简介",
+        //        Keywords = new List<Keyword> { csharp, linq, sql, net },
+        //        Comments = new List<Comment> { better, super, great, nice, cool }
+        //    };
+        //    articles = new List<Article>
+        //    { csharpBasics, csharpHigh, htmlBasics, uiBasics,aboutYU,aboutFEI };
 
 
-            aboutCSharp = new Problem
-            {
-                Title = "C# Learning question",
-                Author = xiaoyu,
-                Reward = 4,
-                PublishTime = new DateTime(2019, 5, 5)
-            };
-            aboutLinq = new Problem
-            {
-                Title = "Linq Learning question",
-                Author = xiaoyu,
-                Reward = 7,
-                PublishTime = new DateTime(2019, 4, 5)
-            };
-            aboutSQL = new Problem
-            {
-                Title = "SQL Learning question",
-                Author = xiaoyu,
-                Reward = 0,
-                PublishTime = new DateTime(2019, 5, 5)
-            };
-            aboutUI = new Problem
-            {
-                Title = "UI Learning question",
-                Author = dfg,
-                Reward = 10,
-                PublishTime = new DateTime(2019, 5, 5)
-            };
-            problems = new List<Problem> { aboutCSharp, aboutLinq, aboutSQL, aboutUI };
-        }
+        //    //aboutCSharp = new Problem
+        //    //{
+        //    //    Title = "C# Learning question",
+        //    //    Author = xiaoyu,
+        //    //    Reward = 4,
+        //    //    PublishTime = new DateTime(2019, 5, 5)
+        //    //};
+        //    //aboutLinq = new Problem
+        //    //{
+        //    //    Title = "Linq Learning question",
+        //    //    Author = xiaoyu,
+        //    //    Reward = 7,
+        //    //    PublishTime = new DateTime(2019, 4, 5)
+        //    //};
+        //    //aboutSQL = new Problem
+        //    //{
+        //    //    Title = "SQL Learning question",
+        //    //    Author = xiaoyu,
+        //    //    Reward = 0,
+        //    //    PublishTime = new DateTime(2019, 5, 5)
+        //    //};
+        //    //aboutUI = new Problem
+        //    //{
+        //    //    Title = "UI Learning question",
+        //    //    Author = dfg,
+        //    //    Reward = 10,
+        //    //    PublishTime = new DateTime(2019, 5, 5)
+        //    //};
+        //    //problems = new List<Problem> { aboutCSharp, aboutLinq, aboutSQL, aboutUI };
+        //}
         /// <summary>
         /// 为求助（Problem）添加悬赏（Reward）属性，并找出每一篇求助的悬赏都大于5个帮帮币的文章作者
         /// </summary>

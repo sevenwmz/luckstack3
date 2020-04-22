@@ -6,14 +6,10 @@ namespace Entity
 {
     public sealed class User
     {
-        #region constructer method
 
 
         #region 设计一种方式，保证： 每一个User对象一定有Name和Password赋值
-        //public User()
-        //{
-                
-        //}
+
         public User(string UserName, string Password)
         {
             this.UserName = UserName;
@@ -21,9 +17,6 @@ namespace Entity
         }
         #endregion
 
-
-
-        #endregion
 
 
         #region  Filed and properties
@@ -102,7 +95,8 @@ namespace Entity
         }
 
         #endregion
-
+        public int Id { set; get; }
+        public string NickName { set; get; }
         public TokenManager Manager { get; set; }
         //Password confirm.
         internal string PasswordAgain { get; set; }
