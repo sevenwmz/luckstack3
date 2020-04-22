@@ -93,7 +93,7 @@ namespace Entity
                 _password = value;
             }
         }
-
+        public string Level { set; get; }
         #endregion
         public int Id { set; get; }
         public string NickName { set; get; }

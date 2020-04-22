@@ -167,7 +167,7 @@ namespace Entity
         #region Function
         public int GetSum()
         {
-            return _article.Count;
+            return _article.Count+1;
         }
         public IList<Article> Get()
         {

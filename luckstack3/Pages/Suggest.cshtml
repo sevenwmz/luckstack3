@@ -1,0 +1,105 @@
+﻿@page
+@model _17bang.SuggestModel
+@{
+    ViewData["Title"] = "Suggest";
+    Layout = "_Layout"; 
+    
+}
+
+
+@section style{
+    <style>
+    </style>
+}
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-7" style="margin-top:90px;">
+            <h1 class="fa fa-list-alt"><strong>意见建议</strong></h1>
+            <hr />
+            @foreach (var suggest in Model.Suggest)
+            {
+                <div>
+                    <p class="fa fa-calendar">@suggest.PublishTime.AddDays(-5)</p>
+                    <p class="fa fa-hourglass"><a href="#">@suggest.Title</a></p>
+                    <p>@suggest.Summary<a href="#"> ……</a></p>
+                    <span class="fa fa-user-circle">作者：@suggest.Author.NickName</span>
+                    <span>@suggest.Author.Level</span>
+                    <div class="text-md-right">
+                        <span class="fa fa-comment"><a href="#">评论： 0</a></span>
+                        <span class="fa fa-thumbs-up"><a href="#">赞： 0</a></span>
+                        <span class="fa fa-thumbs-down"><a href="#">踩： 0</a></span>
+                    </div>
+                    <hr />
+                </div>
+            }
+            @{int currentPageIndex = Convert.ToInt32(Request.Query["pageIndex"]) + 1;
+                int sumOfSuggest = Model.SumOfSuggest;
+            }
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        @if (currentPageIndex - 1 > 1)
+                        {
+                            <a class="page-link" aria-label="Private" href="Suggest?=@Const.PAGE_INDEX=@(currentPageIndex-2)">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        }
+                    </li>
+                    @for (int i = 1; i < (sumOfSuggest / Const.PAGE_SIZE) + 1; i++)
+                    {
+                        if (currentPageIndex - 1 == i)
+                        {
+                            <li class="page-item page-link" style="background-color:rgba(0, 0, 0, 0.72);color:white">@(i)</li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a class="page-link" href="Suggest?@Const.PAGE_INDEX=@i">@(i)</a></li>
+                        }
+                    }
+                    <li class="page-item">
+                        @if (currentPageIndex <= (sumOfSuggest / 2))
+                        {
+                            <a class="page-link" aria-label="Next" href="Suggest?@Const.PAGE_INDEX=@(currentPageIndex)">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        }
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <aside class="col-md-4 offset-1" style="margin-top:90px;">
+            <div style="border:dashed#e4e0e0 1px;border-radius:5px;" class="container">
+                <h4 class="fa fa-sign-in">开发线路图</h4>
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <p class="mb-0">
+                                <button class="btn btn-link btn-block text-left fa fa-square-o" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    用户
+                                </button>
+                            </p>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <p>手机实名注册</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="padding-top:5px">
+                    @foreach (var asideNews in Model.News)
+                    {
+                        <span>@asideNews.PublishTime</span>
+                        <span class="fa fa-check-square-o">@asideNews.News</span>
+                    }
+
+                </p>
+            </div>
+        </aside>
+    </div>
+</main>
+

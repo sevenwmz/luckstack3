@@ -6,7 +6,7 @@ using Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace luckstack3
+namespace _17bang
 {
     public class AreicleModel : PageModel
     {

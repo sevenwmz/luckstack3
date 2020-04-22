@@ -1,7 +1,7 @@
 ﻿@page
-@model luckstack3.AreicleModel
+@model _17bang.AreicleModel
 @{
-    ViewData["Title"] = "index";
+    ViewData["Title"] = "index"; 
 }
 @section style{
     <style>
@@ -44,43 +44,40 @@
             @{
                 int currentPageIndex = Convert.ToInt32(Request.Query["pageIndex"]) + 1;
                 int sumOfArticle = Model.SumOfArticle;
-                const string PAGE_INDEX = "pageIndex";
-                const int PAGE_SIZE = 2;
             }
-            <div>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            @if (currentPageIndex - 1 > 1)
-                            {
-                                <a class="page-link" aria-label="Private" href="Article?@PAGE_INDEX=@(currentPageIndex-2)">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            }@*/*else nothing*/*@
-                        </li>
-                        @for (int i = 1; i < (sumOfArticle / PAGE_SIZE) + 1; i++)
-                        {
-                            if (currentPageIndex-1 == i)
-                            {
-                                <li class="page-item page-link" style="background-color:rgba(0, 0, 0, 0.72);color:white">@(i)</li>
-                            }
-                            else
-                            {
-                                <li class="page-item"><a class="page-link" href="Article?@PAGE_INDEX=@i">@(i)</a></li>
-                            }
 
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        @if (currentPageIndex - 1 > 1)
+                        {
+                            <a class="page-link" aria-label="Private" href="Article?=@Const.PAGE_INDEX=@(currentPageIndex-2)">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        }@*/*else nothing*/*@
+                    </li>
+                    @for (int i = 1; i < (sumOfArticle / Const.PAGE_SIZE) + 1; i++)
+                    {
+                        if (currentPageIndex - 1 == i)
+                        {
+                            <li class="page-item page-link" style="background-color:rgba(0, 0, 0, 0.72);color:white">@(i)</li>
                         }
-                        <li class="page-item">
-                            @if (currentPageIndex <= (sumOfArticle / 2))
-                            {
-                                <a class="page-link" aria-label="Next" href="Article?@PAGE_INDEX=@(currentPageIndex)">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            }@*/*else nothing*/*@
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+                        else
+                        {
+                            <li class="page-item"><a class="page-link" href="Article?@Const.PAGE_INDEX=@i">@(i)</a></li>
+                        }
+                    }
+                    <li class="page-item">
+                        @if (currentPageIndex <= (sumOfArticle / 2))
+                        {
+                            <a class="page-link" aria-label="Next" href="Article?@Const.PAGE_INDEX=@(currentPageIndex)">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        }@*/*else nothing*/*@
+                    </li>
+                </ul>
+            </nav>
+
         </div>
         <aside class="col-md-4" style="margin-top:90px;">
             <div style="border:dashed#e4e0e0 1px;border-radius:5px;" class="container">
