@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using _17bang.Pages.Repository;
 using Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,12 +16,12 @@ namespace _17bang
 
         public int SumOfSuggest { set; get; }
 
-        private Suggest _suggest;
-        private Suggest _asideSuggest;
+        private SuggestRepository _suggest;
+        private SuggestRepository _asideSuggest;
         public SuggestModel()
         {
-            _suggest = new Suggest();
-            _asideSuggest = new Suggest();
+            _suggest = new SuggestRepository();
+            _asideSuggest = new SuggestRepository();
         }
         public void OnGet()
         {

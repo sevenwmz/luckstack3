@@ -2,8 +2,8 @@
 @model _17bang.SuggestModel
 @{
     ViewData["Title"] = "Suggest";
-    Layout = "_Layout"; 
-    
+    Layout = "_Layout";
+
 }
 
 
@@ -41,7 +41,7 @@
                     <li class="page-item">
                         @if (currentPageIndex - 1 > 1)
                         {
-                            <a class="page-link" aria-label="Private" href="Suggest?=@Const.PAGE_INDEX=@(currentPageIndex-2)">
+                            <a class="page-link" aria-label="Private" href="Suggest?@Const.PAGE_INDEX=@(currentPageIndex-2)">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         }
@@ -90,14 +90,15 @@
                     </div>
                 </div>
 
-                <p style="padding-top:5px">
-                    @foreach (var asideNews in Model.News)
-                    {
+
+                @foreach (var asideNews in Model.News)
+                {<p style="padding-top:5px">
                         <span>@asideNews.PublishTime</span>
                         <span class="fa fa-check-square-o">@asideNews.News</span>
-                    }
+                    </p>
+                }
 
-                </p>
+
             </div>
         </aside>
     </div>

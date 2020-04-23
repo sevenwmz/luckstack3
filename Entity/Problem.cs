@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace Entity
@@ -135,5 +136,17 @@ namespace Entity
         #endregion
 
 
+    }
+
+    public enum ProblemStatus
+    {
+        [Description("已撤销")]
+        cancelled,
+        [Description("已酬谢")]
+        Rewarded,
+        [Description("协助中")]
+        inprocess,
+        [Description("待协助")]
+        assist
     }
 }
