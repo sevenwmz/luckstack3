@@ -11,6 +11,9 @@ namespace _17bang
 {
     public class AreicleModel : PageModel
     {
+        /// <summary>
+        /// 一个集合
+        /// </summary>
         public IList<Article> Items { set; get; }
         public int SumOfArticle { set; get; }
 
