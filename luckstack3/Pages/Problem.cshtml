@@ -1,106 +1,146 @@
 ﻿@page
+@using _17bang.Pages.Extension
 @model _17bang.ProblemModel
 @{
     ViewData["Title"] = "Problem";
 }
 
 
-    <main class="container" style="padding-top:80px">
-        <div class="row">
-            <section class="col-md-7">
+<main class="container">
+    <div class="row">
+        <section class="col-md-8"  style="padding-top:80px">
+            @foreach (var problem in Model.Problems)
+            {
                 <div>
-                    <span>datatime</span>
-                    <span class="fa fa-user-circle">用户名</span>
-                    <span>Level</span>
+                    <span class="fa fa-calendar">@problem.PublishTime</span>
+                    <span class="fa fa-user-circle"><a href="none" class="text-info">@problem.Author.NickName</a></span>
+                    <span>@problem.Author.Level</span>
                 </div>
-                <div>
-                    <span>标签</span>
-                    <span>Title</span>
-                </div>
-                <p>Summry</p>
-                <div>
-                    <span class="fa fa-tags"></span>
-                    <span class="text-white badge bg-dark">Keywords</span>
-                </div>
-            </section>
+                <h2><span class="text-white badge bg-dark">@problem.Status.GetDescription()</span>@problem.Title</h2>
+                <p>@problem.Summary<a href="none" style="color:black">……</a></p>
+                <label>
+                    <strong><i class="fa fa-tags"></i>关键字： </strong>
+                    @foreach (var keyword in problem.Keywords)
+                    {
+                        <span class="fa fa-tags"></span>
+                        <span class="text-white badge bg-dark">@keyword.Name</span>
+                    }
+                </label>
+                <hr />
+            }
+            @{
+                int currentPageIndex = Convert.ToInt32(Request.Query["pageIndex"]) + 1;
+                int sumOfArticle = Model.SumOfArticle;
+            }
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        @if (currentPageIndex - 1 > 1)
+                        {
+                            <a class="page-link" aria-label="Private" href="Problem?@Const.PAGE_INDEX=@(currentPageIndex-2)">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        }@*/*else nothing*/*@
+                    </li>
+                    @for (int i = 1; i < (sumOfArticle / Const.PAGE_SIZE) + 1; i++)
+                    {
+                        if (currentPageIndex - 1 == i)
+                        {
+                            <li class="page-item page-link" style="background-color:rgba(0, 0, 0, 0.72);color:white">@(i)</li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a class="page-link" href="Problem?@Const.PAGE_INDEX=@i">@(i)</a></li>
+                        }
+                    }
+                    <li class="page-item">
+                        @if (currentPageIndex <= (sumOfArticle / 2))
+                        {
+                            <a class="page-link" aria-label="Next" href="Problem?@Const.PAGE_INDEX=@(currentPageIndex)">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        }@*/*else nothing*/*@
+                    </li>
+                </ul>
+            </nav>
+        </section>
 
-            <aside class="col-md-4 offset-sm-2">
-                <div style="border:dashed#e4e0e0 1px;border-radius:5px;" class="container">
-                    <h4 class="lead mt-md-4"><i class="fa fa-tags"></i>关键字</h4>
-                    <hr />
-                    <section>
-                        <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:30px;">编程开发语言</span>
-                        <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:30px;">C#</span>
-                        <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:30px;">JAVA</span><br />
-                        <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:25px;">工具软件</span>
-                        <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:25px;">Javascript</span><br />
-                        <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;height:20px;">顾问咨询</span>
-                        <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;height:20px;">Html</span>
-                        <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;height:20px;">VisualStudio</span><br />
-                        <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;">操作系统</span>
-                        <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;">SQL</span>
-                        <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;">职场</span>
-                        <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;">法律</span><br />
-                        <span class="text-white badge bg-dark" style="border-radius:10px;">Python</span>
-                        <span class="text-white badge bg-dark" style="border-radius:10px;">.net</span>
-                        <span class="text-white badge bg-dark" style="border-radius:10px;">css</span>
-                        <span class="text-white badge bg-dark" style="border-radius:10px;">Linux</span>
-                    </section>
-                    <hr />
-                    <div class="input-group mb-3 text-right">
-                        <input type="text" class="form-control" placeholder="直接输入关键字进行查找" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <span class="input-group-text "><i class="fa fa-search"></i></span>
+        <aside class="col-md-4 offset-sm-2">
+            <div style="border:dashed#e4e0e0 1px;border-radius:5px;" class="container">
+                <h4 class="lead mt-md-4"><i class="fa fa-tags"></i>关键字</h4>
+                <hr />
+                <section>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:30px;">编程开发语言</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:30px;">C#</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:30px;">JAVA</span><br />
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:25px;">工具软件</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:25px;">Javascript</span><br />
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;height:20px;">顾问咨询</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;height:20px;">Html</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;height:20px;">VisualStudio</span><br />
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;">操作系统</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;">SQL</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;">职场</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;">法律</span><br />
+                    <span class="text-white badge bg-dark" style="border-radius:10px;">Python</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;">.net</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;">css</span>
+                    <span class="text-white badge bg-dark" style="border-radius:10px;">Linux</span>
+                </section>
+                <hr />
+                <div class="input-group mb-3 text-right">
+                    <input type="text" class="form-control" placeholder="直接输入关键字进行查找" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <span class="input-group-text "><i class="fa fa-search"></i></span>
+                    </div>
+                    <button class="btn btn-outline-dark my-2 my-sm-0 ml-4 border border-secondary" type="button"><i class="fa fa-random"></i>换一批</button>
+                </div>
+
+            </div>
+            <div class="card text-center mt-5">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">每日督促</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">排行榜</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">新注册</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body  ">
+                    <p class="lead"><i class="fa fa-calendar"></i>2020年02月25日</p>
+                    <div class="d-flex row">
+                        <div class="col-md-4">
+                            <p class="text-left small">共扫描目标：</p>
+                            <p class="text-left small">当天休息：</p>
+                            <p class="text-left small">已交作业：</p>
+                            <p class="text-left small">请假：</p>
+                            <p class="text-left small">未交作业：</p>
                         </div>
-                        <button class="btn btn-outline-dark my-2 my-sm-0 ml-4 border border-secondary" type="button"><i class="fa fa-random"></i>换一批</button>
-                    </div>
-
-                </div>
-                <div class="card text-center mt-5">
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">每日督促</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">排行榜</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">新注册</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-body  ">
-                        <p class="lead"><i class="fa fa-calendar"></i>2020年02月25日</p>
-                        <div class="d-flex row">
-                            <div class="col-md-4">
-                                <p class="text-left small">共扫描目标：</p>
-                                <p class="text-left small">当天休息：</p>
-                                <p class="text-left small">已交作业：</p>
-                                <p class="text-left small">请假：</p>
-                                <p class="text-left small">未交作业：</p>
-                            </div>
-                            <div class="col-md-4 offset-2">
-                                <p class="mb small"><i class="fa fa-flag-o"></i>1个</p>
-                                <p class="mb small"><i class="fa fa-ban"></i>0人</p>
-                                <p class="mb small"><i class="fa fa-check"></i>0份</p>
-                                <p class="mb small"><i class="fa fa-coffee"></i>0 人</p>
-                                <p class="mb small"><a href="none"><i class="fa fa-remove"></i>1 人</a></p>
-                            </div>
+                        <div class="col-md-4 offset-2">
+                            <p class="mb small"><i class="fa fa-flag-o"></i>1个</p>
+                            <p class="mb small"><i class="fa fa-ban"></i>0人</p>
+                            <p class="mb small"><i class="fa fa-check"></i>0份</p>
+                            <p class="mb small"><i class="fa fa-coffee"></i>0 人</p>
+                            <p class="mb small"><a href="none"><i class="fa fa-remove"></i>1 人</a></p>
                         </div>
                     </div>
                 </div>
-                <div style="border:dashed#eae2e2 1px;border-radius:5px;padding:25px;margin-top:35px;">
-                    <p><span class="badge badge-secondary mr-3">1</span><a href="none"> 学编程，来 “源栈”！飞哥精品小班等着你……</a></p>
-                    <p><span class="badge badge-secondary mr-3">2</span><a href="none" class="text-warning">  免费广告位，抢到就是赚到！</a></p>
-                    <p><span class="badge badge-secondary mr-3">3</span><a href="none" class="text-warning">  免费广告位，抢到就是赚到！</a><br /></p>
-                    <p><span class="badge badge-secondary mr-3">4</span><a href="none" class="text-warning">  免费广告位，抢到就是赚到！</a><br /></p>
-                    <p><span class="badge badge-secondary mr-3">5</span><a href="none" class="text-warning">  免费广告位，抢到就是赚到！</a><br /></p>
-                    <p><span class="badge badge-secondary mr-3">6</span>本站主机由<a href="none">  西部数码</a>提供</p>
-                    <p class="text-md-right small"><a href="none"><i class="fa fa-buysellads"></i> 广告</a></p>
-                </div>
-            </aside>
-        </div>
-
-    </main>
+            </div>
+            <div style="border:dashed#eae2e2 1px;border-radius:5px;padding:25px;margin-top:35px;">
+                <p><span class="badge badge-secondary mr-3">1</span><a href="none"> 学编程，来 “源栈”！飞哥精品小班等着你……</a></p>
+                <p><span class="badge badge-secondary mr-3">2</span><a href="none" class="text-warning">  免费广告位，抢到就是赚到！</a></p>
+                <p><span class="badge badge-secondary mr-3">3</span><a href="none" class="text-warning">  免费广告位，抢到就是赚到！</a><br /></p>
+                <p><span class="badge badge-secondary mr-3">4</span><a href="none" class="text-warning">  免费广告位，抢到就是赚到！</a><br /></p>
+                <p><span class="badge badge-secondary mr-3">5</span><a href="none" class="text-warning">  免费广告位，抢到就是赚到！</a><br /></p>
+                <p><span class="badge badge-secondary mr-3">6</span>本站主机由<a href="none">  西部数码</a>提供</p>
+                <p class="text-md-right small"><a href="none"><i class="fa fa-buysellads"></i> 广告</a></p>
+            </div>
+        </aside>
+    </div>
+</main>
 

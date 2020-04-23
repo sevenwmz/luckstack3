@@ -30,7 +30,7 @@ namespace Entity
         //Body filed.
         private string Body { get; set; }
 
-
+        public ProblemStatus Status { set; get; }
         #region 3.problem.Reward不能为负数(Secend Day Homework )
 
         private int _reward;
