@@ -1,7 +1,7 @@
 ﻿@page
 @model _17bang.AreicleModel
 @{
-    ViewData["Title"] = "index"; 
+    ViewData["Title"] = "index";
 }
 @section style{
     <style>
@@ -42,23 +42,22 @@
 
             }
             @{
-                int currentPageIndex = Convert.ToInt32(Request.Query["pageIndex"]) + 1;
-                int sumOfArticle = Model.SumOfArticle;
+                int currentPageIndex = string.IsNullOrEmpty(Request.Query["pageIndex"]) ? 1 : Convert.ToInt32(Request.Query["pageIndex"]);
             }
 
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item">
-                        @if (currentPageIndex - 1 > 1)
-                        {
-                            <a class="page-link" aria-label="Private" href="Article?@Const.PAGE_INDEX=@(currentPageIndex-2)">
+                    @if (currentPageIndex > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" aria-label="Private" href="Article?@Const.PAGE_INDEX=@(currentPageIndex-1)">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
-                        }@*/*else nothing*/*@
-                    </li>
-                    @for (int i = 1; i < (sumOfArticle / Const.PAGE_SIZE) + 1; i++)
+                        </li>
+                    }@*/*else nothing*/*@
+                    @for (int i = 1; i <= (Model.SumOfArticle / Const.PAGE_SIZE); i++)
                     {
-                        if (currentPageIndex - 1 == i)
+                        if (currentPageIndex == i)
                         {
                             <li class="page-item page-link" style="background-color:rgba(0, 0, 0, 0.72);color:white">@(i)</li>
                         }
@@ -67,14 +66,14 @@
                             <li class="page-item"><a class="page-link" href="Article?@Const.PAGE_INDEX=@i">@(i)</a></li>
                         }
                     }
-                    <li class="page-item">
-                        @if (currentPageIndex <= (sumOfArticle / 2))
-                        {
-                            <a class="page-link" aria-label="Next" href="Article?@Const.PAGE_INDEX=@(currentPageIndex)">
+                    @if (currentPageIndex < (Model.SumOfArticle / Const.PAGE_SIZE))
+                    {
+                        <li class="page-item">
+                            <a class="page-link" aria-label="Next" href="Article?@Const.PAGE_INDEX=@(currentPageIndex + 1)">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
-                        }@*/*else nothing*/*@
-                    </li>
+                        </li>
+                    }@*/*else nothing*/*@
                 </ul>
             </nav>
 

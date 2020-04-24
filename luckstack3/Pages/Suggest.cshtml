@@ -33,22 +33,23 @@
                     <hr />
                 </div>
             }
-            @{int currentPageIndex = Convert.ToInt32(Request.Query["pageIndex"]) + 1;
-                int sumOfSuggest = Model.SumOfSuggest;
+            @{
+                int currentPageIndex = string.IsNullOrEmpty(Request.Query["pageIndex"]) ? 1 : Convert.ToInt32(Request.Query["pageIndex"]);
             }
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item">
-                        @if (currentPageIndex - 1 > 1)
-                        {
-                            <a class="page-link" aria-label="Private" href="Suggest?@Const.PAGE_INDEX=@(currentPageIndex-2)">
+                    @if (currentPageIndex > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" aria-label="Private" href="Suggest?@Const.PAGE_INDEX=@(currentPageIndex-1)">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
-                        }
-                    </li>
-                    @for (int i = 1; i < (sumOfSuggest / Const.PAGE_SIZE) + 1; i++)
+                        </li>
+                    }
+
+                    @for (int i = 1; i <= (Model.SumOfSuggest / Const.PAGE_SIZE); i++)
                     {
-                        if (currentPageIndex - 1 == i)
+                        if (currentPageIndex == i)
                         {
                             <li class="page-item page-link" style="background-color:rgba(0, 0, 0, 0.72);color:white">@(i)</li>
                         }
@@ -57,14 +58,16 @@
                             <li class="page-item"><a class="page-link" href="Suggest?@Const.PAGE_INDEX=@i">@(i)</a></li>
                         }
                     }
-                    <li class="page-item">
-                        @if (currentPageIndex <= (sumOfSuggest / 2))
-                        {
-                            <a class="page-link" aria-label="Next" href="Suggest?@Const.PAGE_INDEX=@(currentPageIndex)">
+
+                    @if (currentPageIndex < (Model.SumOfSuggest / 2))
+                    {
+                        <li class="page-item">
+                            <a class="page-link" aria-label="Next" href="Suggest?@Const.PAGE_INDEX=@(currentPageIndex+1)">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
-                        }
-                    </li>
+                        </li>
+                    }
+
                 </ul>
             </nav>
         </div>

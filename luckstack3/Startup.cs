@@ -23,6 +23,13 @@ namespace _17bang
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddMvc()
+                .AddRazorPagesOptions(option =>
+                {
+                    option.Conventions.AddPageRoute("/Tried", "/Tried/{id}");
+                    }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
