@@ -5,14 +5,18 @@
     <meta name="=viewport" content="width=device-width, intial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/FontAwesome/Content/font-awesome.css" />
-    <link rel="stylesheet" href="~/lib/bootstrap/SevenWangOverride.css"/>
+    <link rel="stylesheet" href="~/lib/bootstrap/SevenWangOverride.css" />
+    <link rel="shortcut icon" type="image/ico" href="~/img/Title.ico" />" media="screen" />
+    <title>@ViewData["title"]</title>
+
     <style>
 
         * {
-            font-size:small;
+            font-size: small;
         }
-        a{
-            text-decoration:none
+
+        a {
+            text-decoration: none
         }
     </style>
     @RenderSection("style", false)
