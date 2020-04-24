@@ -1,4 +1,5 @@
 ﻿@page
+@using Entity
 @model luckstack3.RegisterModel
 @{
     ViewData["Title"] = "Register";
@@ -23,32 +24,32 @@
         </div>
         <div class="form-group">
             <label>邀请人：（* 必填<a href="none" title="点击由系统推荐">没有邀请人</a>）</label>
-            <input type="text" class="form-control" placeholder="他的用户名，模糊查询只能从头开始">
+            <input asp-for="Inviter" class="form-control" placeholder="他的用户名，模糊查询只能从头开始">
             <label>邀请码：（* 必填）</label>
-            <input type="text" class="form-control" placeholder="4位数字">
+            <input type="text" asp-for="InviterNumber" class="form-control" placeholder="4位数字">
         </div>
     </section>
     <div class="form-group">
         <label>用户名：（* 必填）</label>
-        <input type="text" class="form-control" placeholder="登录用户名，可修改，但不能重复">
+        <input asp-for="UserName.UserName" class="form-control" placeholder="登录用户名，可修改，但不能重复">
     </div>
     <div class="form-group">
         <label>密码：（* 必填）</label>
-        <input type="password" class="form-control" placeholder="不少于4个字符">
+        <input  asp-for="UserPwd.Password" class="form-control" placeholder="不少于4个字符">
     </div>
     <div class="form-group">
         <label>验证密码：（* 必填）</label>
-        <input type="password" class="form-control" placeholder="和密码相同">
+        <input asp-for="UserPwd.Password" class="form-control" placeholder="和密码相同">
     </div>
     <div class="form-group">
         <label>验证码：（* 必填） </label>
         <div>
-            <input type="text" class="form-control" style="width:30%;display:inline;">
+            <input asp-for="Captcha" class="form-control" style="width:30%;display:inline;">
             <a href="#">看不清楚</a>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">提交</button>
-    <button type="reset" class="btn btn-light border border-secondary">重置</button>
+    <button type="submit" asp-page="/Article" class="btn btn-primary">提交</button>
+    <button type="reset" asp-page="/Register" class="btn btn-light border border-secondary">重置</button>
     <a href="/Log/On" class="btn float-md-right text-primary"><i class="fa fa-sign-in"></i>登录</a>
 </form>
 

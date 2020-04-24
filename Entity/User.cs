@@ -92,6 +92,7 @@ namespace Entity
                 Console.WriteLine($"传入数据库");
                 _password = value;
             }
+            get => _password;
         }
         public string Level { set; get; }
         #endregion
