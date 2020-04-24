@@ -13,6 +13,19 @@
 }
 
 
+
+@for (int i = 0; i < 5; i++)
+{
+    <div style="text-align:center;">
+        @for (int j = 0; j < i * 2 - 1; j++)
+        {
+        string color = i % 2 == 0 ? "red" : "blue";
+        <span style="color:@color">i</span>
+        }
+    </div>
+}
+
+
 @for (int i = 0; i <= wantLine; i++)
 { /*利用循环分支，实现如下图所示的页面效果：*/
     if (i % 2 != 0)
@@ -54,7 +67,7 @@
     </ul>
 </nav>
 <tbody class="table table-striped">
-    <tr  colspan="7" class="tdbg">
+    <tr colspan="7" class="tdbg">
         @for (int i = 0; i < 7; i++)
         {
             <th>@i</th>
