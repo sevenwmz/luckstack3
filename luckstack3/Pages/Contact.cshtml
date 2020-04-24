@@ -43,22 +43,22 @@
 <form class="col-md-4">
     <div class="form-group">
         <label><strong>QQ：</strong></label>
-        <input type="text" class="form-control" placeholder="建议填写">
+        <input asp-for="QQ" type="text" class="form-control" placeholder="建议填写">
     </div>
     <div class="form-group">
         <label><strong>微信：</strong></label>
-        <input type="password" class="form-control" placeholder="建议填写">
+        <input  asp-for="WeChat" type="password" class="form-control" placeholder="建议填写">
     </div>
     <div class="form-group">
         <label><strong>电话：</strong></label>
-        <input type="password" class="form-control" placeholder="请谨慎考虑是否填写">
+        <input  asp-for="Phone" type="password" class="form-control" placeholder="请谨慎考虑是否填写">
     </div>
     <div class="form-group">
         <label><strong>其他：</strong></label>
         <div>
-            <textarea rows="4" class="form-control" placeholder="需要说明的情况，比如加QQ时验证问题的回答，否则别人加不了，这就尴尬了。 φ(>ω<*) 以及你能够接受的其他联系方式……"></textarea>
+            <textarea rows="4"  asp-for="Other" class="form-control" placeholder="需要说明的情况，比如加QQ时验证问题的回答，否则别人加不了，这就尴尬了。 φ(>ω<*) 以及你能够接受的其他联系方式……"></textarea>
         </div>
     </div>
-    <button type="submit" class="btn btn-info">提交</button>
+    <button asp-page="/Article" type="submit" class="btn btn-info">提交</button>
     <span class="text-info " style="padding-left:25px;"><i class="fa fa-info-circle"></i> 成功激活后自动返回<a href="#" class="text-info ">之前页面</a></span>
 </form>

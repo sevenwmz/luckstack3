@@ -38,12 +38,12 @@
     <form class="card-body">
         <div class="form-group">
             <label><strong>Email：（* 必填）</strong></label>
-            <input type="email" class="form-control" placeholder="注册时填写的Email地址">
+            <input asp-for="Email" class="form-control" placeholder="注册时填写的Email地址">
         </div>
         <label><strong>通过用户名查找Email：</strong></label>
         <div class="input-group">
 
-            <input type="text" class="form-control" placeholder="必须全称，且不要忘了点击 搜索 按钮" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <input asp-for="Email" class="form-control" placeholder="必须全称，且不要忘了点击 搜索 按钮" aria-label="Recipient's username" aria-describedby="button-addon2">
             <div class="input-group-append">
                 <button type="button" class="btn btn-outline-secondary"><i class="fa fa-search"></i></button>
             </div>
@@ -51,11 +51,11 @@
         <div class="form-group">
             <label><strong>验证码：（* 必填）</strong> </label>
             <div>
-                <input type="text" class="form-control" style="width:30%;display:inline;">
+                <input asp-for="Captcha" class="form-control" style="width:30%;display:inline;">
                 <a href="#">看不清楚</a>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">发送邮件</button>
-        <button type="reset" class="btn btn-light border border-secondary">重置</button>
+        <button asp-page="/Password/Forget" type="submit" class="btn btn-primary">发送邮件</button>
+        <button asp-page="/Password/Forget" type="reset" class="btn btn-light border border-secondary">重置</button>
     </form>
 </div>

@@ -9,6 +9,15 @@ namespace luckstack3
 {
     public class ContactModel : PageModel
     {
+
+        public int QQ { set; get; }
+
+        public string WeChat { set; get; }
+
+        public int Phone { set; get; }
+
+        public string Other { set; get; }
+
         public void OnGet()
         {
 

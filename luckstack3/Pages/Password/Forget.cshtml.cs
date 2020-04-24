@@ -9,6 +9,11 @@ namespace luckstack3
 {
     public class ForgetModel : PageModel
     {
+
+        public string Email { set; get; }
+
+        public string Captcha { set; get; }
+
         public void OnGet()
         {
 
