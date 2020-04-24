@@ -1,71 +1,86 @@
 ﻿@page
 @using _17bang.Pages.Extension
+@using Entity
 @model _17bang.ProblemModel
 @{
     ViewData["Title"] = "首页：一起帮";
 }
 
-
+@*@{ProblemStatus exclude = Enum.Parse<ProblemStatus>(Request.Query["exclude"]); }*@
 <main class="container">
     <div class="row">
         <section class="col-md-8" style="padding-top:80px">
-            @foreach (var problem in Model.Problems)
-            {
-                <div>
-                    <span class="fa fa-calendar">@problem.PublishTime</span>
-                    <span class="fa fa-user-circle"><a href="none" class="text-info">@problem.Author.NickName</a></span>
-                    <span>@problem.Author.Level</span>
-                </div>
-                <h2><span class="text-white badge bg-dark">@problem.Status.GetDescription()</span>@problem.Title</h2>
-                <p>@problem.Summary<a href="none" style="color:black">……</a></p>
-                <label>
-                    <strong><i class="fa fa-tags"></i>关键字： </strong>
-                    @foreach (var keyword in problem.Keywords)
-                    {
-                        <span class="fa fa-tags"></span>
-                        <span class="text-white badge bg-dark">@keyword.Name</span>
-                    }
+            <div class="pull-left text-muted">
+                <label class="checkbox-inline">
+                    <span class="fa fa-eye-slash"></span>
+                    不显示
                 </label>
-                <hr />
-            }
-            @{
-                int currentPageIndex = string.IsNullOrEmpty(Request.Query["pageIndex"]) ? 1 : Convert.ToInt32(Request.Query["pageIndex"]);
-            }
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
+                <a href="/Problem?exclude=@ProblemStatus.Rewarded">已酬谢</a>|
+                <a href="/Problem?exclude=@ProblemStatus.cancelled">已撤销</a>|
+                <a href="/Problem?exclude=@ProblemStatus.inprocess">协助中</a>|
+                <a href="/Problem?exclude=@ProblemStatus.assist">待协助</a>
+            </div>
 
-                    @if (currentPageIndex > 1)
-                    {
-                        <li class="page-item">
-                            <a class="page-link" aria-label="Private" href="Problem?@Const.PAGE_INDEX=@(currentPageIndex - 1)">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                    }@*/*else nothing*/*@
-
-                    @for (int i = 1; i <= (Model.SumOfArticle / Const.PAGE_SIZE); i++)
-                    {
-                        if (currentPageIndex == i)
+            <div>
+                @foreach (var problem in Model.Problems)
+                {
+                    <div>
+                        <span class="fa fa-calendar">@problem.PublishTime</span>
+                        <span class="fa fa-user-circle"><a href="none" class="text-info">@problem.Author.NickName</a></span>
+                        <span>@problem.Author.Level</span>
+                    </div>
+                    <h2><span class="text-white badge bg-dark">@problem.Status.GetDescription()</span>@problem.Title</h2>
+                    <p>@problem.Summary<a href="none" style="color:black">……</a></p>
+                    <label>
+                        <strong><i class="fa fa-tags"></i>关键字： </strong>
+                        @foreach (var keyword in problem.Keywords)
                         {
-                            <li class="page-item page-link" style="background-color:rgba(0, 0, 0, 0.72);color:white">@(i)</li>
+                            <span class="fa fa-tags"></span>
+                            <span class="text-white badge bg-dark">@keyword.Name</span>
                         }
-                        else
+                    </label>
+                    <hr />
+                }
+                @{
+                    int currentPageIndex = string.IsNullOrEmpty(Request.Query["pageIndex"]) ? 1 : Convert.ToInt32(Request.Query["pageIndex"]);
+                    //int sumOfArticle = Model.SumOfArticle;
+                }
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+
+                        @if (currentPageIndex > 1)
                         {
-                            <li class="page-item"><a class="page-link" href="Problem?@Const.PAGE_INDEX=@i">@(i)</a></li>
+                            <li class="page-item">
+                                <a class="page-link" aria-label="Private" href="Problem?@Const.PAGE_INDEX=@(currentPageIndex - 1)">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        }@*/*else nothing*/*@
+
+                        @for (int i = 1; i <= (Model.SumOfArticle / Const.PAGE_SIZE); i++)
+                        {
+                            if (currentPageIndex == i)
+                            {
+                                <li class="page-item page-link" style="background-color:rgba(0, 0, 0, 0.72);color:white">@(i)</li>
+                            }
+                            else
+                            {
+                                <li class="page-item"><a class="page-link" href="Problem?@Const.PAGE_INDEX=@i">@(i)</a></li>
+                            }
                         }
-                    }
 
-                    @if (currentPageIndex <= (Model.SumOfArticle / 2))
-                    {
-                        <li class="page-item">
-                            <a class="page-link" aria-label="Next" href="Problem?@Const.PAGE_INDEX=@(currentPageIndex + 1)">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    }@*/*else nothing*/*@
+                        @if (currentPageIndex <= (Model.SumOfArticle / 2))
+                        {
+                            <li class="page-item">
+                                <a class="page-link" aria-label="Next" href="Problem?@Const.PAGE_INDEX=@(currentPageIndex + 1)">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        }@*/*else nothing*/*@
 
-                </ul>
-            </nav>
+                    </ul>
+                </nav>
+            </div>
         </section>
 
         <aside class="col-md-4 offset-sm-2">

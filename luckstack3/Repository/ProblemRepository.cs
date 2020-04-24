@@ -60,7 +60,7 @@ namespace _17bang.Pages.Repository
                         Level = "⑩"
                     },
                     Id = 3,
-                    Status = ProblemStatus.inprocess,
+                    Status = ProblemStatus.Rewarded,
                     Title = "Winform里控件绑定数据源就会报错",
                     Summary = "项目里的控件绑定属性都会出现这个问题",
                     Keywords = new List<Keyword>
@@ -79,7 +79,7 @@ namespace _17bang.Pages.Repository
                         Level = "⑩"
                     },
                     Id = 4,
-                    Status = ProblemStatus.inprocess,
+                    Status = ProblemStatus.cancelled,
                     Title = "SQL Server多表查询,中间表有字段可能为空",
                     Summary = "如图,表B中的D,E,F可能会是空,SQL怎么写,才能保证数据的一致性",
                     Keywords = new List<Keyword>
@@ -131,6 +131,12 @@ namespace _17bang.Pages.Repository
         {
             _problem.Add(value);
         }
+        public IList<Problem> GetExclude(ProblemStatus status)
+        {
+            return _problem.Where(p => p.Status != status).ToList();
+        }
+
+
 
     }
 }
