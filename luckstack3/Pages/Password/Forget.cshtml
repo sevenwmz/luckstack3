@@ -43,7 +43,7 @@
         <label><strong>通过用户名查找Email：</strong></label>
         <div class="input-group">
 
-            <input asp-for="Email" class="form-control" placeholder="必须全称，且不要忘了点击 搜索 按钮" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <input asp-for="UserName.UserName" class="form-control" placeholder="必须全称，且不要忘了点击 搜索 按钮" aria-label="Recipient's username" aria-describedby="button-addon2">
             <div class="input-group-append">
                 <button type="button" class="btn btn-outline-secondary"><i class="fa fa-search"></i></button>
             </div>
@@ -55,7 +55,7 @@
                 <a href="#">看不清楚</a>
             </div>
         </div>
-        <button asp-page="/Password/Forget" type="submit" class="btn btn-primary">发送邮件</button>
-        <button asp-page="/Password/Forget" type="reset" class="btn btn-light border border-secondary">重置</button>
+        <button type="submit" class="btn btn-primary">发送邮件</button>
+        <button type="reset" class="btn btn-light border border-secondary">重置</button>
     </form>
 </div>
