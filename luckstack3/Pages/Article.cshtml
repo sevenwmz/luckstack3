@@ -42,7 +42,16 @@
 
             }
             @{
-                int currentPageIndex = string.IsNullOrEmpty(Request.Query["pageIndex"]) ? 1 : Convert.ToInt32(Request.Query["pageIndex"]);
+                int currentPageIndex;
+                //int currentPageIndex =  (Request.RouteValues["id"]) ? 1 : Convert.ToInt32(Request.RouteValues["id"]);
+                if (Convert.ToInt32(Request.RouteValues["id"]) == 0)
+                {
+                    currentPageIndex = 1;
+                }
+                else
+                {
+                    currentPageIndex = Convert.ToInt32(Request.RouteValues["id"]);
+                }
             }
 
             <nav aria-label="Page navigation example">
@@ -50,7 +59,7 @@
                     @if (currentPageIndex > 1)
                     {
                         <li class="page-item">
-                            <a class="page-link" aria-label="Private" href="Article?@Const.PAGE_INDEX=@(currentPageIndex-1)">
+                            <a class="page-link" aria-label="Private" href="/Article/Page-@(currentPageIndex-1)">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
@@ -63,13 +72,13 @@
                         }
                         else
                         {
-                            <li class="page-item"><a class="page-link" href="Article?@Const.PAGE_INDEX=@i">@(i)</a></li>
+                            <li class="page-item"><a class="page-link" href="/Article/Page-@i">@(i)</a></li>
                         }
                     }
                     @if (currentPageIndex < (Model.SumOfArticle / Const.PAGE_SIZE))
                     {
                         <li class="page-item">
-                            <a class="page-link" aria-label="Next" href="Article?@Const.PAGE_INDEX=@(currentPageIndex + 1)">
+                            <a class="page-link" aria-label="Next" href="/Article/Page-@(currentPageIndex+1) ">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>

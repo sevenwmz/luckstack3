@@ -27,8 +27,11 @@ namespace _17bang
             services.AddMvc()
                 .AddRazorPagesOptions(option =>
                 {
-                    option.Conventions.AddPageRoute("/Tried", "/Tried/{id}");
-                    }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
+                    option.Conventions
+                        .AddPageRoute("/Article", "/Article/Page-{id:int}")
+                        .AddPageRoute("/Problem","/Problem/Page-{id:int}")
+                        .AddPageRoute("/Suggest", "/Suggest/Page-{id:int}");
+                }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0); 
 
         }
 

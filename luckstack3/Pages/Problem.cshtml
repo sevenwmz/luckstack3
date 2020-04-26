@@ -42,8 +42,15 @@
                     <hr />
                 }
                 @{
-                    int currentPageIndex = string.IsNullOrEmpty(Request.Query["pageIndex"]) ? 1 : Convert.ToInt32(Request.Query["pageIndex"]);
-                    //int sumOfArticle = Model.SumOfArticle;
+                    int currentPageIndex;
+                    if (Convert.ToInt32(Request.RouteValues["id"]) == 0)
+                    {
+                        currentPageIndex = 1;
+                    }
+                    else
+                    {
+                        currentPageIndex = Convert.ToInt32(Request.RouteValues["id"]);
+                    }
                 }
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
@@ -51,7 +58,7 @@
                         @if (currentPageIndex > 1)
                         {
                             <li class="page-item">
-                                <a class="page-link" aria-label="Private" href="Problem?@Const.PAGE_INDEX=@(currentPageIndex - 1)">
+                                <a class="page-link" aria-label="Private" href="/Problem/Page-@(currentPageIndex - 1)">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
@@ -65,14 +72,14 @@
                             }
                             else
                             {
-                                <li class="page-item"><a class="page-link" href="Problem?@Const.PAGE_INDEX=@i">@(i)</a></li>
+                                <li class="page-item"><a class="page-link" href="/Problem/Page-@i">@(i)</a></li>
                             }
                         }
 
                         @if (currentPageIndex <= (Model.SumOfArticle / 2))
                         {
                             <li class="page-item">
-                                <a class="page-link" aria-label="Next" href="Problem?@Const.PAGE_INDEX=@(currentPageIndex + 1)">
+                                <a class="page-link" aria-label="Next" href="/Problem/Page-@(currentPageIndex + 1)">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>

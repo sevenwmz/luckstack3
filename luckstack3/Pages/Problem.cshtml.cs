@@ -25,7 +25,7 @@ namespace _17bang
 
         public void OnGet()
         {
-            int pageIndex = Convert.ToInt32(Request.Query["pageIndex"]);
+            int pageIndex = Convert.ToInt32(Request.RouteValues["id"]);
             int pageSize = 2;
             string exclude = Request.Query["exclude"];
             Problems = _problem.GetPaged(pageSize, pageIndex);
