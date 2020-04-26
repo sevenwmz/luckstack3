@@ -1,4 +1,5 @@
-﻿using Entity;
+﻿using _17bang.Repository;
+using Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace _17bang.Pages.Repository
 {
-    public class ProblemRepository
+    public class ProblemRepository : BaceRepository<Problem>
     {
         private static IList<Problem> _problem;
 
@@ -114,10 +115,8 @@ namespace _17bang.Pages.Repository
                 }
             };
         }
-        public IList<Problem> GetPaged(int pageSize, int pageIndex)
-        {
-            return _problem.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-        }
+
+
 
         public int GetSum()
         {
@@ -133,10 +132,20 @@ namespace _17bang.Pages.Repository
         }
         public IList<Problem> GetExclude(ProblemStatus status)
         {
-            return _problem.Where(p => p.Status != status).ToList();
+            return _problem.Where(p => p.Status == status).ToList();
         }
 
 
-
     }
+
+    public static class ProblemExtension
+    {
+        public static IList<Problem> GetPage(this IList<Problem> ClassName, int pageSize, int pageIndex)
+        {
+            return ClassName.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+        }
+    }
+
+
+
 }

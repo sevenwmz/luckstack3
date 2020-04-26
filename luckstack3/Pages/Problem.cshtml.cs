@@ -25,12 +25,8 @@ namespace _17bang
 
         public void OnGet()
         {
-            int pageIndex = Convert.ToInt32(Request.RouteValues["id"]);
-            int pageSize = 2;
+           
             string exclude = Request.Query["exclude"];
-            Problems = _problem.GetPaged(pageSize, pageIndex);
-            SumOfArticle = _problem.GetSum();
-
             if (string.IsNullOrEmpty(exclude))
             {
                 Problems = _problem.Get();
@@ -40,7 +36,12 @@ namespace _17bang
                 Problems = _problem.GetExclude(Enum.Parse<ProblemStatus>(exclude));
             }
 
-            
+
+
+            int pageIndex = Convert.ToInt32(Request.RouteValues["id"]);
+            int pageSize = 2;
+            Problems = Problems.GetPage(pageSize, pageIndex);
+            SumOfArticle = _problem.GetSum();
 
 
         }

@@ -1,4 +1,6 @@
 ﻿@page
+@using Entity
+@using _17bang.Pages.Extension
 @model _17bang.SuggestModel
 @{
     ViewData["Title"] = "意见建议·一起帮";
@@ -17,11 +19,22 @@
         <div class="col-md-7" style="margin-top:90px;">
             <h1 class="fa fa-list-alt"><strong>意见建议</strong></h1>
             <hr />
+            <div class="pull-left text-muted">
+                <label class="checkbox-inline">
+                    <span class="fa fa-eye-slash"></span>
+                    只显示
+                </label>
+                <label><input type="radio" /><a href="/Suggest?exclude=@SuggestStatus.Unhandled">未处理</a></label>|
+                <label><input type="radio" /><a href="/Suggest?exclude=@SuggestStatus.Bug">Bug</a></label>|
+                <label><input type="radio" /><a href="/Suggest?exclude=@SuggestStatus.Suggest">建议</a></label>|
+                <label><input type="radio" /><a href="/Suggest?exclude=@SuggestStatus.Finish">完成</a></label>|
+                <label><input type="radio" /><a href="/Suggest?exclude=@SuggestStatus.All">全部</a></label>
+            </div>
             @foreach (var suggest in Model.Suggest)
             {
                 <div>
                     <p class="fa fa-calendar">@suggest.PublishTime.AddDays(-5)</p>
-                    <p class="fa fa-hourglass"><a href="#">@suggest.Title</a></p>
+                    <h2 class="fa fa-hourglass">@suggest.status.GetDescription()<a href="#">@suggest.Title</a></h2>
                     <p>@suggest.Summary<a href="#"> ……</a></p>
                     <span class="fa fa-user-circle">作者：@suggest.Author.NickName</span>
                     <span>@suggest.Author.Level</span>

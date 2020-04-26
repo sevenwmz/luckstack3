@@ -20,6 +20,7 @@ namespace _17bang.Pages.Repository
                     Id = 1,
                     Title = "操作不方便",
                     Summary ="习惯了按返回键返回上一个界面，结果就退出了App",
+                    status = SuggestStatus.Unhandled,
                     Author = new User("ataitai","abcabc")
                     {
                         NickName = "atai",
@@ -32,6 +33,7 @@ namespace _17bang.Pages.Repository
                     Id = 2,
                     Title = "test",
                     Summary ="test",
+                    status = SuggestStatus.Suggest,
                     Author = new User("yezifei","abcabc")
                     {
                         NickName = "叶飞大胖飞",
@@ -45,6 +47,7 @@ namespace _17bang.Pages.Repository
                     Title = "人人都是程序猿 学习进度 ",
                     Summary ="这个能不能进度快一些 个人觉得有些慢了 还有 讲到现在是在讲有关计算机的事情 " +
                     "和编程沾不到边 可能我看的心太急了吧 ",
+                    status = SuggestStatus.Finish,
                     Author = new User("yuanyuan","abcabc")
                     {
                         NickName = "圆圆",
@@ -57,6 +60,7 @@ namespace _17bang.Pages.Repository
                     Id = 4,
                     Title = "操作不方便",
                     Summary ="习惯了按返回键返回上一个界面，结果就退出了App",
+                    status= SuggestStatus.Bug,
                     Author = new User("ataitai","abcabc")
                     {
                         NickName = "atai",
@@ -69,6 +73,7 @@ namespace _17bang.Pages.Repository
                     Id = 5,
                     Title = " 评论文章后点赞，会直接跳到错误页面呢！",
                     Summary ="但刷新页面后再点赞就报提示：自己不能给自己点赞。",
+                    status = SuggestStatus.Bug,
                     Author = new User("ataitai","abcabc")
                     {
                         NickName = "atai",
@@ -81,6 +86,7 @@ namespace _17bang.Pages.Repository
                     Id = 6,
                     Title = "2个小bug",
                     Summary ="1.消息列表：勾选所有的复选框，全选框没有自动勾选2.反馈的建议中粘贴的图片，点击修改时不会显示",
+                    status = SuggestStatus.Bug,
                     Author = new User("ataitai","abcabc")
                     {
                         NickName = "atai",
@@ -93,6 +99,7 @@ namespace _17bang.Pages.Repository
                     Id = 7,
                     Title = "点赞就报错啦",
                     Summary =" ",
+                    status = SuggestStatus.Finish,
                     Author = new User("ataitai","abcabc")
                     {
                         NickName = "atai",
@@ -105,6 +112,7 @@ namespace _17bang.Pages.Repository
                     Id = 8,
                     Title = "这是咋情况？",
                     Summary =" ",
+                    status = SuggestStatus.Bug,
                     Author = new User("ataitai","abcabc")
                     {
                         NickName = "atai",
@@ -117,6 +125,7 @@ namespace _17bang.Pages.Repository
                     Id = 9,
                     Title = "好像发现了一个bug",
                     Summary ="点消息里面的文章链接，报错：链接：http://17bang.ren/Article/125",
+                    status = SuggestStatus.Bug,
                     Author = new User("ataitai","abcabc")
                     {
                         NickName = "atai",
@@ -166,23 +175,27 @@ namespace _17bang.Pages.Repository
             };
         }
 
-        public IList<Suggest> GetNewsPaged(int newsSize, int pageIndex)
+        public IList<Suggest> Get()
         {
-            return _asideSuggest.Skip((pageIndex - 1) * newsSize).Take(newsSize).ToList();
-        }
-
-        public IList<Suggest> GetPaged(int pageSize, int pageIndex)
-        {
-            return _suggest.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            return _suggest;
         }
 
         public int GetSum()
         {
             return _suggest.Count;
         }
-        public int GetAsideSuggest()
+        public IList<Suggest> GetExclude(SuggestStatus status)
         {
-            return _asideSuggest.Count;
+            return _suggest.Where(p => p.status == status).ToList();
         }
+    }
+
+    public static class SuggestExtension
+    {
+        public static IList<Suggest> GetPage(this IList<Suggest> ClassName, int pageSize, int pageIndex)
+        {
+            return ClassName.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+        }
+
     }
 }

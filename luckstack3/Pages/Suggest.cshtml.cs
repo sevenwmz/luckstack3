@@ -25,14 +25,26 @@ namespace _17bang
         }
         public void OnGet()
         {
-            int pageIndex = Convert.ToInt32(Request.RouteValues["id"]);
-            int pageSize = 2;
 
-            int newsSize = 20;
+
+            string exclude = Request.Query["exclude"];
+            if (string.IsNullOrEmpty(exclude))
+            {
+                Suggest = _suggest.Get();
+            }
+            else
+            {
+                Suggest = _suggest.GetExclude(Enum.Parse<SuggestStatus>(exclude));
+            }
+
+            int pageIndex = Convert.ToInt32(Request.RouteValues["id"]);
+            int pageSize = 2, newsSize = 20;
+
+            
             SumOfSuggest = _suggest.GetSum();
-            Suggest = _suggest.GetPaged(pageSize,pageIndex);
-            SumOfSuggest = _asideSuggest.GetAsideSuggest();
-            News = _suggest.GetNewsPaged(newsSize, pageIndex);
+            Suggest = Suggest.GetPage(pageSize, pageIndex);
+            News = _suggest.Get();
+            News = News.GetPage(newsSize, pageIndex);
 
         }
     }
