@@ -1,0 +1,13 @@
+﻿@page
+@model _17bang.TagHelperHWModel
+@{
+    ViewData["Title"] = "TagHelperHW";
+}
+
+<h1>TagHelperHW</h1>
+<p style="margin-top:90px" class="fa fa-remove"></p>
+<datetime changeFormat=".ToString($"yyyy年MM月dd日hh时mm分")">@DateTime.Now</datetime>   
+<hr />
+<datetime changeFormat=".ToString($" yyyy年MM月dd日hh时mm分")" asp-showicon="true" asp-only="date">@DateTime.Now</datetime>
+<hr />
+<datetime  changeFormat=".ToString($"yyyy年MM月dd日hh时mm分")" asp-showicon="true">@DateTime.Now</datetime>
