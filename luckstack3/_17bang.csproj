@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Repository\ArticleRepository.cs" />
     <Content Include="Repository\ProblemRepository.cs" />
     <Content Include="Repository\SuggestRepository.cs" />
   </ItemGroup>

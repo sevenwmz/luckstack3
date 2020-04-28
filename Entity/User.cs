@@ -69,22 +69,30 @@ namespace Entity
         //password method
         //internal string Password { get; set; }
         #region 1.user.Password在类的外部只能改不能读( Secend Day )
+        public int Id { set; get; }
+
+        public string Gender { set; get; }
+        public string Level { set; get; }
 
         [Required(ErrorMessage ="* 密码不能为空")]
         public string Password { set; get; }
-        public string Level { set; get; }
         #endregion
-        public int Id { set; get; }
         public string NickName { set; get; }
-        public TokenManager Manager { get; set; }
+
+        public string Birthday { set; get; }
+        public string Constellation { set; get; }
+
+        public TokenManager Manager { set; get; }
         //Password confirm.
-        internal string PasswordAgain { get; set; }
+        internal string PasswordAgain { set; get; }
         //Verification Code
-        internal string VerificationCode { get; set; }
+        public string SelfIntroduction { set; get; }
+
+        internal string VerificationCode { set; get; }
+        public int HelpBean { set; get; }
 
         public int HelpCredit { set; get; }
-        public int HelpBean { set; get; }
-        public int HelpMoney { get; internal set; }
+        public int HelpMoney { internal set; get; }
         #endregion
 
         #region Function
