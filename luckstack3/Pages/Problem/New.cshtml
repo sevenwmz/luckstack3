@@ -9,6 +9,19 @@
 @section title{
     <span class="fa fa-question-circle">我要求助</span>
 }
+@section LowRightSHow{
+    <div class="flex-column">
+        <p class="text-right" style="padding-top:30px;"><a href="/firstproblem">修改</a></p>
+        <div class="rounded-sm border justify-content-center">
+            <p style="padding-left:30%;padding-right:50%;"><i class="fa fa-picture-o"></i></p>
+            <span style="padding-left:50%;">等待上传中<i class="fa fa-hourglass-start"></i>...</span>
+        </div>
+        <span><strong>用户：</strong></span>
+        <a href="none">用户名</a>
+        <a href="/Credit" title="初级学徒">①</a>
+        <a href="none">修改</a>
+    </div>
+}
 
 <div>
     <div style="border:dashed#d8c8c8 3px;padding:25px;background-color:#f0f69c">
@@ -74,7 +87,7 @@
                     }
                 </div>
             </div>
-            <input type="text" asp-for="SelfKeywords" class="form-control"  placeholder="自定义关键字，使用空格分隔"/>
+            <input type="text" asp-for="SelfKeywords" class="form-control" placeholder="自定义关键字，使用空格分隔" />
         </div>
     </div>
     <div>
