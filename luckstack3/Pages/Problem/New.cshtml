@@ -38,11 +38,11 @@
     </div>
     <div class="form-group">
         <label><strong>标题：（* 必填）</strong></label>
-        <input asp-for="Title" class="form-control" placeholder="简明扼要，不超过255字">
+        <input asp-for="Problems.Title" class="form-control" placeholder="简明扼要，不超过255字">
     </div>
     <div class="form-group">
         <label><strong>说明：（* 必填）</strong></label>
-        <textarea asp-for="Recommend" class="form-control" style="line-height:14;"></textarea>
+        <textarea asp-for="Problems.Summary" class="form-control" style="line-height:14;"></textarea>
     </div>
     <div class="form-group">
         <label><strong>关键字：（* 使用空格分隔）</strong></label>
@@ -87,7 +87,7 @@
                     }
                 </div>
             </div>
-            <input type="text" asp-for="SelfKeywords" class="form-control" placeholder="自定义关键字，使用空格分隔" />
+            <input type="text" asp-for="Problems.Keywords" class="form-control" placeholder="自定义关键字，使用空格分隔" />
         </div>
     </div>
     <div>

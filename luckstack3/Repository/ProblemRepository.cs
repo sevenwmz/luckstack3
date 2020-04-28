@@ -9,6 +9,7 @@ namespace _17bang.Pages.Repository
 {
     public class ProblemRepository : BaceRepository<Problem>
     {
+        private static int _latestId;
         private static IList<Problem> _problem;
 
         static ProblemRepository()
@@ -117,6 +118,14 @@ namespace _17bang.Pages.Repository
         }
 
 
+
+        public int Save(Problem model)
+        {
+            _latestId++;
+            model.Id = _latestId;
+            _problem.Add(model);
+            return _latestId;
+        }
 
         public int GetSum()
         {
