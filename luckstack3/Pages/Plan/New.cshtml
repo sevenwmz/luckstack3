@@ -90,12 +90,7 @@
     <div class="form-group">
         <label><i class="fa fa-question-circle"></i><strong>每周可请假：</strong></label>
         <div class="input-group input-group-combined">
-            <select class="form-control" asp-for="Leave">
-                @for (int i = 1; i < 7; i++)
-                {
-                    <option>@i</option>
-                }
-            </select>
+            <select class="form-control" asp-for="Leave" asp-items="Model.LeaveRestDay"></select>
             <div class="input-group-append">
                 <p class="btn btn-outline-secondary">天</p>
             </div>
@@ -109,12 +104,7 @@
     <div class="form-group">
         <label><i class="fa fa-question-circle"></i><strong>好心人最多：</strong></label>
         <div class="input-group input-group-combined">
-            <select class="form-control" asp-for="Helper">
-                @for (int i = 1; i < 6; i++)
-                {
-                    <option>@i</option>
-                }
-            </select>
+            <select class="form-control" asp-for="Helper" asp-items="Model.HelperTotal"></select>
             <div class="input-group-append">
                 <p class="btn btn-outline-secondary">人</p>
             </div>
