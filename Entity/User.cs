@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
@@ -9,7 +10,10 @@ namespace Entity
 
 
         #region 设计一种方式，保证： 每一个User对象一定有Name和Password赋值
+        public User()
+        {
 
+        }
         public User(string UserName, string Password)
         {
             this.UserName = UserName;
@@ -20,19 +24,17 @@ namespace Entity
 
 
         #region  Filed and properties
-        ///注册/登录功能，定义一个User类，包含字段：Name（用户名）、
-        ///Password（密码）和 邀请人（InvitedBy），和方法：Register()、Login()
-        ///
+
         //InvitedBy method
         internal string InvitedBy { get; set; }
         //InvitedBycode char.
         private int InvitedByCode { get; set; }
 
-        //UserName,
-        //internal string userName { get; set; }
+
 
         #region 2.如果user.Name为“admin”，输入时修改为“系统管理员”( Secend Day )
         private string _userName;
+        [Display(Name ="用户名")]
         public string UserName
         {//设计一个适用的机制，能确保用户（User）的昵称（Name）不能含有admin、17bang、管理员等敏感词。
             set
@@ -67,33 +69,9 @@ namespace Entity
         //password method
         //internal string Password { get; set; }
         #region 1.user.Password在类的外部只能改不能读( Secend Day )
-        private string _password;
-        public string Password
-        {
-            set
-            {
-                string whitelist =
-                    "0123456789QWERTYUIOPLKJHGFDSAZXC" +
-                    "VBNMqwertyuioplkjhgfdsazxcvbnm" +
-                    "~!@#$%^&*()_+";
-                if (value.Length < 6)
-                {
-                    Console.WriteLine("密码长度不能小于6位数");
-                    return;
-                }
-                for (int i = 0; i < value.Length; i++)
-                {
-                    if (!whitelist.Contains(value[i]))
-                    {
-                        Console.WriteLine("密码必须由大小写英语单词、数字和特殊符号（~!@#$%^&*()_+）组成");
-                        return;
-                    }//else nothing
-                }
-                Console.WriteLine($"传入数据库");
-                _password = value;
-            }
-            get => _password;
-        }
+
+        [Required(ErrorMessage ="* 密码不能为空")]
+        public string Password { set; get; }
         public string Level { set; get; }
         #endregion
         public int Id { set; get; }
