@@ -20,16 +20,24 @@ namespace Entity
             ///也不能为一个或多个空字符组成的字符串，而且如果标题前后有空格，也予以删除
             if (string.IsNullOrWhiteSpace(title))
             {
-                Console.WriteLine("Article的标题不能为空或空字符组成的字符串");
                 return;
             }
             Title = title.Trim();
         }
 
-        
+
         #endregion
 
         #region Field and properties
+
+        public string Series { set; get; }
+
+
+        public string Ad { set; get; }
+
+        public string ContentOfAd { set; get; }
+
+        public string WebSite { set; get; }
 
         #endregion
 
@@ -55,6 +63,15 @@ namespace Entity
             Author.HelpBean++;
             voter.HelpBean--;
             return Author.HelpBean;
+        }
+
+        public static Article ChangeArticleContent(Article editPublish)
+        {
+            Article temp = new Article();
+            temp.Title = editPublish.Title;
+            temp.Summary = editPublish.Summary;
+            temp.Reward = editPublish.Reward;
+            return temp;
         }
 
         #endregion

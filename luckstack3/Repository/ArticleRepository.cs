@@ -23,6 +23,7 @@ namespace _17bang.Pages.Repository
                     "使用JavaScript附加后台，使用Filter进行封装。和钓鱼网站的区别MVC内置反欺骗（仅用于form表单）" +
                     "在form表单中添加：@@Html.AntiForgeryToken()生成一个hiden input，记录了一",
                     Id = 1,
+                    Body = "1111111111111111111111111111",
                     Author = new User("yezifei","abcabc")
                     {
                         NickName = "自由飞",
@@ -42,6 +43,7 @@ namespace _17bang.Pages.Repository
                     "和钓鱼网站的区别MVC内置反欺骗（仅用于form表单）在form表单中添加：@@Html.AntiForgeryToken()生成一" +
                     "个hiden input，记录了一 ",
                     Id = 2,
+                    Body = "222222222222222",
                     Author = new User("wpzwpz","abcabc")
                     {
                         NickName = "王月半子",
@@ -61,6 +63,7 @@ namespace _17bang.Pages.Repository
                     "block和padding的不同margin合并为了避免浏览器兼容问题，通常都首先定义：margin:0;padding:0;display:block：" +
                     "默认宽度100%（占一行）inline：宽度随文本，不会占一行，margin有效，padding不会“撑起”父元素，hei ",
                     Id = 3,
+                    Body = "33333333333333333333",
                     Author = new User("wpzwpz","abcabc")
                     {
                         NickName = "王月半子",
@@ -81,6 +84,7 @@ namespace _17bang.Pages.Repository
                     "int authorId);}NewModel：存Title、Body等数据authorId：-- 不能只取cookie中的userId，还得有token结论：麻烦方案" +
                     "（二）当前用户信息直接由SRV获取既然SRV能够获取cookie =》 ",
                     Id = 4,
+                    Body = "44444444444444444441",
                     Author = new User("wpzwpz","abcabc")
                     {
                         NickName = "王月半子",
@@ -101,6 +105,7 @@ namespace _17bang.Pages.Repository
                     "就是最远的路。举例：学英语。（各种学习方法，直到碰到我老婆……）我愿证明：心地单纯，是一种福祉。IT培训，也" +
                     "是一种能力锻炼两个小时你都没有做出这道题，这两个小时被你浪费掉了么？",
                     Id = 5,
+                    Body = "455555555555555555555551",
                     Author = new User("wpzwpz","abcabc")
                     {
                         NickName = "王月半子",
@@ -121,6 +126,7 @@ namespace _17bang.Pages.Repository
                     "就是最远的路。举例：学英语。（各种学习方法，直到碰到我老婆……）我愿证明：心地单纯，是一种福祉。IT培训，也" +
                     "是一种能力锻炼两个小时你都没有做出这道题，这两个小时被你浪费掉了么？",
                     Id = 6,
+                    Body = "666666666666666666666",
                     Author = new User("wpzwpz","abcabc")
                     {
                         NickName = "王月半子",
@@ -135,6 +141,20 @@ namespace _17bang.Pages.Repository
                 },
 
             };
+        }
+
+        private int _latestId { set; get; }
+
+        public void Save(Article editPublish)
+        {
+            _latestId++;
+            editPublish.Id = _latestId;
+            _article.Add(editPublish);
+        }
+
+        public static Article GetId(int pageId)
+        {
+            return _article.Where(a => a.Id == pageId).SingleOrDefault();
         }
 
         public IList<Article> GetPaged(int pageSize, int pageIndex)

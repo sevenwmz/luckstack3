@@ -32,7 +32,8 @@ namespace _17bang
                         .AddPageRoute("/Problem", "/Problem/Page-{id:int}")
                         .AddPageRoute("/Suggest", "/Suggest/Page-{id:int}")
                         .AddPageRoute("/Message/Mine", "/Message/Mine/Page-{id:int}")
-                        .AddPageRoute("/Problem/Edit", "/Problem/Edit/{id:int}");
+                        .AddPageRoute("/Problem/Edit", "/Problem/Edit/{id:int}")
+                        .AddPageRoute("/Article/Edit", "/Article/Edit/{id:int}");
                 }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 
         }

@@ -24,7 +24,7 @@
                     <span><i class="fa fa-calendar"></i>@article.PublishTime</span>
                     <span class="float-md-right text-info">作者：<a href="none" class="text-info">@article.Author.NickName</a></span>
                     <p><a href="none" class="text-info">@article.Title</a></p>
-                    <p>@article.Summary<a href="none" style="color:black">……</a></p>
+                    <p>@article.Summary<a href="/Article/Edit/@article.Id" style="color:dodgerblue">……</a></p>
                     <label>
                         <strong><i class="fa fa-tags"></i>关键字： </strong>
                         @foreach (var item in article.Keywords)
