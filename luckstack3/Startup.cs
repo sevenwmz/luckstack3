@@ -29,10 +29,11 @@ namespace _17bang
                 {
                     option.Conventions
                         .AddPageRoute("/Article", "/Article/Page-{id:int}")
-                        .AddPageRoute("/Problem","/Problem/Page-{id:int}")
+                        .AddPageRoute("/Problem", "/Problem/Page-{id:int}")
                         .AddPageRoute("/Suggest", "/Suggest/Page-{id:int}")
-                        .AddPageRoute("/Message/Mine", "/Message/Mine/Page-{id:int}");
-                }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0); 
+                        .AddPageRoute("/Message/Mine", "/Message/Mine/Page-{id:int}")
+                        .AddPageRoute("/Problem/Edit", "/Problem/Edit/{id:int}");
+                }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 
         }
 

@@ -30,7 +30,7 @@
                         <span>@problem.Author.Level</span>
                     </div>
                     <h2><span class="text-white badge bg-dark">@problem.Status.GetDescription()</span>@problem.Title</h2>
-                    <p>@problem.Summary<a href="none" style="color:black">……</a></p>
+                    <p>@problem.Summary<a href="/Problem/Edit/@problem.Id" style="color:black">……</a></p>
                     <label>
                         <strong><i class="fa fa-tags"></i>关键字： </strong>
                         @foreach (var keyword in problem.Keywords)

@@ -51,7 +51,8 @@ namespace _17bang.Pages.Repository
                         new Keyword{Name = " 多线程 "},
                         new Keyword{Name = " JAVA "},
                         new Keyword{Name = " 编程开发语言 "}
-                    }
+                    },
+                    Body = "123123123"
                 },
                 new Problem
                 {
@@ -117,7 +118,10 @@ namespace _17bang.Pages.Repository
             };
         }
 
-
+        public static Problem GetId(int pageId)
+        {
+            return _problem.Where(p => p.Id == pageId).SingleOrDefault();
+        }
 
         public int Save(Problem model)
         {

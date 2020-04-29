@@ -9,16 +9,18 @@ using _17bang.Repository;
 using _17bang.Pages.Repository;
 
 namespace _17bang
-{
+{   [BindProperties]
     public class NewModel : PageModel
     {
         public Problem Problems { set; get; }
 
         private ProblemRepository _problemRepository;
+        private KeywordRepository _keyword;
+
         public NewModel()
         {
             _problemRepository = new ProblemRepository();
-
+            _keyword = new KeywordRepository();
         }
 
 
@@ -26,7 +28,6 @@ namespace _17bang
 
         public int RewardMoney { set; get; }
 
-        private KeywordRepository _keyword;
 
         public IList<Keyword> Keywords { set; get; }
 
@@ -43,14 +44,8 @@ namespace _17bang
             }
             ///利用Repository，完成内容（求助/文章/意见建议）的
             ///新建
-            ///修改：注意通过id修改正确的内容
-            ///
-
             _problemRepository.Save(Problems);
 
-            //int problemId = 32;
-            //Problem problem = new ProblemRepository().Get(problemId);
-            //problem.Title = Title;
 
         }
 

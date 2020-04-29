@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Entity
 {
-    public class Problem : Content 
+    public class Problem : Content
     {
         #region Constructer method
 
-        public Problem():base("Problem")
+        public Problem() : base("Problem")
         {
 
         }
@@ -25,7 +25,6 @@ namespace Entity
         ///正文（Body）、悬赏（Reward）、发布时间（PublishDateTime）
         ///和作者（Author），和方法Publish()
         //Title filed;
-        private string Title { get; set; }
 
         //Body filed.
         private string Body { get; set; }
@@ -46,7 +45,6 @@ namespace Entity
             }
             get => _reward;
         }
-
         #endregion
 
         //PublishDataTime filed.
@@ -54,6 +52,14 @@ namespace Entity
 
 
         internal string TargetedHelp { get; set; }//for third day homework
+
+        public static Problem ChangeProblemContent(Problem content)
+        {
+            Problem temp = new Problem();
+            temp.Title = content.Title;
+            temp.Summary = content.Summary;
+            return temp;
+        }
         #endregion
 
         #region Function
