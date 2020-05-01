@@ -10,6 +10,29 @@
         li {
             padding: 3px
         }
+        .field-validation-error {
+            color: #b94a48;
+        }
+
+        .field-validation-valid {
+            display: none;
+        }
+
+        input.input-validation-error {
+            border: 1px solid #b94a48;
+        }
+
+        input[type="checkbox"].input-validation-error {
+            border: 0 none;
+        }
+
+        .validation-summary-errors {
+            color: #b94a48;
+        }
+
+        .validation-summary-valid {
+            display: none;
+        }
     </style>
 }
 
@@ -48,25 +71,29 @@
 <form class="col-md-4" method="post">
     <div class="form-group">
         <label><strong>标题（必填）：</strong></label>
-        <input asp-for="Title" type="text" class="form-control" placeholder="简明扼要，多个目标请分开发布">
+        <input asp-for="NewPlan.Title" type="text" class="form-control" placeholder="简明扼要，多个目标请分开发布">
+        <span asp-validation-for="NewPlan.Title"></span>
     </div>
     <div class="form-group">
         <label><strong>详细说明：</strong></label>
         <div>
-            <textarea rows="4" asp-for="Other" class="form-control" placeholder="补充你认为需要说明的其他信息。比如：求温柔/凶狠好心人，最好同城/校……"></textarea>
+            <textarea rows="4" asp-for="NewPlan.Other" class="form-control" placeholder="补充你认为需要说明的其他信息。比如：求温柔/凶狠好心人，最好同城/校……"></textarea>
         </div>
     </div>
     <div class="form-group">
         <label><strong>标签（必填）：</strong></label>
-        <input asp-for="Tags" type="text" class="form-control" placeholder="多个标签之间请用空格分开">
+        <input asp-for="NewPlan.Tags" type="text" class="form-control" placeholder="多个标签之间请用空格分开">
+        <span asp-validation-for="NewPlan.Tags"></span>
     </div>
     <div class="form-group">
         <label><strong>开始执行（必填）：</strong></label>
-        <input asp-for="StartTime" type="date" class="form-control">
+        <input asp-for="NewPlan.StartTime" type="date" class="form-control">
+        <span asp-validation-for="NewPlan.StartTime"></span>
     </div>
     <div class="form-group">
         <label><i class="fa fa-question-circle"></i><strong>目标结束（必填）： </strong></label>
-        <input asp-for="EndTime" type="date" class="form-control">
+        <input asp-for="NewPlan.EndTime" type="date" class="form-control">
+        <span asp-validation-for="NewPlan.EndTime"></span>
     </div>
     <div class="form-group">
         <label><i class="fa fa-question-circle"></i><strong>（每周）交作业时间：  </strong></label>
@@ -90,7 +117,7 @@
     <div class="form-group">
         <label><i class="fa fa-question-circle"></i><strong>每周可请假：</strong></label>
         <div class="input-group input-group-combined">
-            <select class="form-control" asp-for="Leave" asp-items="Model.LeaveRestDay"></select>
+            <select class="form-control" asp-for="NewPlan.Leave" asp-items="Model.LeaveRestDay"></select>
             <div class="input-group-append">
                 <p class="btn btn-outline-secondary">天</p>
             </div>
@@ -98,13 +125,13 @@
     </div>
     <div class="form-group">
         <label><strong>证明： </strong></label>
-        <input asp-for="Evidence" type="text" class="form-control" placeholder="证据的文字描述">
-        <input asp-for="WebAdress" type="text" class="form-control mt-4" placeholder="可以访问的网址，详见说明">
+        <input asp-for="NewPlan.Evidence" type="text" class="form-control" placeholder="证据的文字描述">
+        <input asp-for="NewPlan.WebAdress" type="text" class="form-control mt-4" placeholder="可以访问的网址，详见说明">
     </div>
     <div class="form-group">
         <label><i class="fa fa-question-circle"></i><strong>好心人最多：</strong></label>
         <div class="input-group input-group-combined">
-            <select class="form-control" asp-for="Helper" asp-items="Model.HelperTotal"></select>
+            <select class="form-control" asp-for="NewPlan.Helper" asp-items="Model.HelperTotal"></select>
             <div class="input-group-append">
                 <p class="btn btn-outline-secondary">人</p>
             </div>
@@ -116,7 +143,8 @@
             <div class=" input-group-prepend">
                 <p class="btn btn-outline-secondary"><i class="fa fa-money"></i></p>
             </div>
-            <input asp-for="Coin" type="text" class="form-control" placeholder="正整数，建议10枚以上">
+            <input asp-for="NewPlan.Coin" type="text" class="form-control" placeholder="正整数，建议10枚以上">
+            <span asp-validation-for="NewPlan.Coin"></span>
             <div class="input-group-append">
                 <p class="btn btn-outline-secondary">枚</p>
             </div>
@@ -124,6 +152,6 @@
     </div>
     <p class="text-right mb-0"><a href="#"><i class="fa fa-question-circle"></i>如何获得“帮帮币”</a></p>
     <button type="submit" class="btn btn-primary">提交</button>
-    <label class="checkbox-inline"><input type="checkbox" asp-for="Continue" value="true" />继续</label>
+    <label class="checkbox-inline"><input type="checkbox" asp-for="NewPlan.Continue" value="true" />继续</label>
 </form>
 <hr />
