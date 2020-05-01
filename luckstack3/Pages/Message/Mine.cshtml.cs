@@ -8,17 +8,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace _17bang
-{   [BindProperties]
+{
+    [BindProperties]
     public class MineModel : PageModel
     {
         public User UserInfo { set; get; }
         public IList<Keyword> Keyword { set; get; }
 
         public int SumOfArticle { set; get; }
-        public IList<MessageMine> Items { set; get; }
+        public IList<MessageMine> Messages { set; get; }
 
         private MessageRepository _repository;
-        
+
         public MineModel()
         {
             UserInfo = new User
@@ -37,6 +38,7 @@ namespace _17bang
                 new Keyword{Name = "SQL" }
             };
             _repository = new MessageRepository();
+
         }
 
 
@@ -50,18 +52,26 @@ namespace _17bang
             string exclude = Request.Query["exclude"];
             if (string.IsNullOrEmpty(exclude))
             {
-                Items = _repository.Get();
+                Messages = _repository.Get();
             }
             else
             {
-                Items = _repository.GetExclude(Enum.Parse<MessageStatus>(exclude));
+                Messages = _repository.GetExclude(Enum.Parse<MessageStatus>(exclude));
             }
 
             int pageIndex = Convert.ToInt32(Request.RouteValues["id"]);
-            int pageSize = 2;
 
             SumOfArticle = _repository.GetSum();
-            Items = Items.GetPaged(pageSize, pageIndex);
+            Messages = Messages.GetPaged(Const.PAGE_SIZE, pageIndex);
         }
+        public void OnPost()
+        {
+
+
+
+
+
+        }
+
     }
 }

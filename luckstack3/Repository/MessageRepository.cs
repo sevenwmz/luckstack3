@@ -21,7 +21,7 @@ namespace _17bang.Repository
                     PublishTime = DateTime.Now.AddDays(-5),
                     Status = MessageStatus.Refresh,
                     Content = "你因为登录获得系统随机分配给你的 帮帮豆 14 枚，可用于感谢赞赏等。 ",
-                    Select = true
+                    Select = false
                 },
                 new MessageMine
                 {
@@ -29,7 +29,7 @@ namespace _17bang.Repository
                     PublishTime = DateTime.Now.AddDays(-7),
                     Status = MessageStatus.SomeOnePickUp,
                     Content = "你因为登录获得系统随机分配给你的 帮帮豆 25 枚，可用于感谢赞赏等。 ",
-                    Select = true
+                    Select = false
                 },
                 new MessageMine
                 {
@@ -37,7 +37,7 @@ namespace _17bang.Repository
                     PublishTime = DateTime.Now.AddDays(-12),
                     Status = MessageStatus.Target,
                     Content = "DK捡走了你掉落的 帮帮币 7枚  ",
-                    Select = true
+                    Select = false
                 },
                 new MessageMine
                 {
@@ -45,7 +45,7 @@ namespace _17bang.Repository
                     PublishTime = DateTime.Now.AddDays(-15),
                     Status = MessageStatus.AutoCancle,
                     Content = "DK捡走了你掉落的 帮帮币 7枚  ",
-                    Select = true
+                    Select = false
                 },
                 new MessageMine
                 {
@@ -53,7 +53,7 @@ namespace _17bang.Repository
                     PublishTime = DateTime.Now.AddDays(-16),
                     Status = MessageStatus.HaveReward,
                     Content = "DK捡走了你掉落的 帮帮币 7枚  ",
-                    Select = true
+                    Select = false
                 },
                 new MessageMine
                 {
@@ -61,7 +61,7 @@ namespace _17bang.Repository
                     PublishTime = DateTime.Now.AddDays(-17),
                     Status = MessageStatus.InviteHelp,
                     Content = "DK捡走了你掉落的 帮帮币 7枚  ",
-                    Select = true
+                    Select = false
                 },
                 new MessageMine
                 {
@@ -69,7 +69,7 @@ namespace _17bang.Repository
                     PublishTime = DateTime.Now.AddDays(-18),
                     Status = MessageStatus.Target,
                     Content = "DK捡走了你掉落的 帮帮币 7枚  ",
-                    Select = true
+                    Select = false
                 },
                 new MessageMine
                 {
@@ -77,9 +77,18 @@ namespace _17bang.Repository
                     PublishTime = DateTime.Now.AddDays(-19),
                     Status = MessageStatus.Target,
                     Content = "DK捡走了你掉落的 帮帮币 7枚  ",
-                    Select = true
+                    Select = false
                 }
             };
+        }
+
+        internal void DeleteMessage(MessageMine item)
+        {
+            
+            item.Id = 0;
+            item.Status = 0;
+            item.Content = null;
+            item.Select = false;
         }
 
         public IList<MessageMine> Get()
