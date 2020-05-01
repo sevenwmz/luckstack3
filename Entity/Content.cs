@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Text;
 
@@ -30,13 +31,13 @@ namespace Entity
         public Problem Reward { set; get; }
         //keywords
 
-        //article name
+        [Required(ErrorMessage ="内容不能为空")]
         public string Body { set; get; }
 
-        //Summary
+
         public string Summary { set; get; }
 
-        // Title
+        [Required(ErrorMessage = "标题不能为空")]
         public string Title { set; get; }
 
 

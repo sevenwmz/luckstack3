@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -28,10 +29,8 @@ namespace Entity
 
         #endregion
 
-        #region Field and properties
-
+        [Required(ErrorMessage ="系列不能为空")]
         public string Series { set; get; }
-
 
         public string Ad { set; get; }
 
@@ -39,7 +38,6 @@ namespace Entity
 
         public string WebSite { set; get; }
 
-        #endregion
 
         #region Function
 

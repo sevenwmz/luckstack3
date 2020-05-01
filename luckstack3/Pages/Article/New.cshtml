@@ -7,43 +7,69 @@
 
 @section Title{ <span class="fa fa-pencil-square-o ">文章发布</span> }
 
-@section LowRightShow{ 
+@section LowRightShow{
 
-<div>
-    <div class="text-right">
-        <a href="#" class="text-right"><i class="fa fa-pencil-square-o"></i>修改</a>
-    </div>
     <div>
-        <div>
-            <span>用户 ： </span>
-            <a href="#">@Model.UserInfo.NickName</a>
-            <a href="#">@Model.UserInfo.Level</a>
+        <div class="text-right">
             <a href="#" class="text-right"><i class="fa fa-pencil-square-o"></i>修改</a>
         </div>
         <div>
-            <span>性别 ： </span>
-            <span>@Model.UserInfo.Gender</span>
-        </div>
-        <div>
-            <span>生日 ： </span>
-            <span>@Model.UserInfo.Birthday</span>
-            <span>@Model.UserInfo.Constellation</span>
-        </div>
-        <div>
-            <p>关注 : </p>
-            @for (int i = 0; i < Model.Keyword.Count; i++)
-            {
-                <span class="text-white badge bg-dark">@Model.Keyword[i].Name</span>
-            }
-        </div>
-        <div>
-            <p>自我介绍 ： </p>
-            <p>@Model.UserInfo.SelfIntroduction</p>
+            <div>
+                <span>用户 ： </span>
+                <a href="#">@Model.UserInfo.NickName</a>
+                <a href="#">@Model.UserInfo.Level</a>
+                <a href="#" class="text-right"><i class="fa fa-pencil-square-o"></i>修改</a>
+            </div>
+            <div>
+                <span>性别 ： </span>
+                <span>@Model.UserInfo.Gender</span>
+            </div>
+            <div>
+                <span>生日 ： </span>
+                <span>@Model.UserInfo.Birthday</span>
+                <span>@Model.UserInfo.Constellation</span>
+            </div>
+            <div>
+                <p>关注 : </p>
+                @for (int i = 0; i < Model.Keyword.Count; i++)
+                {
+                    <span class="text-white badge bg-dark">@Model.Keyword[i].Name</span>
+                }
+            </div>
+            <div>
+                <p>自我介绍 ： </p>
+                <p>@Model.UserInfo.SelfIntroduction</p>
+            </div>
         </div>
     </div>
-</div>
- }
+}
+@section style{
+    <style>
+        .field-validation-error {
+            color: #b94a48;
+        }
 
+        .field-validation-valid {
+            display: none;
+        }
+
+        input.input-validation-error {
+            border: 1px solid #b94a48;
+        }
+
+        input[type="checkbox"].input-validation-error {
+            border: 0 none;
+        }
+
+        .validation-summary-errors {
+            color: #b94a48;
+        }
+
+        .validation-summary-valid {
+            display: none;
+        }
+    </style>
+}
 <form method="post">
     <div style="border:dashed#d8c8c8 3px;padding:25px;background-color:#f0f69c">
         <p>你还有未使用的草稿（<a href="#">查看全部</a>）。</p>
@@ -52,15 +78,18 @@
     <div class="form-group">
         <label><strong>标题：（* 必填）</strong></label>
         <input asp-for="NewArticle.Title" class="form-control" placeholder="来一个醒目的标题吧">
+        <span asp-validation-for="NewArticle.Title"></span>
     </div>
     <div class="form-group">
         <label><strong>内容：（* 必填）</strong></label>
         <textarea asp-for="NewArticle.Body" class="form-control" style="line-height:14;"></textarea>
+        <span asp-validation-for="NewArticle.Body"></span>
     </div>
     <div class="form-group">
         <label><i class="fa fa-question-circle"></i><strong>添加到系列：</strong></label>
         <div class="input-group input-group-combined">
             <select class="form-control" asp-for="NewArticle.Series" asp-items="Model.SeriesOfSelect"></select>
+            <span asp-validation-for="NewArticle.Series"></span>
             <div class="input-group-append">
                 <p class="btn btn-outline-secondary"> ➕新系列</p>
             </div>

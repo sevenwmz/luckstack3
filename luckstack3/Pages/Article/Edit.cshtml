@@ -43,7 +43,33 @@
         </div>
     </div>
 }
+@section style{
+    <style>
+        .field-validation-error {
+            color: #b94a48;
+        }
 
+        .field-validation-valid {
+            display: none;
+        }
+
+        input.input-validation-error {
+            border: 1px solid #b94a48;
+        }
+
+        input[type="checkbox"].input-validation-error {
+            border: 0 none;
+        }
+
+        .validation-summary-errors {
+            color: #b94a48;
+        }
+
+        .validation-summary-valid {
+            display: none;
+        }
+    </style>
+}
 <form method="post">
     <div style="border:dashed#d8c8c8 3px;padding:25px;background-color:#f0f69c">
         <p>你还有未使用的草稿（<a href="#">查看全部</a>）。</p>
@@ -52,10 +78,12 @@
     <div class="form-group">
         <label><strong>标题：（* 必填）</strong></label>
         <input asp-for="EditPublish.Title" class="form-control" placeholder="来一个醒目的标题吧">
+        <span asp-validation-for="EditPublish.Title"></span>
     </div>
     <div class="form-group">
         <label><strong>内容：（* 必填）</strong></label>
         <textarea asp-for="EditPublish.Body" class="form-control" style="line-height:14;"></textarea>
+        <span asp-validation-for="EditPublish.Body"></span>
     </div>
     <div class="form-group">
         <label><i class="fa fa-question-circle"></i><strong>添加到系列：</strong></label>
@@ -64,6 +92,7 @@
             <div class="input-group-append">
                 <p class="btn btn-outline-secondary"> ➕新系列</p>
             </div>
+            <span asp-validation-for="EditPublish.Series"></span>
         </div>
     </div>
     <div class="form-group">
