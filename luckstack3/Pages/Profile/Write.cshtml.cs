@@ -9,16 +9,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace luckstack3
 {
+    [BindProperties]
     public class Write : PageModel
     {
-
-        public bool? IsMale { set; get; }
+        public User UserInfo { set; get; }
 
         public Constellation Constellation { set; get; }
 
-        public string Other { set; get; }
 
         public IList<Keyword> Keywords { set; get; }
+
         private KeywordRepository _keyword;
         public Write()
         {
@@ -27,6 +27,15 @@ namespace luckstack3
         public void OnGet()
         {
             Keywords = _keyword.GetKeywords();
+        }
+
+
+        public void OnPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                return;
+            }
         }
     }
 

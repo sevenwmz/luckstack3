@@ -28,24 +28,26 @@
         <li>自我介绍的字数不要超过255字。</li>
     </ol>
 }
-<form class="col-md-4">
+<form class="col-md-4" method="post">
     <div class="form-group">
         <label><strong>头像：（* 仅限jpg/png/gif）</strong></label>
         <div class="custom-file">
             <input type="file" class="custom-file-input" aria-describedby="inputGroupFileAddon01">
             <label class="custom-file-label" for="inputGroupFile01">页面提交时上传文件</label>
         </div>
-        <div>
-            <label><strong>性别： </strong></label>
-            <div class="form-check form-check-inline">
-                <input asp-for="IsMale" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="true">
-                <label class="form-check-label" for="inlineRadio1">男</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input asp-for="IsMale" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="false">
-                <label class="form-check-label" for="inlineRadio2">女</label>
-            </div>
+    </div>
+    <div class="form-group">
+        <label><strong>性别： </strong></label>
+        <div class="form-check form-check-inline">
+            <input asp-for="UserInfo.Gender" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="true">
+            <label class="form-check-label" for="inlineRadio1">男</label>
         </div>
+        <div class="form-check form-check-inline">
+            <input asp-for="UserInfo.Gender" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="false">
+            <label class="form-check-label" for="inlineRadio2">女</label>
+        </div>
+        <span asp-validation-for="UserInfo.Gender"></span>
+    </div>
         <div class="form-group">
             <label><strong>生日：</strong></label>
             <div class="input-group mb-3">
@@ -122,11 +124,11 @@
                 <input type="text" class="form-control" />
             </div>
         </div>
-    </div>
+    
     <div class="form-group">
         <label><strong>自我介绍：</strong></label>
-        <textarea asp-for="Other" class="form-control" placeholder="简单的介绍一下自己吧，不超过255字" style="line-height:4;"></textarea>
+        <textarea asp-for="UserInfo.SelfIntroduction" class="form-control" placeholder="简单的介绍一下自己吧，不超过255字" rows="4"></textarea>
+        <span asp-validation-for="UserInfo.SelfIntroduction"></span>
     </div>
     <button asp-page="/Article" type="submit" class="btn btn-primary">提交</button>
 </form>
-

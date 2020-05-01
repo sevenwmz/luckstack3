@@ -27,10 +27,9 @@ namespace Entity
         #region  Filed and properties
 
 
-
-        [Required(ErrorMessage = "用户名不能为空")]
-        [StringLength(6, MinimumLength = 4, ErrorMessage = "最大长度不能超过6")]
-        [Display(Name = "用户名")]
+        [Required(ErrorMessage = "* 用户名不能为空")]
+        [StringLength(6, MinimumLength = 4, ErrorMessage = "* 最大长度不能超过6")]
+        [Display(Name = "* 用户名")]
         public string UserName { set; get; }
 
 
@@ -38,11 +37,12 @@ namespace Entity
         #region 1.user.Password在类的外部只能改不能读( Secend Day )
         public int Id { set; get; }
 
+        [Required(ErrorMessage = "* 中间性别？？？")]
         public string Gender { set; get; }
         public string Level { set; get; }
 
-        [Required(ErrorMessage = "Email不能为空")]
-        [EmailAddress(ErrorMessage = "请输入有效Email")]
+        [Required(ErrorMessage = "* Email不能为空")]
+        [EmailAddress(ErrorMessage = "* 请输入有效Email")]
         public string Email { set; get; }
 
         [DataType(DataType.Password)]
@@ -51,7 +51,7 @@ namespace Entity
         public string Password { set; get; }
 
         [DataType(DataType.Password)]
-        [Compare(nameof(Password) , ErrorMessage = "两次密码输入不一致")]
+        [Compare(nameof(Password) , ErrorMessage = "* 两次密码输入不一致")]
         public string PasswordAgain { set; get; }
 
 
@@ -64,6 +64,8 @@ namespace Entity
         public TokenManager Manager { set; get; }
         //Password confirm.
         //Verification Code
+
+        [Required(ErrorMessage = "* 少写一点点嘛......")]
         public string SelfIntroduction { set; get; }
 
         public int HelpBean { set; get; }
