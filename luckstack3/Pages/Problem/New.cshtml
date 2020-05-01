@@ -22,7 +22,11 @@
         <a href="none">修改</a>
     </div>
 }
+@section style{
+    <style>
 
+    </style>
+}
 <form method="post">
     <div style="border:dashed#d8c8c8 3px;padding:25px;background-color:#f0f69c">
         <p class="fa fa-info-circle" style="color:deepskyblue">这是你第一次发布求助，求助发布成功系统会奖励你 20<a href="/Credit" class="iconfont icon-drips">帮帮点</a></p>
@@ -39,11 +43,14 @@
     <div class="form-group">
         <label><strong>标题：（* 必填）</strong></label>
         <input asp-for="Problems.Title" class="form-control" placeholder="简明扼要，不超过255字">
+        <span asp-validation-for="Problems.Title"></span>
     </div>
     <div class="form-group">
         <label><strong>说明：（* 必填）</strong></label>
-        <textarea asp-for="Problems.Summary" class="form-control" style="line-height:14;"></textarea>
+        <textarea asp-for="Problems.Body" class="form-control" rows="14"></textarea>
+        <span asp-validation-for="Problems.Body"></span>
     </div>
+
     <div class="form-group">
         <label><strong>关键字：（* 使用空格分隔）</strong></label>
         <div class="input-group">
