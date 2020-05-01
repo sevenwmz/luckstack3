@@ -41,6 +41,10 @@ namespace Entity
         public string Gender { set; get; }
         public string Level { set; get; }
 
+        [Required(ErrorMessage = "Email不能为空")]
+        [EmailAddress(ErrorMessage = "请输入有效Email")]
+        public string Email { set; get; }
+
         [DataType(DataType.Password)]
         //[DisplayFormat(ConvertEmptyStringToNull = false)]
         [Required(/*AllowEmptyStrings = true, */ErrorMessage = "* 密码不能为空")]
@@ -49,6 +53,7 @@ namespace Entity
         [DataType(DataType.Password)]
         [Compare(nameof(Password) , ErrorMessage = "两次密码输入不一致")]
         public string PasswordAgain { set; get; }
+
 
         #endregion
         public string NickName { set; get; }
