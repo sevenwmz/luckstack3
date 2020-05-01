@@ -9,16 +9,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace luckstack3
 {
+    [BindProperties]
     public class RegisterModel : PageModel
     {
-        public string? Inviter { set; get; }
+        [Required(ErrorMessage ="* 邀请人不能为空")]
+        public string Inviter { set; get; }
 
+        [Required(ErrorMessage = "* 邀请码不能为空")]
         public int? InviterNumber { set; get; }
 
-        public User UserName;
-
-        [DataType(DataType.Password)]
-        public User UserPwd;
+        public User Regester { get; set; }
 
         public string Captcha { set; get; }
 
@@ -29,7 +29,10 @@ namespace luckstack3
 
         public void OnPost()
         {
-
+            if (!ModelState.IsValid)
+            {
+                return;
+            }
         }
     }
 }

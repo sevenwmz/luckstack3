@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -25,57 +26,33 @@ namespace Entity
 
         #region  Filed and properties
 
-        //InvitedBy method
+
         internal string InvitedBy { get; set; }
-        //InvitedBycode char.
+
         private int InvitedByCode { get; set; }
 
 
-
-        #region 2.如果user.Name为“admin”，输入时修改为“系统管理员”( Secend Day )
-        private string _userName;
-        [Display(Name ="用户名")]
-        public string UserName
-        {//设计一个适用的机制，能确保用户（User）的昵称（Name）不能含有admin、17bang、管理员等敏感词。
-            set
-            {
-                string[] blacklist = new string[] { "admin", "17bang" };
-                for (int i = 0; i < blacklist.Length; i++)
-                {
-                    if (value.Contains(blacklist[i]))
-                    {
-                        Console.WriteLine("请不要输入带有特殊字符命令");
-                        return;
-                    }
-                }
-                _userName = value;
-
-            }
-            //set { _userName = value == "admin" ? "系统管理员" : value; }
-            get
-            {
-                if (_userName == "admin")
-                {
-                    string output = "系统管理员";
-                    return output;
-                }
-                return _userName;
-            }
-        }
-
-        #endregion
+        [StringLength(6, MinimumLength = 4, ErrorMessage = "最大长度不能超过6")]
+        [Display(Name = "用户名")]
+        public string UserName;
 
 
-        //password method
-        //internal string Password { get; set; }
+
         #region 1.user.Password在类的外部只能改不能读( Secend Day )
         public int Id { set; get; }
 
         public string Gender { set; get; }
         public string Level { set; get; }
 
-        [Required(ErrorMessage ="* 密码不能为空")]
+        [DataType(DataType.Password)]
+        //[DisplayFormat(ConvertEmptyStringToNull = false)]
+        [Required(/*AllowEmptyStrings = true, */ErrorMessage = "* 密码不能为空")]
         public string Password { set; get; }
+
+        [DataType(DataType.Password)]
+        [Compare(nameof(Password) , ErrorMessage = "两次密码输入不一致")]
+        public string PasswordAgain { set; get; }
+
         #endregion
         public string NickName { set; get; }
 
@@ -84,7 +61,6 @@ namespace Entity
 
         public TokenManager Manager { set; get; }
         //Password confirm.
-        internal string PasswordAgain { set; get; }
         //Verification Code
         public string SelfIntroduction { set; get; }
 

@@ -17,18 +17,12 @@ namespace Entity
             PublishTime = DateTime.Now;
         }
 
-
-        #region Filed and Properties
-        //3.21Homework 
-        //1.Content中有一个字段：kind，记录内容的种类（problem/article/suggest等），只能被子类使用
         protected string kind;
-
         
         public DateTime PublishTime { get; }
 
         public int Id { set; get; }
 
-        //Author
         public User Author { set; get; }
 
         public int HelpMoney { set; get; }
@@ -45,7 +39,6 @@ namespace Entity
         // Title
         public string Title { set; get; }
 
-        #endregion
 
         #region function 
         //Release function
