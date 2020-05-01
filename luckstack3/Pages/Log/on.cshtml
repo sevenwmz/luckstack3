@@ -1,32 +1,60 @@
 ﻿@page
-@model luckstack3.signinModel
+@model luckstack3.SigninModel
 @{
     ViewData["Title"] = "用户登录·一起帮";
     Layout = "_LayoutBigColumn";
 }
 
-@section style{ }
+@section style{
+    <style>
+        .field-validation-error {
+            color: #b94a48;
+        }
+
+        .field-validation-valid {
+            display: none;
+        }
+
+        input.input-validation-error {
+            border: 1px solid #b94a48;
+        }
+
+        input[type="checkbox"].input-validation-error {
+            border: 0 none;
+        }
+
+        .validation-summary-errors {
+            color: #b94a48;
+        }
+
+        .validation-summary-valid {
+            display: none;
+        }
+    </style>
+}
 @section Title{
     <i class="fa fa-sign-in">用户登录</i>
 }
-<form class="col-md-4">
+<form class="col-md-4" method="post">
     <div class="form-group">
         <label><strong>用户名：（* 必填）</strong></label>
         <input asp-for="UserName.UserName" class="form-control" placeholder="不是昵称，是登录用户名">
+        <span asp-validation-for="UserName.UserName"></span>
     </div>
     <div class="form-group">
         <label><strong>密码：（* 必填）</strong></label>
-        <input asp-for="UserPwd.Password" class="form-control" placeholder="不少于4个字符">
+        <input asp-for="UserName.Password" class="form-control" placeholder="不少于4个字符">
+        <span asp-validation-for="UserName.Password"></span>
     </div>
     <div class="form-group">
-        <label><strong>验证码：（* 必填） </strong></label>
+        <label><strong>验证码：（* 必填）</strong></label>
         <div>
             <input asp-for="Captcha" class="form-control" style="width:30%;display:inline;">
             <a href="#">看不清楚</a>
         </div>
     </div>
-    <button type="submit"  class="btn btn-primary">提交</button>
-    <label><input type="checkbox" style="display:inline" value="true" readonly />记住我</label>
+    <button type="submit" class="btn btn-primary">提交</button>
+    <label><input type="checkbox" style="display:inline" value="true" readonly asp-for="RemenberMe" />记住我</label>
     <a href="/Log/On" class="btn float-md-right text-primary"><i class="fa fa-registered"></i>注册</a>
     <a href="/Log/On" class="btn float-md-right text-primary">(｡ŏ_ŏ) 忘了</a>
 </form>

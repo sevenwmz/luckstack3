@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace Entity
 {
-    public sealed class User
+    public class User
     {
 
 
@@ -27,14 +27,11 @@ namespace Entity
         #region  Filed and properties
 
 
-        internal string InvitedBy { get; set; }
 
-        private int InvitedByCode { get; set; }
-
-
+        [Required(ErrorMessage = "用户名不能为空")]
         [StringLength(6, MinimumLength = 4, ErrorMessage = "最大长度不能超过6")]
         [Display(Name = "用户名")]
-        public string UserName;
+        public string UserName { set; get; }
 
 
 
@@ -64,85 +61,13 @@ namespace Entity
         //Verification Code
         public string SelfIntroduction { set; get; }
 
-        internal string VerificationCode { set; get; }
         public int HelpBean { set; get; }
 
         public int HelpCredit { set; get; }
         public int HelpMoney { internal set; get; }
         #endregion
 
-        #region Function
 
-        //Register Page.
-        public void Register()
-        {//写在前面，想了下，获取用户输入传递给后台验证应该是前端的事情，前端提供接口，后台进行验证处理就可以。
-         //现在是简单逻辑，很多没有写，比如非法字符，密码过长等。。。
-            if (InvitedBy == null)
-            {
-                Console.WriteLine("没有邀请人");
-                return;
-            }//else nothing
-            if (InvitedByCode < 4)
-            {
-                Console.WriteLine("邀请码不得小于4位");
-                return;
-            }//else nothing
-            if (UserName == null)
-            {
-                Console.WriteLine("输入用户名");
-                return;
-            }//else nothing
-            //if (Password == null)
-            //{
-            //    Console.WriteLine("请输入密码");
-            //    return;
-            //}//else nothing
-            //if (PasswordAgain != Password)
-            //{
-            //    Console.WriteLine("两次密码不一致");
-            //    return;
-            //}//else nothing
-            if (VerificationCode == null)
-            {
-                Console.WriteLine("pleas Input VerificationCode at here.");
-                return;
-            }
-            else
-            {
-                Console.WriteLine("loading.....");
-                return;
-            }
-        }
-
-        //Login Page.
-        public void Login()
-        {
-            if (UserName == null)
-            {
-                Console.WriteLine("输入用户名");
-                return;
-            }//else nothing
-            //if (Password == null)
-            //{
-            //    Console.WriteLine("请输入密码");
-            //    return;
-            //}//else nothing
-            if (VerificationCode == null)
-            {
-                Console.WriteLine("pleas Input VerificationCode at here.");
-                return;
-            }
-            else
-            {
-                Console.WriteLine("loading.....");
-                return;
-            }
-        }
-
-
-
-
-        #endregion
 
     }
 

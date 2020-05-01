@@ -9,18 +9,27 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace luckstack3
 {
-    public class signinModel : PageModel
+    [BindProperties]
+    public class SigninModel : PageModel
     {
 
-        public User UserName;
+        public User UserName { set; get; }
 
-        [DataType(DataType.Password)]
-        public User UserPwd;
+        public bool RemenberMe { set; get; }
+
         public string Captcha { set; get; }
 
         public void OnGet()
         {
 
+        }
+
+        public void OnPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                return;
+            }
         }
     }
 }
