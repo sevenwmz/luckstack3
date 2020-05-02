@@ -43,10 +43,6 @@ namespace _17bang
         }
 
 
-
-
-
-
         public void OnGet()
         {
 
@@ -65,8 +61,6 @@ namespace _17bang
             SumOfArticle = _repository.GetSum();
             Messages = Messages.GetPaged(Const.PAGE_SIZE, pageIndex);
 
-
-
         }
         public ActionResult OnPost()
         {
@@ -74,8 +68,7 @@ namespace _17bang
             _repository.Save(Messages);
             return RedirectToPage();
 
-
         }
 
     }
-}
+}   
