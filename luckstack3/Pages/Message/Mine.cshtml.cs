@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using _17bang.Repository;
 using Entity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace _17bang
@@ -38,7 +39,7 @@ namespace _17bang
                 new Keyword{Name = "SQL" }
             };
             _repository = new MessageRepository();
-
+            
         }
 
 
@@ -63,12 +64,15 @@ namespace _17bang
 
             SumOfArticle = _repository.GetSum();
             Messages = Messages.GetPaged(Const.PAGE_SIZE, pageIndex);
+
+
+
         }
-        public void OnPost()
+        public ActionResult OnPost()
         {
 
-
-
+            _repository.Save(Messages);
+            return RedirectToPage();
 
 
         }

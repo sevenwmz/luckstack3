@@ -10,7 +10,7 @@ namespace _17bang.Repository
     public class MessageRepository
     {
         private static IList<MessageMine> _repository;
-
+        private bool _selected { set; get; }
         static MessageRepository()
         {
             _repository = new List<MessageMine>
@@ -82,6 +82,20 @@ namespace _17bang.Repository
             };
         }
 
+        internal void Save(IList<MessageMine> saveSelect)
+        {
+            for (int i = 0; i < saveSelect.Count; i++)
+            {
+                for (int j = 0; j < _repository.Count; j++)
+                {
+                    if (_repository[j].Id == saveSelect[i].Id)
+                    {
+                        _repository[j].Select = saveSelect[i].Select;
+                    }
+                }
+            }
+        }
+
         internal void DeleteMessage(MessageMine item)
         {
             
@@ -90,6 +104,8 @@ namespace _17bang.Repository
             item.Content = null;
             item.Select = false;
         }
+
+
 
         public IList<MessageMine> Get()
         {
