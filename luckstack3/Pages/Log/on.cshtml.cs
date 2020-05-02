@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using _17bang.ModelRepository.Log;
 using _17bang.Repository;
 using Entity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace luckstack3
@@ -37,40 +37,45 @@ namespace luckstack3
 
         public string Captcha { set; get; }
         private int _cookie { set; get; }
+
+        private const string ModelError = "ModelError";
+
         public void OnGet()
         {
 
         }
 
-        public void OnPost()
+        public ActionResult OnPost()
         {
             if (!ModelState.IsValid)
             {
-                return;
+                return Page();
             }
 
             User user = _repository.GetByName(Name);
 
+
+
             if (user == null)
             {
                 ModelState.AddModelError(nameof(Name), "用户名不存在");
-                return;
+
+                return Page();
             }
             if (user.Password != Password)
             {
                 ModelState.AddModelError(nameof(Password), "用户名或密码不正确");
-                return;
+                return Page();
             }
 
+            Response.Cookies.Append(Name, (++_cookie).ToString());
 
             if (RemenberMe == true)
             {
                 Response.Cookies.Append(Name, (++_cookie).ToString(),
                         new CookieOptions { Expires = DateTime.Now.AddDays(90), });
-                return;
             }
-
-            Response.Cookies.Append(Name, (++_cookie).ToString());
+            return RedirectToPage("/Index");
 
         }
     }
