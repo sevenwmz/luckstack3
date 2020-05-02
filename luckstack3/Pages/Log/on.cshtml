@@ -38,13 +38,13 @@
 <form class="col-md-4" method="post">
     <div class="form-group">
         <label><strong>用户名：（* 必填）</strong></label>
-        <input asp-for="UserName.UserName" class="form-control" placeholder="不是昵称，是登录用户名">
-        <span asp-validation-for="UserName.UserName"></span>
+        <input asp-for="Name" class="form-control" placeholder="不是昵称，是登录用户名">
+        <span asp-validation-for="Name"></span>
     </div>
     <div class="form-group">
         <label><strong>密码：（* 必填）</strong></label>
-        <input asp-for="UserName.Password" class="form-control" placeholder="不少于4个字符">
-        <span asp-validation-for="UserName.Password"></span>
+        <input asp-for="Password" class="form-control" placeholder="不少于4个字符">
+        <span asp-validation-for="Password"></span>
     </div>
     <div class="form-group">
         <label><strong>验证码：（* 必填）</strong></label>
