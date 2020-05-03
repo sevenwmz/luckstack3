@@ -21,6 +21,8 @@ namespace _17bang
 
         private MessageRepository _repository;
 
+        public IList<bool> Selected { set; get; }
+
         public MineModel()
         {
             UserInfo = new User
@@ -46,26 +48,27 @@ namespace _17bang
         public void OnGet()
         {
 
-            string exclude = Request.Query["exclude"];
-            if (string.IsNullOrEmpty(exclude))
-            {
-                Messages = _repository.Get();
-            }
-            else
-            {
-                Messages = _repository.GetExclude(Enum.Parse<MessageStatus>(exclude));
-            }
-
             int pageIndex = Convert.ToInt32(Request.RouteValues["id"]);
-
+            Messages = _repository.Get();
             SumOfArticle = _repository.GetSum();
             Messages = Messages.GetPaged(Const.PAGE_SIZE, pageIndex);
-
+            Selected = new List<bool> { false, false, false, false, false, false };
         }
         public ActionResult OnPost()
         {
+            string request = Request.RouteValues["opt"].ToString();
 
-            _repository.Save(Messages);
+            foreach (var item in Messages)
+            {
+                if (request == "read")
+                {
+                    _repository.GetHasRead(item.Id).HasRead = true;
+                }
+                else if (request == "delete")
+                {
+                    _repository.Remove(item.Id);
+                }
+            }
             return RedirectToPage();
 
         }

@@ -9,15 +9,10 @@ namespace Entity
     public class MessageMine
     {
         public int Id { set; get; }
-
         public DateTime PublishTime { set; get; }
-
         public MessageStatus Status { set; get; }
-
         public string Content { set; get; }
-
-        public bool Select { set; get; }
-
+        public bool HasRead { set; get; }
     }
 
     public enum MessageStatus
