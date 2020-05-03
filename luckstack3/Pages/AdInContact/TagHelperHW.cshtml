@@ -3,11 +3,14 @@
 @{
     ViewData["Title"] = "TagHelperHW";
 }
-
-<h1>TagHelperHW</h1>
-<p style="margin-top:90px" class="fa fa-remove"></p>
-<datetime changeFormat=".ToString($"yyyy年MM月dd日hh时mm分")">@DateTime.Now</datetime>   
-<hr />
-<datetime changeFormat=".ToString($" yyyy年MM月dd日hh时mm分")" asp-showicon="true" asp-only="date">@DateTime.Now</datetime>
-<hr />
-<datetime  changeFormat=".ToString($"yyyy年MM月dd日hh时mm分")" asp-showicon="true">@DateTime.Now</datetime>
+    <div class=" text-center">
+        <h1>TagHelperHW</h1>
+        <p style="margin-top:90px" class="fa fa-remove"></p>
+        <datetime>@DateTime.Now</datetime>
+        <hr />
+        <datetime asp-only="true">wpz</datetime>
+        <hr />
+        <datetime asp-showicon="true">前面是Icon</datetime>
+        <hr />
+        <datetime asp-only="date">时间是： </datetime>
+    </div>

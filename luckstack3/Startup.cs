@@ -24,6 +24,19 @@ namespace _17bang
         {
             services.AddRazorPages();
 
+            services.AddMemoryCache();
+
+            services.AddSession(option =>
+            {
+                option.Cookie = new Microsoft.AspNetCore.Http.CookieBuilder
+                {
+                    Name = "Seven",
+                    IsEssential = true,
+                    Expiration = new TimeSpan(30, 0, 0, 0)
+                };
+                option.IdleTimeout = new TimeSpan(0, 10, 5);
+            });
+
             services.AddMvc()
                 .AddRazorPagesOptions(option =>
                 {
@@ -55,7 +68,9 @@ namespace _17bang
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseSession();
+
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
