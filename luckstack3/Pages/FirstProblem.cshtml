@@ -15,6 +15,17 @@
                 <i class="fa fa-graduation-cap"></i>首次求助测试
             </h2>
             <hr />
+            @{
+                _UserModel _User = new _UserModel
+                {
+                    Name = "王胖子",
+                    Id = 1,
+                    Level = 10
+                };
+            }
+
+            <partial name="_User" model="_User" />
+
             <form method="post">
                 <label><strong>1 、以下哪一种求助是“一起帮”鼓励的：</strong></label><br />
                 <label><input type="radio" name="1" value="1" />如何看待42岁程序员跳楼事件？（社会热点问题）</label><br />
@@ -48,9 +59,9 @@
                 <label><input type="radio" name="6" value="3" />（求助人）发布求助，（好心人）应答，（求助人）确认开始协助，（好心人和求助人）开始远程协助，over</label><br />
                 <label><input type="radio" name="6" value="4" />（求助人）发布求助，（好心人）应答，（求助人）确认开始协助，（好心人和求助人）开始远程协助，（求助人）酬谢和评价，（好心人和求助人）写总结，over</label><br />
                 <label><strong>7 、开始协助的按钮在应答的旁边，是哪一个以下图标：</strong></label><br />
-                <label><input type="radio" name="7" value="1" /><i class="fa fa-star-half" title="开始远程协助" ></i></label><br />
-                <label><input type="radio" name="7" value="2" /><i class="fa fa-hand-o-right" title="问题解决，酬谢" ></i></label><br />
-                <label><input type="radio" name="7" value="3" /><i class="fa fa-windows" title="正在协助......" ></i></label><br />
+                <label><input type="radio" name="7" value="1" /><i class="fa fa-star-half" title="开始远程协助"></i></label><br />
+                <label><input type="radio" name="7" value="2" /><i class="fa fa-hand-o-right" title="问题解决，酬谢"></i></label><br />
+                <label><input type="radio" name="7" value="3" /><i class="fa fa-windows" title="正在协助......"></i></label><br />
                 <label><input type="radio" name="7" value="4" /><i class="fa fa-window-close" title="问题没解决重开"></i></label><br />
                 <label><strong>8 、如果求助人认为问题没有解决，可以拒绝全额酬谢。拒绝全额酬谢会导致：</strong></label><br />
                 <label><input type="checkbox" name="8" value="1" />好心人得不到帮帮币奖励</label><br />
