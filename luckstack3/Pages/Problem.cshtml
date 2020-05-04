@@ -10,7 +10,7 @@
 <main class="container">
     <div class="row">
         <section class="col-md-8" style="padding-top:80px">
-            <div class="pull-left text-muted">
+            <div>
                 <label class="checkbox-inline">
                     <span class="fa fa-eye-slash"></span>
                     不显示
@@ -25,9 +25,13 @@
                 @foreach (var problem in Model.Problems)
                 {
                     <div>
-                        <span class="fa fa-calendar">@problem.PublishTime</span>
-                        <span class="fa fa-user-circle"><a href="none" class="text-info">@problem.Author.NickName</a></span>
+                        <span>
+                        <i class="fa fa-calendar"></i>@problem.PublishTime</span>
+                        <span style="float:right"><i  class="fa fa-user-circle"></i>
+                        <a href="none" class="text-info">@problem.Author.NickName</a>
                         <span>@problem.Author.Level</span>
+                        </span>
+                        
                     </div>
                     <h2><span class="text-white badge bg-dark">@problem.Status.GetDescription()</span>@problem.Title</h2>
                     <p>@problem.Summary<a href="/Problem/Edit/@problem.Id" style="color:black">……</a></p>
@@ -90,38 +94,8 @@
             </div>
         </section>
 
-        <aside class="col-md-4 offset-sm-2">
-            <div style="border:dashed#e4e0e0 1px;border-radius:5px;" class="container">
-                <h4 class="lead mt-md-4"><i class="fa fa-tags"></i>关键字</h4>
-                <hr />
-                <section>
-                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:30px;">编程开发语言</span>
-                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:30px;">C#</span>
-                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:30px;">JAVA</span><br />
-                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:25px;">工具软件</span>
-                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:25px;">Javascript</span><br />
-                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;height:20px;">顾问咨询</span>
-                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;height:20px;">Html</span>
-                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;height:20px;">VisualStudio</span><br />
-                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;">操作系统</span>
-                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;">SQL</span>
-                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;">职场</span>
-                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;">法律</span><br />
-                    <span class="text-white badge bg-dark" style="border-radius:10px;">Python</span>
-                    <span class="text-white badge bg-dark" style="border-radius:10px;">.net</span>
-                    <span class="text-white badge bg-dark" style="border-radius:10px;">css</span>
-                    <span class="text-white badge bg-dark" style="border-radius:10px;">Linux</span>
-                </section>
-                <hr />
-                <div class="input-group mb-3 text-right">
-                    <input type="text" class="form-control" placeholder="直接输入关键字进行查找" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <span class="input-group-text "><i class="fa fa-search"></i></span>
-                    </div>
-                    <button class="btn btn-outline-dark my-2 my-sm-0 ml-4 border border-secondary" type="button"><i class="fa fa-random"></i>换一批</button>
-                </div>
-
-            </div>
+        <aside class="col-md-4" style="margin-top:90px;">
+            <vc:_keywords-model max="3"></vc:_keywords-model>
             <div class="card text-center mt-5">
                 <div class="card-header">
                     <ul class="nav nav-tabs card-header-tabs">

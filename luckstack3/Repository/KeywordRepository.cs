@@ -79,6 +79,11 @@ namespace _17bang.Repository
             };
         }
 
+        public IList<Keyword> Get()
+        {
+            return _keywords;
+        }
+
         public IList<Keyword> GetKeywords()
         {
             return _keywords.ToList();
