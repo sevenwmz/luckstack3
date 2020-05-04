@@ -1,0 +1,40 @@
+﻿@using Entity
+@model _17bang._RankModel
+
+
+<div class="card text-center mt-5">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">每日督促</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">排行榜</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">新注册</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body  ">
+        <div class="d-flex row">
+            <div class="col-md-1">
+                @for (int i = 1; i < 9; i++)
+                {
+                    <p class="text-white badge bg-dark">@i</p>
+                }
+            </div>
+            <div class="col-md-7">
+                @foreach (var item in collection)
+                {
+                    <p><span></span></p>
+                }
+            </div>
+            <div class="col-md-3">
+                @foreach (var item in collection)
+                {
+                    <p></p>
+                }
+            </div>
+        </div>
+    </div>
