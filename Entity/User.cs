@@ -58,6 +58,8 @@ namespace Entity
         #endregion
         public string NickName { set; get; }
 
+        //积分
+        public int Integral { set; get; }
         public string Birthday { set; get; }
         public string Constellation { set; get; }
 

@@ -1,5 +1,7 @@
 ﻿@using Entity
-@model _17bang._RankModel
+@model IList<User>
+
+@{ string color = string.Empty;
 
 
 <div class="card text-center mt-5">
@@ -24,17 +26,21 @@
                     <p class="text-white badge bg-dark">@i</p>
                 }
             </div>
-            <div class="col-md-7">
-                @foreach (var item in collection)
+            <div class="col-md-3 offset-1">
+                @foreach (var item in Model)
                 {
-                    <p><span></span></p>
+                    <p><a href="/user/@item.Id">@item.UserName</a><span><a href="/credit">@item.Level</a></span></p>
                 }
             </div>
-            <div class="col-md-3">
-                @foreach (var item in collection)
+            <div class="col-md-3 offset-2">
+                @foreach (var item in Model)
                 {
-                    <p></p>
+                    <p>@item.Integral</p>
                 }
+            </div>
+            <div class="offset-8">
+                <a href="#"><span class="fa fa-hand-o-right">我的排名</span></a>
             </div>
         </div>
     </div>
+</div>
