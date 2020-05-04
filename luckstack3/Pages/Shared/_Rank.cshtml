@@ -1,9 +1,8 @@
 ﻿@using Entity
 @model IList<User>
 
-@{ string color = string.Empty;
-
-
+@{
+}
 <div class="card text-center mt-5">
     <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
@@ -29,7 +28,22 @@
             <div class="col-md-3 offset-1">
                 @foreach (var item in Model)
                 {
-                    <p><a href="/user/@item.Id">@item.UserName</a><span><a href="/credit">@item.Level</a></span></p>
+                    string color = string.Empty;
+                    int LevelId = Convert.ToInt32(item.Level);
+
+                    if (LevelId < 3)
+                    {
+                        color = "color:gray";
+                    }
+                    else if (LevelId < 8)
+                    {
+                        color = "color:blue";
+                    }
+                    else
+                    {
+                        color = "color:red";
+                    }
+                    <p><a href="/user/@item.Id" style="@color">@item.UserName</a><span><a href="/credit" style="@color">@item.Level</a></span></p>
                 }
             </div>
             <div class="col-md-3 offset-2">
