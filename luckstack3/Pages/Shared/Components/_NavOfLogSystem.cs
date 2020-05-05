@@ -18,8 +18,7 @@ namespace _17bang
         public IViewComponentResult Invoke()
         {
             
-
-            return View("/Pages/Shared/_NavOfLogSystem.cshtml", Nothing);
+            return View( Nothing);
         }
     }
 }

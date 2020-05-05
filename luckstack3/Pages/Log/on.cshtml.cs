@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using _17bang;
 using _17bang.Repository;
 using Entity;
 using Microsoft.AspNetCore.Http;
@@ -75,8 +76,13 @@ namespace luckstack3
                 Response.Cookies.Append(Name, (++_cookie).ToString(),
                         new CookieOptions { Expires = DateTime.Now.AddDays(90), });
             }
-            ViewData["LogInNow"] = "true";
-            return RedirectToPage("/Index");
+            if (Request.Query[Const.PREPAGE] == "/Register")
+            {
+                string prePage = Convert.ToString(ViewData["preRegister"]);
+                return Redirect(Request.Query[prePage]);
+            }
+
+            return Redirect(Request.Query[Const.PREPAGE]);
 
         }
     }
