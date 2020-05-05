@@ -10,7 +10,6 @@ namespace luckstack3
 {
     public class ReleaseModel : PageModel
     {
-        public _UserModel user { set; get; }
 
         public void OnGet()
         {

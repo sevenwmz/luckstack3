@@ -9,31 +9,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace _17bang
 {
-    [BindProperties]
     public class OffModel : PageModel
     {
-        /// <summary>
-        /// 这里本意是获得当前的cookie用户，结果想不出来。
-        /// </summary>
-        public User Name;
-
-
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            Response.Cookies.Delete(Const.USER);
 
-        }
-        public ActionResult OnPost()
-        {
-
-            //if (Name != null)
-            //{
-            //    Response.Cookies.Delete(Name.ToString());
-            //}
-
-            //log/on我是用户名wpzwpz，Pwd 1234
-            Response.Cookies.Delete("wpzwpz");
-
-            return RedirectToPage("/Index");
+            return Redirect(Request.Query[Const.PREPAGE]);
         }
     }
 }

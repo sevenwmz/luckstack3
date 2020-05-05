@@ -12,15 +12,6 @@
                     @item.Name
                 </span>
             }
-            @foreach (var item in Model)
-            {
-                foreach (var items in item.SecendKeyword)
-                {
-                    <span class="text-white badge bg-dark" style="border-radius:10px;font-size:medium;height:20px;">
-                        @items.Name
-                    </span>
-                }
-            }
         </section>
         <hr />
         <div class="input-group mb-3 text-right">

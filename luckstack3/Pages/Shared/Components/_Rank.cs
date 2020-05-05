@@ -23,7 +23,7 @@ namespace _17bang
         public IViewComponentResult Invoke()
         {
             UsersRank = _repository.Get();
-            return View("/Pages/Shared/_Rank.cshtml", UsersRank);
+            return View(UsersRank);
         }
     }
 }

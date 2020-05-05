@@ -23,7 +23,7 @@ namespace _17bang
         {
             Keywords = _repoisitory.Get().Take(max).ToList();
             
-            return View("/Pages/Shared/_Keywords.cshtml", Keywords);
+            return View( Keywords);
         }
     }
 }

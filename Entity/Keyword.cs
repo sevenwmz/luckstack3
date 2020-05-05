@@ -16,10 +16,7 @@ namespace Entity
 
         public IList<Keyword> SelfDefined { set; get; }
     }
-    public class SecendKeyword
+    public class SecendKeyword :Keyword
     {
-        public string Name { set; get; }
-
-        public int Id { set; get; }
     }
 }

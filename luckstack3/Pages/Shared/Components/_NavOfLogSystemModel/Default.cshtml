@@ -1,0 +1,76 @@
+﻿@model _17bang._NavOfLogSystemModel
+
+
+
+<div class="collapse navbar-collapse flex-row-reverse">
+    <ul class="navbar-nav">
+            <li><a href="/Register">注册     |</a></li>
+            <li><a href="/Log/On">登陆     |</a></li>
+            <li><a href="/Log/Off?@Const.PREPAGE=@(Context.Request.Path+Context.Request.QueryString)">退出登录</a></li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-question-circle"></i>求助
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-header">督导班</a>
+                <a class="dropdown-item" href="#">督导班</a>
+                <a class="dropdown-item" href="#">列表</a>
+                <a class="dropdown-item">疑问发布</a>
+                <a class="dropdown-item">疑问列表</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">列表</a>
+                <a class="dropdown-item" href="#">发布</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-eye"></i>督促
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">求督促</a>
+                <a class="dropdown-item" href="#">督促别人</a>
+                <a class="dropdown-item" href="#">我的目标</a>
+                <a class="dropdown-item" href="#">我的督促</a>
+                <a class="dropdown-item" href="#">未交作业</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-area-chart"></i>文章
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">列表</a>
+                <a class="dropdown-item" href="#">开通</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user"></i>未登录
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">登录</a>
+                <a class="dropdown-item" href="#">注册</a>
+                <a class="dropdown-item" href="#">忘记密码</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown" style="padding-right:75px">
+            <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-tachometer"></i>后台
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-header">邀请注册</a>
+                <a class="dropdown-item" href="#">我的消息</a>
+                <a class="dropdown-item" href="#">我的草稿</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-header">广告推广</a>
+                <a class="dropdown-item">联系方式</a>
+                <a class="dropdown-item">侧边栏</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-header">购买</a>
+                <a class="dropdown-item" href="#">出售</a>
+                <a class="dropdown-item" href="#">已购买</a>
+                <a class="dropdown-item" href="#">已出售</a>
+            </div>
+        </li>
+    </ul>
+</div>

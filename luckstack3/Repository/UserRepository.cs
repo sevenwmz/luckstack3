@@ -19,7 +19,7 @@ namespace _17bang.Repository
                 new User{UserName = "叶飞",Password = "1234",Level = "3",Integral = 929},
                 new User{UserName = "老刘",Password = "1234",Level = "5",Integral = 429},
                 new User{UserName = "欧阳",Password = "1234",Level = "4",Integral = 339},
-                new User{UserName = "wpz",Password = "1234",Level = "7",Integral = 339},
+                new User{UserName = "wpzwpz",Password = "1234",Level = "7",Integral = 339},
                 new User{UserName = "freefly",Password = "1234",Level = "1",Integral = 339},
                 new User{UserName = "老王",Password = "1234",Level = "10",Integral = 339},
             };

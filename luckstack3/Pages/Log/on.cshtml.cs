@@ -69,12 +69,13 @@ namespace luckstack3
             }
 
             Response.Cookies.Append(Name, (++_cookie).ToString());
-
+            HttpContext.Session.SetString(Name, (++_cookie).ToString());
             if (RemenberMe == true)
             {
                 Response.Cookies.Append(Name, (++_cookie).ToString(),
                         new CookieOptions { Expires = DateTime.Now.AddDays(90), });
             }
+            ViewData["LogInNow"] = "true";
             return RedirectToPage("/Index");
 
         }

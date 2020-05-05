@@ -81,7 +81,16 @@ namespace _17bang.Repository
 
         public IList<Keyword> Get()
         {
-            return _keywords;
+            IList<Keyword> _orderKeywords = new List<Keyword>();
+            foreach (var FristKeywords in _keywords)
+            {
+                _orderKeywords.Add(FristKeywords);
+                foreach (var SecendKeywords in FristKeywords.SecendKeyword)
+                {
+                    _orderKeywords.Add(SecendKeywords);
+                }
+            }
+            return _orderKeywords;
         }
 
         public IList<Keyword> GetKeywords()

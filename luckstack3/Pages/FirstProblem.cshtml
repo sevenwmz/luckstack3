@@ -15,17 +15,6 @@
                 <i class="fa fa-graduation-cap"></i>首次求助测试
             </h2>
             <hr />
-            @{
-                _UserModel _User = new _UserModel
-                {
-                    Name = "王胖子",
-                    Id = 1,
-                    Level = 10
-                };
-            }
-
-            <partial name="_User" model="_User" />
-
             <form method="post">
                 <label><strong>1 、以下哪一种求助是“一起帮”鼓励的：</strong></label><br />
                 <label><input type="radio" name="1" value="1" />如何看待42岁程序员跳楼事件？（社会热点问题）</label><br />

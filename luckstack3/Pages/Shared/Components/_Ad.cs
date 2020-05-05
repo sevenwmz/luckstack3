@@ -22,7 +22,7 @@ namespace _17bang
         public IViewComponentResult Invoke()
         {
             Ad = _repository.Get();
-            return View("/Pages/Shared/_Ad.cshtml", Ad);
+            return View( Ad);
         }
     }
 }
