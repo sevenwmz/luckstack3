@@ -55,8 +55,6 @@ namespace luckstack3
 
             User user = _repository.GetByName(Name);
 
-
-
             if (user == null)
             {
                 ModelState.AddModelError(nameof(Name), "用户名不存在");
@@ -82,7 +80,8 @@ namespace luckstack3
                 return Redirect(Request.Query[prePage]);
             }
 
-            return Redirect(Request.Query[Const.PREPAGE]);
+
+            //return Redirect(Request.Query[Const.PREPAGE]);
 
         }
     }

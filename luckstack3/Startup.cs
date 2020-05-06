@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using _17bang.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -48,7 +49,13 @@ namespace _17bang
                         .AddPageRoute("/Problem/Edit", "/Problem/Edit/{id:int}")
                         .AddPageRoute("/Article/Edit", "/Article/Edit/{id:int}")
                         ;
+                })
+                .AddMvcOptions(options =>
+                {
+                    options.Filters.Add(typeof(ContextPerRequest));
+                    options.Filters.Add(new LogExceptionFilter());
                 }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
+
 
         }
 
