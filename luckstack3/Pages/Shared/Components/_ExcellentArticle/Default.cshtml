@@ -1,0 +1,16 @@
+﻿@using Entity
+@model IList<Article>
+
+
+
+<div style="border:dashed#e4e0e0 1px;border-radius:5px;" class="container mt-5">
+    <h4 class="lead mt-md-4"><i class="fa fa-book"></i>精品文章</h4>
+    <hr />
+    <section>
+        @foreach (var item in Model)
+        {
+            <p><i class="fa fa-book"></i><a href="/Article">  @item.Title</a></p>
+        }
+    </section>
+    <p class="text-right"><i class="fa fa-arrow-circle-o-right"></i><a href="/Article">更多</a></p>
+</div>
