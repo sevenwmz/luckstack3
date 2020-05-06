@@ -16,8 +16,6 @@ namespace luckstack3
     [BindProperties]
     public class SigninModel : PageModel
     {
-
-
         [Required(ErrorMessage = "* 用户名不能为空")]
         [StringLength(6, MinimumLength = 4, ErrorMessage = "* 最大长度不能超过6")]
         [Display(Name = "* 用户名")]
@@ -40,6 +38,8 @@ namespace luckstack3
         private int _cookie { set; get; }
 
         private const string ModelError = "ModelError";
+
+        string prePage = string.Empty;
 
         public void OnGet()
         {
@@ -81,7 +81,8 @@ namespace luckstack3
             }
 
 
-            //return Redirect(Request.Query[Const.PREPAGE]);
+
+            return Redirect(Request.Query[Const.PREPAGE]);
 
         }
     }

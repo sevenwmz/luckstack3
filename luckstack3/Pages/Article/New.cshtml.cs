@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using _17bang.Filters;
 using _17bang.Pages.Repository;
 using _17bang.Repository;
 using Entity;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace _17bang
 {
+    [NeedLogOn]
     [BindProperties]
     public class NewOfArticleModel : PageModel
     {

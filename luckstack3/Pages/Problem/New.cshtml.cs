@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using _17bang.Repository;
 using _17bang.Pages.Repository;
+using _17bang.Filters;
 
 namespace _17bang
-{   [BindProperties]
+{   
+    [NeedLogOn]
+    [BindProperties]
     public class NewModel : PageModel
     {
         public Problem Problems { set; get; }

@@ -23,14 +23,13 @@ namespace _17bang.Filters
         }
 
         public void OnResourceExecuting(ResourceExecutingContext context)
-        
         {
-            string prePage = (context.HttpContext.Request.Path + context.HttpContext.Request.QueryString);
+            string prePage = context.HttpContext.Request.Path + context.HttpContext.Request.QueryString;
 
             string checkUser = context.HttpContext.Session.GetString(Const.COOKIE_USER);
             if (string.IsNullOrEmpty(checkUser))
             {
-                context.Result = new RedirectToPageResult("/Log/On");
+                context.Result = new RedirectResult($"/Log/On?{Const.PREPAGE}={prePage}");
             }//else nothing..
 
         }
