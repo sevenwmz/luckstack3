@@ -15,5 +15,8 @@ namespace _17bang
         public const string COOKIE_USER = "user";
         public const string COOKIE_VALUE = "SevenMark";
         public const string PREPAGE = "prepage";
+
+        //For UserID
+        public const string USER_ID = "userId";
     }
 }

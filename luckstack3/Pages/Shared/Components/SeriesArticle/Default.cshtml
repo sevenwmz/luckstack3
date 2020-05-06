@@ -1,0 +1,32 @@
+﻿@using Entity
+@model IList<Article>
+
+@{ 
+    int userId = Convert.ToInt32(Context.Request.Query[Const.USER_ID]);
+    string userName = string.Empty;
+    //找出作者名字
+    foreach (var item in Model)
+    {
+        if (item.Id == userId)
+        {
+            userName = item.Author.NickName;
+        }
+    }
+    }
+
+<div style="border:dashed#e4e0e0 1px;border-radius:5px;" class="container mt-5">
+    <h4 class="lead mt-md-4"><i class="fa fa-folder"></i>  @userName 的系列文章</h4>
+    <hr />
+    <section>
+        @*循环出这个作者的文章*@
+        @foreach (var item in Model)
+        {
+            if (item.Author.Id == userId)
+            {
+                <p><i class="fa fa-book"></i><a href="/Article">  @item.Title</a></p>
+                <p>@item.Summary</p>
+            }
+        }
+    </section>
+    <p class="text-right"><i class="fa fa-arrow-circle-o-right"></i><a href="/Article">更多</a></p>
+</div>
