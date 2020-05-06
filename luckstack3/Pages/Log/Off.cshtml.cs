@@ -11,9 +11,11 @@ namespace _17bang
 {
     public class OffModel : PageModel
     {
+        
         public IActionResult OnGet()
         {
-            Response.Cookies.Delete(Const.USER);
+            
+            Response.Cookies.Delete(Const.COOKIE_USER);
 
             return Redirect(Request.Query[Const.PREPAGE]);
         }

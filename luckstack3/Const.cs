@@ -7,9 +7,13 @@ namespace _17bang
 {
     public class Const
     {
+        //For Page
         public const string PAGE_INDEX = "pageIndex";
         public const int PAGE_SIZE = 2;
-        public const string USER = "user";
+
+        //For Cookie
+        public const string COOKIE_USER = "user";
+        public const string COOKIE_VALUE = "SevenMark";
         public const string PREPAGE = "prepage";
     }
 }

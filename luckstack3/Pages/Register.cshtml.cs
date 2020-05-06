@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using _17bang;
 using Entity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -35,7 +36,8 @@ namespace luckstack3
             {
                 return Page();
             }
-            Response.Cookies.Append(Const.USER, (++CookieId).ToString());
+            HttpContext.Session.SetString(Const.COOKIE_USER,Const.COOKIE_VALUE);
+            Response.Cookies.Append(Const.COOKIE_USER, Const.COOKIE_VALUE);
             return Redirect(Request.Query[Const.PREPAGE]);
         }
     }

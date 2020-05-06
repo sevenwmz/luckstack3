@@ -30,9 +30,9 @@ namespace _17bang
             {
                 option.Cookie = new Microsoft.AspNetCore.Http.CookieBuilder
                 {
-                    Name = "Seven",
+                    Name = Const.COOKIE_USER,
                     IsEssential = true,
-                    Expiration = new TimeSpan(30, 0, 0, 0)
+                    //Expiration = new TimeSpan(30, 0, 0)
                 };
                 option.IdleTimeout = new TimeSpan(0, 10, 5);
             });

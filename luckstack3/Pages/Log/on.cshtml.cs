@@ -69,12 +69,12 @@ namespace luckstack3
                 return Page();
             }
 
-            Response.Cookies.Append(Name, (++_cookie).ToString());
-            HttpContext.Session.SetString(Name, (++_cookie).ToString());
-            if (RemenberMe == true)
+            //Response.Cookies.Append(Name, (++_cookie).ToString());
+            HttpContext.Session.SetString(Const.COOKIE_USER,Const.COOKIE_VALUE);
+            if (RemenberMe)
             {
-                Response.Cookies.Append(Name, (++_cookie).ToString(),
-                        new CookieOptions { Expires = DateTime.Now.AddDays(90), });
+                Response.Cookies.Append(Const.COOKIE_USER, Const.COOKIE_VALUE);
+                        new CookieOptions { Expires = DateTime.Now.AddDays(90)};
             }
             if (Request.Query[Const.PREPAGE] == "/Register")
             {
