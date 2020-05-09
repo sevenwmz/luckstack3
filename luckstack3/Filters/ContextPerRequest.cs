@@ -8,6 +8,8 @@ namespace _17bang.Filters
 {
     public class ContextPerRequest : IPageFilter
     {
+        public static bool ShowNotice { set; get; }
+
         public void OnPageHandlerExecuted(PageHandlerExecutedContext context)
         {
             //context.HttpContext.
@@ -16,7 +18,13 @@ namespace _17bang.Filters
 
         public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
         {
-            //throw new NotImplementedException();
+            //string hasCookie = context.HttpContext.Request.Query[Const.COOKIE_USER];
+            //if (string.IsNullOrEmpty(hasCookie))
+            //{
+            //    ShowNotice = true;
+            //}//else nothing.
+
+
         }
 
         public void OnPageHandlerSelected(PageHandlerSelectedContext context)

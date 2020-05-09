@@ -10,7 +10,7 @@ Create Table [dbo].[User]
 [InviteNumber] int Not null,
 [User] Nchar(10) Not Null,
 [Password] Nchar(10) Not Null,
---ConfirmPassword here don't need it. Cause,database just save data.
+--ConfirmPassword here don't need it. Cause,database just save data.not compare
 --Same as verification code.
 );
 Go;
