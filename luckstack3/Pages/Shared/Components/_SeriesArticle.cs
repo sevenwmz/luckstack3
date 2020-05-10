@@ -19,12 +19,11 @@ namespace _17bang
         {
             _repository = new ArticleRepository();
         }
-        
-        public IViewComponentResult Invoke(int max)
+
+        public IViewComponentResult Invoke(int max, int UserId)
         {
-            int authorId = Convert.ToInt32(HttpContext.Request.Query[Const.USER_ID]);
-            Articles = _repository.GetByAuthor(authorId).Take(max).ToList();
-            
+            Articles = _repository.GetByAuthor(UserId).Take(max).ToList();
+
             ViewData[Const.SERIES_ARTICLE] = Articles[0].Author.NickName.ToString();
 
             return View(Articles);

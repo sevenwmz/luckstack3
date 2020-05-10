@@ -62,7 +62,7 @@
                     @if (currentPageIndex > 1)
                     {
                         <li class="page-item">
-                            <a class="page-link" aria-label="Private" href="/Suggest/Page-@(currentPageIndex-1)">
+                            <a class="page-link" aria-label="Private" href="/Suggest/Page-@(currentPageIndex - 1)">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
@@ -83,7 +83,7 @@
                     @if (currentPageIndex < (Model.SumOfSuggest / 2))
                     {
                         <li class="page-item">
-                            <a class="page-link" aria-label="Next" href="/Suggest/Page-@(currentPageIndex+1)">
+                            <a class="page-link" aria-label="Next" href="/Suggest/Page-@(currentPageIndex + 1)">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
@@ -113,18 +113,14 @@
                         </div>
                     </div>
                 </div>
-
-
                 @foreach (var asideNews in Model.News)
                 {<p style="padding-top:5px">
                         <span>@asideNews.PublishTime</span>
                         <span class="fa fa-check-square-o">@asideNews.News</span>
                     </p>
-                }
-
-
+                };
             </div>
-            <vc:series-article max="5"></vc:series-article>
+            <vc:series-article max="5" user-id="@Convert.ToInt32(Request.Query[Const.USER_ID])"></vc:series-article>
         </aside>
     </div>
 </main>
