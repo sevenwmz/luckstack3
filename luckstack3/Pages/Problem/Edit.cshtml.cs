@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace _17bang
 {
-    [NeedLogOn]
+    [NeedLogOn(role:"登录用户")]
     [BindProperties]
     public class EditOfProblemModel : PageModel
     {

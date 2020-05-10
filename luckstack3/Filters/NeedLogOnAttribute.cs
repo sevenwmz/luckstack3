@@ -15,7 +15,15 @@ namespace _17bang.Filters
         ///2.此时的登录页面显示提示 
         ///3.登录之后，自动跳转到之前欲访问页面
 
+        public NeedLogOnAttribute()
+        {
 
+        }
+        private string _role;
+        public NeedLogOnAttribute(string role)
+        {
+            _role = role;
+        }
 
         public void OnResourceExecuted(ResourceExecutedContext context)
         {
@@ -24,12 +32,16 @@ namespace _17bang.Filters
 
         public void OnResourceExecuting(ResourceExecutingContext context)
         {
-            string prePage = context.HttpContext.Request.Path + context.HttpContext.Request.QueryString;
 
-            string checkUser = context.HttpContext.Session.GetString(Const.COOKIE_USER);
-            if (string.IsNullOrEmpty(checkUser))
+            HttpContext httpContext = context.HttpContext;
+            HttpRequest request = httpContext.Request;
+
+            string prePage = request.Path + request.QueryString;
+
+            string LogOnUser = httpContext.Session.GetString(Const.SESSION_USER);
+            if (string.IsNullOrEmpty(LogOnUser))
             {
-                context.Result = new RedirectResult($"/Log/On?{Const.PREPAGE}={prePage}");
+                context.Result = new RedirectResult($"/Log/On?{Const.PREPAGE}={prePage}&{Const.ROLE}={_role}");
             }//else nothing..
 
         }

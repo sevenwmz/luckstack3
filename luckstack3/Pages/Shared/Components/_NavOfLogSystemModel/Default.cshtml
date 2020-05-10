@@ -4,9 +4,10 @@
 
 <div class="collapse navbar-collapse flex-row-reverse">
     <ul class="navbar-nav">
-            <li><a href="/Register?@Const.PREPAGE=@(Context.Request.Path+Context.Request.QueryString)">注册     |</a></li>
-            <li><a href="/Log/On?@Const.PREPAGE=@(Context.Request.Path+Context.Request.QueryString)">登陆     |</a></li>
-            <li><a href="/Log/Off?@Const.PREPAGE=@(Context.Request.Path+Context.Request.QueryString)">退出登录</a></li>
+
+        @*临时登陆显示partial*@
+        <partial name="TempLogOn" />
+
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-question-circle"></i>求助

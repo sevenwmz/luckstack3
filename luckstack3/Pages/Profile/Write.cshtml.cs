@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace luckstack3
 {
-    [NeedLogOn]
+    [NeedLogOn(role:"个人资料")]
     [BindProperties]
     public class Write : PageModel
     {

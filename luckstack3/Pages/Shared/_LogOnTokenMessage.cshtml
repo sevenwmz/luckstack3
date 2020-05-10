@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    string logOnUser = Context.Session.GetString(Const.SESSION_USER);
+    string visitPage = Context.Request.QueryString.ToString();
+}
+@if (visitPage.Contains(Const.ROLE))
+{
+    if (string.IsNullOrEmpty(logOnUser))
+    {
+        //拿到url截取参数
+        string[] tempArray = new string[2];
+        tempArray =  visitPage.Split('&');
+        tempArray[0] = tempArray[0].Remove(0, 9);
+        tempArray[1] = tempArray[1].Remove(0,5);
+
+        //url解析
+        tempArray[1] = Uri.UnescapeDataString(tempArray[1]);
+        <div style="border:medium 1px;border-radius:5px;padding:25px;background-color:#f3f3e5" class="mt-3 mb-3">
+            <p style="color:goldenrod">
+                <i class="fa fa-warning"></i>访问页面：
+                <a href="@visitPage" style="color:deepskyblue">@tempArray[0]</a>需要
+                <span style="color:deepskyblue">@tempArray[1]</span>权限。
+            </p>
+        </div>
+    }
+}

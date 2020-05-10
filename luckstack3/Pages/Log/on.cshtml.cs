@@ -35,11 +35,7 @@ namespace luckstack3
         public bool RemenberMe { set; get; }
 
         public string Captcha { set; get; }
-        private int _cookie { set; get; }
 
-        private const string ModelError = "ModelError";
-
-        string prePage = string.Empty;
 
         public void OnGet()
         {
@@ -68,19 +64,12 @@ namespace luckstack3
             }
 
             //Response.Cookies.Append(Name, (++_cookie).ToString());
-            HttpContext.Session.SetString(Const.COOKIE_USER,Const.COOKIE_VALUE);
+            HttpContext.Session.SetString(Const.SESSION_USER,Const.SESSION_VALUE);
             if (RemenberMe)
             {
                 Response.Cookies.Append(Const.COOKIE_USER, Const.COOKIE_VALUE);
                         new CookieOptions { Expires = DateTime.Now.AddDays(90)};
             }
-            if (Request.Query[Const.PREPAGE] == "/Register")
-            {
-                string prePage = Convert.ToString(ViewData["preRegister"]);
-                return Redirect(Request.Query[prePage]);
-            }
-
-
 
             return Redirect(Request.Query[Const.PREPAGE]);
 

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace _17bang
 {
-    [NeedLogOn]
+    [NeedLogOn(role:"文章发布")]
     [BindProperties]
     public class EditModel : PageModel
     {

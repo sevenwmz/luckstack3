@@ -11,7 +11,7 @@ using _17bang.Filters;
 
 namespace _17bang
 {   
-    [NeedLogOn]
+    [NeedLogOn(role: "登录用户 ")]
     [BindProperties]
     public class NewModel : PageModel
     {

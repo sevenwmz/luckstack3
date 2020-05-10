@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace luckstack3
 {
-    [NeedLogOn]
     [BindProperties]
     public class ForgetModel : PageModel
     {

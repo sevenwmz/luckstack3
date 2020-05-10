@@ -1,0 +1,15 @@
+﻿@{
+
+    string prepage = (Context.Request.Path + Context.Request.QueryString);
+    if (prepage.Contains(Const.PREPAGE))
+    {
+        //目的是为了控制Url参数长度，从而在显示的模块里不会出现其他页面的多余参数
+        string[] tempArray = new string[1];
+        tempArray = prepage.Split("?p");
+        prepage = tempArray[0];
+    }
+
+}
+<li><a href="/Register?@Const.PREPAGE=@prepage">注册     |</a></li>
+<li><a href="/Log/On?@Const.PREPAGE=@prepage">登陆     |</a></li>
+<li><a href="/Log/Off?@Const.PREPAGE=@prepage">退出登录</a></li>
