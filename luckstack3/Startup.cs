@@ -42,8 +42,8 @@ namespace _17bang
                 .AddRazorPagesOptions(option =>
                 {
                     option.Conventions
-                        .AddPageRoute("/Article", "/Article/Page-{id:int}")
-                        .AddPageRoute("/Problem", "/Problem/Page-{id:int}")
+                        .AddPageRoute("/Article/Index", "/Article/Index/Page-{id:int}")
+                        .AddPageRoute("/Problem/Index", "/Problem/Index/Page-{id:int}")
                         .AddPageRoute("/Suggest", "/Suggest/Page-{id:int}")
                         .AddPageRoute("/Message/Mine", "/Message/Mine/{id:int=1}/{opt?}")
                         .AddPageRoute("/Problem/Edit", "/Problem/Edit/{id:int}")
