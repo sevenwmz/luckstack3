@@ -22,8 +22,10 @@ namespace _17bang
         
         public IViewComponentResult Invoke(int max)
         {
-            Articles = _repository.Get().Take(max).ToList();
-
+            int authorId = Convert.ToInt32(HttpContext.Request.Query[Const.USER_ID]);
+            Articles = _repository.GetByAuthor(authorId).Take(max).ToList();
+            
+            ViewData[Const.SERIES_ARTICLE] = Articles[0].Author.NickName.ToString();
 
             return View(Articles);
         }

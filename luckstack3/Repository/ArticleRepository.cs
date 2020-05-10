@@ -13,8 +13,15 @@ namespace _17bang.Pages.Repository
 
         static ArticleRepository()
         {
+            User wpz = new User("wpzwpz", "abcabc")
+            {
+                NickName = "王月半子",
+                Id = 2
+            };
+
             _article = new List<Article>
             {
+                
                 new Article("ASP.NET RazorPages：CSRF跨站点请求伪造")
                 {
                     Summary = "Cross-SiteRequestForgery：防御的核心在于除了用户的验证cookie以外，" +
@@ -44,11 +51,7 @@ namespace _17bang.Pages.Repository
                     "个hiden input，记录了一 ",
                     Id = 2,
                     Body = "222222222222222",
-                    Author = new User("wpzwpz","abcabc")
-                    {
-                        NickName = "王月半子",
-                        Id = 2
-                    },
+                    Author = wpz,
                     Keywords = new List<Keyword>
                     {
                        new Keyword{Name ="前端"},
@@ -64,11 +67,7 @@ namespace _17bang.Pages.Repository
                     "默认宽度100%（占一行）inline：宽度随文本，不会占一行，margin有效，padding不会“撑起”父元素，hei ",
                     Id = 3,
                     Body = "33333333333333333333",
-                    Author = new User("wpzwpz","abcabc")
-                    {
-                        NickName = "王月半子",
-                        Id = 2
-                    },
+                    Author = wpz,
                     Keywords = new List<Keyword>
                     {
                        new Keyword{Name ="CSS"},
@@ -85,11 +84,7 @@ namespace _17bang.Pages.Repository
                     "（二）当前用户信息直接由SRV获取既然SRV能够获取cookie =》 ",
                     Id = 4,
                     Body = "44444444444444444441",
-                    Author = new User("wpzwpz","abcabc")
-                    {
-                        NickName = "王月半子",
-                        Id = 2
-                    },
+                    Author = wpz,
                     Keywords = new List<Keyword>
                     {
                        new Keyword{Name ="ASP.NET"},
@@ -106,11 +101,7 @@ namespace _17bang.Pages.Repository
                     "是一种能力锻炼两个小时你都没有做出这道题，这两个小时被你浪费掉了么？",
                     Id = 5,
                     Body = "455555555555555555555551",
-                    Author = new User("wpzwpz","abcabc")
-                    {
-                        NickName = "王月半子",
-                        Id = 2
-                    },
+                    Author = wpz,
                     Keywords = new List<Keyword>
                     {
                        new Keyword{Name ="学编程"},
@@ -127,11 +118,7 @@ namespace _17bang.Pages.Repository
                     "是一种能力锻炼两个小时你都没有做出这道题，这两个小时被你浪费掉了么？",
                     Id = 6,
                     Body = "666666666666666666666",
-                    Author = new User("wpzwpz","abcabc")
-                    {
-                        NickName = "王月半子",
-                        Id = 2
-                    },
+                    Author = wpz,
                     Keywords = new List<Keyword>
                     {
                        new Keyword{Name ="学编程"},
@@ -141,6 +128,11 @@ namespace _17bang.Pages.Repository
                 },
 
             };
+        }
+
+        internal IList<Article> GetByAuthor(int authorId)
+        {
+            return _article.Where(a => a.Author.Id == authorId).ToList();
         }
 
         private int _latestId { set; get; }

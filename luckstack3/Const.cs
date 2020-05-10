@@ -26,5 +26,8 @@ namespace _17bang
 
         //For UserID
         public const string USER_ID = "userId";
+
+        //For ViewData
+        public const string SERIES_ARTICLE = "SeriesArticle";
     }
 }
