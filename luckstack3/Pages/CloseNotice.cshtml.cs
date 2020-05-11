@@ -21,7 +21,7 @@ namespace _17bang
             {
                 return Redirect("/");
             }
-            return Redirect(Request.Query[Const.PREPAGE]);
+            return Redirect(prePage);
         }
     }
 }
