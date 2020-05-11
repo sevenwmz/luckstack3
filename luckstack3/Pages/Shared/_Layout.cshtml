@@ -37,6 +37,7 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            @*临时的登陆显示*@
             <vc:_nav-of-log-system-model></vc:_nav-of-log-system-model>
         </nav>
     </header>
@@ -48,18 +49,7 @@
                 <a href="#"><i class="fa fa-hand-o-right"></i>全部消息</a>
             </div>
         </div>
-        @{bool showNotice = _17bang.Filters.ContextPerRequest.ShowNotice; 
-         _17bang.Filters.ContextPerRequest.ShowNotice = showNotice; 
-            
-            }
-        @if (showNotice)
-        {
-            <div class="alert alert-secondary justify-content-lg-between" >
-                <h1><i class="fa fa-warning"></i>系统通知</h1>
-                <p><label><a href="#@(showNotice=false)">Delete<i class="fa fa-window-restore"></i></a></label>模拟演示</p>
-                <p>Message here</p>
-            </div>
-        }
+        <vc:notice-model></vc:notice-model>
         @RenderBody()
     </main>
 

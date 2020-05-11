@@ -12,24 +12,18 @@ namespace _17bang.Filters
 
         public void OnPageHandlerExecuted(PageHandlerExecutedContext context)
         {
-            //context.HttpContext.
-            //throw new NotImplementedException();
+
         }
 
         public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
         {
-            //string hasCookie = context.HttpContext.Request.Query[Const.COOKIE_USER];
-            //if (string.IsNullOrEmpty(hasCookie))
-            //{
-            //    ShowNotice = true;
-            //}//else nothing.
+
 
 
         }
 
         public void OnPageHandlerSelected(PageHandlerSelectedContext context)
         {
-            //throw new NotImplementedException();
         }
     }
 }

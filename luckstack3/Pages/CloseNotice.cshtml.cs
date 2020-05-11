@@ -14,6 +14,13 @@ namespace _17bang
         {
             NoticeModel.ShowNotice = false;
             Response.Cookies.Append(Const.COOKIE_USER, Const.COOKIE_VALUE);
+
+            string prePage =  Request.Query[Const.PREPAGE];
+
+            if (string.IsNullOrEmpty(prePage))
+            {
+                return Redirect("/");
+            }
             return Redirect(Request.Query[Const.PREPAGE]);
         }
     }

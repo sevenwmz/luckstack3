@@ -7,11 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace _17bang
 {
-    public class DefaultModel : PageModel
+    public class NoticeModel : ViewComponent
     {
-        public void OnGet()
-        {
+        public NoticeModel Nothing;
+        public static bool ShowNotice;
 
+        public IViewComponentResult Invoke()
+        {
+            string hasCookie = HttpContext.Request.Cookies[Const.COOKIE_USER];
+            ShowNotice = string.IsNullOrEmpty(hasCookie) ? ShowNotice = true : ShowNotice;
+
+            return View();
         }
     }
 }
