@@ -8,8 +8,23 @@
         tempArray = prepage.Split("?p");
         prepage = tempArray[0];
     }
-
 }
-<li><a href="/Register?@Const.PREPAGE=@prepage">注册     |</a></li>
-<li><a href="/Log/On?@Const.PREPAGE=@prepage">登陆     |</a></li>
-<li><a href="/Log/Off?@Const.PREPAGE=@prepage">退出登录</a></li>
+
+
+@if (LogOnModel.IsLogIn is false)
+{
+    <li><a href="/Register?@Const.PREPAGE=@prepage">注册     |</a></li>
+    <li><a href="/Log/On?@Const.PREPAGE=@prepage">登陆     |</a></li>
+    <li><a href="/Log/Off?@Const.PREPAGE=@prepage">退出登录</a></li>
+    return;
+}
+else if (LogOnModel.IsLogIn is true)
+{
+    <li><a href="/Log/On?@Const.PREPAGE=@prepage">已登陆     |</a></li>
+    <li><a href="/Log/Off?@Const.PREPAGE=@prepage">退出登录</a></li>
+    return;
+}
+else
+{
+    throw new ArgumentException();
+}

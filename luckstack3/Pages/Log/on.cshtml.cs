@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace luckstack3
 {
     [BindProperties]
-    public class SigninModel : PageModel
+    public class LogOnModel : PageModel
     {
         [Required(ErrorMessage = "* 用户名不能为空")]
         [StringLength(6, MinimumLength = 4, ErrorMessage = "* 最大长度不能超过6")]
@@ -27,7 +27,7 @@ namespace luckstack3
         public string Password { set; get; }
 
         private UserRepository _repository { set; get; }
-        public SigninModel()
+        public LogOnModel()
         {
             _repository = new UserRepository();
         }
@@ -36,7 +36,7 @@ namespace luckstack3
 
         public string Captcha { set; get; }
 
-
+        public static bool IsLogIn { set; get; }
         public void OnGet()
         {
 
@@ -71,6 +71,8 @@ namespace luckstack3
                         new CookieOptions { Expires = DateTime.Now.AddDays(90)};
             }
 
+            //登陆传值
+            IsLogIn = true;
             return Redirect(Request.Query[Const.PREPAGE]);
 
         }
