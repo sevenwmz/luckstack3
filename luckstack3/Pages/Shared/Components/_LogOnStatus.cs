@@ -8,17 +8,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace _17bang
 {
-    public class _NavOfLogSystemModel : ViewComponent
+    public class _LogOnStatus : ViewComponent
     {
-        public _NavOfLogSystemModel Nothing;
-
-
-        public int Id { set; get; }
 
         public IViewComponentResult Invoke()
         {
             
-            return View( Nothing);
+            return View( );
         }
     }
 }
