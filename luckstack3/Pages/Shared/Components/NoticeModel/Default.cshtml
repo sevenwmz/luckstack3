@@ -1,9 +1,32 @@
-﻿
-@if (NoticeModel.ShowNotice)
+﻿@using Entity
+@model IList<Notice>
+
+
+@{
+    bool hasRead = !string.IsNullOrEmpty(Context.Request.Cookies[Const.NOTICE_HASREAD]);
+    if (!hasRead)
+    {
+        Context.Response.Cookies.Append(Const.NOTICE_HASREAD, "1");
+    }
+}
+
+@if (hasRead)
 {
-    <div class="alert alert-secondary justify-content-lg-between">
-        <h1><i class="fa fa-warning"></i>系统通知</h1>
-        <p><label><a href="/CloseNotice"><i class="fa fa-window-restore"></i></a></label>模拟演示</p>
-        <p>Message here</p>
-    </div>
+    string strhasMarkRead = Context.Request.Cookies[Const.NOTICE_HASREAD];
+    string[] hasMarkRead = new string[0];
+    for (int i = 0; i < Model.Count; i++)
+    {
+        if (!string.IsNullOrEmpty(strhasMarkRead))
+        {
+            hasMarkRead = Context.Request.Cookies[Const.NOTICE_HASREAD].Split(',');
+        }
+        if (hasMarkRead.Contains($"{strhasMarkRead}"))
+        {
+            <div class="alert alert-secondary justify-content-lg-between">
+                <h1><i class="fa fa-warning"></i>系统通知</h1>
+                <p><label><a href="/CloseNotice?Id=@Model[i].Id"><i class="fa fa-window-restore"></i></a></label>@Model[i].Title</p>
+                <p>Message here</p>
+            </div>
+        }
+    }
 }

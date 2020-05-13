@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using _17bang.Repository;
+using Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -12,12 +14,22 @@ namespace _17bang
         public NoticeModel Nothing;
         public static bool ShowNotice;
 
+        private NoticeRepository _noticeRepository;
+
+        public NoticeModel()
+        {
+            _noticeRepository = new NoticeRepository();
+        }
+        public IList<Notice> Notices;
+
         public IViewComponentResult Invoke()
         {
             string hasCookie = HttpContext.Request.Cookies[Const.COOKIE_USER];
-            ShowNotice = string.IsNullOrEmpty(hasCookie) ? ShowNotice = true : ShowNotice;
+            ShowNotice = string.IsNullOrEmpty(hasCookie);
 
-            return View();
+            Notices = _noticeRepository.Get();
+
+            return View(Notices);
         }
     }
 }

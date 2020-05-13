@@ -9,11 +9,13 @@ namespace _17bang
 {
     public class CloseNoticeModel : PageModel
     {
-
+        [BindProperty(SupportsGet = true)]
+        public int Id { set; get; }
         public IActionResult OnGet()
         {
-            NoticeModel.ShowNotice = false;
-            Response.Cookies.Append(Const.COOKIE_USER, Const.COOKIE_VALUE);
+            //NoticeModel.ShowNotice = false;
+            Response.Cookies.Append(Const.NOTICE_HASREAD,Request.Cookies[Const.NOTICE_HASREAD]+","+Id.ToString(),
+                new Microsoft.AspNetCore.Http.CookieOptions { Expires = DateTime.Now.AddDays(30)});
 
             string prePage =  Request.Query[Const.PREPAGE];
 

@@ -15,6 +15,16 @@ namespace _17bang
         public const string COOKIE_USER = "user";
         public const string COOKIE_VALUE = "SevenMark";
 
+        /// <summary>
+        /// 用户标记已读
+        /// </summary>
+        public const string NOTICE_HASREAD = "NoticeHasRead";
+        /// <summary>
+        /// 用户上一次读取时间
+        /// </summary>
+        public const string NOTICE_LATEST_READ = "NoticeLatestRead";
+
+
         //FOR Url
         public const string PREPAGE = "prepage";
         public const string ROLE = "role";

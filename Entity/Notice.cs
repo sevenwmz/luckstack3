@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Entity
 {
-    class Notice
+    public class Notice :Content
     {
+
     }
 }
