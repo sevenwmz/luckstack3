@@ -83,11 +83,17 @@ Insert [User](Id,[UserName],[Password]) Values(10,'ws34zc','eqqasd')
 
 --Create Table Tproblem(
 --[Id]Int,
-)
+--)
 --Alter Table Problem
 --Add Constraint CK_Problem_Reward Check(Reward>10)
 
-
+--在Problem表的基础上：
+--1.删除Title列，再添加Title列
+--2.将Content的类型更改为NTEXT或NVARCHAR(MAX)
+--3.为NeedRemoteHelp添加NOT NULL约束，再删除NeedRemoteHelp上NOT NULL的约束
+--4.添加自定义约束，让Reward不能小于10
+--5.备份TProblem表，再用两种方式删除/恢复TProblem中所有数据
+--6.删除TProblem表本身（含表结构和行数据）
 
 --Alter Column NeedRemoteHelp Bit Null
 

@@ -23,17 +23,17 @@ namespace _17bang.Repository
                 new Notice
                 {
                     Id = 2,
-                    Title = "模拟测试1",
+                    Title = "模拟测试22222222222222222",
                 },
                 new Notice
                 {
                     Id = 3,
-                    Title = "模拟测试1",
+                    Title = "模拟测试33333333333",
                 },
                 new Notice
                 {
                     Id = 4,
-                    Title = "模拟测试1",
+                    Title = "模拟测试44444444444",
                 },
             };
         }
