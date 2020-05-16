@@ -85,6 +85,15 @@ namespace _17bang.Repository
                     Content = "DK捡走了你掉落的 帮帮币 7枚  ",
                     HasRead = false,
                     HasCheck = false
+                },
+                new MessageMine
+                {
+                    Id = 9,
+                    PublishTime = DateTime.Now.AddDays(-79),
+                    Status = MessageStatus.Target,
+                    Content = "wpz捡走了你掉落的 帮帮币 7枚  ",
+                    HasRead = false,
+                    HasCheck = false
                 }
             };
         }

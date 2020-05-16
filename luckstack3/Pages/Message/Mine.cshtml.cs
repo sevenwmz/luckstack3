@@ -49,6 +49,10 @@ namespace _17bang
             int pageIndex = Convert.ToInt32(Request.RouteValues["id"]);
             Messages = _repository.Get();
             SumOfArticle = _repository.GetSum();
+            if (SumOfArticle % 2 == 1)
+            {
+                ++SumOfArticle;
+            }
             Messages = Messages.GetPaged(Const.PAGE_SIZE, pageIndex);
         }
         public ActionResult OnPost()
