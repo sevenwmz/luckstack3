@@ -58,3 +58,55 @@ end
 go
 Print dbo.YzAdd(3,5)
 
+
+
+
+Declare @name Int Set @name = 1
+Print @@Version
+
+Declare @age Int = 17
+if @age < 18 
+Begin
+Print 'Adult'
+Print 'is ok'
+Print 'Now'
+end
+else print 'Te' 
+
+Declare @age Int = 17
+While @age  <20
+Begin
+	Set @age+=1
+	Print @age
+end
+Go
+Alter Function WpzAdd(@A Int,@B Int)
+Returns Int
+Begin
+	Return @A * @B
+End
+Go
+
+Drop Function dbo.YzAdd
+Print dbo.WpzAdd(3,5)
+Go
+Create Function TableFunction(@number Int)
+Returns Table
+Return Select Top(@number) * From Teacher
+go
+select * From TableFunction(3)
+
+Go
+Create Function TableMutipleFunction(@id Int,@name Nvarchar(20))
+Returns @T Table(Id Int,[Name]Nvarchar(20))
+Begin
+	Insert @T Values(@id,@name)
+	Return 
+end
+
+
+Go
+Select * From TableMutipleFunction(2,'Teacher')
+Select * From TableMutipleFunction(2,'Teacher')
+
+

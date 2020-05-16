@@ -21,7 +21,6 @@ namespace _17bang
 
         private MessageRepository _repository;
 
-        public IList<bool> Selected { set; get; }
 
         public MineModel()
         {
@@ -41,18 +40,16 @@ namespace _17bang
                 new Keyword{Name = "SQL" }
             };
             _repository = new MessageRepository();
-            
+
         }
 
 
         public void OnGet()
         {
-
             int pageIndex = Convert.ToInt32(Request.RouteValues["id"]);
             Messages = _repository.Get();
             SumOfArticle = _repository.GetSum();
             Messages = Messages.GetPaged(Const.PAGE_SIZE, pageIndex);
-            Selected = new List<bool> { false, false, false, false, false, false };
         }
         public ActionResult OnPost()
         {
@@ -60,13 +57,16 @@ namespace _17bang
 
             foreach (var item in Messages)
             {
-                if (request == "read")
+                if (item.HasCheck)
                 {
-                    _repository.GetHasRead(item.Id).HasRead = true;
-                }
-                else if (request == "delete")
-                {
-                    _repository.Remove(item.Id);
+                    if (request == "read")
+                    {
+                        _repository.GetHasRead(item.Id).HasRead = true;
+                    }
+                    else if (request == "delete")
+                    {
+                        _repository.Remove(item.Id);
+                    }
                 }
             }
             return RedirectToPage();
@@ -74,4 +74,4 @@ namespace _17bang
         }
 
     }
-}   
+}

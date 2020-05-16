@@ -13,6 +13,7 @@ namespace Entity
         public MessageStatus Status { set; get; }
         public string Content { set; get; }
         public bool HasRead { set; get; }
+        public bool HasCheck { set; get; }
     }
 
     public enum MessageStatus
