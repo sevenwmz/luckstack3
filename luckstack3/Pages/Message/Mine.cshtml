@@ -64,18 +64,28 @@
 
     @for (int i = 0; i < Model.Messages.Count; i++)
     {
-        string fontWeight = Model.Selected[i] ? string.Empty:"font-weight:500";
-        <div class="row text-bold" style="@fontWeight">
-            <div class="col-sm-1">
-                <label>
-                    <input type="checkbox" asp-for="Selected[i]" />
-                    <input type="hidden" asp-for="Messages[i].Id" />
-                </label>
-            </div>
-            <div class="col-sm-1"><a class="fa fa-calendar" @Model.Messages[i].PublishTime></a></div>
-            <div class="col-sm-2"><span><a href="#"><i class="fa fa-times-circle"></i></a>@Model.Messages[i].Status.GetDescription()</span></div>
-            <div class="col-sm-8"><span>@Model.Messages[i].Content</span></div>
-        </div>
+        string fontWeight = Model.Selected[i] ? string.Empty : "font-weight:500";
+<div class="row text-bold" style="@fontWeight">
+    <div class="col-sm-1">
+        <label>
+            <input type="checkbox" asp-for="Selected[i]" />
+            <input type="hidden" asp-for="Messages[i].Id" />
+        </label>
+    </div>
+    @if (Model.Messages[i].HasRead)
+    {
+        <div class="col-sm-1"><a class="fa fa-calendar" @Model.Messages[i].PublishTime></a></div>
+        <div class="col-sm-2"><span><a href="#"><i class="fa fa-times-circle"></i></a>@Model.Messages[i].Status.GetDescription()</span></div>
+        <div class="col-sm-8"><span>@Model.Messages[i].Content</span></div>
+    }
+    else
+    {
+        <div class="col-sm-1"><strong><a class="fa fa-calendar" @Model.Messages[i].PublishTime></a></strong></div>
+        <div class="col-sm-2"><span><a href="#"><i class="fa fa-times-circle"></i></a><strong>@Model.Messages[i].Status.GetDescription()</strong></span></div>
+        <div class="col-sm-8"><span><strong>@Model.Messages[i].Content</strong></span></div>
+    }
+
+</div>
     }
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-md-6">
