@@ -7,6 +7,8 @@ using System.Collections;
 using System.Linq;
 using Mono.CSharp.Linq;
 using System.IO;
+using System.Data.SqlClient;
+using System.Data.Common;
 
 namespace SevenLearnCsharp
 {
@@ -18,6 +20,7 @@ namespace SevenLearnCsharp
 
     public class Program
     {
+
         public static int TakeWater(Person waterCount)
         {
             return -1;
@@ -41,6 +44,34 @@ namespace SevenLearnCsharp
         static void Main(string[] args)
         {
 
+            #region ADO.NET HomeWork
+            //            作业：
+            //构建一个DBHelper，可以提供：
+
+            //    封装过后的ExecuteNonQuery() / ExecuteScalar() / ExecuteReader()方法
+            //        由外部控制开闭（Open() / Close()）的长连接（LongConnection）
+            //    ExecuteNonQuery()使用长连接的重载
+
+
+            //使用上述DBHelper，完成以下操作：
+
+            //    将用户名和密码存入数据库：Register()
+            //    根据用户名和密码检查某用户能够成功登陆：Logon()
+            //    如果用户成功登陆，将其最后登录时间（LatestLogonTime）改成当前时间
+            //    批量标记若干Id的Message为已读：MarkHasRead(int[] messageIds)
+            //    查找出最近登录的若干个同学：IList<User> GetLatestLogon(int amount)
+            //    用事务完成帮帮币转移方法：void Sell(User buyer, int amount)，当前用户的帮帮币减少amount枚，买家（buyer）的帮帮币增加amount枚
+
+
+            #endregion
+
+
+
+            string connectionString = @"Data Source=-20191126PKLSWP;Initial Catalog=17bang;Integrated Security=True;";
+            using (DbConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+            }
 
             #region 双链foreach和max作业
 
