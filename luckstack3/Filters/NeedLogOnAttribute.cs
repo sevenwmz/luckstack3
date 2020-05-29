@@ -27,7 +27,7 @@ namespace _17bang.Filters
 
         public void OnResourceExecuted(ResourceExecutedContext context)
         {
-            context.Result = new RedirectToPageResult(Const.PREPAGE);
+            //context.Result = new RedirectToPageResult(Const.PREPAGE);
         }
 
         public void OnResourceExecuting(ResourceExecutingContext context)

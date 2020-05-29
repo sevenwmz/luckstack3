@@ -77,19 +77,19 @@
     </div>
     <div class="form-group">
         <label><strong>标题：（* 必填）</strong></label>
-        <input asp-for="NewArticle.Title" class="form-control" placeholder="来一个醒目的标题吧">
-        <span asp-validation-for="NewArticle.Title"></span>
+        <input asp-for="Title" class="form-control" placeholder="来一个醒目的标题吧">
+        <span asp-validation-for="Title"></span>
     </div>
     <div class="form-group">
         <label><strong>内容：（* 必填）</strong></label>
-        <textarea asp-for="NewArticle.Body" class="form-control" style="line-height:14;"></textarea>
-        <span asp-validation-for="NewArticle.Body"></span>
+        <textarea asp-for="Content" class="form-control" rows="14"></textarea>
+        <span asp-validation-for="Content"></span>
     </div>
     <div class="form-group">
         <label><i class="fa fa-question-circle"></i><strong>添加到系列：</strong></label>
         <div class="input-group input-group-combined">
-            <select class="form-control" asp-for="NewArticle.Series" asp-items="Model.SeriesOfSelect"></select>
-            <span asp-validation-for="NewArticle.Series"></span>
+            <select class="form-control" asp-for="Series" asp-items="Model.SeriesOfSelect"></select>
+            <span asp-validation-for="Series"></span>
             <div class="input-group-append">
                 <p class="btn btn-outline-secondary"> ➕新系列</p>
             </div>
@@ -101,12 +101,12 @@
     </div>
     <div class="form-group">
         <label><strong>摘要：（* 建议填写）</strong></label>
-        <textarea asp-for="NewArticle.Summary" class="form-control" style="line-height:4;" placeholder="不填写的话，系统会截取文章前255字作为摘要显示"></textarea>
+        <textarea asp-for="Summary" class="form-control" style="line-height:4;" placeholder="不填写的话，系统会截取文章前255字作为摘要显示"></textarea>
     </div>
     <div class="form-group">
         <label><i class="fa fa-question-circle"></i><strong>之前用过的广告：</strong></label>
         <div class="input-group input-group-combined">
-            <select class="form-control" asp-for="NewArticle.Ad" asp-items="Model.AdOfArticle"></select>
+            <select class="form-control" asp-for="Ad" asp-items="Model.AdOfArticle"></select>
             <div class="input-group-append">
                 <p class="btn btn-outline-secondary"> ➕新系列</p>
             </div>
@@ -116,11 +116,11 @@
         <p class="text-right"><label><input type="checkbox" disabled="disabled" />修改 </label></p>
         <div class="form-group">
             <label><strong>文字内容：（* 必填）</strong></label>
-            <input asp-for="NewArticle.ContentOfAd" class="form-control" placeholder="最多不超过24个字符">
+            <input asp-for="ContentOfAd" class="form-control" placeholder="最多不超过24个字符">
         </div>
         <div class="form-group">
             <label><strong>链接：（* 必填）</strong></label>
-            <input asp-for="NewArticle.WebSite" class="form-control" placeholder="http或https开头的网址">
+            <input asp-for="WebSite" class="form-control" placeholder="http或https开头的网址">
         </div>
     </div>
     <div class="mt-3">

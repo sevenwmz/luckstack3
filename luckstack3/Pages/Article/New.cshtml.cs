@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 using _17bang.Filters;
@@ -9,20 +11,37 @@ using Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Data.SqlClient;
 
 namespace _17bang
 {
     [NeedLogOn(role:"文章发布")]
-    [BindProperties]
     public class NewOfArticleModel : PageModel
     {
+
+        #region BindPropretity
+        [BindProperty]
+        public string Title { set; get; }
+        [BindProperty]
+        public string Content { set; get; }
+
+        [Required(ErrorMessage = "系列不能为空")]
+        public string Series { set; get; }
+        [BindProperty] 
+        public string Summary { set; get; }
+        public string Ad { set; get; }
+        public string ContentOfAd { set; get; }
+        public string WebSite { set; get; }
+        #endregion
+
         public User UserInfo { set; get; }
         public IList<Keyword> Keyword { set; get; }
-        public Article NewArticle { set; get; }
+        //public Article NewArticle { set; get; }
 
         private ArticleRepository _repository { set; get; }
 
         public IList<SelectListItem> AdOfArticle { set; get; }
+
 
 
         public IList<SelectListItem> SeriesOfSelect { get; } =
@@ -40,7 +59,7 @@ namespace _17bang
         {
             UserInfo = new User
             {
-                NickName = "wpz",
+                NickName = "wpzwpz",
                 Level = "⑩",
                 Gender = "男",
                 Birthday = "1981 年 4 月 ",
@@ -71,13 +90,55 @@ namespace _17bang
         }
 
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
             {
-                return;
+                return Redirect("/Article/New");
             }
-            _repository.Save(NewArticle);
+            //_repository.Save(NewArticle);
+
+            //string connectionToDatabase = "Data Source=-20191126PKLSWP;Initial Catalog=17bang;Integrated Security=True";
+            //using (DbConnection connection = new SqlConnection(connectionToDatabase))
+            //{
+            //    connection.Open();
+            //    DbCommand sqlCommand = new SqlCommand(
+            //        $"Insert Article(Title,Content,PublishTime,AuthorId) Values(N'{Title}',N'{Content}',GetDate()," +
+            //        $"(Select u.Id From[User]u Where u.UserName = N'{UserInfo.NickName}'))"
+            //        );
+            //    sqlCommand.Connection = connection;
+            //    sqlCommand.ExecuteNonQuery();
+
+            //    return Redirect("/Article");
+            //}
+
+
+            string connectionToDatabase = "Data Source=-20191126PKLSWP;Initial Catalog=17bang;Integrated Security=True";
+            using (DbConnection connection = new SqlConnection(connectionToDatabase))
+            {
+                connection.Open();
+                DbCommand sqlCommand = new SqlCommand(
+                    $"Insert Article(Title,Content,PublishTime,AuthorId) Values(@Title,@Content,GetDate()," +
+                    $"(Select u.Id From[User]u Where u.UserName = @Author))"
+                    );
+
+                //For Article Title
+                DbParameter pTitle = new SqlParameter("@Title",Title);
+
+                //For Article Content
+                DbParameter pContent = new SqlParameter("@Content", Content);
+                
+                //For Article Author
+                DbParameter pAuthor = new SqlParameter("@Author", UserInfo.NickName);
+
+                sqlCommand.Parameters.AddRange( new DbParameter[] { pTitle, pContent, pAuthor });
+
+
+                sqlCommand.Connection = connection;
+                sqlCommand.ExecuteNonQuery();
+            }
+
+            return Redirect("/Article");
         }
     }
 
