@@ -31,10 +31,10 @@
             </div>
             <div>
                 <p>关注 : </p>
-                @for (int i = 0; i < Model.Keyword.Count; i++)
+                @*@for (int i = 0; i < ; i++)
                 {
                     <span class="text-white badge bg-dark">@Model.Keyword[i].Name</span>
-                }
+                }*@
             </div>
             <div>
                 <p>自我介绍 ： </p>
@@ -77,22 +77,22 @@
     </div>
     <div class="form-group">
         <label><strong>标题：（* 必填）</strong></label>
-        <input asp-for="EditPublish.Title" class="form-control" placeholder="来一个醒目的标题吧">
-        <span asp-validation-for="EditPublish.Title"></span>
+        <input asp-for="Title" class="form-control" placeholder="来一个醒目的标题吧">
+        <span asp-validation-for="Title"></span>
     </div>
     <div class="form-group">
         <label><strong>内容：（* 必填）</strong></label>
-        <textarea asp-for="EditPublish.Body" class="form-control" style="line-height:14;"></textarea>
-        <span asp-validation-for="EditPublish.Body"></span>
+        <textarea asp-for="Content" class="form-control" rows="14"></textarea>
+        <span asp-validation-for="Content"></span>
     </div>
     <div class="form-group">
         <label><i class="fa fa-question-circle"></i><strong>添加到系列：</strong></label>
         <div class="input-group input-group-combined">
-            <select class="form-control" asp-for="EditPublish.Series" asp-items="Model.SeriesOfSelect"></select>
+            <select class="form-control" asp-for="Series" asp-items="Model.SeriesOfSelect"></select>
             <div class="input-group-append">
                 <p class="btn btn-outline-secondary"> ➕新系列</p>
             </div>
-            <span asp-validation-for="EditPublish.Series"></span>
+            <span asp-validation-for="Series"></span>
         </div>
     </div>
     <div class="form-group">
@@ -101,12 +101,12 @@
     </div>
     <div class="form-group">
         <label><strong>摘要：（* 建议填写）</strong></label>
-        <textarea asp-for="EditPublish.Summary" class="form-control" style="line-height:4;" placeholder="不填写的话，系统会截取文章前255字作为摘要显示"></textarea>
+        <textarea asp-for="Summary" class="form-control" style="line-height:4;" placeholder="不填写的话，系统会截取文章前255字作为摘要显示"></textarea>
     </div>
     <div class="form-group">
         <label><i class="fa fa-question-circle"></i><strong>之前用过的广告：</strong></label>
         <div class="input-group input-group-combined">
-            <select class="form-control" asp-for="EditPublish.Ad" asp-items="Model.AdOfArticle"></select>
+            <select class="form-control" asp-for="AD" asp-items="Model.AdOfArticle"></select>
             <div class="input-group-append">
                 <p class="btn btn-outline-secondary"> ➕新系列</p>
             </div>
@@ -116,11 +116,11 @@
         <p class="text-right"><label><input type="checkbox" disabled="disabled" />修改 </label></p>
         <div class="form-group">
             <label><strong>文字内容：（* 必填）</strong></label>
-            <input asp-for="EditPublish.ContentOfAd" class="form-control" placeholder="最多不超过24个字符">
+            <input asp-for="ContentOfAD" class="form-control" placeholder="最多不超过24个字符">
         </div>
         <div class="form-group">
             <label><strong>链接：（* 必填）</strong></label>
-            <input asp-for="EditPublish.WebSite" class="form-control" placeholder="http或https开头的网址">
+            <input asp-for="WebSite" class="form-control" placeholder="http或https开头的网址">
         </div>
     </div>
     <div class="mt-3">
