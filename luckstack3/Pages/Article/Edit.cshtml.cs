@@ -155,7 +155,7 @@ namespace _17bang
 
                         "Left Join AD ad " +
                         "On a.AdId = ad.Id " +
-                        $"Where a.Id = /*@ArticleId*/ N'{119}' ", (SqlConnection)connection
+                        $"Where a.Id = @ArticleId ", (SqlConnection)connection
                         )
                     )
                 {
@@ -164,8 +164,8 @@ namespace _17bang
                         connection.Open();
                     }
                     //For edit article id , get it from URL
-                    DbParameter pArticleId = new SqlParameter("@ArticleId", authorId);
-
+                    DbParameter pArticleId = new SqlParameter("@ArticleId", 119/*authorId*/);
+                    sqlCommandOfArticle.Parameters.Add(pArticleId);
                     SqlDataReader reader = (SqlDataReader)sqlCommandOfArticle.ExecuteReader();
 
                     //Amazeing everybody!!!  performance not problem.
@@ -293,23 +293,25 @@ namespace _17bang
                 }
 
                 #region Save Of Keyword
+                int getArticleId = Convert.ToInt32(Request.RouteValues["id"]);
                 for (int i = 0; i < tempKeyworsFromPage.Count; i++)
                 {
-                    //Because Line 179 Can not use at here,make New one.  Guess something wrong?
-                    DbParameter pTitleUseByKeyword = new SqlParameter("@KTitle", Title);
-
-
                     //Prepare Parameter
                     DbParameter pKeywordPage = new SqlParameter("@KeywordPage", tempKeyworsFromPage[i]);
+                    DbParameter pArticleId = new SqlParameter("@ArticleId", getArticleId);
+
                     using (
                         DbCommand sqlCommandOfKeywords = new SqlCommand(
+                            //Delete before n:n relation table data
+                            $"Delete KeywordToArticle where ArticleNameId = /*@ArticleId*/ N'{119}' " +
+
                             //Check Keyword exist in Database
-                            $"IF N'{tempKeyworsFromPage[i]}' In (Select [name] From Keyword Where[name] = N'{tempKeyworsFromPage[i]}') " +
+                            $"IF @KeywordPage In (Select [name] From Keyword Where[name] = @KeywordPage ) " +
                             $"Begin " +
                             //Add To KeywordToArticle
                             $"Insert KeywordToArticle(ArticleNameId, KeywordId) " +
                             $"Values(" +
-                            $"(Select Id From Article Where Title = @KTitle " +
+                            $"(Select Id From Article Where Id = /*@ArticleId*/ N'{119}' " +
 
                             //Use too much resoures ,But open check will be precisely
                             //$"And SUBSTRING(Content,0,25) = SUBSTRING(N'{Content}',0,25) " +
@@ -326,18 +328,13 @@ namespace _17bang
                             $"Insert Keyword([Name],Used) Values(@KeywordPage,0) " +
                             $"Insert KeywordToArticle(ArticleNameId, KeywordId) " +
                             $"Values(" +
-                            $"(Select Id From Article Where Title = @KTitle " +
-
-                            //Use too much resoures ,But open check will be precisely
-                            //$"And SUBSTRING(Content,0,25) = SUBSTRING(N'{Content}',0,25) " +
-
-                            $"And AuthorId = (Select Id from [User] Where UserName = N'{UserInfo.NickName}')), " +
+                            $"(Select Id From Article Where Id = /*@ArticleId*/ N'{119}' ), " +
                             //For Scend KeywordToArticle parameter [KeywordId]
                             $"(Select Id From Keyword Where[Name] = @KeywordPage)) ", (SqlConnection)connection
                             )
                         )
                     {
-                        sqlCommandOfKeywords.Parameters.AddRange(new DbParameter[] { pTitleUseByKeyword, pKeywordPage });
+                        sqlCommandOfKeywords.Parameters.AddRange(new DbParameter[] { pArticleId, pKeywordPage });
                         sqlCommandOfKeywords.ExecuteNonQuery();
                     }
                 }
