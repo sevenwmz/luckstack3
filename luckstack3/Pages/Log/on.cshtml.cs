@@ -18,6 +18,7 @@ namespace luckstack3
     [BindProperties]
     public class LogOnModel : PageModel
     {
+        #region Fileds 
         [Required(ErrorMessage = "* 用户名不能为空")]
         [StringLength(6, MinimumLength = 4, ErrorMessage = "* 最大长度不能超过6")]
         [Display(Name = "* 用户名")]
@@ -38,7 +39,10 @@ namespace luckstack3
 
         public string Captcha { set; get; }
 
+        //Best ideal , I can't delete it  /xyx
         public static bool IsLogIn { set; get; }
+        #endregion
+
         public void OnGet()
         {
 
@@ -59,51 +63,62 @@ namespace luckstack3
 
             //User user = _repository.GetByName(Name);
 
-
+            //connection to database
             string connectionToDatabase = "Data Source=-20191126PKLSWP;Initial Catalog=17bang;Integrated Security=True";
             using (DbConnection connection = new SqlConnection(connectionToDatabase))
             {
-
                 connection.Open();
-
+                #region Parameter of sqlCheckUser
                 //For login name check 
-                DbParameter pName = new SqlParameter("@Name",Name);
+                DbParameter pName = new SqlParameter("@Name", Name);
                 //For login password check 
-                DbParameter pPassword = new SqlParameter("@Password",Password);
+                DbParameter pPassword = new SqlParameter("@Password", Password);
+                #endregion
 
+                #region Main function of check userInfo exists
                 using (
-                    DbCommand sqlCheckUser = new SqlCommand(
-                        $"if @Name in " +
-                        $"(Select u.UserName From[User] u " +
-                        $"Where u.UserName = @Name) " +
-                        $"{checkUser} =  1"  +
-                        $"if @Password in (Select u.[Password] From[User] u " +
-                        $"Where u.[Password] = @Password And u.UserName = @Name) " +
-                        $"{checkPassword} = 2 ",(SqlConnection)connection)
-                    )
+                        DbCommand sqlCheckUser = new SqlCommand(
+                            $"select UserName,Password from [User] " +
+                            $"where Password = @Password and UserName = @Name ", (SqlConnection)connection)
+                        )
                 {
                     sqlCheckUser.Parameters.AddRange(new DbParameter[] { pName, pPassword });
+                    SqlDataReader reader = (SqlDataReader)sqlCheckUser.ExecuteReader();
+                    if (!reader.HasRows)
+                    {
+                        ModelState.AddModelError(nameof(Password), "用户名或密码不正确");
+                        return Page();
+                    }
+
+                    while (reader.Read())
+                    {
+                        if ((reader["UserName"].ToString()).Trim() != Name)
+                        {
+                            ModelState.AddModelError(nameof(Name), "用户名不正确");
+                            return Page();
+                        }
+                        if ((reader["Password"].ToString()).Trim() != Password)
+                        {
+                            ModelState.AddModelError(nameof(Password), "用户名或密码不正确");
+                            return Page();
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                 }
+                #endregion
+
             }
 
-            if (checkUser == null)
-            {
-                ModelState.AddModelError(nameof(Name), "用户名不存在");
-
-                return Page();
-            }
-            if (checkPassword == null)
-            {
-                ModelState.AddModelError(nameof(Password), "用户名或密码不正确");
-                return Page();
-            }
 
             //Response.Cookies.Append(Name, (++_cookie).ToString());
-            HttpContext.Session.SetString(Const.SESSION_USER,Const.SESSION_VALUE);
+            HttpContext.Session.SetString(Const.SESSION_USER, Const.SESSION_VALUE);
             if (RemenberMe)
             {
                 Response.Cookies.Append(Const.COOKIE_USER, Const.COOKIE_VALUE);
-                        new CookieOptions { Expires = DateTime.Now.AddDays(90)};
+                new CookieOptions { Expires = DateTime.Now.AddDays(90) };
             }
 
             //登陆传值
