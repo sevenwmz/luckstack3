@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
-using System.Linq;
-using System.Threading.Tasks;
-using _17bang.Filters;
 using _17bang.Pages.Repository;
-using _17bang.Repository;
 using Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace _17bang
 {
-    [NeedLogOn(role: "文章发布")]
+    //[NeedLogOn(role: "文章发布")]
     public class NewOfArticleModel : PageModel
     {
 
@@ -162,7 +157,15 @@ namespace _17bang
             // If Summary is null ,take content in front of 255 char'.
             if (string.IsNullOrEmpty(Summary))
             {
-                Summary = Content.PadRight(255);
+                Summary = Content.PadRight(255).Substring(0, 255).Trim();
+            }
+            else if (Summary.Length() > 255)
+            {
+                Summary = Summary.Trim().Substring(0, 255);
+            }
+            else
+            {
+                Summary = Summary.Trim();
             }
 
 
@@ -171,144 +174,103 @@ namespace _17bang
             string connectionToDatabase = "Data Source=-20191126PKLSWP;Initial Catalog=17bang;Integrated Security=True";
             using (DbConnection connection = new SqlConnection(connectionToDatabase))
             {
-                #region Conver Keywords perpare to save 
-                //Get Keywords From Page,Prepare to Save
-                Keywords = Keywords.Trim();
-                IList<string> tempKeyworsFromPage = Keywords.Split(" ");
-
-                #endregion
-
+                int? adId = null;
                 connection.Open();
 
-                #region DbParameters
-                //For Article Title
-                DbParameter pTitle = new SqlParameter("@Title", Title);
-                //For Article Content
-                DbParameter pContent = new SqlParameter("@Content", Content);
-                //For Article Author
-                DbParameter pAuthor = new SqlParameter("@Author", UserInfo.NickName);
-                //For Article Summary
-                DbParameter pSummary = new SqlParameter("@Summary", Summary);
-                //For Article SeriesId
-                DbParameter pSeries = new SqlParameter("@SeriesId", Series);
-                #endregion
-
-                if (string.IsNullOrEmpty(WebSite))
+                if (!string.IsNullOrEmpty(WebSite))
                 {
                     #region Save No Ad Article
-                    //For No AD Article
-                    using (
-                        DbCommand sqlCommandOfArticle = new SqlCommand(
-                        $"Insert Article(Title,Content,PublishTime,AuthorId,Summary,SeriesId) " +
-                        $"Values(" +
-                        $"@Title," +
-                        $"@Content," +
-                        $"GetDate()," +
-                        $"(Select u.Id From[User]u Where u.UserName = @Author)," +
-                        $"@Summary," +
-                        $"(Select Id From Series Where Id = @SeriesId))",
-                        (SqlConnection)connection)
-                        )
-                    {
-                        //Save To Article Database
-                        sqlCommandOfArticle.Parameters.AddRange(new DbParameter[] { pTitle, pContent, pAuthor, pSummary, pSeries });
-                        sqlCommandOfArticle.ExecuteNonQuery();
-                    }
-
-                    #endregion
-                }
-                else
-                {
-                    #region Save Ad
                     //For AD
                     using (DbCommand sqlCommandOfAD = new SqlCommand(
                             $"Insert AD(ContentOfAd,Url) " +
-                            $"Values(@ContentOfAd,@WebSite)",
+                            $"Values(@ContentOfAd,@WebSite)" +
+                            $"{adId} = Select Id From AD Where Url = @WebSite ",
                             (SqlConnection)connection))
                     {
-                        //For Ad ContentOfAd 
-                        DbParameter pContentOfAd = new SqlParameter("@ContentOfAd", ContentOfAd);
-                        //For Ad WebSite
-                        DbParameter pWebSite = new SqlParameter("@WebSite", WebSite);
                         //Save To Datebase
-                        sqlCommandOfAD.Parameters.AddRange(new DbParameter[] { pContentOfAd, pWebSite });
+                        sqlCommandOfAD.Parameters.AddRange(new DbParameter[] { new SqlParameter("@ContentOfAd", ContentOfAd), new SqlParameter("@WebSite", WebSite) });
                         sqlCommandOfAD.ExecuteNonQuery();
                     }
                     #endregion
-
-                    #region Save Has AD Article
-                    //Has AD Article
-                    using (
-                        DbCommand sqlCommandOfArticle = new SqlCommand(
-                            $"Insert Article(Title,Content,PublishTime,AuthorId,Summary,ADId,SeriesId) " +
-                            $"Values(" +
-                            $"@Title," +
-                            $"@Content," +
-                            $"GetDate()," +
-                            $"(Select u.Id From[User]u Where u.UserName = @Author)," +
-                            $"@Summary)," +
-                            $"(Select Id From AD Where ContentOfAd = @ContentOfAd)," +
-                            $"(Select Id From Series Where Name = @SeriesId)",
-                            (SqlConnection)connection)
-                        )
-                    {
-                        //Add ADId in Article
-                        DbParameter pContentOfAd = new SqlParameter("@ContentOfAd", ContentOfAd);
-                        sqlCommandOfArticle.Parameters.AddRange(new DbParameter[] { pTitle, pContent, pAuthor, pSummary, pContentOfAd, pSeries });
-                    }
-                    #endregion
                 }
+
+                #region Save Article
+                //Has AD Article
+                using (
+                    DbCommand sqlCommandOfArticle = new SqlCommand(
+                        $"Insert Article (Title,Content,PublishTime,AuthorId,Summary,ADId,SeriesId) " +
+                        $"Values(@Title,@Content,GetDate(),(Select u.Id From[User]u Where u.UserName = @Author),@Summary)," +
+                        $"(Select Id From AD Where ContentOfAd = {adId} ," +
+                        $"(Select Id From Series Where Name = @SeriesId)",
+                        (SqlConnection)connection)
+                    )
+                {
+                    sqlCommandOfArticle.Parameters.AddRange(new DbParameter[] {
+                            new SqlParameter("@Title", Title),
+                            new SqlParameter("@Content", Content),
+                            new SqlParameter("@Author", UserInfo.NickName),
+                            new SqlParameter("@Summary", Summary),
+                            new SqlParameter("@SeriesId", Series)
+                        });
+                }
+                #endregion
+
 
                 #region Save Of Keyword
-                for (int i = 0; i < tempKeyworsFromPage.Count; i++)
+                if (!string.IsNullOrEmpty(Keywords))
                 {
-                    //Because Line 179 Can not use at here,make New one.  Guess something wrong?
-                    DbParameter pTitleUseByKeyword = new SqlParameter("@KTitle", Title);
-
-
-                    //Prepare Parameter
-                    DbParameter pKeywordPage = new SqlParameter("@KeywordPage", tempKeyworsFromPage[i]);
-                    using (
-                        DbCommand sqlCommandOfKeywords = new SqlCommand(
-                            //Check Keyword exist in Database
-                            $"IF N'{tempKeyworsFromPage[i]}' In (Select [name] From Keyword Where[name] = N'{tempKeyworsFromPage[i]}') " +
-                            $"Begin " +
-                            //Add To KeywordToArticle
-                            $"Insert KeywordToArticle(ArticleNameId, KeywordId) " +
-                            $"Values(" +
-                            $"(Select Id From Article Where Title = @KTitle " +
-
-                            //Use too much resoures ,But open check will be precisely
-                            //$"And SUBSTRING(Content,0,25) = SUBSTRING(N'{Content}',0,25) " +
-
-                            $"And AuthorId = (Select Id from [User] Where UserName = N'{UserInfo.NickName}')), " +
-
-                            $"(Select Id From Keyword Where[Name] = @KeywordPage)) " +
-                            $"Update Keyword Set Used += 1 Where [Name] = @KeywordPage " +
-                            $"End " +
-                            //
-                            //If this Keyword never appear ,add to keyword datebase,at same time add to n:n relation table
-                            //
-                            $"ELSE " +
-                            $"Insert Keyword([Name],Used) Values(@KeywordPage,0) " +
-                            $"Insert KeywordToArticle(ArticleNameId, KeywordId) " +
-                            $"Values(" +
-                            $"(Select Id From Article Where Title = @KTitle " +
-
-                            //Use too much resoures ,But open check will be precisely
-                            //$"And SUBSTRING(Content,0,25) = SUBSTRING(N'{Content}',0,25) " +
-
-                            $"And AuthorId = (Select Id from [User] Where UserName = N'{UserInfo.NickName}')), " +
-                            //For Scend KeywordToArticle parameter [KeywordId]
-                            $"(Select Id From Keyword Where[Name] = @KeywordPage)) ", (SqlConnection)connection
-                            )
-                        )
+                    IList<string> keywords = Keywords.Trim().Split(" ");
+                    for (int i = 0; i < keywords.Count; i++)
                     {
-                        sqlCommandOfKeywords.Parameters.AddRange(new DbParameter[] { pTitleUseByKeyword, pKeywordPage });
-                        sqlCommandOfKeywords.ExecuteNonQuery();
+                        int keywordsId = DBHelper.GetKeywordsId(keywords[i]);
+                        int articleId = DBHelper.GetArticleId(Title);
+                        DBHelper.AttachKeyword(articleId, keywordsId);
+
+                        #region Old Filed Function
+                        //using (
+                        //DbCommand sqlCommandOfKeywords = new SqlCommand(
+                        //    //Check Keyword exist in Database
+                        //    $"IF N'{keywords[i]}' In (Select [name] From Keyword Where[name] = N'{keywords[i]}') " +
+                        //    $"Begin " +
+                        //    //Add To KeywordToArticle
+                        //    $"Insert KeywordToArticle(ArticleNameId, KeywordId) " +
+                        //    $"Values(" +
+                        //    $"(Select Id From Article Where Title = @KTitle " +
+
+                        //    //Use too much resoures ,But open check will be precisely
+                        //    //$"And SUBSTRING(Content,0,25) = SUBSTRING(N'{Content}',0,25) " +
+
+                        //    $"And AuthorId = (Select Id from [User] Where UserName = N'{UserInfo.NickName}')), " +
+
+                        //    $"(Select Id From Keyword Where[Name] = @KeywordPage)) " +
+                        //    $"Update Keyword Set Used += 1 Where [Name] = @KeywordPage " +
+                        //    $"End " +
+                        //    //
+                        //    //If this Keyword never appear ,add to keyword datebase,at same time add to n:n relation table
+                        //    //
+                        //    $"ELSE " +
+                        //    $"Insert Keyword([Name],Used) Values(@KeywordPage,0) " +
+                        //    $"Insert KeywordToArticle(ArticleNameId, KeywordId) " +
+                        //    $"Values(" +
+                        //    $"(Select Id From Article Where Title = @KTitle " +
+
+                        //    //Use too much resoures ,But open check will be precisely
+                        //    //$"And SUBSTRING(Content,0,25) = SUBSTRING(N'{Content}',0,25) " +
+
+                        //    $"And AuthorId = (Select Id from [User] Where UserName = N'{UserInfo.NickName}')), " +
+                        //    //For Scend KeywordToArticle parameter [KeywordId]
+                        //    $"(Select Id From Keyword Where[Name] = @KeywordPage)) ", (SqlConnection)connection
+                        //    )
+                        //)
+                        //        {
+                        //            sqlCommandOfKeywords.Parameters.AddRange(new DbParameter[] { new SqlParameter("@KTitle", Title), new SqlParameter("@KeywordPage", keywords[i]) });
+                        //            sqlCommandOfKeywords.ExecuteNonQuery();
+                        //        }
+                        //    }
+                        //}//else nothing
+                        #endregion
                     }
                 }
-
                 #endregion
 
             }
@@ -317,7 +279,6 @@ namespace _17bang
 
 
         }
-
     }
 }
 

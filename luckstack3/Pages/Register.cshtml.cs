@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
@@ -43,8 +44,35 @@ namespace luckstack3
                 return Page();
             }
 
+            #region Trying Funtion 
             //Connect to database
             string connectionToDatabase = "Data Source=-20191126PKLSWP;Initial Catalog=17bang;Integrated Security=True";
+
+            //string querystring = "Select * From [User]";
+            //DbDataAdapter adapter = new SqlDataAdapter(querystring, connectionToDatabase);
+
+            //DataSet user = new DataSet();
+            //adapter.Fill(user, "User");
+
+            //adapter.InsertCommand = new SqlCommand(
+            //    "Insert [User](UserName,Password) Values(@Name,@Password)"
+            //    );
+            //adapter.InsertCommand.Parameters.AddRange(new SqlParameter[]
+            //{
+            //    new SqlParameter("@Name",SqlDbType.NVarChar,20,"name"),
+            //    new SqlParameter("@Password",SqlDbType.NVarChar,20,"password")
+            //});
+
+            //DataRow newRow = user.Tables["User"].NewRow();
+            //newRow[0] = "wpzwpz123";
+            //newRow[1] = "dsaasd";
+            //user.Tables[0].Rows.Add(newRow);
+            //adapter.Update(user.Tables["User"]);
+            #endregion
+
+
+            #region Old Funciton
+
             using (DbConnection connection = new SqlConnection(connectionToDatabase))
             {
                 connection.Open();
@@ -86,6 +114,10 @@ namespace luckstack3
                 }
                 #endregion
             }
+
+            #endregion
+
+
 
             HttpContext.Session.SetString(Const.COOKIE_USER, Const.COOKIE_VALUE);
             Response.Cookies.Append(Const.COOKIE_USER, Const.COOKIE_VALUE);
