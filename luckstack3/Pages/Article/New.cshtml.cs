@@ -153,22 +153,19 @@ namespace _17bang
             //}
             #endregion
 
-
             // If Summary is null ,take content in front of 255 char'.
             if (string.IsNullOrEmpty(Summary))
             {
                 Summary = Content.PadRight(255).Substring(0, 255).Trim();
             }
-            else if (Summary.Length() > 255)
-            {
-                Summary = Summary.Trim().Substring(0, 255);
-            }
-            else
+            else 
             {
                 Summary = Summary.Trim();
+                if (Summary.Length > 255)
+                {
+                    Summary = Summary.Substring(0, 255);
+                }//else nothing.
             }
-
-
 
             //Connect Database
             string connectionToDatabase = "Data Source=-20191126PKLSWP;Initial Catalog=17bang;Integrated Security=True";
@@ -212,9 +209,9 @@ namespace _17bang
                             new SqlParameter("@Summary", Summary),
                             new SqlParameter("@SeriesId", Series)
                         });
+                    sqlCommandOfArticle.ExecuteNonQuery();
                 }
                 #endregion
-
 
                 #region Save Of Keyword
                 if (!string.IsNullOrEmpty(Keywords))
@@ -222,9 +219,10 @@ namespace _17bang
                     IList<string> keywords = Keywords.Trim().Split(" ");
                     for (int i = 0; i < keywords.Count; i++)
                     {
-                        int keywordsId = DBHelper.GetKeywordsId(keywords[i]);
-                        int articleId = DBHelper.GetArticleId(Title);
-                        DBHelper.AttachKeyword(articleId, keywordsId);
+                        int keywordsId = _repository.GetKeywordsId(keywords[i]);
+                        _repository.PlusUsedKeyword(keywordsId);
+                        int articleId = _repository.GetArticleId(Title);
+                        _repository.AttachKeyword(articleId, keywordsId);
 
                         #region Old Filed Function
                         //using (

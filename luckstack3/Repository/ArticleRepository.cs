@@ -1,6 +1,8 @@
 ﻿using Entity;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +10,7 @@ namespace _17bang.Pages.Repository
 {
     public class ArticleRepository
     {
+        private DBHelper _support { set; get; }
 
         private static IList<Article> _article;
 
@@ -21,7 +24,7 @@ namespace _17bang.Pages.Repository
 
             _article = new List<Article>
             {
-                
+
                 new Article("ASP.NET RazorPages：CSRF跨站点请求伪造")
                 {
                     Summary = "Cross-SiteRequestForgery：防御的核心在于除了用户的验证cookie以外，" +
@@ -130,6 +133,123 @@ namespace _17bang.Pages.Repository
             };
         }
 
+        #region For Save Keyword
+        /// <summary>
+        /// Get keywordId from database
+        /// </summary>
+        /// <param name="keywordsName">keyword name</param>
+        /// <returns></returns>
+        public int GetKeywordsId(string keywordsName)
+        {
+            int keywordId = GetKeywordIdBy(keywordsName);
+
+            if (keywordId != 0)
+            {
+                return keywordId;
+            }//else nothing.
+            return NewKeyword(keywordsName);
+        }
+
+        /// <summary>
+        /// Save this keyword into database and return this keywordId
+        /// </summary>
+        /// <param name="keywordsName">Keyword name</param>
+        public int NewKeyword(string keywordsName)
+        {
+            using (DbConnection connection = _support.Connection)
+            {
+                connection.Open();
+                DbCommand addNewKeyword = new SqlCommand("Insert Keyword(Name,Used) Values(@Keyword,0) Set @NewId = @@Identity ", (SqlConnection)connection);
+                addNewKeyword.Parameters.Add(new SqlParameter("@Keyword", keywordsName));
+
+                SqlParameter pId = new SqlParameter("@NewId", System.Data.SqlDbType.Int)
+                {
+                    Direction = System.Data.ParameterDirection.Output
+                };
+                addNewKeyword.ExecuteNonQuery();
+
+                return Convert.ToInt32(pId);
+            }
+        }
+
+        /// <summary>
+        /// Check keyword is exist or not in database
+        /// </summary>
+        /// <param name="keywordsName">Need keyword name</param>
+        /// <returns></returns>
+        public int GetKeywordIdBy(string keywordsName)
+        {
+            using (DbConnection connection = _support.Connection)
+            {
+                connection.Open();
+
+                DbCommand checkKeywordsExist = new SqlCommand("Select Id From Keyword where Name = @Keyword", (SqlConnection)connection);
+                checkKeywordsExist.Parameters.Add(new SqlParameter("@Keyword", keywordsName));
+
+                object reader = checkKeywordsExist.ExecuteScalar();
+                if (reader == DBNull.Value)
+                {
+                    return 0;
+                }//else nothing.
+                if (string.IsNullOrEmpty(reader.ToString()))
+                {
+                    return 0;
+                }//else nothing.
+                return Convert.ToInt32(reader);
+            }
+        }
+
+        /// <summary>
+        /// Plus Used Keyword
+        /// </summary>
+        /// <param name="id">Need one keyword id</param>
+        public void PlusUsedKeyword(int id)
+        {
+            using (DbConnection connection = _support.Connection)
+            {
+                connection.Open();
+
+                //Plus keyword use.
+                DbCommand plusUsed = new SqlCommand(
+                $"Update Keyword Set Used += 1 Where Id = (Select Id From Keywordwhere Name = {id}) ", (SqlConnection)connection);
+                plusUsed.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Save to n:n relation Table
+        /// </summary>
+        /// <param name="articleId">Need articleId</param>
+        /// <param name="keywordsId">Need keywordId</param>
+        public void AttachKeyword(int articleId, int keywordId)
+        {
+            using (DbConnection connection = _support.Connection)
+            {
+                connection.Open();
+                DbCommand command = new SqlCommand($"Insert KeywordToArticle(ArticleNameId,KeywordId) Values({articleId},{keywordId})", (SqlConnection)connection);
+                command.ExecuteNonQuery();
+            }
+        }
+        #endregion
+
+        /// <summary>
+        /// Return Article Id
+        /// </summary>
+        /// <param name="title">Need article title name</param>
+        /// <returns></returns>
+        public int GetArticleId(string title)
+        {
+            using (DbConnection connection = _support.Connection)
+            {
+                connection.Open();
+                DbCommand command = new SqlCommand("Select Id From Article Where Title = @KTitle", (SqlConnection)connection);
+                command.Parameters.Add(new SqlParameter("@KTitle", title));
+                object reader = command.ExecuteScalar();
+                return Convert.ToInt32(reader);
+            }
+        }
+
+
         internal IList<Article> GetByAuthor(int authorId)
         {
             return _article.Where(a => a.Author.Id == authorId).ToList();
@@ -159,7 +279,7 @@ namespace _17bang.Pages.Repository
         /// </summary>
         /// <returns></returns>
         public int GetSum()
-        { 
+        {
             return _article.Count;
         }
         public IList<Article> Get()
