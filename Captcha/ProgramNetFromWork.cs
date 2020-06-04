@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Captchas;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -15,14 +16,18 @@ namespace Captcha
 
         static void Main(string[] args)
         {
+            new StudentsRepository().GetIdBy(23);
 
-            EmailSettle emailSettle = new EmailSettle(@"C:\Users\Administrator\source\repos\luckstack3\Captcha\Email.txt");
-            emailSettle.GetEmail();
+            //new StudentsRepository().Database.Delete();
+            //new StudentsRepository().Database.CreateIfNotExists();
 
-            Captcha.RefreshCaptcha();
+            //EmailSettle emailSettle = new EmailSettle(@"C:\Users\Administrator\source\repos\luckstack3\Captcha\Email.txt");
+            //emailSettle.GetEmail();
+
+            //Captcha.RefreshCaptcha();
             #region 2020.4.16异步作业
 
-            Captcha.CaptchaAsync();
+            //Captcha.CaptchaAsync();
 
 
             //重构之前的验证码作业：
