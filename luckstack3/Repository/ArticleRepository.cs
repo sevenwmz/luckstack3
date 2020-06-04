@@ -1,4 +1,5 @@
 ﻿using Entity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -248,6 +249,36 @@ namespace _17bang.Pages.Repository
                 return Convert.ToInt32(reader);
             }
         }
+
+        /// <summary>
+        /// Return selectListItem 
+        /// </summary>
+        /// <param name="cmdText">Need Sql command string</param>
+        /// <param name="text">Need selectList Text</param>
+        /// <param name="value">Need selectList Value</param>
+        /// <param name="connection">Need Dbconnection</param>
+        /// <returns></returns>
+        public IList<SelectListItem> GetSelectList(string cmdText,string text,string value,DbConnection connection)
+        {
+            IList<SelectListItem> result = new List<SelectListItem> { };
+            if (connection.State == System.Data.ConnectionState.Closed)
+            {
+                connection.Open();
+            }//else nothing
+
+            DbDataReader reader = new DBHelper().ExcuteReader(cmdText, connection);
+            if (!reader.HasRows)
+            {
+                return result;
+            }
+
+            while (reader.HasRows)
+            {
+                result.Add(new SelectListItem {Text= reader[$"{cmdText}"].ToString(),Value = reader[$"{value}"].ToString()});
+            }
+            return result;
+        }
+
 
 
         internal IList<Article> GetByAuthor(int authorId)

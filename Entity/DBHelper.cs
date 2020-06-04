@@ -63,6 +63,29 @@ namespace Entity
             cmd.Parameters.AddRange(parameterName);
             cmd.ExecuteNonQuery();
         }
+        /// <summary>
+        /// Excute ADO.NET sql command And return Insert Id
+        /// </summary>
+        /// <param name="cmdText">Need Sql command string</param>
+        /// <param name="connection">Need DbConnection connection</param>
+        /// <param name="parameterName">Need sql parameters</param>
+        public int ExcuteNonQuery(DbConnection connection, string cmdText, params SqlParameter[] parameterName)
+        {
+            if (connection.State == System.Data.ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+
+            DbCommand cmd = new SqlCommand(cmdText, (SqlConnection)connection);
+            cmd.Parameters.AddRange(parameterName);
+            cmd.ExecuteNonQuery();
+
+             SqlParameter pId = new SqlParameter("@NewId", System.Data.SqlDbType.Int)
+            {
+                Direction = System.Data.ParameterDirection.Output
+            };
+            return Convert.ToInt32(pId);
+        }
 
         /// <summary>
         /// Retrun string scalar
@@ -145,12 +168,11 @@ namespace Entity
             try
             {
                 DbDataReader reader = cmd.ExecuteReader();
-                List<T> returns = new List<T>();
                 return reader;
             }
             finally
             {
-                connection.Close();
+                //connection.Close();
             }
         }
 
