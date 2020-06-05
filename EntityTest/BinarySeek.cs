@@ -1,4 +1,5 @@
-﻿using Entity;
+﻿using _17bang.Pages.Repository;
+using Entity;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,28 @@ namespace EntityTest
         [Test]
         public void BinarySeekText()
         {
+            string Title = "这里是测试新的111生机功能";
+
+            string Keywords = " 关键字1  关键字2  关键字3 关键字1";
+            IList<string> keywords = Keywords.Trim().Split(" ");
+            for (int i = 0; i < keywords.Count; i++)
+            {
+                if (string.IsNullOrWhiteSpace(keywords[i]))
+                {
+                    continue;
+                }
+                int keywordsId = new ArticleRepository().GetKeywordsId(keywords[i]);
+                new ArticleRepository().PlusUsedKeyword(keywordsId);
+                int articleId = new ArticleRepository().GetArticleId(Title);
+                new ArticleRepository().AttachKeyword(articleId, keywordsId);
+
+                
+            }
+
+
+
+
+
             ///4.二分查找
             int[] array = new int[] { 23, 43, 56, 66, 66, 77, 88, 99, 5331 };
             Assert.AreEqual(1, HistoryHomeWork<int>.binarySeek(array, 43));

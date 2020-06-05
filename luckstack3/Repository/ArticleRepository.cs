@@ -11,7 +11,6 @@ namespace _17bang.Pages.Repository
 {
     public class ArticleRepository
     {
-        private DBHelper _support { set; get; }
 
         private static IList<Article> _article;
 
@@ -157,19 +156,21 @@ namespace _17bang.Pages.Repository
         /// <param name="keywordsName">Keyword name</param>
         public int NewKeyword(string keywordsName)
         {
-            using (DbConnection connection = _support.Connection)
+            using (DbConnection connection = new DBHelper().Connection)
             {
                 connection.Open();
                 DbCommand addNewKeyword = new SqlCommand("Insert Keyword(Name,Used) Values(@Keyword,0) Set @NewId = @@Identity ", (SqlConnection)connection);
-                addNewKeyword.Parameters.Add(new SqlParameter("@Keyword", keywordsName));
-
                 SqlParameter pId = new SqlParameter("@NewId", System.Data.SqlDbType.Int)
                 {
                     Direction = System.Data.ParameterDirection.Output
                 };
+                addNewKeyword.Parameters.AddRange(new SqlParameter[] {
+                    new SqlParameter("@Keyword", keywordsName),
+                    pId });
+
                 addNewKeyword.ExecuteNonQuery();
 
-                return Convert.ToInt32(pId);
+                return Convert.ToInt32(pId.Value);
             }
         }
 
@@ -180,7 +181,7 @@ namespace _17bang.Pages.Repository
         /// <returns></returns>
         public int GetKeywordIdBy(string keywordsName)
         {
-            using (DbConnection connection = _support.Connection)
+            using (DbConnection connection = new DBHelper().Connection)
             {
                 connection.Open();
 
@@ -192,7 +193,7 @@ namespace _17bang.Pages.Repository
                 {
                     return 0;
                 }//else nothing.
-                if (string.IsNullOrEmpty(reader.ToString()))
+                if (reader == null)
                 {
                     return 0;
                 }//else nothing.
@@ -206,13 +207,13 @@ namespace _17bang.Pages.Repository
         /// <param name="id">Need one keyword id</param>
         public void PlusUsedKeyword(int id)
         {
-            using (DbConnection connection = _support.Connection)
+            using (DbConnection connection = new DBHelper().Connection)
             {
                 connection.Open();
 
                 //Plus keyword use.
                 DbCommand plusUsed = new SqlCommand(
-                $"Update Keyword Set Used += 1 Where Id = (Select Id From Keywordwhere Name = {id}) ", (SqlConnection)connection);
+                $"Update Keyword Set Used += 1 Where Id = (Select Id From Keyword where Id = {id}) ", (SqlConnection)connection);
                 plusUsed.ExecuteNonQuery();
             }
         }
@@ -224,7 +225,7 @@ namespace _17bang.Pages.Repository
         /// <param name="keywordsId">Need keywordId</param>
         public void AttachKeyword(int articleId, int keywordId)
         {
-            using (DbConnection connection = _support.Connection)
+            using (DbConnection connection = new DBHelper().Connection)
             {
                 connection.Open();
                 DbCommand command = new SqlCommand($"Insert KeywordToArticle(ArticleNameId,KeywordId) Values({articleId},{keywordId})", (SqlConnection)connection);
@@ -240,7 +241,7 @@ namespace _17bang.Pages.Repository
         /// <returns></returns>
         public int GetArticleId(string title)
         {
-            using (DbConnection connection = _support.Connection)
+            using (DbConnection connection = new DBHelper().Connection)
             {
                 connection.Open();
                 DbCommand command = new SqlCommand("Select Id From Article Where Title = @KTitle", (SqlConnection)connection);
@@ -261,22 +262,25 @@ namespace _17bang.Pages.Repository
         public IList<SelectListItem> GetSelectList(string cmdText,string text,string value,DbConnection connection)
         {
             IList<SelectListItem> result = new List<SelectListItem> { };
-            if (connection.State == System.Data.ConnectionState.Closed)
+            using (DbCommand cmd = new SqlCommand(cmdText,(SqlConnection)connection))
             {
-                connection.Open();
-            }//else nothing
-
-            DbDataReader reader = new DBHelper().ExcuteReader(cmdText, connection);
+                if (connection.State == System.Data.ConnectionState.Closed)
+                {
+                    connection.Open();
+                }//else nothing
+                SqlDataReader reader = (SqlDataReader)cmd.ExecuteReader();
             if (!reader.HasRows)
-            {
+                {
+                    return result;
+                }
+
+                while (reader.Read())
+                {
+                    result.Add(new SelectListItem { Text = reader[$"{text}"].ToString(), Value = reader[$"{value}"].ToString() });
+                }
                 return result;
             }
 
-            while (reader.HasRows)
-            {
-                result.Add(new SelectListItem {Text= reader[$"{cmdText}"].ToString(),Value = reader[$"{value}"].ToString()});
-            }
-            return result;
         }
 
 

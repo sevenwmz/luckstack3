@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Captcha\Captcha.csproj" />
     <ProjectReference Include="..\Entity\Entity.csproj" />
+    <ProjectReference Include="..\luckstack3\_17bang.csproj" />
     <ProjectReference Include="..\SevenLearnCsharp\HomeWork.csproj" />
   </ItemGroup>
 

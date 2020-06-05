@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Data.SqlClient;
+using System;
 
 namespace _17bang
 {
@@ -38,16 +39,12 @@ namespace _17bang
         public string Keywords { set; get; }
 
         public User UserInfo { set; get; }
-        //public IList<Keyword> Keyword { set; get; }
-        //public Article NewArticle { set; get; }
 
         private ArticleRepository _repository { set; get; }
 
         public IList<SelectListItem> AdOfArticle { set; get; }
 
         public IList<SelectListItem> SeriesOfSelect { set; get; }
-
-        private DBHelper _support;
         #endregion
 
 
@@ -67,19 +64,20 @@ namespace _17bang
 
         public void OnGet()
         {
-            //Start connect database get selectList of AD and Series
-            string connectionToDatabase = "Data Source=-20191126PKLSWP;Initial Catalog=17bang;Integrated Security=True";
-            using (DbConnection connection = new SqlConnection(connectionToDatabase))
+
+            using (DbConnection connection = new DBHelper().Connection)
             {
                 string adOfArticleCmd = "Select ContentOfAd,Id From AD";
                 string adOfArticleText = "ContentOfAd";
                 string adOfArticleValue = "Id";
                 AdOfArticle = _repository.GetSelectList(adOfArticleCmd, adOfArticleText, adOfArticleValue, connection);
-
+            }
+            using (DbConnection connection = new DBHelper().Connection)
+            {
                 string seriesOfSelectCmd = "Select Name,Id From Series";
                 string seriesOfSelectText = "Name";
                 string seriesOfSelectValue = "Id";
-                SeriesOfSelect = _repository.GetSelectList(seriesOfSelectCmd, seriesOfSelectText, seriesOfSelectValue, connection);
+               SeriesOfSelect = _repository.GetSelectList(seriesOfSelectCmd, seriesOfSelectText, seriesOfSelectValue, connection);
             }
         }
 
@@ -104,15 +102,15 @@ namespace _17bang
                 }//else nothing.
             }
 
-            using (DbConnection connection = _support.Connection)
+            using (DbConnection connection = new DBHelper().Connection)
             {
-                int? adId = null;
+                object adId = DBNull.Value;
                 connection.Open();
 
                 if (!string.IsNullOrEmpty(WebSite))
                 {
                     string cmd = @"Insert AD(ContentOfAd,Url) Values(@ContentOfAd,@WebSite) Set @NewId = @@Identity ";
-                    adId = _support.ExcuteNonQuery(
+                    adId = new DBHelper().ExcuteNonQuery(
                         connection, cmd, new SqlParameter[]
                         {
                         new SqlParameter("@ContentOfAd", ContentOfAd),
@@ -123,10 +121,10 @@ namespace _17bang
                 #region Save Article
                 string articleCmdString = 
                     @"Insert Article (Title,Content,PublishTime,AuthorId,Summary,ADId,SeriesId) 
-                         Values(@Title,@Content,GetDate(),(Select u.Id From[User]u Where u.UserName = @Author),@Summary),
-                        (Select Id From AD Where ContentOfAd = @NewId 
-                        (Select Id From Series Where Name = @SeriesId)";
-                _support.ExcuteNonQuery(connection, articleCmdString, new SqlParameter[] {
+                         Values(@Title,@Content,GetDate(),(Select u.Id From [User] u Where u.UserName = @Author),@Summary,
+                        (Select Id From AD Where ContentOfAd = @NewId ),
+                        (Select Id From Series Where Name = @SeriesId))";
+                new DBHelper().ExcuteNonQuery(articleCmdString, connection, new SqlParameter[] {
                     new SqlParameter("@Title", Title),
                     new SqlParameter("@Content", Content),
                     new SqlParameter("@Author", UserInfo.NickName),
@@ -142,63 +140,19 @@ namespace _17bang
                     IList<string> keywords = Keywords.Trim().Split(" ");
                     for (int i = 0; i < keywords.Count; i++)
                     {
+                        if (string.IsNullOrWhiteSpace(keywords[i]))
+                        {
+                            continue;
+                        }
                         int keywordsId = _repository.GetKeywordsId(keywords[i]);
                         _repository.PlusUsedKeyword(keywordsId);
                         int articleId = _repository.GetArticleId(Title);
                         _repository.AttachKeyword(articleId, keywordsId);
-
-                        #region Old Filed Function
-                        //using (
-                        //DbCommand sqlCommandOfKeywords = new SqlCommand(
-                        //    //Check Keyword exist in Database
-                        //    $"IF N'{keywords[i]}' In (Select [name] From Keyword Where[name] = N'{keywords[i]}') " +
-                        //    $"Begin " +
-                        //    //Add To KeywordToArticle
-                        //    $"Insert KeywordToArticle(ArticleNameId, KeywordId) " +
-                        //    $"Values(" +
-                        //    $"(Select Id From Article Where Title = @KTitle " +
-
-                        //    //Use too much resoures ,But open check will be precisely
-                        //    //$"And SUBSTRING(Content,0,25) = SUBSTRING(N'{Content}',0,25) " +
-
-                        //    $"And AuthorId = (Select Id from [User] Where UserName = N'{UserInfo.NickName}')), " +
-
-                        //    $"(Select Id From Keyword Where[Name] = @KeywordPage)) " +
-                        //    $"Update Keyword Set Used += 1 Where [Name] = @KeywordPage " +
-                        //    $"End " +
-                        //    //
-                        //    //If this Keyword never appear ,add to keyword datebase,at same time add to n:n relation table
-                        //    //
-                        //    $"ELSE " +
-                        //    $"Insert Keyword([Name],Used) Values(@KeywordPage,0) " +
-                        //    $"Insert KeywordToArticle(ArticleNameId, KeywordId) " +
-                        //    $"Values(" +
-                        //    $"(Select Id From Article Where Title = @KTitle " +
-
-                        //    //Use too much resoures ,But open check will be precisely
-                        //    //$"And SUBSTRING(Content,0,25) = SUBSTRING(N'{Content}',0,25) " +
-
-                        //    $"And AuthorId = (Select Id from [User] Where UserName = N'{UserInfo.NickName}')), " +
-                        //    //For Scend KeywordToArticle parameter [KeywordId]
-                        //    $"(Select Id From Keyword Where[Name] = @KeywordPage)) ", (SqlConnection)connection
-                        //    )
-                        //)
-                        //        {
-                        //            sqlCommandOfKeywords.Parameters.AddRange(new DbParameter[] { new SqlParameter("@KTitle", Title), new SqlParameter("@KeywordPage", keywords[i]) });
-                        //            sqlCommandOfKeywords.ExecuteNonQuery();
-                        //        }
-                        //    }
-                        //}//else nothing
-                        #endregion
                     }
                 }
                 #endregion
-
             }
-
             return Redirect("/Article");
-
-
         }
     }
 }
