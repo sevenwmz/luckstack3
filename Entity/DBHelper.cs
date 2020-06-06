@@ -110,7 +110,8 @@ namespace Entity
                 {
                     return null;
                 }//else nothing.
-                if (string.IsNullOrEmpty(reader.ToString()))
+                string temp = reader.ToString();
+                if (string.IsNullOrEmpty(temp))
                 {
                     return null;
                 }//else nothing.

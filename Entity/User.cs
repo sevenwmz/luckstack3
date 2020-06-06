@@ -25,7 +25,8 @@ namespace Entity
 
 
         #region  Filed and properties
-
+        public string Inviter { set; get; }
+        public string InviterNumber { set; get; }
 
         [Required(ErrorMessage = "* 用户名不能为空")]
         [StringLength(6, MinimumLength = 4, ErrorMessage = "* 最大长度不能超过6")]

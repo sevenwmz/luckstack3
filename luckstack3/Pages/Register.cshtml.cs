@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using _17bang;
+using _17bang.Repository;
 using Entity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,7 @@ namespace luckstack3
         public string Inviter { set; get; }
 
         [Required(ErrorMessage = "* 邀请码不能为空")]
-        public int? InviterNumber { set; get; }
+        public string InviterNumber { set; get; }
 
         public string UserName { set; get; }
 
@@ -32,6 +33,13 @@ namespace luckstack3
         public string Captcha { set; get; }
 
         public int CookieId { set; get; }
+
+        private UserRepository _userRepository;
+        public RegisterModel()
+        {
+            _userRepository = new UserRepository();
+        }
+
         public void OnGet()
         {
             ViewData["preRegister"] = Request.Query[Const.PREPAGE];
@@ -44,76 +52,61 @@ namespace luckstack3
                 return Page();
             }
 
-            #region Trying Funtion 
-            //Connect to database
-            string connectionToDatabase = "Data Source=-20191126PKLSWP;Initial Catalog=17bang;Integrated Security=True";
+            User user = new User
+            {
+                Inviter = this.Inviter,
+                InviterNumber = this.InviterNumber,
+                UserName = this.UserName,
+                Password = this.Password
 
-            //string querystring = "Select * From [User]";
-            //DbDataAdapter adapter = new SqlDataAdapter(querystring, connectionToDatabase);
+            };
 
-            //DataSet user = new DataSet();
-            //adapter.Fill(user, "User");
-
-            //adapter.InsertCommand = new SqlCommand(
-            //    "Insert [User](UserName,Password) Values(@Name,@Password)"
-            //    );
-            //adapter.InsertCommand.Parameters.AddRange(new SqlParameter[]
-            //{
-            //    new SqlParameter("@Name",SqlDbType.NVarChar,20,"name"),
-            //    new SqlParameter("@Password",SqlDbType.NVarChar,20,"password")
-            //});
-
-            //DataRow newRow = user.Tables["User"].NewRow();
-            //newRow[0] = "wpzwpz123";
-            //newRow[1] = "dsaasd";
-            //user.Tables[0].Rows.Add(newRow);
-            //adapter.Update(user.Tables["User"]);
-            #endregion
+            _userRepository.Save(user);
 
 
             #region Old Funciton
 
-            using (DbConnection connection = new SqlConnection(connectionToDatabase))
-            {
-                connection.Open();
-                #region Prepare parameter 
-                //For Invitername
-                DbParameter pInviteName = new SqlParameter("@Inviter", Inviter);
-                //For InviterNumber
-                DbParameter pInviteNumber = new SqlParameter("@InviterNumber", InviterNumber);
-                //For UserName
-                DbParameter pUserName = new SqlParameter("@UserName", UserName);
-                //For Password
-                DbParameter pPassword = new SqlParameter("@Password", Password);
-                #endregion
+            //using (DbConnection connection = new SqlConnection(connectionToDatabase))
+            //{
+            //    connection.Open();
+            //    #region Prepare parameter 
+            //    //For Invitername
+            //    DbParameter pInviteName = new SqlParameter("@Inviter", Inviter);
+            //    //For InviterNumber
+            //    DbParameter pInviteNumber = new SqlParameter("@InviterNumber", InviterNumber);
+            //    //For UserName
+            //    DbParameter pUserName = new SqlParameter("@UserName", UserName);
+            //    //For Password
+            //    DbParameter pPassword = new SqlParameter("@Password", Password);
+            //    #endregion
 
-                #region Save Register
-                using (
-                    DbCommand sqlRegister = new SqlCommand(
-                        //Add BMoney use for later.
-                        $"Declare @TempId Int = (Select Max(Id)+1 From HelpMoney) " +
-                        $"Insert HelpMoney(Id,BMoney,Detail) Values(@TempId,50,N'注册赠送50帮帮币') " +
+            //    #region Save Register
+            //    using (
+            //        DbCommand sqlRegister = new SqlCommand(
+            //            //Add BMoney use for later.
+            //            $"Declare @TempId Int = (Select Max(Id)+1 From HelpMoney) " +
+            //            $"Insert HelpMoney(Id,BMoney,Detail) Values(@TempId,50,N'注册赠送50帮帮币') " +
 
-                        //Add new user.
-                        $"Insert[User](InviteName, InviteNumber, UserName,[Password], InviteById, BMoneyId)" +
-                        $"Values(" +
-                        $"(Select u.UserName From[User] u Where u.UserName = @Inviter )," +
-                        $"(Select u.InviteNumber From[User] u Where u.InviteNumber = @InviterNumber And u.UserName = @Inviter)," +
-                        $"@Username," +
-                        $"@Password," +
-                        $"(Select u.Id From[User] u Where u.InviteName = @Inviter)," +
+            //            //Add new user.
+            //            $"Insert[User](InviteName, InviteNumber, UserName,[Password], InviteById, BMoneyId)" +
+            //            $"Values(" +
+            //            $"(Select u.UserName From[User] u Where u.UserName = @Inviter )," +
+            //            $"(Select u.InviteNumber From[User] u Where u.InviteNumber = @InviterNumber And u.UserName = @Inviter)," +
+            //            $"@Username," +
+            //            $"@Password," +
+            //            $"(Select u.Id From[User] u Where u.InviteName = @Inviter)," +
 
-                        //Here I'm not sure about @@Identity.
-                        $"(Select Id From HelpMoney Where Id = @TempId) " +
-                        $") ", (SqlConnection)connection
-                        )
-                    )
-                {
-                    sqlRegister.Parameters.AddRange(new DbParameter[] { pInviteName, pInviteNumber, pUserName, pPassword });
-                    sqlRegister.ExecuteNonQuery();
-                }
-                #endregion
-            }
+            //            //Here I'm not sure about @@Identity.
+            //            $"(Select Id From HelpMoney Where Id = @TempId) " +
+            //            $") ", (SqlConnection)connection
+            //            )
+            //        )
+            //    {
+            //        sqlRegister.Parameters.AddRange(new DbParameter[] { pInviteName, pInviteNumber, pUserName, pPassword });
+            //        sqlRegister.ExecuteNonQuery();
+            //    }
+            //    #endregion
+            //}
 
             #endregion
 
