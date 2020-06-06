@@ -25,9 +25,8 @@ namespace _17bang
         public void OnGet()
         {
             
-            
             int pageIndex = Convert.ToInt32(Request.RouteValues["id"]);
-            int pageSize = 2;
+            int pageSize = 10;
 
             SumOfArticle = _article.GetSum();
             Items = _article.GetPaged(pageSize, pageIndex);

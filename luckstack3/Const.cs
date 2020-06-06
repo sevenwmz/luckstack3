@@ -9,7 +9,7 @@ namespace _17bang
     {
         //For Page
         public const string PAGE_INDEX = "pageIndex";
-        public const int PAGE_SIZE = 2;
+        public const int PAGE_SIZE = 10;
 
         //For Cookie
         public const string COOKIE_USER = "user";

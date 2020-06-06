@@ -20,7 +20,7 @@ namespace Entity
 
         protected string kind;
         
-        public DateTime PublishTime { get; }
+        public DateTime PublishTime { get; set; }
 
         public int Id { set; get; }
 
@@ -29,7 +29,6 @@ namespace Entity
         public int HelpMoney { set; get; }
 
         public Problem Reward { set; get; }
-        //keywords
 
         [Required(ErrorMessage ="内容不能为空")]
         public string Body { set; get; }

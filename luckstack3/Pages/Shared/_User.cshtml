@@ -7,8 +7,11 @@
     2.链接指向：/User/@Id
     3.根据Level显示不同的颜色：3级以下灰色；3-8级蓝色；8级以上红色 *@
 
-@{ string color = string.Empty;
-
+@{ string color = "gray";
+    if (Model.Level == null)
+    {
+        Model.Level = "1";
+    }
     if (Convert.ToInt32(Model.Level) < 3)
     {
         color = "gray";
@@ -23,4 +26,5 @@
     }
 }
 
-<a href="/Suggest/?@Const.USER_ID=@Model.Id" style="color:@color">@Model.NickName</a>
+
+<a href="/Suggest/?@Const.USER_ID=@Model.Id" style="color:@color">@Model.UserName</a>

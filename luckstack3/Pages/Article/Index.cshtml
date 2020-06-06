@@ -27,10 +27,14 @@
                     <p>@article.Summary<a href="/Article/Edit/@article.Id" style="color:dodgerblue">……</a></p>
                     <label>
                         <strong><i class="fa fa-tags"></i>关键字： </strong>
-                        @foreach (var item in article.Keywords)
+                        @if (article.Keywords != null)
                         {
-                            <span class="text-white badge bg-dark">@item.Name</span>
+                            @foreach (var item in article.Keywords)
+                            {
+                                <span class="text-white badge bg-dark">@item.Name</span>
+                            }
                         }
+
                     </label>
                     <div class="text-md-right">
                         <a href="none" class="text-info"> 评论：0 </a>
