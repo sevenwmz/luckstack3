@@ -65,20 +65,17 @@ namespace _17bang
 
         public void OnGet()
         {
-
-            using (DbConnection connection = new DBHelper().Connection)
+            IList<Ad> ads = new AdRepository().Get();
+            IList<Series> series = new SeriesRepository().Get();
+            AdOfArticle = new List<SelectListItem> { };
+            SeriesOfSelect = new List<SelectListItem> { };
+            foreach (var item in ads)
             {
-                string adOfArticleCmd = "Select ContentOfAd,Id From AD";
-                string adOfArticleText = "ContentOfAd";
-                string adOfArticleValue = "Id";
-                AdOfArticle = _repository.GetSelectList(adOfArticleCmd, adOfArticleText, adOfArticleValue, connection);
+                AdOfArticle.Add(new SelectListItem { Text = item.AdName, Value = item.Id.ToString() });
             }
-            using (DbConnection connection = new DBHelper().Connection)
+            foreach (var item in series)
             {
-                string seriesOfSelectCmd = "Select Name,Id From Series";
-                string seriesOfSelectText = "Name";
-                string seriesOfSelectValue = "Id";
-               SeriesOfSelect = _repository.GetSelectList(seriesOfSelectCmd, seriesOfSelectText, seriesOfSelectValue, connection);
+                SeriesOfSelect.Add(new SelectListItem { Text = item.SeriesName, Value = item.Id.ToString() });
             }
         }
 
@@ -86,7 +83,7 @@ namespace _17bang
         {
             if (!ModelState.IsValid)
             {
-                return Redirect("/Article/New");
+                return Redirect("/Article");
             }
 
             // If Summary is null ,take content in front of 255 char'.
@@ -103,27 +100,29 @@ namespace _17bang
                 }//else nothing.
             }
 
+            //Save article info to database
             using (DbConnection connection = new DBHelper().Connection)
             {
                 object adId = DBNull.Value;
                 connection.Open();
-
+                #region Save Ad
                 if (!string.IsNullOrEmpty(WebSite))
                 {
-                    string cmd = @"Insert AD(ContentOfAd,Url) Values(@ContentOfAd,@WebSite) Set @NewId = @@Identity ";
+                    string cmd = @"Insert AD(ContentOfAd,Url) Values(@ContentOfAd,@WebSite)";
                     adId = new DBHelper().Insert(
                         connection, cmd, new SqlParameter[]
                         {
                         new SqlParameter("@ContentOfAd", ContentOfAd),
-                        new SqlParameter("@WebSite", WebSite)
+                        new SqlParameter("@WebSite", WebSite),
                         });
-                }
+                }//else nothing
+                #endregion
 
                 #region Save Article
                 string articleCmdString = 
                     @"Insert Article (Title,Content,PublishTime,AuthorId,Summary,ADId,SeriesId) 
                          Values(@Title,@Content,GetDate(),(Select u.Id From [User] u Where u.UserName = @Author),@Summary,
-                        (Select Id From AD Where ContentOfAd = @NewId ),
+                        (Select Id From AD Where Id = @NewId ),
                         (Select Id From Series Where Name = @SeriesId))";
                 new DBHelper().ExcuteNonQuery(articleCmdString, connection, new SqlParameter[] {
                     new SqlParameter("@Title", Title),

@@ -125,7 +125,7 @@ namespace _17bang
         {
             if (!ModelState.IsValid)
             {
-                return Redirect("/Article/New");
+                return Redirect("/Article");
             }
 
             // If Summary is null ,take content in front of 255 char'.
@@ -176,7 +176,7 @@ namespace _17bang
             new KeywordRepository().UpdateKeywords(Keyword, getArticleId);
             #endregion
 
-            return Redirect("/Article/New");
+            return Redirect("/Article");
         }
 
     }

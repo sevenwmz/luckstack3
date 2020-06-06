@@ -30,21 +30,7 @@ namespace Entity
         public void ExcuteNonQuery(string cmdText, params SqlParameter[] parametersName)
         {
             DbConnection connection = Connection;
-            if (connection.State == System.Data.ConnectionState.Closed)
-            {
-                connection.Open();
-            }
-
-            try
-            {
-                DbCommand cmd = new SqlCommand(cmdText, (SqlConnection)connection);
-                cmd.Parameters.AddRange(parametersName);
-                cmd.ExecuteNonQuery();
-            }
-            finally
-            {
-                connection.Close();
-            }
+            new DBHelper().ExcuteNonQuery(cmdText,connection,parametersName);
         }
         /// <summary>
         /// Excute ADO.NET sql command
@@ -58,10 +44,11 @@ namespace Entity
             {
                 connection.Open();
             }
-
-            DbCommand cmd = new SqlCommand(cmdText, (SqlConnection)connection);
-            cmd.Parameters.AddRange(parameterName);
-            cmd.ExecuteNonQuery();
+            using (DbCommand cmd = new SqlCommand(cmdText, (SqlConnection)connection))
+            {
+                cmd.Parameters.AddRange(parameterName);
+                cmd.ExecuteNonQuery();
+            }
         }
 
         /// <summary>
@@ -83,20 +70,21 @@ namespace Entity
         /// <param name="parameterName">Need sql parameters</param>
         public int Insert(DbConnection connection, string cmdText, params SqlParameter[] parameterName)
         {
-            if (connection.State == System.Data.ConnectionState.Closed)
-            {
-                connection.Open();
-            }
-
+            cmdText = cmdText + " Set @NewId = @@Identity ";
             DbCommand cmd = new SqlCommand(cmdText, (SqlConnection)connection);
-            cmd.Parameters.AddRange(parameterName);
-            cmd.ExecuteNonQuery();
-
             SqlParameter pId = new SqlParameter("@NewId", System.Data.SqlDbType.Int)
             {
                 Direction = System.Data.ParameterDirection.Output
             };
-            return Convert.ToInt32(pId);
+            cmd.Parameters.Add(pId);
+            cmd.Parameters.AddRange(parameterName);
+            if (connection.State == System.Data.ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            cmd.ExecuteNonQuery();
+
+            return Convert.ToInt32(pId.Value);
         }
 
         /// <summary>
@@ -171,41 +159,25 @@ namespace Entity
         /// <returns></returns>
         public DbDataReader ExcuteReader(string cmdText, DbConnection connection)
         {
-            DbConnection conn = connection;
             DbCommand cmd = new SqlCommand(cmdText, (SqlConnection)connection);
             if (connection.State == System.Data.ConnectionState.Closed)
             {
                 connection.Open();
             }
-            try
-            {
-                DbDataReader reader = cmd.ExecuteReader();
-                return reader;
-            }
-            finally
-            {
-                //connection.Close();
-            }
+            DbDataReader reader = cmd.ExecuteReader();
+            return reader;
         }
 
         public DbDataReader ExcuteReader(string cmdText, DbConnection connection, params SqlParameter[] parameterName)
         {
-            DbConnection conn = connection;
             DbCommand cmd = new SqlCommand(cmdText, (SqlConnection)connection);
             cmd.Parameters.AddRange(parameterName);
             if (connection.State == System.Data.ConnectionState.Closed)
             {
                 connection.Open();
             }
-            try
-            {
-                DbDataReader reader = cmd.ExecuteReader();
-                return reader;
-            }
-            finally
-            {
-                //connection.Close();
-            }
+            DbDataReader reader = cmd.ExecuteReader();
+            return reader;
         }
     }
 }
