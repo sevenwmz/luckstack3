@@ -20,25 +20,25 @@
         <div class="col-md-8" style="margin-top:90px;">
             @foreach (var article in Model.Items)
             {
-            <div>
-                <span><i class="fa fa-calendar"></i>@article.PublishTime</span>
-                <span class="float-md-right text-info">作者：<partial name="_User" model="article.Author" /></span>
-                <p><a href="none" class="text-info">@article.Title</a></p>
-                <p>@article.Summary<a href="/Article/Edit/@article.Id" style="color:dodgerblue">……</a></p>
-                <label>
-                    <strong><i class="fa fa-tags"></i>关键字： </strong>
-                    @foreach (var item in article.Keywords)
-                    {
-                        <span class="text-white badge bg-dark">@item.Name</span>
-                    }
-                </label>
-                <div class="text-md-right">
-                    <a href="none" class="text-info"> 评论：0 </a>
-                    <a href="none" class="text-success"> 赞： 0  </a>
-                    <a href="none" class="text-muted"> 踩：0 </a><br />
+                <div>
+                    <span><i class="fa fa-calendar"></i>@article.PublishTime</span>
+                    <span class="float-md-right text-info">作者：<partial name="_User" model="article.Author" /></span>
+                    <p><a href="none" class="text-info">@article.Title</a></p>
+                    <p>@article.Summary<a href="/Article/Edit/@article.Id" style="color:dodgerblue">……</a></p>
+                    <label>
+                        <strong><i class="fa fa-tags"></i>关键字： </strong>
+                        @foreach (var item in article.Keywords)
+                        {
+                            <span class="text-white badge bg-dark">@item.Name</span>
+                        }
+                    </label>
+                    <div class="text-md-right">
+                        <a href="none" class="text-info"> 评论：0 </a>
+                        <a href="none" class="text-success"> 赞： 0  </a>
+                        <a href="none" class="text-muted"> 踩：0 </a><br />
+                    </div>
+                    <hr />
                 </div>
-                <hr />
-            </div>
 
             }
             @{

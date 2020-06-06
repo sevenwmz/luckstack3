@@ -12,23 +12,7 @@ namespace EntityTest
         [Test]
         public void BinarySeekText()
         {
-            string Title = "这里是测试新的111生机功能";
 
-            string Keywords = " 关键字1  关键字2  关键字3 关键字1";
-            IList<string> keywords = Keywords.Trim().Split(" ");
-            for (int i = 0; i < keywords.Count; i++)
-            {
-                if (string.IsNullOrWhiteSpace(keywords[i]))
-                {
-                    continue;
-                }
-                int keywordsId = new ArticleRepository().GetKeywordsId(keywords[i]);
-                new ArticleRepository().PlusUsedKeyword(keywordsId);
-                int articleId = new ArticleRepository().GetArticleId(Title);
-                new ArticleRepository().AttachKeyword(articleId, keywordsId);
-
-                
-            }
 
 
 

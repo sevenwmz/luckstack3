@@ -1,6 +1,8 @@
 ﻿using Entity;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,24 +10,43 @@ namespace _17bang.Repository
 {
     public class AdRepository
     {
-        public static IList<Ad> _repository;
+        private DBHelper _helper;
 
-        static AdRepository()
+        public AdRepository()
         {
-            _repository = new List<Ad>
-            {
-                new Ad{ AdName = "学编程，来 “源栈”！飞哥精品小班等着你……" ,Id =1},
-                new Ad{ AdName = "免费广告位，抢到就是赚到！" ,Id = 2},
-                new Ad{ AdName = "免费广告位，抢到就是赚到！" ,Id = 3},
-                new Ad{ AdName = "免费广告位，抢到就是赚到！" ,Id = 4},
-                new Ad{ AdName = "免费广告位，抢到就是赚到！" ,Id = 5},
-                new Ad{ AdName = "本站主机由西部数码提供" ,Id = 6},
-            };
+            _helper = new DBHelper();
         }
         public IList<Ad> Get()
         {
-            return _repository;
+            using (DbConnection connection = _helper.Connection)
+            {
+                IList<Ad> result = new List<Ad> { };
+                using (DbCommand cmd = new SqlCommand("Select ContentOfAd,Id From AD", (SqlConnection)connection))
+                {
+                    connection.Open();
+                    SqlDataReader reader = (SqlDataReader)cmd.ExecuteReader();
+                    if (!reader.HasRows)
+                    {
+                        return result;
+                    }
+                    while (reader.Read())
+                    {
+                        result.Add(new Ad { AdName = reader["ContentOfAd"].ToString(), Id = Convert.ToInt32(reader["Id"]) });
+                    }
+                    return result;
+                }
+            }
         }
 
+        public void SaveEditAd(string adCmdText,params SqlParameter[] sqlParameter)
+        {
+            using (DbConnection connection = _helper.Connection)
+            {
+                DbCommand cmd = new SqlCommand(adCmdText, (SqlConnection)connection);
+                cmd.Parameters.AddRange(sqlParameter);
+                connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

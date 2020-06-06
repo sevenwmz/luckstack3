@@ -63,13 +63,25 @@ namespace Entity
             cmd.Parameters.AddRange(parameterName);
             cmd.ExecuteNonQuery();
         }
+
+        /// <summary>
+        /// Return Insert Id
+        /// </summary>
+        /// <param name="cmdText">Sql CmdText</param>
+        /// <param name="parametersName">SqlParameters</param>
+        /// <returns></returns>
+        public int Insert(string cmdText, params SqlParameter[] parametersName)
+        {
+            return new DBHelper().Insert(Connection,cmdText,parametersName);
+        }
+
         /// <summary>
         /// Excute ADO.NET sql command And return Insert Id
         /// </summary>
         /// <param name="cmdText">Need Sql command string</param>
         /// <param name="connection">Need DbConnection connection</param>
         /// <param name="parameterName">Need sql parameters</param>
-        public int ExcuteNonQuery(DbConnection connection, string cmdText, params SqlParameter[] parameterName)
+        public int Insert(DbConnection connection, string cmdText, params SqlParameter[] parameterName)
         {
             if (connection.State == System.Data.ConnectionState.Closed)
             {
@@ -80,7 +92,7 @@ namespace Entity
             cmd.Parameters.AddRange(parameterName);
             cmd.ExecuteNonQuery();
 
-             SqlParameter pId = new SqlParameter("@NewId", System.Data.SqlDbType.Int)
+            SqlParameter pId = new SqlParameter("@NewId", System.Data.SqlDbType.Int)
             {
                 Direction = System.Data.ParameterDirection.Output
             };
@@ -93,7 +105,7 @@ namespace Entity
         /// <param name="cmdText">Need Sql command string</param>
         /// <param name="parameterName">Need sql parameter</param>
         /// <returns></returns>
-        public string ExcuteScalar(string cmdText,SqlParameter parameterName)
+        public string ExcuteScalar(string cmdText, SqlParameter parameterName)
         {
             DbConnection connection = Connection;
             if (connection.State == System.Data.ConnectionState.Closed)
@@ -129,7 +141,7 @@ namespace Entity
         /// <param name="parameterName">Need sql parameter</param>
         /// <param name="connection">Need DbConnection connection</param>
         /// <returns></returns>
-        public string ExcuteScalar(string cmdText,SqlParameter parameterName, DbConnection connection)
+        public string ExcuteScalar(string cmdText, SqlParameter parameterName, DbConnection connection)
         {
             if (connection.State == System.Data.ConnectionState.Closed)
             {
@@ -176,6 +188,24 @@ namespace Entity
             }
         }
 
-
+        public DbDataReader ExcuteReader(string cmdText, DbConnection connection, params SqlParameter[] parameterName)
+        {
+            DbConnection conn = connection;
+            DbCommand cmd = new SqlCommand(cmdText, (SqlConnection)connection);
+            cmd.Parameters.AddRange(parameterName);
+            if (connection.State == System.Data.ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            try
+            {
+                DbDataReader reader = cmd.ExecuteReader();
+                return reader;
+            }
+            finally
+            {
+                //connection.Close();
+            }
+        }
     }
 }

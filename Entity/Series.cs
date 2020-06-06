@@ -4,7 +4,10 @@ using System.Text;
 
 namespace Entity
 {
-    class Series
+    public class Series
     {
+        public int Id;
+
+        public string SeriesName;
     }
 }

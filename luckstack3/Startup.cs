@@ -52,8 +52,8 @@ namespace _17bang
                 })
                 .AddMvcOptions(options =>
                 {
-                    options.Filters.Add(typeof(ContextPerRequest));
-                    options.Filters.Add(new LogExceptionFilter());
+                    //options.Filters.Add(typeof(ContextPerRequest));
+                    //options.Filters.Add(new LogExceptionFilter());
                 }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 
 

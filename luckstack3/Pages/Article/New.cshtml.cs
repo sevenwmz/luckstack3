@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Data.SqlClient;
 using System;
+using _17bang.Repository;
 
 namespace _17bang
 {
@@ -110,7 +111,7 @@ namespace _17bang
                 if (!string.IsNullOrEmpty(WebSite))
                 {
                     string cmd = @"Insert AD(ContentOfAd,Url) Values(@ContentOfAd,@WebSite) Set @NewId = @@Identity ";
-                    adId = new DBHelper().ExcuteNonQuery(
+                    adId = new DBHelper().Insert(
                         connection, cmd, new SqlParameter[]
                         {
                         new SqlParameter("@ContentOfAd", ContentOfAd),
@@ -137,6 +138,7 @@ namespace _17bang
                 #region Save Of Keyword
                 if (!string.IsNullOrEmpty(Keywords))
                 {
+                    KeywordRepository keywordRepository = new KeywordRepository();
                     IList<string> keywords = Keywords.Trim().Split(" ");
                     for (int i = 0; i < keywords.Count; i++)
                     {
@@ -144,10 +146,10 @@ namespace _17bang
                         {
                             continue;
                         }
-                        int keywordsId = _repository.GetKeywordsId(keywords[i]);
-                        _repository.PlusUsedKeyword(keywordsId);
+                        int keywordsId = keywordRepository.GetKeywordsId(keywords[i]);
+                        keywordRepository.PlusUsedKeyword(keywordsId);
                         int articleId = _repository.GetArticleId(Title);
-                        _repository.AttachKeyword(articleId, keywordsId);
+                        keywordRepository.AttachKeyword(articleId, keywordsId);
                     }
                 }
                 #endregion
