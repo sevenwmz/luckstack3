@@ -29,11 +29,11 @@ namespace luckstack3
         [Required(/*AllowEmptyStrings = true, */ErrorMessage = "* 密码不能为空")]
         public string Password { set; get; }
 
-        //private UserRepository _repository { set; get; }
-        //public LogOnModel()
-        //{
-        //    _repository = new UserRepository();
-        //}
+        private UserRepository _repository { set; get; }
+        public LogOnModel()
+        {
+            _repository = new UserRepository();
+        }
 
         public bool RemenberMe { set; get; }
 
@@ -54,63 +54,22 @@ namespace luckstack3
             {
                 return Page();
             }
-
-
-            string checkUser = string.Empty;
-            string checkPassword = string.Empty;
-
-
-
             //User user = _repository.GetByName(Name);
 
-            //connection to database
-            string connectionToDatabase = "Data Source=-20191126PKLSWP;Initial Catalog=17bang;Integrated Security=True";
-            using (DbConnection connection = new SqlConnection(connectionToDatabase))
+            #region Main function of check userInfo exists
+            LogOnModel logOn = new LogOnModel
             {
-                connection.Open();
-                #region Parameter of sqlCheckUser
-                //For login name check 
-                DbParameter pName = new SqlParameter("@Name", Name);
-                //For login password check 
-                DbParameter pPassword = new SqlParameter("@Password", Password);
-                #endregion
-
-                #region Main function of check userInfo exists
-                using (
-                        DbCommand sqlCheckUser = new SqlCommand(
-                            $"select UserName,Password from [User] " +
-                            $"where Password = @Password and UserName = @Name ", (SqlConnection)connection)
-                        )
-                {
-                    sqlCheckUser.Parameters.AddRange(new DbParameter[] { pName, pPassword });
-                    SqlDataReader reader = (SqlDataReader)sqlCheckUser.ExecuteReader();
-                    if (!reader.HasRows)
-                    {
-                        ModelState.AddModelError(nameof(Password), "用户名或密码不正确");
-                        return Page();
-                    }
-
-                    while (reader.Read())
-                    {
-                        if ((reader["UserName"].ToString()).Trim() != Name)
-                        {
-                            ModelState.AddModelError(nameof(Name), "用户名不正确");
-                            return Page();
-                        }
-                        if ((reader["Password"].ToString()).Trim() != Password)
-                        {
-                            ModelState.AddModelError(nameof(Password), "用户名或密码不正确");
-                            return Page();
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                }
-                #endregion
-
+                Name = this.Name,
+                Password = this.Password
+            };
+            if (!_repository.VerifyLogIn(logOn))
+            {
+                ModelState.AddModelError(nameof(Password), "用户名或密码不正确");
+                return Page();
             }
+
+            #endregion
+
 
 
             //Response.Cookies.Append(Name, (++_cookie).ToString());

@@ -1,4 +1,5 @@
 ﻿using Entity;
+using luckstack3;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -121,6 +122,38 @@ namespace _17bang.Repository
                 }
             }
             #endregion
+        }
+
+        internal bool VerifyLogIn(LogOnModel logOn)
+        {
+            using (DbConnection connection = new DBHelper().Connection)
+            {
+                using (DbCommand sqlCheckUser = new SqlCommand(
+                    @"select UserName,Password from [User] where Password = @Password and UserName = @Name ", (SqlConnection)connection))
+                {
+                    sqlCheckUser.Parameters.AddRange(new DbParameter[] { new SqlParameter("@Name", logOn.Name), new SqlParameter("@Password", logOn.Password) });
+                    connection.Open();
+                    SqlDataReader reader = (SqlDataReader)sqlCheckUser.ExecuteReader();
+                    if (!reader.HasRows)
+                    {
+                        return false;
+                    }
+
+                    while (reader.Read())
+                    {
+                        if ((reader["UserName"].ToString()).Trim() != logOn.Name)
+                        {
+                            return false;
+                        }
+                        if ((reader["Password"].ToString()).Trim() != logOn.Password)
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+            }
+            
         }
 
         /// <summary>
