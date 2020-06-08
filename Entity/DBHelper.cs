@@ -13,12 +13,18 @@ namespace Entity
         /// </summary>
         private const string _connectionToDatabase = "Data Source=-20191126PKLSWP;Initial Catalog=17bang;Integrated Security=True";
 
+        private DbConnection connection;
+        public DBHelper()
+        {
+            connection = new SqlConnection(_connectionToDatabase);
+        }
+
         /// <summary>
         /// For out connection
         /// </summary>
         public DbConnection Connection
         {
-            get => new SqlConnection(_connectionToDatabase);
+            get => connection;
         }
 
 
@@ -96,32 +102,7 @@ namespace Entity
         public string ExcuteScalar(string cmdText, SqlParameter parameterName)
         {
             DbConnection connection = Connection;
-            if (connection.State == System.Data.ConnectionState.Closed)
-            {
-                connection.Open();
-            }
-
-            try
-            {
-                DbCommand cmd = new SqlCommand(cmdText, (SqlConnection)connection);
-                cmd.Parameters.Add(parameterName);
-                object reader = cmd.ExecuteScalar();
-                if (reader == DBNull.Value)
-                {
-                    return null;
-                }//else nothing.
-                string temp = reader.ToString();
-                if (string.IsNullOrEmpty(temp))
-                {
-                    return null;
-                }//else nothing.
-                return reader.ToString();
-
-            }
-            finally
-            {
-                connection.Close();
-            }
+            return new DBHelper().ExcuteScalar(cmdText, parameterName,connection);
         }
         /// <summary>
         /// Retrun string scalar
@@ -160,13 +141,7 @@ namespace Entity
         /// <returns></returns>
         public DbDataReader ExcuteReader(string cmdText, DbConnection connection)
         {
-            DbCommand cmd = new SqlCommand(cmdText, (SqlConnection)connection);
-            if (connection.State == System.Data.ConnectionState.Closed)
-            {
-                connection.Open();
-            }
-            DbDataReader reader = cmd.ExecuteReader();
-            return reader;
+            return new DBHelper().ExcuteReader(cmdText,connection,new SqlParameter[] { });
         }
 
         public DbDataReader ExcuteReader(string cmdText, DbConnection connection, params SqlParameter[] parameterName)

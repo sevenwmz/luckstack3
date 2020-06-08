@@ -18,6 +18,8 @@ namespace luckstack3
     [BindProperties]
     public class RegisterModel : PageModel
     {
+
+        #region Register preproty
         [Required(ErrorMessage = "* 邀请人不能为空")]
         public string Inviter { set; get; }
 
@@ -35,6 +37,8 @@ namespace luckstack3
         public int CookieId { set; get; }
 
         private UserRepository _userRepository;
+        #endregion
+
         public RegisterModel()
         {
             _userRepository = new UserRepository();
@@ -58,11 +62,12 @@ namespace luckstack3
                 InviterNumber = this.InviterNumber,
                 UserName = this.UserName,
                 Password = this.Password
-
             };
-
-            _userRepository.Save(user);
-
+            if (!_userRepository.Save(user))
+            {
+                ModelState.AddModelError(nameof(UserName),"用户名或者邀请人邀请码不正确呦");
+                return Page();
+            }
 
             #region Old Funciton
 
@@ -110,10 +115,9 @@ namespace luckstack3
 
             #endregion
 
-
-
             HttpContext.Session.SetString(Const.COOKIE_USER, Const.COOKIE_VALUE);
             Response.Cookies.Append(Const.COOKIE_USER, Const.COOKIE_VALUE);
+            LogOnModel.IsLogIn = true;
             return Redirect(Request.Query[Const.PREPAGE]);
         }
     }

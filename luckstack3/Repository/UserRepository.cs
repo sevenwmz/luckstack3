@@ -27,103 +27,66 @@ namespace _17bang.Repository
                 new User{UserName = "老王",Password = "1234",Level = "10",Integral = 339},
             };
         }
-        public IList<User> Get()
-        {
-            return _users;
-        }
-        public User GetByName(string userName)
-        {
-            return _users.Where(u => u.UserName == userName).SingleOrDefault();
-        }
 
         /// <summary>
         /// Save Register To Database
         /// </summary>
         /// <param name="user">Need user Info</param>
-        public void Save(User user)
+        public bool Save(User user)
         {
             UserRepository repository = new UserRepository();
 
             #region Check Info Is Correct
             if (!repository.CheckInvitedName(user.Inviter))
             {
-                return;
+                return false;
             }//eles nothing
             if (!repository.CheckInviteCode(user.InviterNumber))
             {
-                return;
+                return false;
             }//eles nothing
             if (!repository.UserNameHasRepeat(user.UserName))
             {
-                return;
+                return false;
             }//eles nothing
             #endregion
 
             DBHelper helper = new DBHelper();
 
-            #region Give New User 10 BMoney
-            int bMoneyId;
-            using (DbConnection connection = helper.Connection)
-            {
-                DbCommand command = new SqlCommand();
-                connection.Open();
-                DbTransaction transaction = connection.BeginTransaction();
-                try
-                {
-                    command.Transaction = transaction;
-                    string cmdOfBmoney = "Insert HelpMoney(Id,BMoney,Detail,LatesTime) Values((Select Max(Id)+1 From HelpMoney) ,10,N'注册赠送10帮帮币',GetDate()) ";
-                    bMoneyId = helper.Insert(connection, cmdOfBmoney, new SqlParameter[] { });
-                    transaction.Commit();
-                }
-                catch (Exception)
-                {
-                    transaction.Rollback();
-                    throw;
-                }
-            }
-            #endregion
-
             #region Insert Register
             string cmd =
-                @"Insert [User](InviteName,InvitedCode,UserName,[Password],BMoneyId,InviteById,[Level])
-                Values(@InviteName, @InvitedCode, @UserName, @Password,@BMoneyId,(Select Id From[User] Where UserName = @InviteName),1)";
+                @"Insert [User](InviteName,InvitedCode,UserName,[Password],InviteById,[Level])
+                Values(@InviteName, @InvitedCode, @UserName, @Password,(Select Id From[User] Where UserName = @InviteName),1) ";
 
-            helper.ExcuteNonQuery(cmd, new SqlParameter[]{
-            new SqlParameter("@InviteName",user.Inviter),
-            new SqlParameter("@InvitedCode",user.InviterNumber),
-            new SqlParameter("@UserName",user.UserName),
-            new SqlParameter("@Password",user.Password),
-            new SqlParameter("@BMoneyId",bMoneyId)
+            int newRegisterId = helper.Insert(cmd, new SqlParameter[]
+            {
+                new SqlParameter("@InviteName",user.Inviter),
+                new SqlParameter("@InvitedCode",user.InviterNumber),
+                new SqlParameter("@UserName",user.UserName),
+                new SqlParameter("@Password",user.Password)
             });
             #endregion
 
-            #region Give Inviter Reward
-            using (DbConnection connection = helper.Connection)
-            {
-                connection.Open();
-                DbTransaction transaction = connection.BeginTransaction();
-                try
-                {
-                    string cmdOfBmoney =
-                        @"Insert HelpMoney(Id,BMoney,Detail,LatesTime) 
-                            Values(
-                            (Select BMoneyId From [User] Where UserName = @InviteName) ,
-                            (Select Top 1 BMoney From HelpMoney 
-                            Where Id = (Select BMoneyId From [User] Where UserName = @InviteName)
-                            order by LatesTime desc),
-                            N'邀请成功赠送10帮帮币',GetDate()) ";
-                    helper.ExcuteNonQuery(cmdOfBmoney, new SqlParameter[] { new SqlParameter("@InviteName", user.Inviter) });
-                    transaction.Commit();
-                }
-                catch (Exception)
-                {
-                    transaction.Rollback();
-                    throw;
-                }
-            }
+            #region Give New User 10 BMoney
+            //Got newRegisterId From Identity ,is safe.
+            string cmdForRegisterBMoney = $@"Insert HelpMoney(BmoneyId,BMoney,Detail,LatesTime) 
+                                            Values({newRegisterId} , 10, N'注册赠送10帮帮币', GetDate()) ";
+            helper.ExcuteNonQuery(cmdForRegisterBMoney,new SqlParameter[] { });
             #endregion
+
+            #region Give Inviter 10 Award
+            new UserRepository().AwardToInviter(user.Inviter);
+
+            #endregion
+
+            return true;
         }
 
+        /// <summary>
+        /// LogOn Verify
+        /// </summary>
+        /// <param name="logOn">Need LogOn Info</param>
+        /// <returns></returns>
         internal bool VerifyLogIn(LogOnModel logOn)
         {
             using (DbConnection connection = new DBHelper().Connection)
@@ -153,9 +116,10 @@ namespace _17bang.Repository
                     return true;
                 }
             }
-            
+
         }
 
+        #region Register Save Function
         /// <summary>
         /// Check username has repeat
         /// </summary>
@@ -199,6 +163,49 @@ namespace _17bang.Repository
                 return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// Give inviter gift 10 BMoney
+        /// </summary>
+        /// <param name="inviter">Need inviter name</param>
+        internal void AwardToInviter(string inviter)
+        {
+            using (DbConnection connection = new DBHelper().Connection)
+            {
+                string cmdOfBmoney = @"Insert HelpMoney(BmoneyId,BMoney,Detail,LatesTime) 
+                                    Values(
+                                    (Select Id From [User] Where UserName = @InviteName) ,
+                                    (Select (Select Top 1 BMoney From HelpMoney Where BMoneyId = (Select Id From [User] Where UserName = @InviteName)order by LatesTime desc)+10),
+                                    N'邀请成功赠送10帮帮币',
+                                    GetDate()) ";
+                DbCommand command = new SqlCommand(cmdOfBmoney, (SqlConnection)connection);
+                connection.Open();
+                using (DbTransaction transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        command.Transaction = transaction;
+                        command.Parameters.Add(new SqlParameter("@InviteName", inviter));
+                        command.ExecuteNonQuery();
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+        }
+        #endregion
+        public IList<User> Get()
+        {
+            return _users;
+        }
+        public User GetByName(string userName)
+        {
+            return _users.Where(u => u.UserName == userName).SingleOrDefault();
         }
     }
 }
