@@ -4,7 +4,10 @@ using System.Text;
 
 namespace HomeWork_Of_EFCore
 {
-    class User
+    public class User : BaceEntity
     {
+        public string Name { set; get; }
+
+        public int FailedTry { set; get; }
     }
 }

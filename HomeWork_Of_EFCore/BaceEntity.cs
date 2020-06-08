@@ -4,7 +4,8 @@ using System.Text;
 
 namespace HomeWork_Of_EFCore
 {
-    class BaceEntity
+    public class BaceEntity
     {
+        public int Id { set; get; }
     }
 }
