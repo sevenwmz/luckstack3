@@ -1,0 +1,73 @@
+﻿@page
+@model _17bang.SaleModel
+@{
+    ViewData["Title"] = "帮帮币装箱·一起帮";
+}
+
+
+
+
+
+    <div class=" container" style="margin-top:75px">
+        <div class="justify-content-md-start">
+            <h2 class="flex-grow-0"><span class="fa fa-money">帮帮币装箱</span></h2><a href="none" class="fa fa-empire flex-grow-1">联系我们</a>
+            <hr />
+        </div>
+        <div class="col-md-5">
+            <div style="border:dashed#d8c8c8 3px;padding:25px;background-color:lightyellow">
+                <p>系统要求的最低出售门槛为： 50 枚 </p>
+                <p>目前，你的 <a href="none" style="color:yellowgreen"> 帮帮币 </a>：</p>
+                <hr />
+                <div class="flex-column">
+                    <p><b>结余：</b>             </p>
+                    <p><b>可出售：</b>      </p>
+                </div>
+            </div>
+            <form method="post">
+                <div class="form-group">
+                    <label><strong>购买人：（* 必填）</strong></label>
+                    <input asp-for="User" class="form-control" placeholder="他的用户名，模糊查询只能从头开始">
+                    <span asp-validation-for="User"></span>
+                </div>
+                <div class="form-group">
+                    <p><strong>出售数量：（* 必填）</strong></p>
+                    <div div class="input-group input-group-combined">
+                        <div class="input-group-prepend">
+                            <p class="btn btn-outline-secondary"><i class="fa fa-money"></i></p>
+                        </div>
+                        <input asp-for="SaleCount" class="form-control" placeholder="大于0的正整数">
+                        <span asp-validation-for="SaleCount"></span>
+                        <div class="input-group-append">
+                            <p class="btn btn-outline-secondary"> 枚</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p><strong>成交总价：（* 必填，指导单价：20元/枚）</strong></p>
+                    <div div class="input-group input-group-combined">
+                        <div class="input-group-prepend">
+                            <p class="btn btn-outline-secondary"><b>￥</b> </p>
+                        </div>
+                        <input asp-for="TotalSaleMoney" class="form-control" placeholder="大于0的正整数">
+                        <span asp-validation-for="TotalSaleMoney"></span>
+                        <div class="input-group-append">
+                            <p class="btn btn-outline-secondary"> 元</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><strong>留言：</strong></label>
+                    <textarea asp-for="Message" class="form-control" rows="5" placeholder="一些需特别说明的事项"></textarea>
+                    <span asp-validation-for="Message"></span>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary rounded">提交</button>
+                    <button type="submit" class="btn border-secondary rounded">重置</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-7">
+
+        </div>
+
+    </div>
