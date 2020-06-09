@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace HomeWork_Of_EF6
 {
-    class User
+    public class User : BaseEntity
     {
+        public string Name { set; get; }
+        public int FailedTry { set; get; }
     }
 }

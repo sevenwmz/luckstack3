@@ -14,7 +14,12 @@ namespace HomeWork_Of_EFCore
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string connectionString = "Data Source=-20191126PKLSWP;Initial Catalog=EFCore;Integrated Security=True;";
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer(connectionString)
+#if DEBUG
+                .EnableSensitiveDataLogging()
+#endif
+
+                ;
             base.OnConfiguring(optionsBuilder);
         }
 

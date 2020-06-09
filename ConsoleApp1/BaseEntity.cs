@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace HomeWork_Of_EF6
 {
-    class BaseEntity
+    public class BaseEntity
     {
+        public int Id { set; get; }
     }
 }

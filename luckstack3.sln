@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Captcha", "Captcha\Captcha.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork_Of_EFCore", "HomeWork_Of_EFCore\HomeWork_Of_EFCore.csproj", "{0F7C8B0E-E7DF-4538-A78F-A9BC34FB6338}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork_Of_EF6", "ConsoleApp1\HomeWork_Of_EF6.csproj", "{130F9E76-A514-4B82-ABCF-337F3C6A8B3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{0F7C8B0E-E7DF-4538-A78F-A9BC34FB6338}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F7C8B0E-E7DF-4538-A78F-A9BC34FB6338}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F7C8B0E-E7DF-4538-A78F-A9BC34FB6338}.Release|Any CPU.Build.0 = Release|Any CPU
+		{130F9E76-A514-4B82-ABCF-337F3C6A8B3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{130F9E76-A514-4B82-ABCF-337F3C6A8B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{130F9E76-A514-4B82-ABCF-337F3C6A8B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{130F9E76-A514-4B82-ABCF-337F3C6A8B3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
