@@ -8,6 +8,6 @@ namespace HomeWork_Of_EFCore
     {
         public string Name { set; get; }
 
-        public int FailedTry { set; get; }
+        //public int FailedTry { set; get; }
     }
 }

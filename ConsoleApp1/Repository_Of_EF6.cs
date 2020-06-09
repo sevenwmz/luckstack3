@@ -13,7 +13,9 @@ namespace HomeWork_Of_EF6
 
         public Repository_Of_EF6() : base("EF6")
         {
-
+#if DEBUG
+            new Repository_Of_EF6().Database.Log = Console.Write;
+#endif
         }
 
     }

@@ -9,6 +9,6 @@ namespace HomeWork_Of_EF6
     public class User : BaseEntity
     {
         public string Name { set; get; }
-        public int FailedTry { set; get; }
+        //public int FailedTry { set; get; }
     }
 }
