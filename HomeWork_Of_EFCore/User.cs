@@ -4,10 +4,17 @@ using System.Text;
 
 namespace HomeWork_Of_EFCore
 {
+    //[Table("Register")]
     public class User : BaceEntity
     {
+        //[MaxLength(50)]
+        //[Key]
+        //[Column("UserName")]
         public string Name { set; get; }
-
-        //public int FailedTry { set; get; }
+        //[Required]
+        public string Password { set; get; }
+        public DateTime CreateTime { set; get; }
+        //[NotMapped]
+        public int FailedTry { set; get; }
     }
 }

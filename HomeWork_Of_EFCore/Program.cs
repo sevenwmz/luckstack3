@@ -125,6 +125,29 @@ namespace HomeWork_Of_EFCore
             }
             #endregion
 
+            #region Use Linq to EntityFramework   http://17bang.ren/Article/556
+            //            作业 http://17bang.ren/Article/556
+            //利用Linq to EntityFramework，实现方法：GetBy(IList < ProblemStatus > exclude, bool hasReward, bool descByPublishTime)，该方法可以根据输入参数： 
+            //IList<ProblemStatus> exclude：不显示（排除）某些状态的求助
+            //bool hasReward：只显示已有酬谢的求助（如果传入值为true的话） 
+            //bool descByPublishTime：按发布时间正序还是倒序
+            //参考：求助列表（不显示 / 只显示）和文章列表（正序 / 倒序）
+
+
+            #endregion
+
+            #region OnModelCreating()和Data Annotations     http://17bang.ren/Article/558
+            //            作业 http://17bang.ren/Article/558
+            //分别使用OnModelCreating()和Data Annotations，完成以下配置：    In [Repository_Of_EFCore]
+            //将之前的User类名改为Register，但仍然能对应表User
+            //将之前的User属性Name改成UserName，但仍然能对应表User的列Name
+            //将Name的长度限制为256
+            //Password不能为空
+            //将User表的主键设置在Name列上
+            //User类中的属性FailedTry不用存储到数据库中
+            //给CreateTime属性添加一个非聚集唯一索引
+            #endregion
+
 
         }
     }
