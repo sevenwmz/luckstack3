@@ -8,5 +8,7 @@ namespace HomeWork_Of_EFCore
     {
         public string EmailLocation { set; get; }
         public string Remark { set; get; }
+        //public int? FromWhoId { set; get; }
+        public User FromWho { set; get; }
     }
 }

@@ -16,5 +16,7 @@ namespace HomeWork_Of_EFCore
         public DateTime CreateTime { set; get; }
         //[NotMapped]
         public int FailedTry { set; get; }
+        public int? SendToId { set; get; }
+        public Email SendTo { set; get; }
     }
 }

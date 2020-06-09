@@ -42,7 +42,7 @@ namespace HomeWork_Of_EFCore
             {
                 //将User类映射到数据库： 
                 //1.使用EF的API直接建库建表删库
-                { 
+                {
                     //new Repository_Of_EF6().Database.CreateIfNotExists();
                 }
                 //2.使用Migration工具建库建表
@@ -148,7 +148,22 @@ namespace HomeWork_Of_EFCore
             //给CreateTime属性添加一个非聚集唯一索引
             #endregion
 
+            #region 课间作业：Email和User有一对一的关系 	http://17bang.ren/Article/675
+            //            课间作业： 	http://17bang.ren/Article/675
+            //Email和User有一对一的关系，参照课堂演示，在数据库上建立User外键引用Email的映射
+            {
+                Repository_Of_EFCore repository = new Repository_Of_EFCore();
 
+                User wpz = new User { Name = "Seven-2", Password = "1234" };
+                Email email = new Email { EmailLocation = "123456@qq.com" };
+                wpz.SendTo = email;
+                email.FromWho = wpz;
+
+                repository.Add<User>(wpz);
+                repository.Add<Email>(email);
+                repository.SaveChanges();
+            }
+            #endregion
         }
     }
 }

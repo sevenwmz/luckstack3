@@ -33,6 +33,7 @@ namespace HomeWork_Of_EFCore
                 u.HasIndex(u => u.Name);
                 u.HasIndex(u => u.CreateTime).IsClustered(false);
                 u.Ignore(u => u.FailedTry);
+                u.HasOne<Email>(u=>u.SendTo).WithOne(u => u.FromWho).HasForeignKey<User>(u=>u.SendToId);
             });
 
 
