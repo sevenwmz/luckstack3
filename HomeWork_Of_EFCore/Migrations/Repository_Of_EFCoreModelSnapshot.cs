@@ -29,6 +29,9 @@ namespace HomeWork_Of_EFCore.Migrations
                     b.Property<string>("Body")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("PublishTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Summary")
                         .HasColumnType("nvarchar(max)");
 
@@ -37,7 +40,7 @@ namespace HomeWork_Of_EFCore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Article");
+                    b.ToTable("Articles");
                 });
 
             modelBuilder.Entity("HomeWork_Of_EFCore.Email", b =>
@@ -113,7 +116,13 @@ namespace HomeWork_Of_EFCore.Migrations
                     b.Property<string>("Body")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("PublishTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("Reward")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Statu")
                         .HasColumnType("int");
 
                     b.Property<string>("Summary")

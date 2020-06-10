@@ -134,7 +134,9 @@ namespace HomeWork_Of_EFCore
             //bool hasReward：只显示已有酬谢的求助（如果传入值为true的话） 
             //bool descByPublishTime：按发布时间正序还是倒序
             //参考：求助列表（不显示 / 只显示）和文章列表（正序 / 倒序）
-            new ProblemRepository().GetBy(new List<ProblemStatus> { new ProblemStatus { } },false,false);
+            {
+                //new ProblemRepository().GetBy(new List<ProblemStatus> { new ProblemStatus { } }, false, false);
+            }
             #endregion
 
             #region OnModelCreating()和Data Annotations     http://17bang.ren/Article/558
@@ -220,23 +222,24 @@ namespace HomeWork_Of_EFCore
 
                 //repository.SaveChanges();
                 #endregion
-                Repository_Of_EFCore repository = new Repository_Of_EFCore();
-                Keywords haveProblem = repository.Keywords.Include(k=>k.Of_ThisProblem).ThenInclude(k=>k.Problem).First(k=>k.Name == "Keywords-1");
+                //Repository_Of_EFCore repository = new Repository_Of_EFCore();
+                //Keywords haveProblem = repository.Keywords.Include(k => k.Of_ThisProblem).ThenInclude(k => k.Problem).First(k => k.Name == "Keywords-1");
 
-                Problem problemName = repository.Problem.Include(p => p.ProblemHave).ThenInclude(p => p.Keyword).Any(;
+                ////Problem problemName = repository.Problem.Include(p => p.ProblemHave).ThenInclude(p => p.Keyword).Any(;
 
-                haveProblem.Of_ThisProblem = haveProblem.Of_ThisProblem ?? new List<Keywords_Of_Problem>();
-                haveProblem.Of_ThisProblem.Add(
-                    new Keywords_Of_Problem { Keyword = haveProblem, Problem = }); ;
+                //haveProblem.Of_ThisProblem = haveProblem.Of_ThisProblem ?? new List<Keywords_Of_Problem>();
+                //haveProblem.Of_ThisProblem.Where(p=>p.Keyword == haveProblem);
 
-                foreach (var item in haveProblem.Of_ThisProblem)
-                {
-                    Console.WriteLine(item.Problem.Title);
-                }
-
+                //foreach (var item in haveProblem.Of_ThisProblem)
+                //{
+                //    Console.WriteLine(item.Problem.Title);
+                //}
             }
 
             //能够按作者 / 分类显示文章列表
+            {
+
+            }
             //能够选择文章列表的排序方向（按发布时间顺序倒序）和每页显示格式（50篇标题 / 10篇标题 + 摘要） 
             //发布文章会：扣掉作者1枚帮帮币、增加10个帮帮点
             //发布求助时可以设置悬赏帮帮币，发布后会被冻结，求助被解决时会划拨给好心人
