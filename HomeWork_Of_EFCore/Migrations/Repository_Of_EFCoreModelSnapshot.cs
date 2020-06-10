@@ -19,6 +19,27 @@ namespace HomeWork_Of_EFCore.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("HomeWork_Of_EFCore.Article", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Summary")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Article");
+                });
+
             modelBuilder.Entity("HomeWork_Of_EFCore.Email", b =>
                 {
                     b.Property<int>("Id")
@@ -35,6 +56,75 @@ namespace HomeWork_Of_EFCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Email");
+                });
+
+            modelBuilder.Entity("HomeWork_Of_EFCore.Keywords", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Keywords");
+                });
+
+            modelBuilder.Entity("HomeWork_Of_EFCore.Keywords_Of_Article", b =>
+                {
+                    b.Property<int>("KeywordId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ArticleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("KeywordId", "ArticleId");
+
+                    b.HasIndex("ArticleId");
+
+                    b.ToTable("Keywords_Of_Article");
+                });
+
+            modelBuilder.Entity("HomeWork_Of_EFCore.Keywords_Of_Problem", b =>
+                {
+                    b.Property<int>("KeywordId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProblemId")
+                        .HasColumnType("int");
+
+                    b.HasKey("KeywordId", "ProblemId");
+
+                    b.HasIndex("ProblemId");
+
+                    b.ToTable("Keywords_Of_Problem");
+                });
+
+            modelBuilder.Entity("HomeWork_Of_EFCore.Problem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Reward")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Summary")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Problem");
                 });
 
             modelBuilder.Entity("HomeWork_Of_EFCore.User", b =>
@@ -69,6 +159,36 @@ namespace HomeWork_Of_EFCore.Migrations
                         .HasFilter("[SendToId] IS NOT NULL");
 
                     b.ToTable("Register");
+                });
+
+            modelBuilder.Entity("HomeWork_Of_EFCore.Keywords_Of_Article", b =>
+                {
+                    b.HasOne("HomeWork_Of_EFCore.Article", "Article")
+                        .WithMany("ArticleHave")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HomeWork_Of_EFCore.Keywords", "Keyword")
+                        .WithMany("Of_ThisArticle")
+                        .HasForeignKey("KeywordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("HomeWork_Of_EFCore.Keywords_Of_Problem", b =>
+                {
+                    b.HasOne("HomeWork_Of_EFCore.Keywords", "Keyword")
+                        .WithMany("Of_ThisProblem")
+                        .HasForeignKey("KeywordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HomeWork_Of_EFCore.Problem", "Problem")
+                        .WithMany("ProblemHave")
+                        .HasForeignKey("ProblemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("HomeWork_Of_EFCore.User", b =>

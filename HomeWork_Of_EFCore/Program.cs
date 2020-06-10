@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HomeWork_Of_EFCore
 {
@@ -132,8 +134,7 @@ namespace HomeWork_Of_EFCore
             //bool hasReward：只显示已有酬谢的求助（如果传入值为true的话） 
             //bool descByPublishTime：按发布时间正序还是倒序
             //参考：求助列表（不显示 / 只显示）和文章列表（正序 / 倒序）
-
-
+            new ProblemRepository().GetBy(new List<ProblemStatus> { new ProblemStatus { } },false,false);
             #endregion
 
             #region OnModelCreating()和Data Annotations     http://17bang.ren/Article/558
@@ -152,17 +153,95 @@ namespace HomeWork_Of_EFCore
             //            课间作业： 	http://17bang.ren/Article/675
             //Email和User有一对一的关系，参照课堂演示，在数据库上建立User外键引用Email的映射
             {
-                Repository_Of_EFCore repository = new Repository_Of_EFCore();
+                //Repository_Of_EFCore repository = new Repository_Of_EFCore();
 
-                User wpz = new User { Name = "Seven-2", Password = "1234" };
-                Email email = new Email { EmailLocation = "123456@qq.com" };
-                wpz.SendTo = email;
-                email.FromWho = wpz;
+                //User wpz = new User { Name = "Seven-2", Password = "1234" };
+                //Email email = new Email { EmailLocation = "123456@qq.com" };
+                //wpz.SendTo = email;
+                //email.FromWho = wpz;
 
-                repository.Add<User>(wpz);
-                repository.Add<Email>(email);
-                repository.SaveChanges();
+                //repository.Add<User>(wpz);
+                //repository.Add<Email>(email);
+                //repository.SaveChanges();
             }
+            #endregion
+
+            #region 发布文章和求助时包含关键字   http://17bang.ren/Article/560
+            //            作业： http://17bang.ren/Article/560
+            //发布文章和求助时包含关键字
+            {
+                //Add-Migration Add_Article_and_Problem_To_Keywords
+                //Update-Database
+            }
+            //可以按关键字筛选求助
+            {
+                #region Insert Data
+                //Repository_Of_EFCore repository = new Repository_Of_EFCore();
+
+                //Keywords keywords_1 = new Keywords { Name = "Keywords-1" };
+                //Keywords keywords_2 = new Keywords { Name = "Keywords-2" };
+
+                ////----------------------------------------------------------------------------------------------
+
+                //Article article_1 = new Article { Title = "Insert Article Title -1", Body = "Insert Article Body -1", Summary = "None" };
+                //Article article_2 = new Article { Title = "Insert Article Title -2", Body = "Insert Article Body -2", Summary = "None" };
+
+                //article_1.ArticleHave = new List<Keywords_Of_Article>();
+                //article_1.ArticleHave.Add(new Keywords_Of_Article { Article = article_1, Keyword = keywords_1 });
+                //article_1.ArticleHave.Add(new Keywords_Of_Article { Article = article_1, Keyword = keywords_2 });
+
+                //article_2.ArticleHave = new List<Keywords_Of_Article>();
+                //article_2.ArticleHave.Add(new Keywords_Of_Article { Article = article_2, Keyword = keywords_1 });
+                //article_2.ArticleHave.Add(new Keywords_Of_Article { Article = article_2, Keyword = keywords_2 });
+
+                //repository.Add<Article>(article_1);
+                //repository.Add<Article>(article_2);
+                ////----------------------------------------------------------------------------------------------
+
+                //Problem problem_1 = new Problem { Title = "Insert problem Title -1", Body = "Insert problem Body -1", Reward = 5 };
+                //Problem problem_2 = new Problem { Title = "Insert problem Title -2", Body = "Insert problem Body -2", Reward = 5 };
+                //Problem problem_3 = new Problem { Title = "Insert problem Title -3", Body = "Insert problem Body -3", Reward = 5 };
+
+                //problem_1.ProblemHave = new List<Keywords_Of_Problem>();
+                //problem_1.ProblemHave.Add(new Keywords_Of_Problem { Problem = problem_1, Keyword = keywords_1 });
+                //problem_1.ProblemHave.Add(new Keywords_Of_Problem { Problem = problem_1, Keyword = keywords_2 });
+
+                //problem_2.ProblemHave = new List<Keywords_Of_Problem>();
+                //problem_2.ProblemHave.Add(new Keywords_Of_Problem { Problem = problem_2, Keyword = keywords_1 });
+                //problem_2.ProblemHave.Add(new Keywords_Of_Problem { Problem = problem_2, Keyword = keywords_2 });
+
+                //problem_3.ProblemHave = new List<Keywords_Of_Problem>();
+                //problem_3.ProblemHave.Add(new Keywords_Of_Problem { Problem = problem_3, Keyword = keywords_1 });
+                //repository.Add<Problem>(problem_1);
+                //repository.Add<Problem>(problem_2);
+                //repository.Add<Problem>(problem_3);
+
+                ////----------------------------------------------------------------------------------------------
+
+                //repository.SaveChanges();
+                #endregion
+                Repository_Of_EFCore repository = new Repository_Of_EFCore();
+                Keywords haveProblem = repository.Keywords.Include(k=>k.Of_ThisProblem).ThenInclude(k=>k.Problem).First(k=>k.Name == "Keywords-1");
+
+                Problem problemName = repository.Problem.Include(p => p.ProblemHave).ThenInclude(p => p.Keyword).Any(;
+
+                haveProblem.Of_ThisProblem = haveProblem.Of_ThisProblem ?? new List<Keywords_Of_Problem>();
+                haveProblem.Of_ThisProblem.Add(
+                    new Keywords_Of_Problem { Keyword = haveProblem, Problem = }); ;
+
+                foreach (var item in haveProblem.Of_ThisProblem)
+                {
+                    Console.WriteLine(item.Problem.Title);
+                }
+
+            }
+
+            //能够按作者 / 分类显示文章列表
+            //能够选择文章列表的排序方向（按发布时间顺序倒序）和每页显示格式（50篇标题 / 10篇标题 + 摘要） 
+            //发布文章会：扣掉作者1枚帮帮币、增加10个帮帮点
+            //发布求助时可以设置悬赏帮帮币，发布后会被冻结，求助被解决时会划拨给好心人
+            //帮帮点和帮帮币的每一次变更都会被记录并可以显示
+            //消息列表按未读 / 已读排序
             #endregion
         }
     }

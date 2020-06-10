@@ -4,7 +4,8 @@ using System.Text;
 
 namespace HomeWork_Of_EFCore
 {
-    class Article
+    public class Article : BaceContent
     {
+        public IList<Keywords_Of_Article> ArticleHave { set; get; }
     }
 }

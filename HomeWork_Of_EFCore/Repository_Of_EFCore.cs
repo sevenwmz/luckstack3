@@ -7,7 +7,10 @@ namespace HomeWork_Of_EFCore
 {
     class Repository_Of_EFCore :DbContext
     {
-        public DbSet<User> users { set; get; }
+        public DbSet<User> Users { set; get; }
+        public DbSet<Keywords> Keywords { set; get; }
+        public DbSet<Article> Articles { set; get; }
+        public DbSet<Problem> Problem { set; get; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -35,7 +38,8 @@ namespace HomeWork_Of_EFCore
                 u.Ignore(u => u.FailedTry);
                 u.HasOne<Email>(u=>u.SendTo).WithOne(u => u.FromWho).HasForeignKey<User>(u=>u.SendToId);
             });
-
+            modelBuilder.Entity<Keywords_Of_Problem>().HasKey(kp => new { kp.KeywordId, kp.ProblemId });
+            modelBuilder.Entity<Keywords_Of_Article>().HasKey(ka => new { ka.KeywordId, ka.ArticleId });
 
             base.OnModelCreating(modelBuilder);
         }

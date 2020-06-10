@@ -4,7 +4,11 @@ using System.Text;
 
 namespace HomeWork_Of_EFCore
 {
-    class BaceContent
+    public class BaceContent :BaceEntity
     {
+        public string Title { set; get; }
+        public string Body { set; get; }
+        public string Summary { set; get; }
+        public DateTime PublishTime { set; get; }
     }
 }
