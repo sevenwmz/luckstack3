@@ -225,8 +225,6 @@ namespace HomeWork_Of_EFCore
                 //Repository_Of_EFCore repository = new Repository_Of_EFCore();
                 //Keywords haveProblem = repository.Keywords.Include(k => k.Of_ThisProblem).ThenInclude(k => k.Problem).First(k => k.Name == "Keywords-1");
 
-                ////Problem problemName = repository.Problem.Include(p => p.ProblemHave).ThenInclude(p => p.Keyword).Any(;
-
                 //haveProblem.Of_ThisProblem = haveProblem.Of_ThisProblem ?? new List<Keywords_Of_Problem>();
                 //haveProblem.Of_ThisProblem.Where(p=>p.Keyword == haveProblem);
 
@@ -235,12 +233,82 @@ namespace HomeWork_Of_EFCore
                 //    Console.WriteLine(item.Problem.Title);
                 //}
             }
-
             //能够按作者 / 分类显示文章列表
             {
+                //Add-Migration AddUserAndProblem_ForeginKey
+                {
+                    ////Insert data fail,I can't did it.
+                    //Repository_Of_EFCore repository = new Repository_Of_EFCore();
+                    //Problem problem = new Problem();
+                    //problem.Author.();
+                }
+                {
+                    //// It's of count problem of Author
+                    //Repository_Of_EFCore repository = new Repository_Of_EFCore();
+                    //User userHaveThisProblem = repository.Users.Include(u => u.Problems).FirstOrDefault(u => u.Name == "Seven");
 
+                    //userHaveThisProblem.Problems = userHaveThisProblem.Problems ?? new List<Problem>();
+                    //userHaveThisProblem.Problems.Where(p => p.Author == userHaveThisProblem);
+                    //foreach (var item in userHaveThisProblem.Problems)
+                    //{
+                    //    Console.WriteLine(item.Title);
+                    //}
+                }
+                //Add-Migration AddKindAndProblem_ForeginKey
+                {
+                    ////Insert data fail. still now also i deden't know how to do it.
+                    //Repository_Of_EFCore repository = new Repository_Of_EFCore();
+                    //Kind kind_1 = new Kind { Name = "待协助" };
+                    //Kind kind_2 = new Kind { Name = "已完成" };
+
+                    //Problem problem = kind_1.ThisProblem.Add(new Problem{ HaveKind = kind_1 }).Where(p=>p.Title == "Insert problem Title -1");
+                    //repository.SaveChanges<Problem>(problem);
+
+                }
+                {
+                    //// It's of count problem of Kind
+                    //Repository_Of_EFCore repository = new Repository_Of_EFCore();
+                    //Kind haveThisKindProblem = repository.Kinds.Include(k => k.ThisProblem).FirstOrDefault(k=>k.Name == "代协助");
+
+                    //haveThisKindProblem.ThisProblem = haveThisKindProblem.ThisProblem ?? new List<Problem>();
+                    //haveThisKindProblem.ThisProblem.Where(k=>k.HaveKind == haveThisKindProblem);
+                    //foreach (var item in haveThisKindProblem.ThisProblem)
+                    //{
+                    //    Console.WriteLine(item.Title);
+                    //}
+                }
             }
             //能够选择文章列表的排序方向（按发布时间顺序倒序）和每页显示格式（50篇标题 / 10篇标题 + 摘要） 
+            {
+                //Repository_Of_EFCore repository = new Repository_Of_EFCore();
+                //IList<Problem> tempProblems = new List<Problem>();
+                //bool show_50_Title = true;
+                //bool publishTimeDesc = true;
+                //int takeProblem = 0;
+                //if (show_50_Title)
+                //{
+                //    if (publishTimeDesc)
+                //    {
+                //        tempProblems = repository.Problem.OrderByDescending(p => p.PublishTime).Skip(takeProblem).Take(50).ToList();
+                //    }
+                //    tempProblems = repository.Problem.OrderBy(p => p.PublishTime).Skip(takeProblem).Take(50).ToList();
+                //    takeProblem += 50;
+                //}
+                //else
+                //{
+                //    if (publishTimeDesc)
+                //    {
+                //        tempProblems = repository.Problem.OrderByDescending(p => p.PublishTime).Skip(takeProblem).Take(10).ToList();
+                //    }
+                //    tempProblems = repository.Problem.OrderBy(p => p.PublishTime).Skip(takeProblem).Take(10).ToList();
+                //    takeProblem += 10;
+                //}
+                //foreach (var item in tempProblems)
+                //{
+                //    Console.WriteLine(item.Title, item.Summary);
+                //}
+
+            }
             //发布文章会：扣掉作者1枚帮帮币、增加10个帮帮点
             //发布求助时可以设置悬赏帮帮币，发布后会被冻结，求助被解决时会划拨给好心人
             //帮帮点和帮帮币的每一次变更都会被记录并可以显示

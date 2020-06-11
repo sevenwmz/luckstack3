@@ -106,6 +106,21 @@ namespace HomeWork_Of_EFCore.Migrations
                     b.ToTable("Keywords_Of_Problem");
                 });
 
+            modelBuilder.Entity("HomeWork_Of_EFCore.Kind", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Kind");
+                });
+
             modelBuilder.Entity("HomeWork_Of_EFCore.Problem", b =>
                 {
                     b.Property<int>("Id")
@@ -113,8 +128,14 @@ namespace HomeWork_Of_EFCore.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("nvarchar(256)");
+
                     b.Property<string>("Body")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("HaveKindId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("PublishTime")
                         .HasColumnType("datetime2");
@@ -132,6 +153,10 @@ namespace HomeWork_Of_EFCore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("HaveKindId");
 
                     b.ToTable("Problem");
                 });
@@ -198,6 +223,17 @@ namespace HomeWork_Of_EFCore.Migrations
                         .HasForeignKey("ProblemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("HomeWork_Of_EFCore.Problem", b =>
+                {
+                    b.HasOne("HomeWork_Of_EFCore.User", "Author")
+                        .WithMany("Problems")
+                        .HasForeignKey("AuthorId");
+
+                    b.HasOne("HomeWork_Of_EFCore.Kind", "HaveKind")
+                        .WithMany("ThisProblem")
+                        .HasForeignKey("HaveKindId");
                 });
 
             modelBuilder.Entity("HomeWork_Of_EFCore.User", b =>

@@ -18,5 +18,6 @@ namespace HomeWork_Of_EFCore
         public int FailedTry { set; get; }
         public int? SendToId { set; get; }
         public Email SendTo { set; get; }
+        public IList<Problem> Problems { set; get; }
     }
 }

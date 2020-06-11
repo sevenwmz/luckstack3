@@ -8,6 +8,10 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200609120335_fg.cs" />
     <Compile Remove="Migrations\20200609120335_fg.Designer.cs" />
+    <Compile Remove="Migrations\20200611115304_AddUserAndProblem_ForeginKey.cs" />
+    <Compile Remove="Migrations\20200611115304_AddUserAndProblem_ForeginKey.Designer.cs" />
+    <Compile Remove="Migrations\20200611124626_AddKindAndProblem_ForeginKey.cs" />
+    <Compile Remove="Migrations\20200611124626_AddKindAndProblem_ForeginKey.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

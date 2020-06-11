@@ -11,6 +11,8 @@ namespace HomeWork_Of_EFCore
         public DbSet<Keywords> Keywords { set; get; }
         public DbSet<Article> Articles { set; get; }
         public DbSet<Problem> Problem { set; get; }
+        public DbSet<Kind> Kinds { set; get; }
+        //public DbSet<ProblemStatus> ProblemStatuses { set; get; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
