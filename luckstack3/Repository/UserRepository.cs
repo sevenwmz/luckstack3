@@ -34,30 +34,11 @@ namespace _17bang.Repository
         /// <param name="user">Need user Info</param>
         public bool Save(User user)
         {
-            UserRepository repository = new UserRepository();
-
-            #region Check Info Is Correct
-            if (!repository.CheckInvitedName(user.Inviter))
-            {
-                return false;
-            }//eles nothing
-            if (!repository.CheckInviteCode(user.InviterNumber))
-            {
-                return false;
-            }//eles nothing
-            if (!repository.UserNameHasRepeat(user.UserName))
-            {
-                return false;
-            }//eles nothing
-            #endregion
-
             DBHelper helper = new DBHelper();
-
             #region Insert Register
             string cmd =
                 @"Insert [User](InviteName,InvitedCode,UserName,[Password],InviteById,[Level])
                 Values(@InviteName, @InvitedCode, @UserName, @Password,(Select Id From[User] Where UserName = @InviteName),1) ";
-
             int newRegisterId = helper.Insert(cmd, new SqlParameter[]
             {
                 new SqlParameter("@InviteName",user.Inviter),
@@ -70,13 +51,12 @@ namespace _17bang.Repository
             #region Give New User 10 BMoney
             //Got newRegisterId From Identity ,is safe.
             string cmdForRegisterBMoney = $@"Insert HelpMoney(BmoneyId,BMoney,Detail,LatesTime) 
-                                            Values({newRegisterId} , 10, N'注册赠送10帮帮币', GetDate()) ";
-            helper.ExcuteNonQuery(cmdForRegisterBMoney,new SqlParameter[] { });
+                                            Values(@OwnerId , 10, N'注册赠送10帮帮币', GetDate()) ";
+            helper.Insert(cmdForRegisterBMoney,new SqlParameter[] { new SqlParameter("@OwnerId", newRegisterId) });
             #endregion
 
             #region Give Inviter 10 Award
-            new UserRepository().AwardToInviter(user.Inviter);
-
+            AwardToInviter(user.Inviter);
             #endregion
 
             return true;

@@ -63,11 +63,28 @@ namespace luckstack3
                 UserName = this.UserName,
                 Password = this.Password
             };
-            if (!_userRepository.Save(user))
+
+            #region Check Info Is Correct
+            UserRepository repository = new UserRepository();
+            if (!repository.CheckInvitedName(user.Inviter))
             {
-                ModelState.AddModelError(nameof(UserName),"用户名或者邀请人邀请码不正确呦");
+                ModelState.AddModelError(nameof(Inviter), "用邀请人不正确呦");
                 return Page();
-            }
+            }//eles nothing
+            if (!repository.CheckInviteCode(user.InviterNumber))
+            {
+                ModelState.AddModelError(nameof(InviterNumber), "邀请码不正确呦");
+                return Page();
+            }//eles nothing
+            if (!repository.UserNameHasRepeat(user.UserName))
+            {
+                ModelState.AddModelError(nameof(UserName), "用户名已存在呦，换一个吧");
+                return Page();
+            }//eles nothing
+            #endregion
+
+            _userRepository.Save(user);
+
 
             #region Old Funciton
 
