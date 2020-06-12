@@ -56,10 +56,13 @@
                 {
                     currentPageIndex = Convert.ToInt32(Request.RouteValues["id"]);
                 }
+                int pagingId = (currentPageIndex - 1) / 10 + 1;
+
             }
 
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
+
                     @if (currentPageIndex > 1)
                     {
                         <li class="page-item">
@@ -68,6 +71,14 @@
                             </a>
                         </li>
                     }@*/*else nothing*/*@
+                    @{
+                        int pagingLength = 10;
+                        int startPaging = 1 + (pagingId - 1) * 10;
+                        if (pagingId * 10 > Model.SumOfArticle)
+                        {
+                            pagingLength = Model.SumOfArticle % 10;
+                        }
+                    }
                     @for (int i = 1; i <= (Model.SumOfArticle / Const.PAGE_SIZE); i++)
                     {
                         if (currentPageIndex == i)

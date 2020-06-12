@@ -48,9 +48,9 @@
 <form method="post">
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-md-6">
-            <label><input type="checkbox" />全选</label>
-            <button type="submit" class="btn btn-primary rounded fa fa-check-circle">已读</button>
-            <button type="submit" class="btn border-secondary rounded fa fa-times-circle">删除</button>
+            <label><input type="checkbox" asp-for="CheckAll" />全选</label>
+            <button type="submit" asp-page="/Message/Mine" asp-route-opt="read" class="btn btn-primary rounded fa fa-check-circle">已读</button>
+            <button type="submit" asp-page="/Message/Mine" asp-route-opt="delete" class="btn border-secondary rounded fa fa-times-circle">删除</button>
         </div>
     </div>
     <div class="row">
@@ -89,7 +89,7 @@
     }
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-md-6">
-            <label><input type="checkbox" />全选</label>
+            <label><input type="checkbox" asp-for="CheckAll" />全选</label>
             <button type="submit" asp-page="/Message/Mine" asp-route-opt="read" class="btn btn-primary rounded fa fa-check-circle">已读</button>
             <button type="submit" asp-page="/Message/Mine" asp-route-opt="delete" class="btn border-secondary rounded fa fa-times-circle">删除</button>
         </div>
@@ -104,6 +104,7 @@
         {
             currentPageIndex = Convert.ToInt32(Request.RouteValues["id"]);
         }
+
     }
     <nav aria-label="Page navigation example">
         <ul class="pagination">
@@ -129,7 +130,7 @@
                 }
             }
 
-            @if (currentPageIndex < (Model.SumOfArticle / 2))
+            @if (currentPageIndex < (Model.SumOfArticle / Const.PAGE_SIZE))
             {
                 <li class="page-item">
                     <a class="page-link" aria-label="Next" href="/Message/Mine/@(currentPageIndex + 1)">

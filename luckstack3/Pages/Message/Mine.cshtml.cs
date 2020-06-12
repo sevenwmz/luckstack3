@@ -21,6 +21,8 @@ namespace _17bang
 
         private MessageRepository _repository;
 
+        public bool CheckAll { set; get; }
+
 
         public MineModel()
         {
@@ -59,8 +61,13 @@ namespace _17bang
         {
             string request = Request.RouteValues["opt"].ToString();
 
+
             foreach (var item in Messages)
             {
+                if (CheckAll)
+                {
+                    item.HasCheck = true;
+                }
                 if (item.HasCheck)
                 {
                     if (request == "read")

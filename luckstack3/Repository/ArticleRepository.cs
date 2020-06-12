@@ -36,7 +36,7 @@ namespace _17bang.Pages.Repository
                         };
                         int articleId = article.Id;
 
-                        using (DbConnection connectionForKeywords = _helper.Connection)
+                        using (DbConnection connectionForKeywords = new DBHelper().Connection)
                         {
                             DbCommand cmdkeywords = new SqlCommand($@"Select Distinct k.[Name],k.Id from Keyword k
                                 join KeywordToArticle ka
@@ -44,7 +44,10 @@ namespace _17bang.Pages.Repository
                                 join Article a
                                 on a.Id = ka.ArticleNameId
                                 Where k.Id in (Select KeywordId from KeywordToArticle Where ArticleNameId = {articleId})", (SqlConnection)connectionForKeywords);
-                            connectionForKeywords.Open();
+                            if (connectionForKeywords.State == System.Data.ConnectionState.Closed)
+                            {
+                                connectionForKeywords.Open();
+                            }
                             DbDataReader readerKeywords = cmdkeywords.ExecuteReader();
                             if (readerKeywords.HasRows)
                             {
@@ -56,13 +59,15 @@ namespace _17bang.Pages.Repository
                             }
                         }
 
-                        using (DbConnection connectionForAuthor = _helper.Connection)
+                        using (DbConnection connectionForAuthor = new DBHelper().Connection)
                         {
                             DbCommand cmdAuthor = new SqlCommand(
                                 $@"Select UserName,Level From [User] u right join Article a on a.AuthorId = u.Id 
                                 Where u.Id = (select AuthorId from Article where Id = {articleId})", (SqlConnection)connectionForAuthor);
-                            connectionForAuthor.Open();
-
+                            if (connectionForAuthor.State == System.Data.ConnectionState.Closed)
+                            {
+                                connectionForAuthor.Open();
+                            }
                             DbDataReader readerAuthor = cmdAuthor.ExecuteReader();
                             if (readerAuthor.HasRows)
                             {
