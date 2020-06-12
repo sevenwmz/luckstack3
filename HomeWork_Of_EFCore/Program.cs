@@ -214,7 +214,7 @@ namespace HomeWork_Of_EFCore
                 //problem_3.ProblemHave = new List<Keywords_Of_Problem>();
                 //problem_3.ProblemHave.Add(new Keywords_Of_Problem { Problem = problem_3, Keyword = keywords_1 });
                 //repository.Problem.AddRange(new Problem[] { problem_1, problem_2, problem_3 });
- 
+
                 ////----------------------------------------------------------------------------------------------
 
                 //repository.SaveChanges();
@@ -500,6 +500,59 @@ namespace HomeWork_Of_EFCore
                     //    Console.WriteLine($"{item.Content}++{item.HasRead.ToString()}");
                     //}
                 }
+            }
+            #endregion
+
+            #region 完成以下entity的创建和ORM映射：        http://17bang.ren/Article/676
+            //完成以下entity的创建和ORM映射： 
+            //关键字
+            //文章分类
+            //用户帮帮点 / 帮帮币明细
+            #endregion
+
+            #region 实现ContextPerRequest  http://17bang.ren/Article/565
+            //作业： 		http://17bang.ren/Article/565
+            //实现ContextPerRequest
+
+
+            //实现帮帮币的出售
+            {
+                //Repository_Of_EFCore repository = new Repository_Of_EFCore();
+
+                //int tranBMoney = 15;
+                ////Get two of transaction user infomation
+                //User saleUser = repository.Users.Where(u => u.Name == "Seven").SingleOrDefault();
+                //BMoney saleUserMoney = repository.BMoneys.OrderByDescending(m => m.LatesTime).Where(m => m.Owner == saleUser).FirstOrDefault();
+
+                //User buyUser = repository.Users.Where(u => u.Name == "Seven-1").SingleOrDefault();
+                //BMoney buyUserInfo = repository.BMoneys.OrderByDescending(m => m.LatesTime).Where(m => m.Owner == buyUser).FirstOrDefault();
+
+                ////Check saleUser have enough Bmoney to pay.
+                //if ((saleUserMoney.LeftBMoney - tranBMoney) < 0)
+                //{
+                //    return;
+                //};
+                //// Transaction offcial begin
+                //BMoney ofSaleUser = new BMoney
+                //{
+                //    Owner = saleUser,
+                //    LeftBMoney = saleUserMoney.LeftBMoney - tranBMoney,
+                //    LeftBPoint = saleUserMoney.LeftBPoint,
+                //    Detail = $"You successfuly sale you BMoney {tranBMoney} coin, at {DateTime.Now}",
+                //    FreezingMoney = 0,
+                //    LatesTime = DateTime.Now
+                //};
+                //BMoney ofBuyUser = new BMoney
+                //{
+                //    Owner = buyUser,
+                //    LeftBMoney = buyUserInfo.LeftBMoney + tranBMoney,
+                //    LeftBPoint = saleUserMoney.LeftBPoint,
+                //    Detail = $"You successfuly buy BMoney {tranBMoney} coin from {saleUser.Name} , at {DateTime.Now}",
+                //    FreezingMoney = 0,
+                //    LatesTime = DateTime.Now
+                //};
+                //repository.BMoneys.AddRange(new BMoney[] { ofSaleUser,ofBuyUser});
+                //repository.SaveChanges();
             }
             #endregion
         }
