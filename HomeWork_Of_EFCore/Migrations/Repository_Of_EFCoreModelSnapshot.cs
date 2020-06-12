@@ -26,6 +26,9 @@ namespace HomeWork_Of_EFCore.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("nvarchar(256)");
+
                     b.Property<string>("Body")
                         .HasColumnType("nvarchar(max)");
 
@@ -40,7 +43,41 @@ namespace HomeWork_Of_EFCore.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AuthorId");
+
                     b.ToTable("Articles");
+                });
+
+            modelBuilder.Entity("HomeWork_Of_EFCore.BMoney", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Detail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FreezingMoney")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LatesTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("LeftBMoney")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LeftBPoint")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OwnerName")
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerName");
+
+                    b.ToTable("BMoneys");
                 });
 
             modelBuilder.Entity("HomeWork_Of_EFCore.Email", b =>
@@ -118,7 +155,39 @@ namespace HomeWork_Of_EFCore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Kind");
+                    b.ToTable("Kinds");
+                });
+
+            modelBuilder.Entity("HomeWork_Of_EFCore.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HasCheck")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasRead")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MessageStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OwnerName")
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<DateTime>("PublishTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerName");
+
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("HomeWork_Of_EFCore.Problem", b =>
@@ -195,6 +264,20 @@ namespace HomeWork_Of_EFCore.Migrations
                     b.ToTable("Register");
                 });
 
+            modelBuilder.Entity("HomeWork_Of_EFCore.Article", b =>
+                {
+                    b.HasOne("HomeWork_Of_EFCore.User", "Author")
+                        .WithMany("articles")
+                        .HasForeignKey("AuthorId");
+                });
+
+            modelBuilder.Entity("HomeWork_Of_EFCore.BMoney", b =>
+                {
+                    b.HasOne("HomeWork_Of_EFCore.User", "Owner")
+                        .WithMany("Wallet")
+                        .HasForeignKey("OwnerName");
+                });
+
             modelBuilder.Entity("HomeWork_Of_EFCore.Keywords_Of_Article", b =>
                 {
                     b.HasOne("HomeWork_Of_EFCore.Article", "Article")
@@ -223,6 +306,13 @@ namespace HomeWork_Of_EFCore.Migrations
                         .HasForeignKey("ProblemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("HomeWork_Of_EFCore.Message", b =>
+                {
+                    b.HasOne("HomeWork_Of_EFCore.User", "Owner")
+                        .WithMany("HaveMessages")
+                        .HasForeignKey("OwnerName");
                 });
 
             modelBuilder.Entity("HomeWork_Of_EFCore.Problem", b =>

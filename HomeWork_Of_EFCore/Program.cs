@@ -196,8 +196,7 @@ namespace HomeWork_Of_EFCore
                 //article_2.ArticleHave.Add(new Keywords_Of_Article { Article = article_2, Keyword = keywords_1 });
                 //article_2.ArticleHave.Add(new Keywords_Of_Article { Article = article_2, Keyword = keywords_2 });
 
-                //repository.Add<Article>(article_1);
-                //repository.Add<Article>(article_2);
+                //repository.Articles.AddRange(new Article[] { article_1 , article_2 });
                 ////----------------------------------------------------------------------------------------------
 
                 //Problem problem_1 = new Problem { Title = "Insert problem Title -1", Body = "Insert problem Body -1", Reward = 5 };
@@ -214,10 +213,8 @@ namespace HomeWork_Of_EFCore
 
                 //problem_3.ProblemHave = new List<Keywords_Of_Problem>();
                 //problem_3.ProblemHave.Add(new Keywords_Of_Problem { Problem = problem_3, Keyword = keywords_1 });
-                //repository.Add<Problem>(problem_1);
-                //repository.Add<Problem>(problem_2);
-                //repository.Add<Problem>(problem_3);
-
+                //repository.Problem.AddRange(new Problem[] { problem_1, problem_2, problem_3 });
+ 
                 ////----------------------------------------------------------------------------------------------
 
                 //repository.SaveChanges();
@@ -239,8 +236,66 @@ namespace HomeWork_Of_EFCore
                 {
                     ////Insert data fail,I can't did it.
                     //Repository_Of_EFCore repository = new Repository_Of_EFCore();
-                    //Problem problem = new Problem();
-                    //problem.Author.();
+                    //Kind kind1 = new Kind { Name = "Status-1" };
+                    //Kind kind2 = new Kind { Name = "Status-2" };
+                    //Kind kind3 = new Kind { Name = "Status-3" };
+                    //repository.Kinds.AddRange(new Kind[] { kind1, kind2, kind3 });
+
+                    //User seven = repository.Users.Where(u => u.Name == "Seven").FirstOrDefault();
+                    //User seven_1 = repository.Users.Where(u => u.Name == "Seven-1").FirstOrDefault();
+
+
+                    //Kind kind_1 = repository.Kinds.Where(k => k.Name == "Status-1").FirstOrDefault();
+                    //Kind kind_2 = repository.Kinds.Where(k => k.Name == "Status-2").FirstOrDefault();
+                    //Kind kind_3 = repository.Kinds.Where(k => k.Name == "Status-3").FirstOrDefault();
+                    //Problem problem = new Problem
+                    //{
+                    //    Title = "Problem Title",
+                    //    Body = "nothing",
+                    //    Summary = "nothing",
+                    //    PublishTime = DateTime.Now.AddDays(-12),
+                    //    Author = seven,
+                    //    HaveKind = kind_1,
+                    //    Reward = 10,
+                    //    Statu = ProblemStatus.inprocess
+                    //};
+                    //Problem problem1 = new Problem
+                    //{
+                    //    Title = "Problem Title-1",
+                    //    Body = "nothing",
+                    //    Summary = "nothing",
+                    //    PublishTime = DateTime.Now.AddDays(-13),
+                    //    Author = seven,
+                    //    HaveKind = kind_2,
+                    //    Reward = 10,
+                    //    Statu = ProblemStatus.inprocess
+                    //};
+                    //Problem problem2 = new Problem
+                    //{
+                    //    Title = "Problem Title-2",
+                    //    Body = "nothing",
+                    //    Summary = "nothing",
+                    //    PublishTime = DateTime.Now.AddDays(-143),
+                    //    Author = seven_1,
+                    //    HaveKind = kind_2,
+                    //    Reward = 10,
+                    //    Statu = ProblemStatus.Rewarded
+                    //};
+                    //Problem problem3 = new Problem
+                    //{
+                    //    Title = "Problem Title-3",
+                    //    Body = "nothing",
+                    //    Summary = "nothing",
+                    //    PublishTime = DateTime.Now.AddDays(-143),
+                    //    Author = seven_1,
+                    //    HaveKind = kind_3,
+                    //    Reward = 10,
+                    //    Statu = ProblemStatus.Rewarded
+                    //};
+                    //IList<Problem> tempProblems = new List<Problem> { problem, problem1, problem2, problem3 };
+                    //repository.Problem.AddRange(new Problem[] { problem, problem1, problem2, problem3 });
+
+                    //repository.SaveChanges();
                 }
                 {
                     //// It's of count problem of Author
@@ -255,16 +310,6 @@ namespace HomeWork_Of_EFCore
                     //}
                 }
                 //Add-Migration AddKindAndProblem_ForeginKey
-                {
-                    ////Insert data fail. still now also i deden't know how to do it.
-                    //Repository_Of_EFCore repository = new Repository_Of_EFCore();
-                    //Kind kind_1 = new Kind { Name = "待协助" };
-                    //Kind kind_2 = new Kind { Name = "已完成" };
-
-                    //Problem problem = kind_1.ThisProblem.Add(new Problem{ HaveKind = kind_1 }).Where(p=>p.Title == "Insert problem Title -1");
-                    //repository.SaveChanges<Problem>(problem);
-
-                }
                 {
                     //// It's of count problem of Kind
                     //Repository_Of_EFCore repository = new Repository_Of_EFCore();
@@ -310,9 +355,152 @@ namespace HomeWork_Of_EFCore
 
             }
             //发布文章会：扣掉作者1枚帮帮币、增加10个帮帮点
+            {
+                //Add-Migration Add_Bmoney_and_user_FK
+                {
+                    ////Insert data Of BMoney
+                    //Repository_Of_EFCore repository = new Repository_Of_EFCore();
+                    //User user = repository.Users.Where(u => u.Name == "Seven").FirstOrDefault();
+                    //BMoney money_1  = new BMoney { Owner = user, LeftBMoney = 10, LeftBPoint = 100,LatesTime = DateTime.Today.AddDays(-10), Detail = "Register Succses Award"};
+                    //repository.BMoneys.Add(money_1);
+                    //repository.SaveChanges();
+                }
+                {
+                    //Repository_Of_EFCore repository = new Repository_Of_EFCore();
+                    //Article article = new Article { Title = "It's for minus author one bmoney" , Body="nothing", PublishTime = DateTime.Now, Summary ="nothing"};
+                    //User user = repository.Users.Where(u => u.Name == "Seven").FirstOrDefault();
+                    //user.articles = new List<Article>();
+                    //user.articles.Add(article);
+                    //repository.Articles.Add(article);
+
+                    //BMoney money = repository.BMoneys.OrderByDescending(m => m.LatesTime).Where(u => u.OwnerName == "Seven").FirstOrDefault();
+                    //BMoney bMoney = new BMoney { Owner = user, LeftBMoney = (money.LeftBMoney - 1), LeftBPoint = (money.LeftBPoint + 10),LatesTime = DateTime.Now, Detail = "Publish new article" };
+                    //repository.BMoneys.Update(bMoney);
+                    //repository.SaveChanges();
+                }
+            }
             //发布求助时可以设置悬赏帮帮币，发布后会被冻结，求助被解决时会划拨给好心人
+            {
+                ////Add-Migration Add_BMoney_FreezingMoney
+                //Repository_Of_EFCore repository = new Repository_Of_EFCore();
+                //User wpz = repository.Users.Where(u => u.Name == "Seven").FirstOrDefault();
+                //Kind kind = repository.Kinds.Where(k => k.Name == "Status-1").FirstOrDefault();
+                //Problem needHelp = new Problem
+                //{
+                //    Author = wpz,
+                //    Title = "For freezing BMoney",
+                //    Body = "nothing",
+                //    Summary = "nothing",
+                //    HaveKind = kind,
+                //    PublishTime = DateTime.Now.AddDays(-25),
+                //    Reward = 5,
+                //    Statu = ProblemStatus.assist
+                //};
+                //repository.Problem.Add(needHelp);
+                //BMoney getThisUserLeftBmoney = repository.BMoneys.OrderByDescending(b => b.LatesTime).Where(b => b.Owner == wpz).FirstOrDefault();
+                //BMoney moneyChange = new BMoney
+                //{
+                //    Owner = wpz,
+                //    Detail = "Publish new problem,use 5 BMoney",
+                //    FreezingMoney = 5,
+                //    LatesTime = DateTime.Now.AddDays(-25),
+                //    LeftBMoney = getThisUserLeftBmoney.LeftBMoney - 5,
+                //    LeftBPoint = getThisUserLeftBmoney.LeftBPoint
+                //};
+                //repository.BMoneys.Add(moneyChange);
+                //repository.SaveChanges();
+                ////------------------------------here is after solution problem---------------------------------
+                //User wpz_1 = repository.Users.Where(u => u.Name == "Seven-1").FirstOrDefault();
+                //BMoney AddThisUserLeftBmoney = repository.BMoneys.OrderByDescending(b => b.LatesTime).Where(b => b.Owner == wpz_1).FirstOrDefault();
+                ////Just take any status use for finish funtion, if real at company,i will get problem id from Url
+                //needHelp.Statu = ProblemStatus.Rewarded;
+                //if (needHelp.Statu == ProblemStatus.Rewarded)
+                //{
+                //    BMoney payFor = repository.BMoneys.Where(b => b.Id == moneyChange.Id).SingleOrDefault();
+                //    BMoney getPay = repository.BMoneys.Where(b => b.Id == wpz_1.Id).SingleOrDefault();
+                //    payFor.FreezingMoney = 0;
+                //    BMoney insertNewRow = new BMoney
+                //    {
+                //        Owner = wpz_1,
+                //        Detail = $@"Answer question get award,adopt problem name '{needHelp.Title}',and get reward income is '{needHelp.Reward}' ",
+                //        LatesTime = DateTime.Now,
+                //        LeftBMoney = AddThisUserLeftBmoney.LeftBMoney + needHelp.Reward,
+                //        LeftBPoint = AddThisUserLeftBmoney.LeftBPoint,
+                //        FreezingMoney = 0
+                //    };
+                //    repository.BMoneys.Update(payFor);
+                //    repository.BMoneys.Add(insertNewRow);
+                //    repository.SaveChanges();
+                //}
+            }
             //帮帮点和帮帮币的每一次变更都会被记录并可以显示
+            {
+                ////Finish on this homework
+                //发布文章会：扣掉作者1枚帮帮币、增加10个帮帮点
+            }
             //消息列表按未读 / 已读排序
+            {
+                {
+                    ////Insert data to database
+                    //Repository_Of_EFCore repository = new Repository_Of_EFCore();
+                    //User user = repository.Users.Where(u => u.Name == "Seven").SingleOrDefault();
+                    //Message message_1 = new Message
+                    //{
+                    //    Owner = user,
+                    //    Content = "Just show to meself-1",
+                    //    MessageStatus = MessageStatus.SomeOnePickUp,
+                    //    PublishTime = DateTime.Now.AddDays(-10),
+                    //    HasCheck = true,
+                    //    HasRead = true
+                    //};
+                    //Message message_2 = new Message
+                    //{
+                    //    Owner = user,
+                    //    Content = "Just show to meself-2",
+                    //    MessageStatus = MessageStatus.SomeOnePickUp,
+                    //    PublishTime = DateTime.Now.AddDays(-15),
+                    //    HasCheck = false,
+                    //    HasRead = false
+                    //};
+                    //Message message_3 = new Message
+                    //{
+                    //    Owner = user,
+                    //    Content = "Just show to meself-3",
+                    //    MessageStatus = MessageStatus.SomeOnePickUp,
+                    //    PublishTime = DateTime.Now.AddDays(-1),
+                    //    HasCheck = true,
+                    //    HasRead = true
+                    //};
+                    //Message message_4 = new Message
+                    //{
+                    //    Owner = user,
+                    //    Content = "Just show to meself-4",
+                    //    MessageStatus = MessageStatus.SomeOnePickUp,
+                    //    PublishTime = DateTime.Now,
+                    //    HasCheck = false,
+                    //    HasRead = false
+                    //};
+
+                    //message_1.Owner = user;
+                    //message_2.Owner = user;
+                    //message_3.Owner = user;
+                    //message_4.Owner = user;
+
+                    //repository.Messages.AddRange(message_1, message_2, message_3, message_4);
+                    //repository.SaveChanges();
+                }
+                {
+                    //Repository_Of_EFCore repository = new Repository_Of_EFCore();
+                    //IList<Message> message = new List<Message>();
+                    //message = repository.Messages.OrderByDescending(m => m.HasRead == false).Where(m => m.OwnerName == "Seven").Take(10).ToList();
+                    ////User myMessage = repository.Users.Include(u=>u.HaveMessages).
+
+                    //foreach (var item in message)
+                    //{
+                    //    Console.WriteLine($"{item.Content}++{item.HasRead.ToString()}");
+                    //}
+                }
+            }
             #endregion
         }
     }

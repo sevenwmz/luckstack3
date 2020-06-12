@@ -7,13 +7,18 @@ namespace HomeWork_Of_EFCore
 {
     class Repository_Of_EFCore :DbContext
     {
+        #region DbSet Area
         public DbSet<User> Users { set; get; }
         public DbSet<Keywords> Keywords { set; get; }
         public DbSet<Article> Articles { set; get; }
         public DbSet<Problem> Problem { set; get; }
         public DbSet<Kind> Kinds { set; get; }
+        public DbSet<BMoney> BMoneys { set; get; }
+        public DbSet<Message> Messages { set; get; }
         //public DbSet<ProblemStatus> ProblemStatuses { set; get; }
 
+
+        #endregion
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

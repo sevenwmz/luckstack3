@@ -19,5 +19,8 @@ namespace HomeWork_Of_EFCore
         public int? SendToId { set; get; }
         public Email SendTo { set; get; }
         public IList<Problem> Problems { set; get; }
+        public IList<BMoney> Wallet { set; get; }
+        public IList<Article> articles { set; get; }
+        public List<Message> HaveMessages { set; get; }
     }
 }
