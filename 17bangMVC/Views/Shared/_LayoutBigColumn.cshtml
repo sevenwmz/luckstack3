@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@section style{
+    @RenderSection("style", false)
+}
+<section class="container">
+    <h2 style="margin-top:90px;">
+        @RenderSection("Title")
+    </h2>
+    <hr />
+    <div class="row">
+        @RenderBody()
+
+        <aside class="col-md-6 offset-1">
+            <h3><i class="fa fa-question-circle mt-3 text-info">说明</i></h3>
+            @RenderSection("Descirption")
+        </aside>
+    </div>
+
+</section>
+

@@ -1,45 +1,148 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<head lang="zh-cn">
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta name="=viewport" content="width=device-width, intial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/FontAwesome/Content/font-awesome.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/SevenWangOverride.css" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/ico" href="~/img/Title.ico" />" media="screen" />
+    <title>@ViewData["title"]</title>
+
+    <style>
+        * {
+            font-size: small;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+    @RenderSection("style", false)
 
 </head>
+
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                    <li>@Html.ActionLink("关于", "About", "Home")</li>
-                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
+    <header class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <section class="row col-md-5 align-items-center">
+                <a href="/"><img src="~/img/一起帮主页logo左上角.png" style="margin-left:75px" /></a>
+                <span class="h4 text-dark">一起帮</span>
+                <span class="text-dark">· 网络互助平台</span>
+            </section>
+            <a class="navbar-brand" href="/"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse flex-row-reverse">
+                <ul class="navbar-nav">
+
+                    @*临时登陆显示partial*@
+                    <partial name="TempLogOn" />
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-question-circle"></i>求助
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-header">督导班</a>
+                            <a class="dropdown-item" href="#">督导班</a>
+                            <a class="dropdown-item" href="#">列表</a>
+                            <a class="dropdown-item">疑问发布</a>
+                            <a class="dropdown-item">疑问列表</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">列表</a>
+                            <a class="dropdown-item" href="#">发布</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-eye"></i>督促
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">求督促</a>
+                            <a class="dropdown-item" href="#">督促别人</a>
+                            <a class="dropdown-item" href="#">我的目标</a>
+                            <a class="dropdown-item" href="#">我的督促</a>
+                            <a class="dropdown-item" href="#">未交作业</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-area-chart"></i>文章
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">列表</a>
+                            <a class="dropdown-item" href="#">开通</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user"></i>未登录
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">登录</a>
+                            <a class="dropdown-item" href="#">注册</a>
+                            <a class="dropdown-item" href="#">忘记密码</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown" style="padding-right:75px">
+                        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-tachometer"></i>后台
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-header">邀请注册</a>
+                            <a class="dropdown-item" href="#">我的消息</a>
+                            <a class="dropdown-item" href="#">我的草稿</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-header">广告推广</a>
+                            <a class="dropdown-item">联系方式</a>
+                            <a class="dropdown-item">侧边栏</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-header">购买</a>
+                            <a class="dropdown-item" href="#">出售</a>
+                            <a class="dropdown-item" href="#">已购买</a>
+                            <a class="dropdown-item" href="#">已出售</a>
+                        </div>
+                    </li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="row alert alert-secondary justify-content-lg-between" style="position:relative;top:65px;height:35px;padding:5px 20px;">
+                <span><i class="fa fa-calendar" title="2020年3月4日 15:41:38"></i>文章<a href="#" class="text-muted">源栈培训：ASP.NET MVC：Route和MV... </a>被<a href="#" class="text-muted">陈百万</a>打赏<a href="#" class="text-muted"><i class="fa fa-jpy"></i>帮帮币</a>1枚</span>
+                <a href="#"><i class="fa fa-hand-o-right"></i>全部消息</a>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
+        <vc:notice-model></vc:notice-model>
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
-        </footer>
-    </div>
+    </main>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+
+    <footer class="container">
+        <hr />
+        <div>
+            <div>
+                <a href="none">关于我们</a> |
+                <a href="none">常见问题</a> |
+                <a href="none">意见建议</a> |
+                <a href="none">历史通知</a> |
+                <a href="none" class="text-success">友情捐赠</a> |
+                <a href="none">融资2018</a>
+            </div>
+            <div>
+                <span>友情链接：</span>
+            </div>
+            <div class="float-md-right" style="padding-bottom:50px">
+                <a href="none" class="">老王这里（备案）</a>© 2020 - 首顾科技
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

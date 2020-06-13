@@ -1,0 +1,21 @@
+﻿@*@{
+    string prepage = Context.Request.QueryString["prepage"];
+    if (string.IsNullOrEmpty(prepage))
+    {
+        //目的是为了控制Url参数长度，从而在显示的模块里不会出现其他页面的多余参数
+        prepage = (Context.Request.Path + Context.Request.QueryString);
+    }//else nothing
+    string queryStringPage = $"prepage={prepage}";
+}
+
+
+@if (!LogOnModel.IsLogIn)
+{
+    <li><a href="/Register?@queryStringPage">注册     |</a></li>
+    <li><a href="/Log/On?@queryStringPage">登陆     |</a></li>
+}
+else
+{
+    <li><a href="/Log/On?@queryStringPage">已登陆     |</a></li>
+    <li><a href="/Log/Off?@queryStringPage">退出登录</a></li>
+}*@
