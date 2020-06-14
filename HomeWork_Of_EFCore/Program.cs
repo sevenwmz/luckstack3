@@ -325,34 +325,12 @@ namespace HomeWork_Of_EFCore
             }
             //能够选择文章列表的排序方向（按发布时间顺序倒序）和每页显示格式（50篇标题 / 10篇标题 + 摘要） 
             {
-                //Repository_Of_EFCore repository = new Repository_Of_EFCore();
-                //IList<Problem> tempProblems = new List<Problem>();
-                //bool show_50_Title = true;
-                //bool publishTimeDesc = true;
-                //int takeProblem = 0;
-                //if (show_50_Title)
-                //{
-                //    if (publishTimeDesc)
-                //    {
-                //        tempProblems = repository.Problem.OrderByDescending(p => p.PublishTime).Skip(takeProblem).Take(50).ToList();
-                //    }
-                //    tempProblems = repository.Problem.OrderBy(p => p.PublishTime).Skip(takeProblem).Take(50).ToList();
-                //    takeProblem += 50;
-                //}
-                //else
-                //{
-                //    if (publishTimeDesc)
-                //    {
-                //        tempProblems = repository.Problem.OrderByDescending(p => p.PublishTime).Skip(takeProblem).Take(10).ToList();
-                //    }
-                //    tempProblems = repository.Problem.OrderBy(p => p.PublishTime).Skip(takeProblem).Take(10).ToList();
-                //    takeProblem += 10;
-                //}
-                //foreach (var item in tempProblems)
-                //{
-                //    Console.WriteLine(item.Title, item.Summary);
-                //}
-
+                IList<Problem> tempList = new List<Problem>();
+                tempList = new Program().GetProblemOrderBy(true).GetContextTitleBy(true,50).ToList();
+                foreach (var item in tempList)
+                {
+                    Console.WriteLine(item.Title, item.Summary);
+                }
             }
             //发布文章会：扣掉作者1枚帮帮币、增加10个帮帮点
             {
@@ -555,6 +533,28 @@ namespace HomeWork_Of_EFCore
                 //repository.SaveChanges();
             }
             #endregion
+        }
+
+        public IQueryable<Problem> GetProblemOrderBy(bool publishTimeDesc)
+        {
+            Repository_Of_EFCore repository = new Repository_Of_EFCore();
+            if (publishTimeDesc)
+            {
+                return repository.Problem.OrderByDescending(p => p.PublishTime);
+            }
+            return repository.Problem.OrderBy(p => p.PublishTime);
+        }
+    }
+    public static class Extension
+    {
+        public static IQueryable<Problem> GetContextTitleBy(this IQueryable queryable, bool show50Title, int takeProblem)
+        {
+            Repository_Of_EFCore repository = new Repository_Of_EFCore();
+            if (show50Title)
+            {
+                return repository.Problem.Skip(takeProblem).Take(50);
+            }
+            return repository.Problem.Skip(takeProblem).Take(10);
         }
     }
 }

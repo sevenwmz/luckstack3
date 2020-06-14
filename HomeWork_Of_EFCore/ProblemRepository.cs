@@ -13,35 +13,41 @@ namespace HomeWork_Of_EFCore
         //bool hasReward：只显示已有酬谢的求助（如果传入值为true的话） 
         //bool descByPublishTime：按发布时间正序还是倒序
         //参考：求助列表（不显示 / 只显示）和文章列表（正序 / 倒序）
-        public IList<Problem> GetBy(IList<ProblemStatus> exclude, bool hasReward, bool descByPublishTime)
+        public IQueryable<Problem> GetBy(IList<ProblemStatus> exclude, bool hasReward, bool descByPublishTime)
         {
-            IList<Problem> temp = new List<Problem>();
-            temp = GetAfterExclude(exclude);
+            //GetAfterExclude(exclude).ToList();
 
-            if (hasReward)
-            {
-                temp = GetProblemWithout(temp);
-            }
-            return GetProblemPublishTimeBy(temp, descByPublishTime);
+            //if (hasReward)
+            //{
+            //    return GetProblemWithout(GetAfterExclude(exclude)).GetProblemPublishTimeBy(descByPublishTime);
+            //}
+            //return GetProblemPublishTimeBy(GetAfterExclude(exclude), descByPublishTime);
+            return null;
         }
-        public IList<Problem> GetAfterExclude(IList<ProblemStatus> exclude)
+
+
+        public IQueryable<Problem> GetAfterExclude(IList<ProblemStatus> exclude)
         {
             IQueryable<Problem> repository = new Repository_Of_EFCore().Problem;
-            return repository.Where(p => !exclude.Contains(p.Statu)).ToList();
+            return repository.Where(p => !exclude.Contains(p.Statu));
         }
-        public IList<Problem> GetProblemWithout(IList<Problem> problems)
-        {
-            return problems.Where(p => p.Reward > 0).ToList();
-        }
-        public IList<Problem> GetProblemPublishTimeBy(IList<Problem> problems, bool descByPublishTime)
-        {
-            if(descByPublishTime)
-            {
-                return problems.OrderBy(p => p.PublishTime).ToList();
-            }
-            return problems.OrderByDescending(p => p.PublishTime).ToList(); 
-        }
+    
 
+    }
+    public static class Extension
+    {
+        public static IQueryable<Problem> GetProblemWithout(this IQueryable queryable, IQueryable<Problem> problems)
+        {
+            return problems.Where(p => p.Reward > 0);
+        }
+        public static IQueryable<Problem> GetProblemPublishTimeBy(this IQueryable queryable, IQueryable<Problem> problems, bool descByPublishTime)
+        {
+            if (descByPublishTime)
+            {
+                return problems.OrderBy(p => p.PublishTime);
+            }
+            return problems.OrderByDescending(p => p.PublishTime);
+        }
     }
 
     public enum ProblemStatus
