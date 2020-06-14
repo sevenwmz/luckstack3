@@ -1,0 +1,119 @@
+﻿@model ViewModel.RegisterModel
+@{
+    ViewData["Title"] = "注册·一起帮";
+    Layout = "~/Views/Shared/_LayoutBigColumn.cshtml";
+}
+
+@section style{
+    <style>
+        ol li {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .field-validation-error {
+            color: #b94a48;
+        }
+
+        .field-validation-valid {
+            display: none;
+        }
+
+        input.input-validation-error {
+            border: 1px solid #b94a48;
+        }
+
+        input[type="checkbox"].input-validation-error {
+            border: 0 none;
+        }
+
+        .validation-summary-errors {
+            color: #b94a48;
+        }
+
+        .validation-summary-valid {
+            display: none;
+        }
+    </style>
+}
+
+@using (Html.BeginForm())
+{
+    <div asp-validation-summary="All"></div>
+    <section style="background-color:lightyellow;border:3px dashed#e8cf6f;padding:15px;border-radius:3px 5px;">
+        <div class="text-md-right" style="padding-bottom:15px;">
+            <a href="none" class="text-right"><i class="fa fa-question-circle"></i>为什么需要邀请</a>
+        </div>
+        <div class="form-group">
+            <label>邀请人：（* 必填<a href="none" title="点击由系统推荐">没有邀请人</a>）</label>
+            @Html.LabelFor(m => m.Inviter)
+            @Html.TextBoxFor(m => m.Inviter, new { @class = "form-control", placeholder = "他的用户名，模糊查询只能从头开始" })
+            @Html.ValidationMessageFor(m => m.Inviter)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.InviterNumber)
+            @Html.TextBoxFor(m => m.InviterNumber, new { @class = "form-control", placeholder = "4位数字" })
+            @Html.ValidationMessageFor(m => m.InviterNumber)
+        </div>
+    </section>
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "登录用户名，可修改，但不能重复" })
+        @Html.ValidationMessageFor(m => m.UserName);
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "不少于4个字符" })
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PasswordAgain)
+        @Html.PasswordFor(m => m.PasswordAgain, new { @class = "form-control", placeholder = "和密码相同" })
+        @Html.ValidationMessageFor(m => m.PasswordAgain)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Captcha)<span>:</span>
+        <div>
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", style = "width:30%;display:inline;" })
+            <a href="#">看不清楚</a>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">提交</button>
+    <button type="reset" class="btn btn-light border border-secondary">重置</button>
+    <a href="/Log/On" class="btn float-md-right text-primary"><i class="fa fa-sign-in"></i>登录</a>
+}
+
+
+
+@section Title{
+    <i class="fa fa-registered"></i>注册
+}
+
+@section Descirption{
+    <ol>
+        <li>
+            我们希望通过<a href="none">一起帮</a>，能<strong style="color:dodgerblue">直接解决</strong>
+            大家在<span style="color:dodgerblue">电脑操作/软件使用/编程学习</span>等方面的<strong>具体问题。</strong>
+        </li>
+        <li>
+            现在互联网远程技术<span style="color:gray">（比如QQ桌面共享）</span>已经非常成熟，当我们再遇到上述问题，
+            如果别人能<span style="color:deepskyblue">直接远程给予帮助</span>，岂不是好？
+        </li>
+        <li>
+            当然，你也可以在你熟悉的领域去<span style="color:deepskyblue">帮助别人</span>
+            。由此而形成我们这个“你帮他他帮我我帮你，大家一起帮”的网上互助社区平台。
+        </li>
+        <li>
+            公平起见，我们还引入了 帮帮<span style="color:dodgerblue">点</span>/
+            <span style="color:yellow">币</span>/
+            <span style="color:greenyellow">豆</span>
+            三级概念，以记录和衡量社区成员的收获和贡献。
+        </li>
+        <li>
+            赶快加入我们，赚取帮帮币吧！
+        </li>
+        <li>
+            <a href="none">了解更多</a>
+        </li>
+    </ol>
+}

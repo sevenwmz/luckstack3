@@ -545,7 +545,7 @@ namespace HomeWork_Of_EFCore
             return repository.Problem.OrderBy(p => p.PublishTime);
         }
     }
-    public static class Extension
+    public static class Extensions
     {
         public static IQueryable<Problem> GetContextTitleBy(this IQueryable queryable, bool show50Title, int takeProblem)
         {

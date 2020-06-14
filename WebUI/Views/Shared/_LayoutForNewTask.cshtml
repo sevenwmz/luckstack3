@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout";
+}
+
+<main class="container">
+    <div class="row">
+        <section class="col-md-9">
+            <div style="margin-top: 90px;">
+                <h3>
+                    @RenderSection("Title")
+                </h3>
+                <hr />
+            </div>
+            @RenderBody()
+        </section>
+        <aside class="col-md-3">
+            <div style="margin-top:90px;border:dashed#d8c8c8 3px;padding:25px;background-color:#f0f69c">
+                <h4>新手任务</h4>
+                <hr />
+                <p><i class="fa fa-square-o"></i>填写：<a href="none">联系方式</a></p>
+                <p><i class="fa fa-square-o"></i>激活：<a href="none">Email</a></p>
+                <p><i class="fa fa-square-o"></i>邀请：<a href="none">我的小伙伴</a></p>
+                <p><i class="fa fa-square-o"></i>参加：<a href="none">新人测试</a></p>
+                <p><i class="fa fa-square-o"></i>发布：<a href="none">第一个求助</a></p>
+                <p><i class="fa fa-square-o"></i>尝试： <a href="none">第一次协助</a></p>
+                <p><i class="fa fa-square-o"></i>获得：若干<a href="none" style="color:gold">帮帮币</a></p>
+            </div>
+            @RenderSection("LowRightShow")
+        </aside>
+    </div>
+</main>
+@RenderSection("style", false)

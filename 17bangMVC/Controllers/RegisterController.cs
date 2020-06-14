@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
+//using ViewModel;
 namespace _17bangMVC.Controllers
 {
     public class RegisterController : Controller
@@ -24,13 +24,7 @@ namespace _17bangMVC.Controllers
                 return View();
             }
 
-            //User user = new User
-            //{
-            //    Inviter = this.Inviter,
-            //    InviterNumber = this.InviterNumber,
-            //    UserName = this.UserName,
-            //    Password = this.Password
-            //};
+            //RegisterModel register = new RegisterModel();
 
             #region Check Info Is Correct
             //UserRepository repository = new UserRepository();
@@ -59,8 +53,8 @@ namespace _17bangMVC.Controllers
             //HttpContext.Session.SetString(Const.COOKIE_USER, Const.COOKIE_VALUE);
             //Response.Cookies.Append(Const.COOKIE_USER, Const.COOKIE_VALUE);
             //LogOnModel.IsLogIn = true;
-            //return Redirect(Request.Query[Const.PREPAGE]);
-            return View();
+            return Redirect(Request.QueryString["preRegister"]);
+            //return View();
         }
     }
 }
