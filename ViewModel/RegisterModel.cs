@@ -11,7 +11,6 @@ namespace ViewModel
     {
         #region Register preproty
 
-        [Display(Name = "邀请人：（* 必填")]
         [Required(ErrorMessage = "* 邀请人不能为空")]
         public string Inviter { set; get; }
 
@@ -32,7 +31,7 @@ namespace ViewModel
         [Compare(nameof(Password))]
         public string PasswordAgain { set; get; }
 
-        [Required]
+        //[Required]
         [Display(Name = "验证码：（* 必填） ")]
         public string Captcha { set; get; }
         public int CookieId { set; get; }

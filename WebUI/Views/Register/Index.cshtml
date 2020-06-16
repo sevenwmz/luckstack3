@@ -36,53 +36,52 @@
         }
     </style>
 }
-
-@using (Html.BeginForm())
-{
-    <div asp-validation-summary="All"></div>
-    <section style="background-color:lightyellow;border:3px dashed#e8cf6f;padding:15px;border-radius:3px 5px;">
-        <div class="text-md-right" style="padding-bottom:15px;">
-            <a href="none" class="text-right"><i class="fa fa-question-circle"></i>为什么需要邀请</a>
+<div class="col-md-4">
+    @using (Html.BeginForm())
+    {
+        <div asp-validation-summary="All"></div>
+        <section style="background-color:lightyellow;border:3px dashed#e8cf6f;padding:15px;border-radius:3px 5px;">
+            <div class="text-md-right" style="padding-bottom:15px;">
+                <a href="none" class="text-right"><i class="fa fa-question-circle"></i>为什么需要邀请</a>
+            </div>
+            <div class="form-group">
+                <label>邀请人：（* 必填<a href="none" title="点击由系统推荐">没有邀请人</a>）</label>
+                @Html.TextBoxFor(m => m.Inviter, new { @class = "form-control", placeholder = "他的用户名，模糊查询只能从头开始" })
+                @Html.ValidationMessageFor(m => m.Inviter)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.InviterNumber)
+                @Html.TextBoxFor(m => m.InviterNumber, new { @class = "form-control", placeholder = "4位数字" })
+                @Html.ValidationMessageFor(m => m.InviterNumber)
+            </div>
+        </section>
+        <div class="form-group">
+            @Html.LabelFor(m => m.UserName)
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "登录用户名，可修改，但不能重复" })
+            @Html.ValidationMessageFor(m => m.UserName)
         </div>
         <div class="form-group">
-            <label>邀请人：（* 必填<a href="none" title="点击由系统推荐">没有邀请人</a>）</label>
-            @Html.LabelFor(m => m.Inviter)
-            @Html.TextBoxFor(m => m.Inviter, new { @class = "form-control", placeholder = "他的用户名，模糊查询只能从头开始" })
-            @Html.ValidationMessageFor(m => m.Inviter)
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "不少于4个字符" })
+            @Html.ValidationMessageFor(m => m.Password)
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.InviterNumber)
-            @Html.TextBoxFor(m => m.InviterNumber, new { @class = "form-control", placeholder = "4位数字" })
-            @Html.ValidationMessageFor(m => m.InviterNumber)
+            @Html.LabelFor(m => m.PasswordAgain)
+            @Html.PasswordFor(m => m.PasswordAgain, new { @class = "form-control", placeholder = "和密码相同" })
+            @Html.ValidationMessageFor(m => m.PasswordAgain)
         </div>
-    </section>
-    <div class="form-group">
-        @Html.LabelFor(m => m.UserName)
-        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "登录用户名，可修改，但不能重复" })
-        @Html.ValidationMessageFor(m => m.UserName);
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password)
-        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "不少于4个字符" })
-        @Html.ValidationMessageFor(m => m.Password)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.PasswordAgain)
-        @Html.PasswordFor(m => m.PasswordAgain, new { @class = "form-control", placeholder = "和密码相同" })
-        @Html.ValidationMessageFor(m => m.PasswordAgain)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Captcha)<span>:</span>
-        <div>
-            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", style = "width:30%;display:inline;" })
-            <a href="#">看不清楚</a>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Captcha)<span>:</span>
+            <div>
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", style = "width:30%;display:inline;" })
+                <a href="#">看不清楚</a>
+            </div>
         </div>
-    </div>
-    <button type="submit" class="btn btn-primary">提交</button>
-    <button type="reset" class="btn btn-light border border-secondary">重置</button>
-    <a href="/Log/On" class="btn float-md-right text-primary"><i class="fa fa-sign-in"></i>登录</a>
-}
-
+        <button type="submit" class="btn btn-primary">提交</button>
+        <button type="reset" class="btn btn-light border border-secondary">重置</button>
+        <a href="/Log/On" class="btn float-md-right text-primary"><i class="fa fa-sign-in"></i>登录</a>
+    }
+</div>
 
 
 @section Title{

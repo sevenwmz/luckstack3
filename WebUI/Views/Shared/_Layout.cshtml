@@ -39,8 +39,24 @@
             <div class="collapse navbar-collapse flex-row-reverse">
                 <ul class="navbar-nav">
 
+
+                    @{
+                        string prepage = Context.Request.QueryString[Const.PREPAGE];
+                        if (string.IsNullOrEmpty(prepage))
+                        {
+                            //目的是为了控制Url参数长度，从而在显示的模块里不会出现其他页面的多余参数
+                            prepage = (Context.Request.Path + Context.Request.QueryString);
+                        }//else nothing
+                        string queryStringPage = $"{Const.PREPAGE}={prepage}";
+                    }
+
+
                     @*临时登陆显示partial*@
                     @*<partial name="TempLogOn" />*@
+                    <a href="/Register?@queryStringPage">注册      </a>
+                    <a href="/Home?@queryStringPage">主页</a>
+
+
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

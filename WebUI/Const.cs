@@ -23,6 +23,7 @@ namespace WebUI
 
         //FOR Url
         public const string PREPAGE = "prepage";
+        public const string PRE_REGISTER = "preRegister";
         public const string ROLE = "role";
         public const string PRE_PAGE_INDEX = "path";
 
