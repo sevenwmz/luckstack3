@@ -1,7 +1,92 @@
-﻿
+﻿@model ViewModel.Log.OnModel
 @{
-    ViewBag.Title = "On";
+    ViewData["Title"] = "用户登录·一起帮";
+    Layout = "~/Views/Shared/_LayoutBigColumn.cshtml";
 }
 
-<h2>On</h2>
+@section style{
+    <style>
+        .field-validation-error {
+            color: #b94a48;
+        }
+
+        .field-validation-valid {
+            display: none;
+        }
+
+        input.input-validation-error {
+            border: 1px solid #b94a48;
+        }
+
+        input[type="checkbox"].input-validation-error {
+            border: 0 none;
+        }
+
+        .validation-summary-errors {
+            color: #b94a48;
+        }
+
+        .validation-summary-valid {
+            display: none;
+        }
+    </style>
+}
+@section Title{
+    <i class="fa fa-sign-in">用户登录</i>
+}
+
+<div class="col-md-4" style="padding-bottom:65px">
+    @using (Html.BeginForm())
+    {
+        <partial name="_LogOnTokenMessage" />
+        <div class="form-group">
+            <label><strong>用户名：（* 必填）</strong></label>
+            @Html.TextBoxFor(o=>o.LogInName, new { @class="form-control", placeholder="不是昵称，是登录用户名" })
+            @Html.ValidationMessageFor(o=>o.LogInName)
+        </div>
+        <div class="form-group">
+            <label><strong>密码：（* 必填）</strong></label>
+            @Html.PasswordFor(o => o.Password, new { @class = "form-control", placeholder = "不少于4个字符" })
+            @Html.ValidationMessageFor(o => o.Password)
+        </div>
+        <div class="form-group">
+            <label><strong>验证码：（* 必填）</strong></label>
+            <div>
+                @Html.TextBoxFor(o=>o.Captcha,new { @class="form-control" ,style="width:30%;display:inline;"})
+                @Html.ValidationMessageFor(o=>o.Captcha)
+                <a href="#">看不清楚</a>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">提交</button>
+        <label><input type="checkbox" style="display:inline" value="true" readonly asp-for="RemenberMe" />记住我</label>
+        <a href="/Register?" class="btn float-md-right text-primary"><i class="fa fa-registered"></i>注册</a>
+        <a href="/Password/Forget?" class="btn float-md-right text-primary">(｡ŏ_ŏ) 忘了</a>
+    }
+</div>
+@section Descirption{
+    <ol>
+        <li>
+            我们希望通过<a href="none">一起帮</a>，能<strong style="color:dodgerblue">直接解决</strong>
+            大家在<span style="color:dodgerblue">电脑操作/软件使用/编程学习</span>等方面的<strong>具体问题。</strong>
+        </li>
+        <li>
+            现在互联网远程技术<span style="color:gray">（比如QQ桌面共享）</span>已经非常成熟，当我们再遇到上述问题，
+            如果别人能<span style="color:deepskyblue">直接远程给予帮助</span>，岂不是好？
+        </li>
+        <li>
+            当然，你也可以在你熟悉的领域去<span style="color:deepskyblue">帮助别人</span>
+            。由此而形成我们这个“你帮他他帮我我帮你，大家一起帮”的网上互助社区平台。
+        </li>
+        <li>
+            公平起见，我们还引入了 帮帮<span style="color:dodgerblue">点</span>/
+            <span style="color:yellow">币</span>/
+            <span style="color:greenyellow">豆</span>
+            三级概念，以记录和衡量社区成员的收获和贡献。
+        </li>
+        <li>
+            赶快加入我们，赚取帮帮币吧！
+        </li>
+    </ol>
+}
+
 

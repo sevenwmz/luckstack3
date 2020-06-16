@@ -131,6 +131,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Const.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Log\LogController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -218,6 +219,7 @@
     <Content Include="Views\Shared\_LayoutSmallColumn.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\TempLogOn.cshtml" />
+    <Content Include="Views\Log\On.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

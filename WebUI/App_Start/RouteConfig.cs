@@ -20,6 +20,11 @@ namespace WebUI
             );
 
 
+            routes.MapRoute(
+            name: "LogOnConfig",
+            url: "Log/{action}",
+            defaults: new { controller = "Log", action = "On" }
+            );
         }
     }
 }
