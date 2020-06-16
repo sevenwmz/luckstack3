@@ -57,7 +57,6 @@ namespace WebUI.Controllers
                 Password = model.Password
             });
 
-
             HttpContext.Session.Add(Const.SESSION_USER, Const.SESSION_VALUE);
             if (Request.QueryString == null)
             {

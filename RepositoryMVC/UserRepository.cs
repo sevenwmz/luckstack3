@@ -35,17 +35,18 @@ namespace RepositoryMVC
         /// Add data to database.
         /// </summary>
         /// <param name="regiserInfo">Need userInfo</param>
-        public void AddRegisterToDatabase(User regiserInfo)
+        public int AddRegisterToDatabase(User regiserInfo)
         {
             repository.UsersInfo.Add(regiserInfo);
             repository.SaveChanges();
+            return repository.UsersInfo.Where(u => u.UserName == regiserInfo.UserName).SingleOrDefault().Id;
         }
 
         /// <summary>
         /// Add register all info ,inclund award and give inviter prize.
         /// </summary>
         /// <param name="regiserInfo">Need userInfo</param>
-        public void Register(User info)
+        public int Register(User info)
         {
             BMoney award = new BMoney();
             award = award.RegisterAwardBMoney();
@@ -54,11 +55,12 @@ namespace RepositoryMVC
             info.Level = 0;
             info.Wallet = new List<BMoney>();
             info.Wallet.Add(award);
-            AddRegisterToDatabase(info);
+            int userId = AddRegisterToDatabase(info);
 
             //Give Inviter Bmoney prize.
             award = award.GiveInviterPrize(info.Inviter);
             new BMoneyRepository().AddNewRow(award);
+            return userId;
         }
 
 

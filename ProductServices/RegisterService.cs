@@ -9,7 +9,7 @@ using ViewModel;
 
 namespace ProductServices
 {
-    public class RegisterService
+    public class RegisterService : BaceService
     {
         /// <summary>
         /// Connection to userRepository
@@ -28,7 +28,6 @@ namespace ProductServices
         /// <returns>Return one of RegisterModel Info</returns>
         public RegisterModel GetName(string name)
         {
-            RegisterModel model = new RegisterModel();
             User userInfo = new User();
             userInfo = this.userInfo.GetBy(name);
 
@@ -36,14 +35,8 @@ namespace ProductServices
             {
                 return null;
             }
+            RegisterModel model = connectedMapper.Map<RegisterModel>(userInfo);
 
-            model = new RegisterModel
-            {
-                Inviter = userInfo.Inviter,
-                InviterNumber = userInfo.InviterNumber,
-                UserName = userInfo.UserName,
-                Password = userInfo.Password
-            };
             return model;
         }
 
@@ -51,16 +44,10 @@ namespace ProductServices
         /// Add award and constitute registerInfo ,add to reposiroty.
         /// </summary>
         /// <param name="registerInfo">Need registerInfo</param>
-        public void Add(RegisterModel registerInfo)
+        public int Add(RegisterModel registerInfo)
         {
-            User register = new User
-            {
-                Inviter = registerInfo.Inviter,
-                InviterNumber = registerInfo.InviterNumber,
-                UserName = registerInfo.UserName,
-                Password = registerInfo.Password,
-            };
-            userInfo.Register(register);
+            User register = connectedMapper.Map<User>(registerInfo);
+            return userInfo.Register(register);
         }
     }
 }
