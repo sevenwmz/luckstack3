@@ -14,8 +14,8 @@ namespace EntityMVC
         public DateTime Latestime { set; get; }
         public string Detail { set; get; }
         public int Freezing { set; get; }
+        public int Change { set; get; }
         public int LeftBMoney { set; get; }
-        public int LeftBPoint { set; get; }
         public BMoneyDirection Status { set; get; }
 
         /// <summary>
@@ -24,55 +24,28 @@ namespace EntityMVC
         /// <returns>Return Bmoney</returns>
         public BMoney RegisterAwardBMoney()
         {
-            BMoney awardRegister = new BMoney
+            return new BMoney
             {
                 Latestime = DateTime.Now,
                 Detail = "Register award 10 BMoney",
                 Freezing = 0,
                 LeftBMoney = 10,
-                LeftBPoint = 0,
-                Status = BMoneyDirection.BMoneyOrBPointIn
+                Change = 10,
+                Status = BMoneyDirection.BMoneyIn
             };
-            return awardRegister;
         }
-        /// <summary>
-        /// Add new info to 
-        /// </summary>
-        /// <param name="inviter"></param>
-        /// <returns></returns>
-        public BMoney GiveInviterPrize(string inviter)
-        {
-            MvcRepository repository = new MvcRepository();
 
-            User user = repository.UsersInfo
-                .Where(u => u.Inviter == inviter).FirstOrDefault();
-
-            BMoney bMoney = repository.BMoneys
-                .OrderByDescending(b=>b.Latestime).Where(b => b.OwnerId == user.Id).FirstOrDefault();
-
-            BMoney awardRegister = new BMoney
-            {
-                OwnerId = user.Id,
-                Latestime = DateTime.Now,
-                Detail = "Inviter award 10 BMoney",
-                Freezing = bMoney.Freezing + 0,
-                LeftBMoney = bMoney.LeftBMoney + 10,
-                LeftBPoint = bMoney.LeftBPoint + 0,
-                Status = BMoneyDirection.BMoneyOrBPointIn
-            };
-            return awardRegister;
-        }
 
     }
     public enum BMoneyDirection
     {
-        [Display(Name = "支出")]
-        BMoneyOrBPointOut,
+        [Display(Name = "帮帮币支出")]
+        BMoneyOut,
 
-        [Display(Name = "收入")]
-        BMoneyOrBPointIn,
+        [Display(Name = "帮帮币收入")]
+        BMoneyIn,
 
-        [Display(Name = "冻结")]
-        BMoneyOrBPointFreezing
+        [Display(Name = "帮帮币冻结")]
+        BMoneyFreezing
     }
 }

@@ -53,30 +53,12 @@
   <ItemGroup>
     <Compile Include="BaceEntity.cs" />
     <Compile Include="BMoney.cs" />
-    <Compile Include="Migrations\202006150335423_Init.cs" />
-    <Compile Include="Migrations\202006150335423_Init.designer.cs">
-      <DependentUpon>202006150335423_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006150456239_AddBMoneyAndUserWallet.cs" />
-    <Compile Include="Migrations\202006150456239_AddBMoneyAndUserWallet.designer.cs">
-      <DependentUpon>202006150456239_AddBMoneyAndUserWallet.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="MvcRepository.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202006150335423_Init.resx">
-      <DependentUpon>202006150335423_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006150456239_AddBMoneyAndUserWallet.resx">
-      <DependentUpon>202006150456239_AddBMoneyAndUserWallet.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

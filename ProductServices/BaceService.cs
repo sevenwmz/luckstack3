@@ -20,8 +20,10 @@ namespace ProductServices
                     .ForMember(r=>r.PasswordAgain,opt=>opt.Ignore())
                     .ForMember(r=>r.Captcha,opt=>opt.Ignore())
                     .ForMember(r=>r.CookieId,opt=>opt.Ignore())
+                    .ForMember(r=>r.Inviter,opt=>opt.Ignore())
+                    .ForMember(r=>r.InviterNumber,opt=>opt.MapFrom(r=>r.MyInviterNumber))
                     .ReverseMap()
-                    
+                    .ForMember(r=>r.Inviter,opt=>opt.Ignore())
                     ;
             });
 #if DEBUG

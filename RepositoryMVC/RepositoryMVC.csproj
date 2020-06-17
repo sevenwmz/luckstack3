@@ -52,6 +52,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BMoneyRepository.cs" />
+    <Compile Include="Extension\BMoneyExtension.cs" />
+    <Compile Include="Migrations\202006161339098_Init.cs" />
+    <Compile Include="Migrations\202006161339098_Init.designer.cs">
+      <DependentUpon>202006161339098_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006161358587_Add_InviterIdCanBeNull.cs" />
+    <Compile Include="Migrations\202006161358587_Add_InviterIdCanBeNull.designer.cs">
+      <DependentUpon>202006161358587_Add_InviterIdCanBeNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="SqlContext.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -64,6 +75,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202006161339098_Init.resx">
+      <DependentUpon>202006161339098_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006161358587_Add_InviterIdCanBeNull.resx">
+      <DependentUpon>202006161358587_Add_InviterIdCanBeNull.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

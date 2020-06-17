@@ -14,40 +14,46 @@ namespace ProductServices
         /// <summary>
         /// Connection to userRepository
         /// </summary>
-        private UserRepository userInfo;
+        private UserRepository _userRepository;
 
         public RegisterService()
         {
-            userInfo = new UserRepository();
+            _userRepository = new UserRepository();
         }
 
         /// <summary>
-        /// Get inviter exist in database
+        /// Get Name exist in database
         /// </summary>
         /// <param name="name">Need inviter name</param>
         /// <returns>Return one of RegisterModel Info</returns>
-        public RegisterModel GetName(string name)
+        public RegisterModel GetByName(string name)
         {
-            User userInfo = new User();
-            userInfo = this.userInfo.GetBy(name);
-
-            if (userInfo.Inviter == null)
-            {
-                return null;
-            }
-            RegisterModel model = connectedMapper.Map<RegisterModel>(userInfo);
-
-            return model;
+            User userInfo = _userRepository.GetBy(name);
+            return connectedMapper.Map<RegisterModel>(userInfo);
         }
 
         /// <summary>
         /// Add award and constitute registerInfo ,add to reposiroty.
         /// </summary>
         /// <param name="registerInfo">Need registerInfo</param>
-        public int Add(RegisterModel registerInfo)
+        public int Add(RegisterModel user)
+
         {
-            User register = connectedMapper.Map<User>(registerInfo);
-            return userInfo.Register(register);
+            User newUser = connectedMapper.Map<User>(user);
+
+            BMoney award = new BMoney();
+            award = award.RegisterAwardBMoney();
+
+            newUser.Inviter = _userRepository.GetBy(user.Inviter);
+            newUser = newUser.Register(newUser, award);
+            int userId = _userRepository.AddRegisterToDatabase(newUser);
+
+            //Give Inviter Bmoney prize.
+            BMoneyRepository moneyRepository = new BMoneyRepository();
+            moneyRepository.AddNewRow(
+                moneyRepository.GiveInviterPrize(newUser.Inviter.Id));
+
+            return userId;
         }
     }
 }

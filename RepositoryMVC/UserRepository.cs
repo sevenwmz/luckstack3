@@ -12,11 +12,11 @@ namespace RepositoryMVC
         /// <summary>
         /// Private Connect Proprety
         /// </summary>
-        private MvcRepository repository;
+        private SqlContext _context;
 
         public UserRepository()
         {
-            repository = new MvcRepository();
+            _context = new SqlContext();
         }
 
         /// <summary>
@@ -26,9 +26,7 @@ namespace RepositoryMVC
         /// <returns>Return inviterInfo</returns>
         public User GetBy(string name)
         {
-            //User user = new User();
-            User user = repository.UsersInfo.Where(u => u.UserName == name).FirstOrDefault();
-            return user;
+            return _context.Users.Where(u => u.UserName == name).FirstOrDefault();
         }
 
         /// <summary>
@@ -37,31 +35,12 @@ namespace RepositoryMVC
         /// <param name="regiserInfo">Need userInfo</param>
         public int AddRegisterToDatabase(User regiserInfo)
         {
-            repository.UsersInfo.Add(regiserInfo);
-            repository.SaveChanges();
-            return repository.UsersInfo.Where(u => u.UserName == regiserInfo.UserName).SingleOrDefault().Id;
+            _context.Users.Add(regiserInfo);
+            _context.SaveChanges();
+            return regiserInfo.Id;
         }
 
-        /// <summary>
-        /// Add register all info ,inclund award and give inviter prize.
-        /// </summary>
-        /// <param name="regiserInfo">Need userInfo</param>
-        public int Register(User info)
-        {
-            BMoney award = new BMoney();
-            award = award.RegisterAwardBMoney();
-            award.OwnerId = info.Id;
 
-            info.Level = 0;
-            info.Wallet = new List<BMoney>();
-            info.Wallet.Add(award);
-            int userId = AddRegisterToDatabase(info);
-
-            //Give Inviter Bmoney prize.
-            award = award.GiveInviterPrize(info.Inviter);
-            new BMoneyRepository().AddNewRow(award);
-            return userId;
-        }
 
 
 

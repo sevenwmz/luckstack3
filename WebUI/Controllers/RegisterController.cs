@@ -25,30 +25,24 @@ namespace WebUI.Controllers
                 return View();
             }
             RegisterService registerService = new RegisterService();
-
             #region Check RegisterInfo Is Correct
-            RegisterModel fromPage = new RegisterModel();
-            RegisterModel registerInfo = new RegisterModel();
-
-            registerInfo = registerService.GetName(model.Inviter);
-
-            if (string.IsNullOrEmpty(registerInfo.Inviter))
+            RegisterModel inviter = registerService.GetByName(model.Inviter);
+            if (inviter == null)
             {
                 ModelState.AddModelError(nameof(model.Inviter), "邀请人是不是填错啦");
-                return View();
+                return View(model);
             }
-            if (registerInfo.InviterNumber != model.InviterNumber)
+            if (inviter.InviterNumber != model.InviterNumber)
             {
                 ModelState.AddModelError(nameof(model.InviterNumber), "邀请码是不是填错啦！");
-                return View();
+                return View(model);
             }
-            if (registerInfo.UserName == model.UserName)
+            if (registerService.GetByName(model.UserName) != null)
             {
                 ModelState.AddModelError(nameof(model.UserName), "换个名字吧，这个名字已经被人抢先一步占用了。");
-                return View();
+                return View(model);
             }
             #endregion
-
             registerService.Add(new RegisterModel
             {
                 Inviter = model.Inviter,

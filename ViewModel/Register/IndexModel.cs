@@ -16,7 +16,7 @@ namespace ViewModel
 
         [Display(Name = "邀请码：（* 必填）")]
         [Required(ErrorMessage = "* 邀请码不能为空")]
-        public string InviterNumber { set; get; }
+        public int InviterNumber { set; get; }
 
         [Required]
         [Display(Name = "用户名：（* 必填）")]
