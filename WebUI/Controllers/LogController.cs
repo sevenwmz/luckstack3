@@ -8,7 +8,7 @@ using ViewModel.Log;
 
 namespace WebUI.Controllers
 {
-    public class LogOnController : Controller
+    public class LogController : Controller
     {
         // GET: On
         public ActionResult On()
@@ -49,5 +49,21 @@ namespace WebUI.Controllers
             }
             return Redirect(Request.QueryString[Const.PREPAGE]);
         }
+
+
+
+
+        // GET: Off
+        /// <summary>
+        /// Log/Off
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Off()
+        {
+            HttpContext.Session.Remove(Const.SESSION_USER);
+            return Redirect(Request.QueryString[Const.PREPAGE]);
+        }
+
     }
+
 }
