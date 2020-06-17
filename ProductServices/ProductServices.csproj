@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaceService.cs" />
+    <Compile Include="Log\OnService.cs" />
     <Compile Include="RegisterService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
