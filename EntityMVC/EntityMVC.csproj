@@ -51,8 +51,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AD.cs" />
+    <Compile Include="Article.cs" />
     <Compile Include="BaceEntity.cs" />
     <Compile Include="BMoney.cs" />
+    <Compile Include="Keywords.cs" />
+    <Compile Include="KeywordsAndArticle.cs" />
+    <Compile Include="Series.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

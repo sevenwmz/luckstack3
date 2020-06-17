@@ -13,6 +13,9 @@ namespace RepositoryMVC
     {
         public DbSet<User> Users { set; get; }
         public DbSet<BMoney> BMoneys { set; get; }
+        public DbSet<Article> Articles { set; get; }
+        public DbSet<Keywords> Keywords { set; get; }
+        public DbSet<KeywordsAndArticle> KeywordsAndArticle { set; get; }
 
         public SqlContext() : base("MvcRepository")
         {
@@ -26,8 +29,7 @@ namespace RepositoryMVC
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>().Property(u => u.UserName).HasMaxLength(256);
-            //modelBuilder.Entity<User>().HasOptional<User>(u => u.Inviter)
-                //.WithOptionalPrincipal(u => u.Inviter).Map(u=>u.MapKey("FK_User_Inviter"))
+            modelBuilder.Entity<KeywordsAndArticle>().HasKey(ka => new {ka.ArticleId,ka.KeywordId })
                 ;
              
         }

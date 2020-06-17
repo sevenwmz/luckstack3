@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Const.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -221,10 +222,10 @@
     <Content Include="Views\Shared\TempLogOn.cshtml" />
     <Content Include="Views\Log\On.cshtml" />
     <Content Include="Views\Log\Off.cshtml" />
+    <Content Include="Views\Article\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\Log\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

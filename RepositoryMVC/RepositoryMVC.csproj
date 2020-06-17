@@ -51,8 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticleRepository.cs" />
+    <Compile Include="BaceRepository.cs" />
     <Compile Include="BMoneyRepository.cs" />
     <Compile Include="Extension\BMoneyExtension.cs" />
+    <Compile Include="KeywordAndArticleRepository.cs" />
+    <Compile Include="KeywordRepository.cs" />
     <Compile Include="Migrations\202006161339098_Init.cs" />
     <Compile Include="Migrations\202006161339098_Init.designer.cs">
       <DependentUpon>202006161339098_Init.cs</DependentUpon>
@@ -60,6 +64,10 @@
     <Compile Include="Migrations\202006161358587_Add_InviterIdCanBeNull.cs" />
     <Compile Include="Migrations\202006161358587_Add_InviterIdCanBeNull.designer.cs">
       <DependentUpon>202006161358587_Add_InviterIdCanBeNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006171341410_AddArticleAndOtherTable.cs" />
+    <Compile Include="Migrations\202006171341410_AddArticleAndOtherTable.designer.cs">
+      <DependentUpon>202006171341410_AddArticleAndOtherTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SqlContext.cs" />
@@ -82,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006161358587_Add_InviterIdCanBeNull.resx">
       <DependentUpon>202006161358587_Add_InviterIdCanBeNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006171341410_AddArticleAndOtherTable.resx">
+      <DependentUpon>202006171341410_AddArticleAndOtherTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

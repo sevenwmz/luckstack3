@@ -22,7 +22,23 @@ namespace EntityMVC
 
         public IList<Keywords> GetKeywordList(string keywords)
         {
-            throw new NotImplementedException();
+            IList<Keywords> tempKeywordList = new List<Keywords>();
+            Keywords tempKeyword = new Keywords();
+            if (!string.IsNullOrEmpty(keywords))
+            {
+                string[] temp = keywords.Trim().Split(' ');
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    if (string.IsNullOrWhiteSpace(temp[i]))
+                    {
+                        continue;
+                    }
+                    tempKeyword.Name = temp[i];
+
+                    tempKeywordList.Add(tempKeyword);
+                }
+            }
+            return tempKeywordList;
         }
     }
 }

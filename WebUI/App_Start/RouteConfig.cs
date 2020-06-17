@@ -13,7 +13,11 @@ namespace WebUI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-
+            routes.MapRoute(
+                name: "ArticleNew",
+                url: "Article/{action}",
+                defaults: new { controller = "Article", action = "New" }
+            );
             routes.MapRoute(
                 name: "LogOnConfig",
                 url: "Log/On",
