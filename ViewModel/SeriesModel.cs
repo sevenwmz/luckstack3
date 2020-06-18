@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
-    class SeriesModel
+    public class SeriesModel
     {
+        public int Id { set; get; }
+        public string ContentOfSeries { set; get; }
     }
 }

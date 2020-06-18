@@ -9,17 +9,10 @@ namespace RepositoryMVC
 {
     public class KeywordAndArticleRepository : BaceRepository
     {
-        public void AddDatabase(int articleId, IList<int> keywordsId)
+        public void AddDatabase(int articleId, int keywordId)
         {
-            KeywordsAndArticle temp = new KeywordsAndArticle(); 
-            foreach (var item in keywordsId)
-            {
-                temp.ArticleId = articleId;
-                temp.KeywordId = item;
-            };
-            Context.KeywordsAndArticle.Add(temp);
+            Context.KeywordsAndArticle.Add(new KeywordsAndArticle { ArticleId = articleId, KeywordId = keywordId });
             Context.SaveChanges();
-
         }
     }
 }

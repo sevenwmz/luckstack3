@@ -10,16 +10,11 @@ namespace RepositoryMVC
     public class KeywordRepository : BaceRepository
     {
 
-        public IList<int> AddKeywordToDatabase(IList<Keywords> keywords)
+        public int AddKeywordToDatabase(Keywords keywords)
         {
-            IList<int> tempKeywordId = new List<int>();
-            foreach (var item in keywords)
-            {
-                Context.Keywords.Add(item);
-                tempKeywordId.Add(item.Id);
-            }
+            Context.Keywords.Add(keywords);
             Context.SaveChanges();
-            return tempKeywordId;
+            return keywords.Id;
         }
     }
 }

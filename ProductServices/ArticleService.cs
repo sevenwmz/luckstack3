@@ -12,16 +12,13 @@ namespace ProductServices
 {
     public class ArticleService : BaceService
     {
-
-
-
+        /// Infact I wanna use this function ,but when IList<T> inside i can't point something...faild
         public IList<SelectListItem> GetDropDownList<T>(IList<T> ts)
         {
             List<SelectListItem> dropDownList = new List<SelectListItem>();
-
-            for (int i = 0; i < ts.Count; i++)
+            foreach (var item in ts)
             {
-                dropDownList.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
+                dropDownList.Add(new SelectListItem { Text = item.ToString(), Value = item.ToString() });
             }
             return dropDownList;
         }
@@ -29,11 +26,6 @@ namespace ProductServices
         public int Add(ArticleNewModel model)
         {
             Article _articleEntity = new Article();
-            ArticleRepository _articleRepository = new ArticleRepository();
-            KeywordRepository _keywordRepository = new KeywordRepository();
-            KeywordAndArticleRepository _keywordAndArticleRepository = new KeywordAndArticleRepository();
-
-
 
             Article article = connectedMapper.Map<Article>(model);
             if (string.IsNullOrEmpty(model.Summary))
@@ -41,11 +33,23 @@ namespace ProductServices
                 article.Summary = _articleEntity.GetSumarry(model.Body);
             }
             _articleEntity.PublishArticle(article);
-            int articleId = _articleRepository.AddArticleToDatabase(article);
 
+            //Fake user --pretend take from Seesion
+            article.Author = new User { Id = 4 };
+
+            //Get and save series with AD to article foregin key.
+            article.UseSeries = new SeriesRepository().GetSeries(model.ChoosSeries);
+            article.UseAd = new ADRepository().GetAD(model.ChoosAd);
+
+            int articleId = new ArticleRepository().AddArticleToDatabase(article);
+
+            //Save keywords and into n:n table.
             IList<Keywords> keywords = new Keywords().GetKeywordList(model.Keywords);
-            IList<int> keywordsId = _keywordRepository.AddKeywordToDatabase(keywords);
-            _keywordAndArticleRepository.AddDatabase(articleId, keywordsId);
+            foreach (var item in keywords)
+            {
+                int keywordId = new KeywordRepository().AddKeywordToDatabase(item);
+                new KeywordAndArticleRepository().AddDatabase(articleId, keywordId);
+            }
 
             return articleId;
         }

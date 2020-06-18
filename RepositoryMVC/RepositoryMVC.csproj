@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADRepository.cs" />
     <Compile Include="ArticleRepository.cs" />
     <Compile Include="BaceRepository.cs" />
     <Compile Include="BMoneyRepository.cs" />
@@ -73,7 +74,20 @@
     <Compile Include="Migrations\202006180454307_AddArticlePublishTime.designer.cs">
       <DependentUpon>202006180454307_AddArticlePublishTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006181212195_AddADColumnHasNewAd.cs" />
+    <Compile Include="Migrations\202006181212195_AddADColumnHasNewAd.designer.cs">
+      <DependentUpon>202006181212195_AddADColumnHasNewAd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006181303085_Add_AdAndSeriesForenginKey.cs" />
+    <Compile Include="Migrations\202006181303085_Add_AdAndSeriesForenginKey.designer.cs">
+      <DependentUpon>202006181303085_Add_AdAndSeriesForenginKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006181358334_ChangeKeywordsNullable.cs" />
+    <Compile Include="Migrations\202006181358334_ChangeKeywordsNullable.designer.cs">
+      <DependentUpon>202006181358334_ChangeKeywordsNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="SeriesRepository.cs" />
     <Compile Include="SqlContext.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +114,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006180454307_AddArticlePublishTime.resx">
       <DependentUpon>202006180454307_AddArticlePublishTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006181212195_AddADColumnHasNewAd.resx">
+      <DependentUpon>202006181212195_AddADColumnHasNewAd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006181303085_Add_AdAndSeriesForenginKey.resx">
+      <DependentUpon>202006181303085_Add_AdAndSeriesForenginKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006181358334_ChangeKeywordsNullable.resx">
+      <DependentUpon>202006181358334_ChangeKeywordsNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

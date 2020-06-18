@@ -90,7 +90,7 @@
     <div class="form-group">
         <label><i class="fa fa-question-circle"></i><strong>添加到系列：</strong></label>
         <div class="input-group input-group-combined">
-            @Html.DropDownListFor(a => a.ChoosSeries, ViewData["SeriesDropDownList"] as List<SelectListItem> ,"---Select---",new {@class="form-control" })
+            @Html.DropDownListFor(a => a.ChoosSeries, ViewData["SeriesDropDownList"] as List<SelectListItem>, "---Select---", new { @class = "form-control" })
             @Html.ValidationMessageFor(a => a.Series)
             <div class="input-group-append">
                 <p class="btn btn-outline-secondary"> ➕新系列</p>
@@ -108,7 +108,7 @@
     <div class="form-group">
         <label><i class="fa fa-question-circle"></i><strong>之前用过的广告：</strong></label>
         <div class="input-group input-group-combined">
-            @Html.DropDownListFor(a => a.ChoosAd, ViewData["SeriesDropDownList"] as List<SelectListItem> ,"---Select---",new {@class="form-control" })
+            @Html.DropDownListFor(a => a.ChoosAd, ViewData["AdDropDownList"] as List<SelectListItem>, "---Select---", new { @class = "form-control" })
             @Html.ValidationMessageFor(a => a.Ad)
             <div class="input-group-append">
                 <p class="btn btn-outline-secondary"> ➕新系列</p>
@@ -116,7 +116,10 @@
         </div>
     </div>
     <div style="border:dashed#d8c8c8 3px;padding:25px;background-color:#f0f69c">
-        <p class="text-right"><label><input type="checkbox" disabled="disabled" />修改 </label></p>
+        <p class="text-right">
+            @Html.LabelFor(a => a.HasNewAd)
+            @Html.CheckBoxFor(a => a.HasNewAd)
+        </p>
         <div class="form-group">
             <label><strong>文字内容：（* 必填）</strong></label>
             @Html.TextBoxFor(a => a.ContentOfAd, new { @class = "form-control", placeholder = "最多不超过24个字符" })

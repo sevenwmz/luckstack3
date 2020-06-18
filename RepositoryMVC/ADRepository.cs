@@ -14,9 +14,26 @@ namespace RepositoryMVC
         /// </summary>
         /// <param name="choosAd">Need AD name</param>
         /// <returns>Return AD</returns>
-        public AD GetAD(string choosAd)
+        public AD GetAD(int choosAd)
         {
-            return Context.ADs.Where(a => a.ContentOfAd == choosAd).FirstOrDefault();
+            return Context.ADs.Where(a => a.Id == choosAd).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Get AD id and save to database
+        /// </summary>
+        /// <param name="aD">Need AD</param>
+        /// <returns>Return AD id</returns>
+        public int AddADToDatabase(AD aD)
+        {
+            Context.ADs.Add(aD);
+            Context.SaveChanges();
+            return aD.Id;
+        }
+
+        public IList<AD> OnGetAD(int userId)
+        {
+            return Context.ADs.Where(a => a.OwnerId == userId).ToList();
         }
     }
 }

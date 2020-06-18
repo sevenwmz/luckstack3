@@ -11,15 +11,16 @@ namespace ViewModel
 {
     public class ArticleNewModel : Content
     {
-        public string ChoosSeries { set; get; }
+        public int ChoosSeries { set; get; }
         public IList<SelectListItem> Series { set; get; }
 
-        public string ChoosAd { set; get; }
+        public int ChoosAd { set; get; }
         public IList<SelectListItem> Ad { set; get; }
 
         public string ContentOfAd { set; get; }
 
         public string WebSite { set; get; }
-
+        [Display(Name = "修改")]
+        public bool HasNewAd { set; get; }
     }
 }

@@ -40,6 +40,7 @@ namespace ProductServices
                     .ForMember(a => a.Ad, opt => opt.Ignore())
                     .ForMember(a => a.Keywords, opt => opt.Ignore())
                     .ForMember(a => a.Author, opt => opt.Ignore())
+                    .ForMember(a => a.HasNewAd, opt => opt.Ignore())
                     .ReverseMap()
                     .ForMember(a=>a.Author,opt=>opt.Ignore())
                     ;

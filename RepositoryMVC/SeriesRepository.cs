@@ -14,9 +14,14 @@ namespace RepositoryMVC
         /// </summary>
         /// <param name="choosSeries">Need Series Name</param>
         /// <returns>Return Series</returns>
-        public Series GetSeries(string choosSeries)
+        public Series GetSeries(int choosSeries)
         {
-            return Context.Series.Where(s => s.ContentOfSeries == choosSeries).FirstOrDefault();
+            return Context.Series.Where(s => s.Id == choosSeries).FirstOrDefault();
+        }
+
+        public IList<Series> OnGetSeries(int userId)
+        {
+            return Context.Series.Where(s=>s.OwnerId == userId).ToList();
         }
     }
 }

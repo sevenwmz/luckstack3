@@ -14,14 +14,18 @@ namespace WebUI.Controllers
         // GET: Article
         public ActionResult New()
         {
-            ArticleNewModel model = new ArticleNewModel();
-            model.Series = new List<SelectListItem>();
-            model.Ad = new List<SelectListItem>();
-            ViewData["SeriesDropDownList"] = new ArticleService().GetDropDownList(model.Series);
-            ViewData["AdDropDownList"] = new ArticleService().GetDropDownList(model.Ad);
+            //ArticleNewModel model = new ArticleNewModel();
+            //model.Series = new List<SelectListItem>();
+            //model.Ad = new List<SelectListItem>();
+
+            //Fake to take userId from Session
+            
+            ViewData["SeriesDropDownList"] = new SeriesService().GetDropDownList(new SeriesService().GetSeries(4));
+            ViewData["AdDropDownList"] = new AdService().GetDropDownList(new AdService().GetAD(4));
 
             return View();
         }
+
         [HttpPost]
         public ActionResult New(ArticleNewModel model)
         {
@@ -34,8 +38,10 @@ namespace WebUI.Controllers
             //string authorName = HttpContext.Session.Keys.ToString();
             //RegisterService authorId = new RegisterService();
             //authorId = authorId.GetByName(authorName);
-
-
+            if (model.HasNewAd)
+            {
+                new AdService().Add(model.ContentOfAd,model.WebSite);
+            }
             new ArticleService().Add(model);
 
 
