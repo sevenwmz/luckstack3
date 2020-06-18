@@ -7,19 +7,16 @@ using System.Threading.Tasks;
 
 namespace RepositoryMVC
 {
-    public class BMoneyRepository
+    public class BMoneyRepository :BaceRepository
     {
-        private SqlContext _repository = new SqlContext();
-
-
         /// <summary>
         /// Add new row into BMoney database.
         /// </summary>
         /// <param name="InsertInfo">Need Info of insert data</param>
         public void AddNewRow(BMoney InsertInfo)
         {
-            _repository.BMoneys.Add(InsertInfo);
-            _repository.SaveChanges();
+            Context.BMoneys.Add(InsertInfo);
+            Context.SaveChanges();
         }
 
         /// <summary>
@@ -29,7 +26,7 @@ namespace RepositoryMVC
         /// <returns></returns>
         public BMoney GiveInviterPrize(int id)
         {
-            BMoney bMoney = _repository.BMoneys
+            BMoney bMoney = Context.BMoneys
                 .OrderByDescending(b => b.Latestime)
                 .Where(b => b.OwnerId == id)
                 .FirstOrDefault();

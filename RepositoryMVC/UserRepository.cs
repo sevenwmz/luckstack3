@@ -7,17 +7,8 @@ using System.Threading.Tasks;
 
 namespace RepositoryMVC
 {
-    public class UserRepository
+    public class UserRepository : BaceRepository
     {
-        /// <summary>
-        /// Private Connect Proprety
-        /// </summary>
-        private SqlContext _context;
-
-        public UserRepository()
-        {
-            _context = new SqlContext();
-        }
 
         /// <summary>
         /// Get Inviter From Database
@@ -26,7 +17,7 @@ namespace RepositoryMVC
         /// <returns>Return inviterInfo</returns>
         public User GetBy(string name)
         {
-            return _context.Users.Where(u => u.UserName == name).FirstOrDefault();
+            return Context.Users.Where(u => u.UserName == name).FirstOrDefault();
         }
 
         /// <summary>
@@ -35,8 +26,8 @@ namespace RepositoryMVC
         /// <param name="regiserInfo">Need userInfo</param>
         public int AddRegisterToDatabase(User regiserInfo)
         {
-            _context.Users.Add(regiserInfo);
-            _context.SaveChanges();
+            Context.Users.Add(regiserInfo);
+            Context.SaveChanges();
             return regiserInfo.Id;
         }
 
