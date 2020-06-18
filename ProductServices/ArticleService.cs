@@ -12,10 +12,8 @@ namespace ProductServices
 {
     public class ArticleService : BaceService
     {
-        private Article _articleEntity = new Article();
-        private ArticleRepository _articleRepository = new ArticleRepository();
-        private KeywordRepository _keywordRepository = new KeywordRepository();
-        private KeywordAndArticleRepository _keywordAndArticleRepository = new KeywordAndArticleRepository();
+
+
 
         public IList<SelectListItem> GetDropDownList<T>(IList<T> ts)
         {
@@ -30,8 +28,19 @@ namespace ProductServices
 
         public int Add(ArticleNewModel model)
         {
+            Article _articleEntity = new Article();
+            ArticleRepository _articleRepository = new ArticleRepository();
+            KeywordRepository _keywordRepository = new KeywordRepository();
+            KeywordAndArticleRepository _keywordAndArticleRepository = new KeywordAndArticleRepository();
+
+
+
             Article article = connectedMapper.Map<Article>(model);
-            article.Summary = _articleEntity.GetSumarry(model.Body);
+            if (string.IsNullOrEmpty(model.Summary))
+            {
+                article.Summary = _articleEntity.GetSumarry(model.Body);
+            }
+            _articleEntity.PublishArticle(article);
             int articleId = _articleRepository.AddArticleToDatabase(article);
 
             IList<Keywords> keywords = new Keywords().GetKeywordList(model.Keywords);

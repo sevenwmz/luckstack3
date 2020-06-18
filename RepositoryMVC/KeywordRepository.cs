@@ -7,19 +7,18 @@ using System.Threading.Tasks;
 
 namespace RepositoryMVC
 {
-    public class KeywordRepository
+    public class KeywordRepository : BaceRepository
     {
-        private SqlContext _context;
 
         public IList<int> AddKeywordToDatabase(IList<Keywords> keywords)
         {
             IList<int> tempKeywordId = new List<int>();
             foreach (var item in keywords)
             {
-                _context.Keywords.Add(item);
+                Context.Keywords.Add(item);
                 tempKeywordId.Add(item.Id);
             }
-            _context.SaveChanges();
+            Context.SaveChanges();
             return tempKeywordId;
         }
     }

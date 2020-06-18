@@ -11,6 +11,7 @@ namespace EntityMVC
         public string Title { set; get; }
         public string Summary { set; get; }
         public string Body { set; get; }
+        public DateTime PublishTime { set; get; }
         public User Author { set; get; }
         public AD UseAd { set; get; }
         public Series UseSeries { set; get; }
@@ -18,7 +19,8 @@ namespace EntityMVC
 
         public Article PublishArticle(Article article)
         {
-            throw new NotImplementedException();
+            article.PublishTime = DateTime.Now;
+            return article;
         }
 
         public string GetSumarry(string body)

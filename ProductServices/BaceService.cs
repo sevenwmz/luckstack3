@@ -31,6 +31,18 @@ namespace ProductServices
                     .ForMember(l=>l.RemenberMe,opt=>opt.Ignore())
                     .ReverseMap()
                     ;
+                cfg.CreateMap<Article, V.ArticleNewModel>()
+                    .ForMember(a => a.ChoosAd, opt => opt.Ignore())
+                    .ForMember(a => a.ChoosSeries, opt => opt.Ignore())
+                    .ForMember(a => a.ContentOfAd, opt => opt.Ignore())
+                    .ForMember(a => a.WebSite, opt => opt.Ignore())
+                    .ForMember(a => a.Series, opt => opt.Ignore())
+                    .ForMember(a => a.Ad, opt => opt.Ignore())
+                    .ForMember(a => a.Keywords, opt => opt.Ignore())
+                    .ForMember(a => a.Author, opt => opt.Ignore())
+                    .ReverseMap()
+                    .ForMember(a=>a.Author,opt=>opt.Ignore())
+                    ;
             });
 #if DEBUG
             mapper.AssertConfigurationIsValid();

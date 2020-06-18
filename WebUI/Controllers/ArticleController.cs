@@ -10,12 +10,6 @@ namespace WebUI.Controllers
 {
     public class ArticleController : Controller
     {
-        private ArticleService _articleService;
-        public ArticleController()
-        {
-            _articleService = new ArticleService();
-        }
-
 
         // GET: Article
         public ActionResult New()
@@ -35,7 +29,14 @@ namespace WebUI.Controllers
             {
                 return RedirectToAction("/Article/New");
             }
-            _articleService.Add(model);
+
+            ///wanna take userInfo from session ,not yet,now i need to do DbSet<T>
+            //string authorName = HttpContext.Session.Keys.ToString();
+            //RegisterService authorId = new RegisterService();
+            //authorId = authorId.GetByName(authorName);
+
+
+            new ArticleService().Add(model);
 
 
             return View("/Article");

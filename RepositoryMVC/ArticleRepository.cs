@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace RepositoryMVC
 {
-    public class ArticleRepository
+    public class ArticleRepository  : BaceRepository
     {
-        private SqlContext _context;
         public int AddArticleToDatabase(Article article)
         {
-            _context.Articles.Add(article);
-            _context.SaveChanges();
+            Context.Articles.Add(article);
+            Context.SaveChanges();
             return article.Id;
         }
     }

@@ -8,6 +8,6 @@ namespace RepositoryMVC
 {
     public class BaceRepository
     {
-        public SqlContext Context;
+        public SqlContext Context = new SqlContext();
     }
 }

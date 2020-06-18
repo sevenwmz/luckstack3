@@ -69,6 +69,10 @@
     <Compile Include="Migrations\202006171341410_AddArticleAndOtherTable.designer.cs">
       <DependentUpon>202006171341410_AddArticleAndOtherTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006180454307_AddArticlePublishTime.cs" />
+    <Compile Include="Migrations\202006180454307_AddArticlePublishTime.designer.cs">
+      <DependentUpon>202006180454307_AddArticlePublishTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SqlContext.cs" />
     <Compile Include="UserRepository.cs" />
@@ -93,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006171341410_AddArticleAndOtherTable.resx">
       <DependentUpon>202006171341410_AddArticleAndOtherTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006180454307_AddArticlePublishTime.resx">
+      <DependentUpon>202006180454307_AddArticlePublishTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

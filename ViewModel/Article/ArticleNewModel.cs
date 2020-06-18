@@ -12,7 +12,6 @@ namespace ViewModel
     public class ArticleNewModel : Content
     {
         public string ChoosSeries { set; get; }
-        [Required(ErrorMessage = "系列不能为空")]
         public IList<SelectListItem> Series { set; get; }
 
         public string ChoosAd { set; get; }
