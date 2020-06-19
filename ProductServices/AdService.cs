@@ -21,7 +21,7 @@ namespace ProductServices
             };
             aD = aD.PublishAd(aD);
 
-            return new ADRepository().AddADToDatabase(aD);
+            return new ADRepository(dbContext).AddADToDatabase(aD);
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace ProductServices
         public IList<ADModel> GetAD(int userId)
         {
             IList<AD> ads = new List<AD>();
-            ads = new ADRepository().OnGetAD(userId);
+            ads = new ADRepository(dbContext).OnGetAD(userId);
 
             IList<ADModel> tempADs = new List<ADModel>();
             foreach (var item in ads)

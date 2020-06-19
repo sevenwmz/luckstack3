@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using V = ViewModel;
+using System.Web;
+using RepositoryMVC;
 
 namespace ProductServices
 { 
@@ -29,6 +31,7 @@ namespace ProductServices
                     .ForMember(l => l.LogInName, opt => opt.MapFrom(l => l.UserName))
                     .ForMember(l=>l.Captcha,opt=>opt.Ignore())
                     .ForMember(l=>l.RemenberMe,opt=>opt.Ignore())
+                    .ForMember(l=>l.Id,opt=>opt.Ignore())
                     .ReverseMap()
                     ;
                 cfg.CreateMap<Article, V.ArticleNewModel>()
@@ -49,6 +52,52 @@ namespace ProductServices
             mapper.AssertConfigurationIsValid();
 #endif
         }
+        private const string COOKIE_NAME = "SevenMark";
+        public int? CurrentUserId
+        {
+            get
+            {
+                HttpCookie cookie = HttpContext.Current.Request.Cookies[COOKIE_NAME];
+                if (cookie == null)
+                {
+                    return null;
+                }
+                string id = cookie.Values["id"];
+                string pwd = cookie.Values["pwd"];
+
+                UserRepository repository = new UserRepository(dbContext);
+                User current = repository.Find(Convert.ToInt32(id));
+                if (current.Password != pwd)
+                {
+                    throw new ArgumentException("你的信息有点点问题呀,我们攻城狮已经记录在册,并解决这个问题呦！");
+                }
+                return Convert.ToInt32(id);
+            }
+        }
+
+        /// <summary>
+        /// Other place don't touch this function.just for filter use, all request use one of context.
+        /// if touch, biu biu biu.
+        /// </summary>
+        public void SaveChangesForFilter()
+        {
+            dbContext.SaveChanges();
+        }
+
+        public SqlContext dbContext
+        {
+            get
+            {
+                SqlContext httpContext = (SqlContext)HttpContext.Current.Items["dbContext"]; 
+                if (httpContext == null)
+                {
+                    httpContext = new SqlContext();
+                }
+                return httpContext;
+            }
+        }
+
+
 
         protected IMapper connectedMapper
         {

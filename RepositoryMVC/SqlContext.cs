@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace RepositoryMVC
 {
-    public class SqlContext : DbContext
+    public class SqlContext : DbContext 
     {
         #region DbSet
-        public DbSet<AD> ADs { set; get; }
-        public DbSet<User> Users { set; get; }
-        public DbSet<Series> Series { set; get; }
-        public DbSet<BMoney> BMoneys { set; get; }
-        public DbSet<Article> Articles { set; get; }
-        public DbSet<Keywords> Keywords { set; get; }
-        public DbSet<KeywordsAndArticle> KeywordsAndArticle { set; get; }
+        //public DbSet<AD> ADs { set; get; }
+        //public DbSet<User> Users { set; get; }
+        //public DbSet<Series> Series { set; get; }
+        //public DbSet<BMoney> BMoneys { set; get; }
+        //public DbSet<Article> Articles { set; get; }
+        //public DbSet<Keywords> Keywords { set; get; }
+        //public DbSet<KeywordsAndArticle> KeywordsAndArticle { set; get; }
 
         #endregion
 
@@ -30,12 +30,19 @@ namespace RepositoryMVC
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AD>();
+            modelBuilder.Entity<User>();
+            modelBuilder.Entity<Series>();
+            modelBuilder.Entity<BMoney>();
+            modelBuilder.Entity<Article>();
+            modelBuilder.Entity<Keywords>();
+            modelBuilder.Entity<KeywordsAndArticle>();
 
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>().Property(u => u.UserName).HasMaxLength(256);
-            modelBuilder.Entity<KeywordsAndArticle>().HasKey(ka => new {ka.ArticleId,ka.KeywordId })
-                ;
+            modelBuilder.Entity<KeywordsAndArticle>().HasKey(ka => new { ka.ArticleId, ka.KeywordId });
+            modelBuilder.Entity<KeywordsAndArticle>().Ignore(ka => ka.Id);
              
         }
 

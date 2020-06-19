@@ -17,9 +17,10 @@ namespace EntityMVC
         public Series UseSeries { set; get; }
         public IList<KeywordsAndArticle> OwnKeyword { set; get; }
 
-        public Article PublishArticle(Article article)
+        public Article PublishArticle(Article article,int? authorId)
         {
             article.PublishTime = DateTime.Now;
+            article.Author.Id = authorId.Value;
             return article;
         }
 

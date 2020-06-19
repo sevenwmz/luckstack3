@@ -9,6 +9,7 @@ namespace ViewModel.Log
 {
     public class OnModel 
     {
+        public int Id { set; get; }
         [Required(ErrorMessage = "* 用户名不能为空")]
         [StringLength(6, MinimumLength = 4, ErrorMessage = "* 最大长度不能超过6")]
         [Display(Name = "* 用户名")]

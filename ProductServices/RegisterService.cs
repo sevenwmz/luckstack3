@@ -18,7 +18,7 @@ namespace ProductServices
 
         public RegisterService()
         {
-            _userRepository = new UserRepository();
+            _userRepository = new UserRepository(dbContext);
         }
 
         /// <summary>
@@ -49,9 +49,10 @@ namespace ProductServices
             int userId = _userRepository.AddRegisterToDatabase(newUser);
 
             //Give Inviter Bmoney prize.
-            BMoneyRepository moneyRepository = new BMoneyRepository();
-            moneyRepository.AddNewRow(
-                moneyRepository.GiveInviterPrize(newUser.Inviter.Id));
+            BMoneyRepository moneyRepository = new BMoneyRepository(dbContext);
+            BMoney money = new BMoney();
+            money = money.GiveInviterPrize(moneyRepository.GetByAuthorBMoney(CurrentUserId));
+            moneyRepository.AddNewRow(money);
 
             return userId;
         }

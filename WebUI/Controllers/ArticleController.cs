@@ -8,7 +8,7 @@ using ViewModel;
 
 namespace WebUI.Controllers
 {
-    public class ArticleController : Controller
+    public class ArticleController : BaseController
     {
 
         // GET: Article

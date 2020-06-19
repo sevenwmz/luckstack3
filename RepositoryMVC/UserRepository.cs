@@ -1,14 +1,19 @@
 ﻿using EntityMVC;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RepositoryMVC
 {
-    public class UserRepository : BaceRepository
+    public class UserRepository : BaceRepository<User>
     {
+        public UserRepository(DbContext content) : base(content)
+        {
+
+        }
 
         /// <summary>
         /// Get Inviter From Database
@@ -17,7 +22,7 @@ namespace RepositoryMVC
         /// <returns>Return inviterInfo</returns>
         public User GetBy(string name)
         {
-            return Context.Users.Where(u => u.UserName == name).FirstOrDefault();
+            return entities.Where(u => u.UserName == name).FirstOrDefault();
         }
 
         /// <summary>
@@ -26,14 +31,8 @@ namespace RepositoryMVC
         /// <param name="regiserInfo">Need userInfo</param>
         public int AddRegisterToDatabase(User regiserInfo)
         {
-            Context.Users.Add(regiserInfo);
-            Context.SaveChanges();
+            entities.Add(regiserInfo);
             return regiserInfo.Id;
         }
-
-
-
-
-
     }
 }

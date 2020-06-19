@@ -8,7 +8,7 @@ using ViewModel;
 
 namespace WebUI.Controllers
 {
-    public class RegisterController : Controller
+    public class RegisterController : BaseController
     {
         // GET: Register
         public ActionResult Index()

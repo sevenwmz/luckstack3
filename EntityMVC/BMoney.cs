@@ -49,6 +49,20 @@ namespace EntityMVC
             };
 
         }
+
+        public BMoney GiveInviterPrize(BMoney bMoney)
+        {
+            return new BMoney
+            {
+                OwnerId = bMoney.Id,
+                Latestime = DateTime.Now,
+                Detail = "Inviter success award 10 BMoney",
+                Freezing = bMoney.Freezing + 0,
+                Change = 10,
+                LeftBMoney = bMoney.LeftBMoney + 10,
+                Status = BMoneyDirection.BMoneyIn
+            };
+        }
     }
     public enum BMoneyDirection
     {

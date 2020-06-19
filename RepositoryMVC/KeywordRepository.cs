@@ -1,31 +1,34 @@
 ﻿using EntityMVC;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RepositoryMVC
 {
-    public class KeywordRepository : BaceRepository
+    public class KeywordRepository : BaceRepository<Keywords>
     {
+        public KeywordRepository(DbContext context) : base(context)
+        {
+
+        }
 
         public int AddKeywordToDatabase(Keywords keywords)
         {
-            Context.Keywords.Add(keywords);
-            Context.SaveChanges();
+            entities.Add(keywords);
             return keywords.Id;
         }
 
         public Keywords GetByKeyword(Keywords keyword)
         {
-            return Context.Keywords.Where(k => k.Name == keyword.Name).FirstOrDefault();
+            return entities.Where(k => k.Name == keyword.Name).FirstOrDefault();
         }
 
         public int UpdateKeywordUsed(Keywords item)
         {
-            Context.Keywords.Attach(item);
-            Context.SaveChanges();
+            entities.Attach(item);
             return item.Id;
         }
     }

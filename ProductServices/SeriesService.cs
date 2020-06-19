@@ -10,7 +10,7 @@ using ViewModel;
 
 namespace ProductServices
 {
-    public class SeriesService
+    public class SeriesService : BaceService
     {
         /// <summary>
         /// Get Series date
@@ -20,7 +20,7 @@ namespace ProductServices
         public IList<SeriesModel> GetSeries(int userId)
         {
             IList<Series> series = new List<Series>();
-            series = new SeriesRepository().OnGetSeries(userId);
+            series = new SeriesRepository(dbContext).OnGetSeries(userId);
 
             IList<SeriesModel> tempSeries = new List<SeriesModel>();
             foreach (var item in series)

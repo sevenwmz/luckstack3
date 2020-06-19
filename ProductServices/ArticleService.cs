@@ -32,20 +32,17 @@ namespace ProductServices
             {
                 article.Summary = _articleEntity.GetSumarry(model.Body);
             }
-            _articleEntity.PublishArticle(article);
-
-            //Fake user --pretend take from Seesion
-            article.Author = new User { Id = 4 };
+            _articleEntity.PublishArticle(article,CurrentUserId);
 
             //Get and save series with AD to article foregin key.
-            article.UseSeries = new SeriesRepository().GetSeries(model.ChoosSeries);
-            article.UseAd = new ADRepository().GetAD(model.ChoosAd);
+            article.UseSeries = new SeriesRepository(dbContext).GetSeries(model.ChoosSeries);
+            article.UseAd = new ADRepository(dbContext).GetAD(model.ChoosAd);
 
-            int articleId = new ArticleRepository().AddArticleToDatabase(article);
+            int articleId = new ArticleRepository(dbContext).AddArticleToDatabase(article);
 
             //Save keywords and into n:n table.
             IList<Keywords> keywords = new Keywords().GetKeywordList(model.Keywords);
-            KeywordRepository keywordRepository = new KeywordRepository();
+            KeywordRepository keywordRepository = new KeywordRepository(dbContext);
             foreach (var item in keywords)
             {
                 int keywordId = 0;
@@ -61,14 +58,13 @@ namespace ProductServices
                     temp = temp.AddUsed(temp);
                     keywordId = keywordRepository.UpdateKeywordUsed(temp);
                 }
-                new KeywordAndArticleRepository().AddDatabase(articleId, keywordId);
+                new KeywordAndArticleRepository(dbContext).AddDatabase(articleId, keywordId);
             }
 
             ///Minus article author BMoney
             BMoney money = new BMoney();
-            BMoneyRepository bMoneyRepository = new BMoneyRepository();
-            //inside this function have problem ,because this userId give is 4,forever,just test use.
-            money = money.PublicArticleMinusBMoney(bMoneyRepository.GetByAuthorBMoney(article.Author));//lazy to do extension
+            BMoneyRepository bMoneyRepository = new BMoneyRepository(dbContext);
+            money = money.PublicArticleMinusBMoney(bMoneyRepository.GetByAuthorBMoney(CurrentUserId));
             bMoneyRepository.AddNewRow(money);
 
             return articleId;

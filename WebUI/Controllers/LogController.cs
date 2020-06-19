@@ -8,7 +8,7 @@ using ViewModel.Log;
 
 namespace WebUI.Controllers
 {
-    public class LogController : Controller
+    public class LogController : BaseController
     {
         // GET: On
         public ActionResult On()
@@ -38,8 +38,9 @@ namespace WebUI.Controllers
             }
 
             HttpCookie logIncookie = new HttpCookie(Const.COOKIE_NAME);
-            logIncookie.Value = model.LogInName;
+            logIncookie.Value = user.Id.ToString();
             logIncookie.Value = model.Password;
+
             if (model.RemenberMe)
             {
                 logIncookie.Expires = DateTime.Now.AddDays(15);

@@ -18,7 +18,7 @@ namespace ProductServices.Log
 
         public OnService()
         {
-            _userRepository = new UserRepository();
+            _userRepository = new UserRepository(dbContext);
         }
 
         /// <summary>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EntityMVC
 {
-    public class KeywordsAndArticle
+    public class KeywordsAndArticle : BaceEntity
     {
         public int ArticleId { set; get; }
         public Article Article { set; get; }
