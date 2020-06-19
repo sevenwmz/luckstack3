@@ -37,11 +37,14 @@ namespace WebUI.Controllers
                 return View(model);
             }
 
-            HttpContext.Session.Add(Const.SESSION_USER, Const.SESSION_VALUE);
+            HttpCookie logIncookie = new HttpCookie(Const.COOKIE_NAME);
+            logIncookie.Value = model.LogInName;
+            logIncookie.Value = model.Password;
             if (model.RemenberMe)
             {
-                HttpContext.Session.Timeout = Convert.ToInt32(DateTime.Now.AddDays(1));
+                logIncookie.Expires = DateTime.Now.AddDays(15);
             }
+            HttpContext.Response.Cookies.Add(logIncookie);
 
             if (Request.QueryString == null)
             {
@@ -60,7 +63,7 @@ namespace WebUI.Controllers
         /// <returns></returns>
         public ActionResult Off()
         {
-            HttpContext.Session.Remove(Const.SESSION_USER);
+            HttpContext.Response.Cookies.Clear();
             return Redirect(Request.QueryString[Const.PREPAGE]);
         }
 

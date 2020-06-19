@@ -48,22 +48,34 @@
                             prepage = (Context.Request.Path + Context.Request.QueryString);
                         }//else nothing
                         string queryStringPage = $"{Const.PREPAGE}={prepage}";
+                        //HttpCookie cookie = new HttpCookie(Const.COOKIE_NAME);
+                        HttpCookie cookie = HttpContext.Current.Response.Cookies.Get(Const.COOKIE_NAME);
                     }
 
 
                     @*临时登陆显示partial*@
                     @*<partial name="TempLogOn" />*@
-                    @if (!HttpContext.Current.Session.IsNewSession)
-                    {
-                        <a href="/Log/Off?@queryStringPage">退出登陆         |</a>
-                        <a href="/Home?@queryStringPage">主页</a>
-                    }
-                    else
+                    @if (cookie == null)
                     {
                         <a href="/Register?@queryStringPage">注册      |</a>
                         <a href="/Log/On?@queryStringPage">登陆         |</a>
                         <a href="/Home?@queryStringPage">主页</a>
                     }
+                    else
+                    {
+                        if (cookie.Values != null)
+                        {
+                            <a href="/Register?@queryStringPage">注册      |</a>
+                            <a href="/Log/On?@queryStringPage">登陆         |</a>
+                            <a href="/Home?@queryStringPage">主页</a>
+                        }
+                        else
+                        {
+                            <a href="/Log/Off?@queryStringPage">退出登陆         |</a>
+                            <a href="/Home?@queryStringPage">主页</a>
+                        }
+                    }
+
 
 
                     <li class="nav-item dropdown">

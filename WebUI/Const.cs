@@ -13,7 +13,7 @@ namespace WebUI
 
         //For Cookie
         public const string COOKIE_USER = "user";
-        public const string COOKIE_VALUE = "SevenMark";
+        public const string COOKIE_NAME = "SevenMarkLogIn";
 
         //用户标记已读
         public const string NOTICE_HASREAD = "NoticeHasRead";

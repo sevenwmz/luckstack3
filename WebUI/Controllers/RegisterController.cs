@@ -51,10 +51,12 @@ namespace WebUI.Controllers
                 Password = model.Password
             });
 
-            HttpContext.Session.Add(Const.SESSION_USER, Const.SESSION_VALUE);
+            HttpCookie logIncookie = new HttpCookie(Const.COOKIE_NAME);
+            logIncookie.Name = model.UserName;
+            logIncookie.Value = model.Password;
             if (Request.QueryString == null)
             {
-                return View("~/Article");
+                return View("/Article");
             }
             return Redirect(Request.QueryString[Const.PREPAGE]);
         }
