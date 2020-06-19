@@ -45,11 +45,31 @@ namespace ProductServices
 
             //Save keywords and into n:n table.
             IList<Keywords> keywords = new Keywords().GetKeywordList(model.Keywords);
+            KeywordRepository keywordRepository = new KeywordRepository();
             foreach (var item in keywords)
             {
-                int keywordId = new KeywordRepository().AddKeywordToDatabase(item);
+                int keywordId = 0;
+                Keywords temp = keywordRepository.GetByKeyword(item);
+                if (temp == null)
+                {
+                    Keywords tempAdd = new Keywords();
+                    tempAdd = tempAdd.AddNewKeyword(item);
+                    keywordId = keywordRepository.AddKeywordToDatabase(tempAdd);
+                }
+                else
+                {
+                    temp = temp.AddUsed(temp);
+                    keywordId = keywordRepository.UpdateKeywordUsed(temp);
+                }
                 new KeywordAndArticleRepository().AddDatabase(articleId, keywordId);
             }
+
+            ///Minus article author BMoney
+            BMoney money = new BMoney();
+            BMoneyRepository bMoneyRepository = new BMoneyRepository();
+            //inside this function have problem ,because this userId give is 4,forever,just test use.
+            money = money.PublicArticleMinusBMoney(bMoneyRepository.GetByAuthorBMoney(article.Author));//lazy to do extension
+            bMoneyRepository.AddNewRow(money);
 
             return articleId;
         }

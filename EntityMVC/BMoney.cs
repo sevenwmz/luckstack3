@@ -35,7 +35,20 @@ namespace EntityMVC
             };
         }
 
+        public BMoney PublicArticleMinusBMoney(BMoney bMoney)
+        {
+            return new BMoney
+            {
+                OwnerId = bMoney.OwnerId,
+                Latestime = DateTime.Now,
+                LeftBMoney = --bMoney.LeftBMoney,
+                Status = BMoneyDirection.BMoneyOut,
+                Freezing = 0,
+                Change = -1,
+                Detail = "Publish article minus BMoney one"
+            };
 
+        }
     }
     public enum BMoneyDirection
     {

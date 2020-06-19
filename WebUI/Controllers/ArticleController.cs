@@ -31,7 +31,7 @@ namespace WebUI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("/Article/New");
+                return RedirectToAction("New");
             }
 
             ///wanna take userInfo from session ,not yet,now i need to do DbSet<T>

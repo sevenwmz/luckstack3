@@ -16,5 +16,17 @@ namespace RepositoryMVC
             Context.SaveChanges();
             return keywords.Id;
         }
+
+        public Keywords GetByKeyword(Keywords keyword)
+        {
+            return Context.Keywords.Where(k => k.Name == keyword.Name).FirstOrDefault();
+        }
+
+        public int UpdateKeywordUsed(Keywords item)
+        {
+            Context.Keywords.Attach(item);
+            Context.SaveChanges();
+            return item.Id;
+        }
     }
 }

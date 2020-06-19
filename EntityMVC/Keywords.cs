@@ -36,5 +36,20 @@ namespace EntityMVC
             }
             return tempKeywordList;
         }
+
+        public Keywords AddUsed(Keywords item)
+        {
+            item.Used = ++item.Used;
+            return item;
+        }
+
+        public Keywords AddNewKeyword(Keywords keyword)
+        {
+            return new Keywords
+            {
+                Name = keyword.Name,
+                Used = ++keyword.Used
+            };
+        }
     }
 }

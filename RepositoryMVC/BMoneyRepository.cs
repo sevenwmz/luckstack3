@@ -43,7 +43,9 @@ namespace RepositoryMVC
             };
         }
 
-
-
+        public BMoney GetByAuthorBMoney(User author)
+        {
+            return Context.BMoneys.OrderByDescending(b => b.Latestime).Where(b => b.OwnerId == 4).FirstOrDefault();
+        }
     }
 }
