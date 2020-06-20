@@ -31,7 +31,6 @@ namespace ProductServices
                     .ForMember(l => l.LogInName, opt => opt.MapFrom(l => l.UserName))
                     .ForMember(l=>l.Captcha,opt=>opt.Ignore())
                     .ForMember(l=>l.RemenberMe,opt=>opt.Ignore())
-                    .ForMember(l=>l.Id,opt=>opt.Ignore())
                     .ReverseMap()
                     ;
                 cfg.CreateMap<Article, V.ArticleNewModel>()
@@ -52,7 +51,7 @@ namespace ProductServices
             mapper.AssertConfigurationIsValid();
 #endif
         }
-        private const string COOKIE_NAME = "SevenMark";
+        private const string COOKIE_NAME = "SevenMarkLogIn";
         public int? CurrentUserId
         {
             get
@@ -88,12 +87,11 @@ namespace ProductServices
         {
             get
             {
-                SqlContext httpContext = (SqlContext)HttpContext.Current.Items["dbContext"]; 
-                if (httpContext == null)
+                if (HttpContext.Current.Items["dbContext"] == null)
                 {
-                    httpContext = new SqlContext();
+                    HttpContext.Current.Items["dbContext"] = new SqlContext();
                 }
-                return httpContext;
+                return (SqlContext)HttpContext.Current.Items["dbContext"];
             }
         }
 

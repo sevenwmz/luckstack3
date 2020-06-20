@@ -38,9 +38,9 @@ namespace WebUI.Controllers
             }
 
             HttpCookie logIncookie = new HttpCookie(Const.COOKIE_NAME);
-            logIncookie.Value = user.Id.ToString();
-            logIncookie.Value = model.Password;
-
+            logIncookie.Values["id"] = user.Id.ToString();
+            logIncookie.Values["pwd"] = user.Password;
+            Response.Cookies.Add(logIncookie);
             if (model.RemenberMe)
             {
                 logIncookie.Expires = DateTime.Now.AddDays(15);

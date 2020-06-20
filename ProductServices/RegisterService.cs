@@ -35,7 +35,7 @@ namespace ProductServices
         /// <summary>
         /// Add award and constitute registerInfo ,add to reposiroty.
         /// </summary>
-        /// <param name="registerInfo">Need registerInfo</param>
+        /// <param name="user">Need registerInfo</param>
         public int Add(RegisterModel user)
 
         {
@@ -51,9 +51,9 @@ namespace ProductServices
             //Give Inviter Bmoney prize.
             BMoneyRepository moneyRepository = new BMoneyRepository(dbContext);
             BMoney money = new BMoney();
-            money = money.GiveInviterPrize(moneyRepository.GetByAuthorBMoney(CurrentUserId));
+            money = money.GiveInviterPrize(moneyRepository.GetByAuthorBMoney(newUser.InviterId));
             moneyRepository.AddNewRow(money);
-
+            dbContext.SaveChanges();
             return userId;
         }
     }

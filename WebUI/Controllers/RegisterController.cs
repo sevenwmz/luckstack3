@@ -43,7 +43,7 @@ namespace WebUI.Controllers
                 return View(model);
             }
             #endregion
-            registerService.Add(new RegisterModel
+            int registerId = registerService.Add(new RegisterModel
             {
                 Inviter = model.Inviter,
                 InviterNumber = model.InviterNumber,
@@ -52,8 +52,10 @@ namespace WebUI.Controllers
             });
 
             HttpCookie logIncookie = new HttpCookie(Const.COOKIE_NAME);
-            logIncookie.Name = model.UserName;
-            logIncookie.Value = model.Password;
+            logIncookie.Values["id"] = registerId.ToString();
+            logIncookie.Values["pwd"] = model.Password;
+            HttpContext.Response.Cookies.Add(logIncookie);
+
             if (Request.QueryString == null)
             {
                 return View("/Article");
