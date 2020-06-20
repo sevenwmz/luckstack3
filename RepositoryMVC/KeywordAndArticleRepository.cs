@@ -18,5 +18,12 @@ namespace RepositoryMVC
         {
             entities.Add(new KeywordsAndArticle { ArticleId = articleId, KeywordId = keywordId });
         }
+
+        public IList<KeywordsAndArticle> GetKeywords(int id)
+        {
+            return entities
+                .Include(k => k.Keyword)
+                .Where(k => k.ArticleId == id).ToList();
+        }
     }
 }

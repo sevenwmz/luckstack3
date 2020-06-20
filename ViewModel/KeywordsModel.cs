@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
-    class KeywordsModel
+    public class KeywordsModel
     {
         public int Id { set; get; }
         public string Name { set; get; }

@@ -23,10 +23,9 @@ namespace RepositoryMVC
             get => context.Set<T>();
         }
 
-        public T Find(int id)
+        public T Find(int? id)
         {
-            return entities.Find(id);
+            return entities.Find(id.Value);
         }
-
     }
 }

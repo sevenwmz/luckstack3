@@ -31,5 +31,10 @@ namespace RepositoryMVC
             entities.Attach(item);
             return item.Id;
         }
+
+        public int Find(string name)
+        {
+            return entities.Where(k => k.Name == name).FirstOrDefault().Id;
+        }
     }
 }

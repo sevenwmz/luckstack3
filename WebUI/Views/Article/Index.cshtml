@@ -1,0 +1,113 @@
+﻿@model ViewModel.Article.ArticleIndexModel
+@{
+    ViewData["Title"] = "精品文章 一起帮";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section style{
+    <style>
+        aside section span {
+            margin: 5px 20px 5px 0px;
+        }
+
+        mb {
+            margin-bottom: 10px;
+        }
+    </style>
+}
+
+<main class="container">
+    <article class="row">
+        <div class="col-md-8" style="margin-top:90px;">
+            @foreach (var article in Model.Items)
+            {
+                <div>
+                 
+                    <span><i class="fa fa-calendar"></i>@article.PublishTime</span>
+                    <span class="float-md-right text-info">作者：<partial name="_User" model="article.Author" /></span>
+                    <p><a href="none" class="text-info">@article.Title</a></p>
+                    <p>@article.Summary<a href="/Article/Edit/@article.Id" style="color:dodgerblue">……</a></p>
+                    <label>
+                        <strong><i class="fa fa-tags"></i>关键字： </strong>
+                        @if (Model.ListKeywords != null)
+                        {
+                            foreach (var item in Model.ListKeywords)
+                            {
+                                <span class="text-white badge bg-dark">@item.Name</span>
+                            }
+                        }
+
+                    </label>
+                    <div class="text-md-right">
+                        <a href="none" class="text-info"> 评论：0 </a>
+                        <a href="none" class="text-success"> 赞： 0  </a>
+                        <a href="none" class="text-muted"> 踩：0 </a><br />
+                    </div>
+                    <hr />
+                </div>
+
+            }
+            @{
+                int currentPageIndex;
+                //int currentPageIndex =  (Request.RouteValues["id"]) ? 1 : Convert.ToInt32(Request.RouteValues["id"]);
+                if (Request.QueryString["id"] == null)
+                {
+                    currentPageIndex = 1;
+                }
+                else
+                {
+                    currentPageIndex = Convert.ToInt32(Request.QueryString["id"]);
+                }
+                int pagingId = (currentPageIndex - 1) / 10 + 1;
+
+            }
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+
+                    @if (currentPageIndex > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" aria-label="Private" href="/Article/Index/Page-@(currentPageIndex-1)">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    }@*/*else nothing*/*@
+                    @{
+                        int pagingLength = 10;
+                        int startPaging = 1 + (pagingId - 1) * 10;
+                        if (pagingId * 10 > Model.SumOfArticle)
+                        {
+                            pagingLength = Model.SumOfArticle % 10;
+                        }
+                    }
+                    @for (int i = 1; i <= (Model.SumOfArticle / Const.PAGE_SIZE); i++)
+                    {
+                        if (currentPageIndex == i)
+                        {
+                            <li class="page-item page-link" style="background-color:rgba(0, 0, 0, 0.72);color:white">@(i)</li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a class="page-link" href="/Article/Index/Page-@i">@(i)</a></li>
+                        }
+                    }
+                    @if (currentPageIndex < (Model.SumOfArticle / Const.PAGE_SIZE))
+                    {
+                        <li class="page-item">
+                            <a class="page-link" aria-label="Next" href="/Article/Index/Page-@(currentPageIndex+1) ">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    }@*/*else nothing*/*@
+                </ul>
+            </nav>
+
+        </div>
+        <aside class="col-md-4" style="margin-top:90px;">
+            <vc:_keywords-model max="15"></vc:_keywords-model>
+            <vc:_rank-model></vc:_rank-model>
+            <vc:_ad-model></vc:_ad-model>
+        </aside>
+    </article>
+</main>
+

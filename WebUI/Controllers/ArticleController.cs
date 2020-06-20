@@ -5,21 +5,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ViewModel;
+using ViewModel.Article;
 
 namespace WebUI.Controllers
 {
     public class ArticleController : BaseController
     {
 
-        // GET: Article
+        // GET: Article/Index
+        public ActionResult Index(int id = 1)
+        {
+            ArticleIndexModel index = new ArticleIndexModel();
+            ArticleService articleService = new ArticleService();
+            index = articleService.GetArticles();
+            index.SumOfArticle = articleService.GetCount();
+
+
+            return View(index);
+        }
+
+        // GET: Article/New
         public ActionResult New()
         {
-            //ArticleNewModel model = new ArticleNewModel();
-            //model.Series = new List<SelectListItem>();
-            //model.Ad = new List<SelectListItem>();
 
-            //Fake to take userId from Session
-            
             ViewData["SeriesDropDownList"] = new SeriesService().GetDropDownList(new SeriesService().GetSeries(4));
             ViewData["AdDropDownList"] = new AdService().GetDropDownList(new AdService().GetAD(4));
 
@@ -34,10 +42,6 @@ namespace WebUI.Controllers
                 return RedirectToAction("New");
             }
 
-            ///wanna take userInfo from session ,not yet,now i need to do DbSet<T>
-            //string authorName = HttpContext.Session.Keys.ToString();
-            //RegisterService authorId = new RegisterService();
-            //authorId = authorId.GetByName(authorName);
             if (model.HasNewAd)
             {
                 new AdService().Add(model.ContentOfAd,model.WebSite);

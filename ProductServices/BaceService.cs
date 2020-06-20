@@ -46,11 +46,34 @@ namespace ProductServices
                     .ReverseMap()
                     .ForMember(a=>a.Author,opt=>opt.Ignore())
                     ;
+
+                cfg.CreateMap<Article, V.ArticleItemsModel>()
+                    .ForMember(a => a.Keywords, opt => opt.Ignore())
+                    //.ForMember(a => a.ArticleCount, opt => opt.Ignore())
+                    //.ForMember(a => a.Items, opt => opt.Ignore())
+                    .ForMember(a => a.Keywords, opt => opt.Ignore())
+                    //.ForMember(a => a.SumOfArticle, opt => opt.Ignore())
+                    //.ForMember(a => a.ListKeywords, opt => opt.Ignore())
+                    .ForMember(a => a.Author, opt => opt.Ignore())
+                    .ReverseMap()
+                    .ForMember(a => a.Author, opt => opt.Ignore())
+                    .ForMember(a => a.OwnKeyword, opt => opt.Ignore())
+                    .ForMember(a => a.UseSeries, opt => opt.Ignore())
+                    .ForMember(a => a.UseAd, opt => opt.Ignore())
+                    ;
+
+
             });
 #if DEBUG
             mapper.AssertConfigurationIsValid();
 #endif
         }
+
+
+
+
+
+
         private const string COOKIE_NAME = "SevenMarkLogIn";
         public int? CurrentUserId
         {

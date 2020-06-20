@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EntityMVC;
 
 namespace ViewModel.Article
 {
-    class ArticleIndexModel
+    public class ArticleIndexModel
     {
+        public int SumOfArticle { set; get; }
+
+        public IList<ArticleItemsModel> Items { set; get; }
+        public IList<KeywordsModel> ListKeywords { set; get; }
+
     }
 }

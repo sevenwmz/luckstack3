@@ -20,5 +20,23 @@ namespace RepositoryMVC
             entities.Add(article);
             return article.Id;
         }
+
+        public int Find(string title)
+        {
+            return entities.Where(a => a.Title == title).FirstOrDefault().Id;
+        }
+
+        public IList<Article> GetArticles()
+        {
+            return entities
+                .Include(e=>e.Author)
+                .Include(k=>k.OwnKeyword)
+                .OrderByDescending(a => a.PublishTime).ToList();
+        }
+
+        public int ArticlesCount()
+        {
+            return entities.Count();
+        }
     }
 }
