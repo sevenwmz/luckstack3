@@ -103,6 +103,8 @@ namespace ProductServices
             foreach (var articleItem in tempArticle)
             {
                 articleIndex.Author = articleItem.Author.UserName;
+                articleIndex.Level = articleItem.Author.Level;
+                articleIndex.Id = articleItem.Author.Id;
                 tempKeywords = new KeywordAndArticleRepository(dbContext).GetKeywords(articleItem.Id);
 
                 foreach (var keywordsItem in tempKeywords)

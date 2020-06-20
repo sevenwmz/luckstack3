@@ -23,7 +23,7 @@
                 <div>
                  
                     <span><i class="fa fa-calendar"></i>@article.PublishTime</span>
-                    <span class="float-md-right text-info">作者：<partial name="_User" model="article.Author" /></span>
+                    <span class="float-md-right text-info">作者：@Html.Partial("_Author",article.Author)</span>
                     <p><a href="none" class="text-info">@article.Title</a></p>
                     <p>@article.Summary<a href="/Article/Edit/@article.Id" style="color:dodgerblue">……</a></p>
                     <label>

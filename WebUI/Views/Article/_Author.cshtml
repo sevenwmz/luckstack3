@@ -1,0 +1,23 @@
+﻿@model ViewModel.Article.ArticleIndexModel
+
+@{ string color = "gray";
+    if (Convert.ToInt32(Model.Level) == 0)
+    {
+        Model.Level = 1;
+    }
+    if (Convert.ToInt32(Model.Level) < 3)
+    {
+        color = "gray";
+    }
+    else if (Convert.ToInt32(Model.Level) < 8)
+    {
+        color = "blue";
+    }
+    else
+    {
+        color = "red";
+    }
+}
+
+
+<a href="/Suggest/?@Const.USER_ID=@Convert.ToInt32(Model.Id)" style="color:@color">@Model.Author</a>

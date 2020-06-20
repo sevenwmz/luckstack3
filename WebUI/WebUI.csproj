@@ -226,6 +226,7 @@
     <Content Include="Views\Log\Off.cshtml" />
     <Content Include="Views\Article\New.cshtml" />
     <Content Include="Views\Article\Index.cshtml" />
+    <Content Include="Views\Article\_Author.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
