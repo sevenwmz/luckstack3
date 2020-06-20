@@ -38,5 +38,20 @@ namespace RepositoryMVC
         {
             return entities.Count();
         }
+
+        public Article GetEditArticle(int? id)
+        {
+            return entities
+                .Include(a => a.Author)
+                .Include(a=>a.OwnKeyword)
+                .Include(a=>a.UseSeries)
+                .Include(a=>a.UseAd)
+                .Where(a => a.Id == id).FirstOrDefault();
+        }
+
+        public void UpdateEditArticle(Article article)
+        {
+            entities.Attach(article);
+        }
     }
 }

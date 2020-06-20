@@ -8,6 +8,5 @@ namespace ViewModel
 {
     public class ArticleItemsModel : Content
     {
-
     }
 }

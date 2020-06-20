@@ -25,5 +25,11 @@ namespace RepositoryMVC
                 .Include(k => k.Keyword)
                 .Where(k => k.ArticleId == id).ToList();
         }
+
+        public void DeleteOldRelation(int id)
+        {
+            //Amazing
+            entities.Remove(new KeywordsAndArticle { ArticleId = id });
+        }
     }
 }

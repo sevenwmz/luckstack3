@@ -49,11 +49,6 @@ namespace ProductServices
 
                 cfg.CreateMap<Article, V.ArticleItemsModel>()
                     .ForMember(a => a.Keywords, opt => opt.Ignore())
-                    //.ForMember(a => a.ArticleCount, opt => opt.Ignore())
-                    //.ForMember(a => a.Items, opt => opt.Ignore())
-                    .ForMember(a => a.Keywords, opt => opt.Ignore())
-                    //.ForMember(a => a.SumOfArticle, opt => opt.Ignore())
-                    //.ForMember(a => a.ListKeywords, opt => opt.Ignore())
                     .ForMember(a => a.Author, opt => opt.Ignore())
                     .ReverseMap()
                     .ForMember(a => a.Author, opt => opt.Ignore())
@@ -62,6 +57,22 @@ namespace ProductServices
                     .ForMember(a => a.UseAd, opt => opt.Ignore())
                     ;
 
+                cfg.CreateMap<Article, V.Article.AritcleEditModel>()
+                    .ForMember(a => a.Keywords, opt => opt.Ignore())
+                    .ForMember(a => a.Author, opt => opt.Ignore())
+                    .ForMember(a => a.ContentOfAd, opt => opt.Ignore())
+                    .ForMember(a => a.ChoosSeries, opt => opt.Ignore())
+                    .ForMember(a => a.ChoosAd, opt => opt.Ignore())
+                    .ForMember(a => a.Ad, opt => opt.Ignore())
+                    .ForMember(a => a.WebSite, opt => opt.Ignore())
+                    .ForMember(a => a.HasNewAd, opt => opt.Ignore())
+                    .ForMember(a => a.Series, opt => opt.Ignore())
+                    .ReverseMap()
+                    .ForMember(a => a.Author, opt => opt.Ignore())
+                    .ForMember(a => a.OwnKeyword, opt => opt.Ignore())
+                    .ForMember(a => a.UseSeries, opt => opt.Ignore())
+                    .ForMember(a => a.UseAd, opt => opt.Ignore())
+                    ;
 
             });
 #if DEBUG

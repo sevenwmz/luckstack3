@@ -87,6 +87,76 @@ namespace ProductServices
             return articleId;
         }
 
+        public void Update(ArticleNewModel model)
+        {
+            {
+                var articleRepo = new ArticleRepository(dbContext);
+                Article article = new Article();
+                article = articleRepo.GetEditArticle(model.Id);
+                if (string.IsNullOrEmpty(model.Summary))
+                {
+                    article.Summary = article.GetSumarry(model.Body);
+                }
+                article.Title = model.Title;
+                article.Body = model.Body;
+                article.UseSeries = new SeriesRepository(dbContext).GetSeries(model.ChoosSeries);
+                article.UseAd = new ADRepository(dbContext).GetAD(model.ChoosAd);
+                articleRepo.UpdateEditArticle(article);
+                dbContext.SaveChanges();
+            }
+            {
+                //Save keywords and into n:n table.
+                var middleTable = new KeywordAndArticleRepository(dbContext);
+                middleTable.DeleteOldRelation(model.Id);
+
+                IList<Keywords> keywords = new Keywords().GetKeywordList(model.Keywords);
+                KeywordRepository keywordRepository = new KeywordRepository(dbContext);
+                foreach (var item in keywords)
+                {
+                    int keywordId = 0;
+                    Keywords temp = keywordRepository.GetByKeyword(item);
+                    if (temp == null)
+                    {
+                        Keywords tempAdd = new Keywords();
+                        tempAdd = tempAdd.AddNewKeyword(item);
+                        keywordId = keywordRepository.AddKeywordToDatabase(tempAdd);
+                        dbContext.SaveChanges();
+                        keywordId = new KeywordRepository(dbContext).Find(item.Name);
+                    }
+                    else
+                    {
+                        temp = temp.AddUsed(temp);
+                        keywordId = keywordRepository.UpdateKeywordUsed(temp);
+                    }
+
+                    middleTable.AddDatabase(model.Id, keywordId);
+                    dbContext.SaveChanges();
+
+                }
+            }
+        }
+
+        public AritcleEditModel GetEditArticle(int? id)
+        {
+            Article article = new ArticleRepository(dbContext).GetEditArticle(id);
+            AritcleEditModel articleEditModel = new AritcleEditModel();
+            articleEditModel = connectedMapper.Map<AritcleEditModel>(article);
+            articleEditModel.Author = article.Author.UserName;
+            articleEditModel.ChoosAd = article.UseAd.Id;
+            articleEditModel.WebSite = article.UseAd.WebSite;
+            articleEditModel.ContentOfAd = article.UseAd.ContentOfAd;
+            articleEditModel.ChoosSeries = article.UseSeries.Id;
+
+            var keywords = new KeywordAndArticleRepository(dbContext).GetKeywords(id.Value);
+            string keyWordOfArticle = string.Empty;
+            foreach (var item in keywords)
+            {
+                keyWordOfArticle = item.Keyword.Name + " ";
+            }
+            articleEditModel.Keywords = keyWordOfArticle;
+            return articleEditModel;
+        }
+
         public ArticleIndexModel GetArticles()
         {
             IList<Article> tempArticle = new List<Article>();
@@ -115,7 +185,7 @@ namespace ProductServices
                     });
                 }
             }
-            
+
 
 
 

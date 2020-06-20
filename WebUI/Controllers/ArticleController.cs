@@ -6,12 +6,13 @@ using System.Web;
 using System.Web.Mvc;
 using ViewModel;
 using ViewModel.Article;
+using ProductServices;
 
 namespace WebUI.Controllers
 {
     public class ArticleController : BaseController
     {
-
+        int userId = new BaceService().CurrentUserId.Value;
         // GET: Article/Index
         public ActionResult Index(int id = 1)
         {
@@ -28,7 +29,7 @@ namespace WebUI.Controllers
         public ActionResult New()
         {
 
-            ViewData["SeriesDropDownList"] = new SeriesService().GetDropDownList(new SeriesService().GetSeries(4));
+            ViewData["SeriesDropDownList"] = new SeriesService().GetDropDownList(new SeriesService().GetSeries(userId));
             ViewData["AdDropDownList"] = new AdService().GetDropDownList(new AdService().GetAD(4));
 
             return View();
@@ -47,6 +48,32 @@ namespace WebUI.Controllers
                 new AdService().Add(model.ContentOfAd,model.WebSite);
             }
             new ArticleService().Add(model);
+
+
+            return View("/Article");
+        }
+
+        // GET: Article/Edit
+        public ActionResult Edit(int? Id)
+        {
+            ViewData["SeriesDropDownList"] = new SeriesService().GetDropDownList(new SeriesService().GetSeries(userId));
+            ViewData["AdDropDownList"] = new AdService().GetDropDownList(new AdService().GetAD(userId));
+            return View(new ArticleService().GetEditArticle(Id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ArticleNewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Edit");
+            }
+
+            if (model.HasNewAd)
+            {
+                new AdService().Add(model.ContentOfAd, model.WebSite);
+            }
+            new ArticleService().Update(model);
 
 
             return View("/Article");
