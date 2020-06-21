@@ -21,6 +21,7 @@ namespace RepositoryMVC
         public void AddNewRow(BMoney InsertInfo)
         {
             entities.Add(InsertInfo);
+            context.SaveChanges();
         }
 
         /// <summary>
@@ -30,10 +31,6 @@ namespace RepositoryMVC
         /// <returns></returns>
         public BMoney GetByAuthorBMoney(int? authorId)
         {
-            if (authorId == null)
-            {
-                throw new ArgumentException("have some problem");
-            }
             return entities.OrderByDescending(b => b.Latestime).Where(b => b.OwnerId == authorId).FirstOrDefault();
         }
     }

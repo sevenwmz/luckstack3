@@ -18,6 +18,7 @@ namespace RepositoryMVC
         public int AddArticleToDatabase(Article article)
         {
             entities.Add(article);
+            context.SaveChanges();
             return article.Id;
         }
 

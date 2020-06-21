@@ -13,7 +13,15 @@ namespace WebUI.Filter
         {
             if (!filterContext.IsChildAction)
             {
-                new BaceService().SaveChangesForFilter();
+                BaceService service = new BaceService();
+                if (filterContext.Exception == null)
+                {
+                    service.Commit();
+                }
+                else
+                {
+                    service.RollBack();
+                }
             }
             base.OnActionExecuted(filterContext);
         }

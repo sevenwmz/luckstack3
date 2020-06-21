@@ -37,7 +37,6 @@ namespace ProductServices
         /// </summary>
         /// <param name="user">Need registerInfo</param>
         public int Add(RegisterModel user)
-
         {
             User newUser = connectedMapper.Map<User>(user);
 
@@ -53,7 +52,6 @@ namespace ProductServices
             BMoney money = new BMoney();
             money = money.GiveInviterPrize(moneyRepository.GetByAuthorBMoney(newUser.InviterId));
             moneyRepository.AddNewRow(money);
-            dbContext.SaveChanges();
             return userId;
         }
     }

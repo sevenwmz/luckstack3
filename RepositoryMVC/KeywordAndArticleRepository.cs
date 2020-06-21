@@ -17,6 +17,7 @@ namespace RepositoryMVC
         public void AddDatabase(int articleId, int keywordId)
         {
             entities.Add(new KeywordsAndArticle { ArticleId = articleId, KeywordId = keywordId });
+            context.SaveChanges();
         }
 
         public IList<KeywordsAndArticle> GetKeywords(int id)
@@ -28,8 +29,7 @@ namespace RepositoryMVC
 
         public void DeleteOldRelation(int id)
         {
-            //Amazing
-            entities.Remove(new KeywordsAndArticle { ArticleId = id });
+            entities.Where(ka => ka.ArticleId == id);
         }
     }
 }

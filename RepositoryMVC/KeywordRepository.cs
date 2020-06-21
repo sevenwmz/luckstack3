@@ -18,6 +18,7 @@ namespace RepositoryMVC
         public int AddKeywordToDatabase(Keywords keywords)
         {
             entities.Add(keywords);
+            context.SaveChanges();
             return keywords.Id;
         }
 

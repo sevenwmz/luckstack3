@@ -13,6 +13,15 @@ namespace ProductServices
 {
     public class ArticleService : BaceService
     {
+        private ArticleRepository _repository;
+        private Article _articleEntity;
+        public ArticleService()
+        {
+            _repository = new ArticleRepository(dbContext);
+            _articleEntity = new Article();
+        }
+
+
         /// Infact I wanna use this function ,but when IList<T> inside i can't point something...faild
         public IList<SelectListItem> GetDropDownList<T>(IList<T> ts)
         {
@@ -26,55 +35,29 @@ namespace ProductServices
 
         public int GetCount()
         {
-            return new ArticleRepository(dbContext).ArticlesCount();
+            return _repository.ArticlesCount();
         }
 
         public int Add(ArticleNewModel model)
         {
-            int articleId = 0;
             Article _articleEntity = new Article();
-            {
-                Article article = connectedMapper.Map<Article>(model);
-                if (string.IsNullOrEmpty(model.Summary))
-                {
-                    article.Summary = _articleEntity.GetSumarry(model.Body);
-                }
-                _articleEntity.PublishArticle(article);
-                article.Author = new UserRepository(dbContext).Find(CurrentUserId);
 
-                //Get and save series with AD to article foregin key.
-                article.UseSeries = new SeriesRepository(dbContext).GetSeries(model.ChoosSeries);
-                article.UseAd = new ADRepository(dbContext).GetAD(model.ChoosAd);
-                articleId = new ArticleRepository(dbContext).AddArticleToDatabase(article);
-                dbContext.SaveChanges();
-                articleId = new ArticleRepository(dbContext).Find(model.Title);
+            Article article = connectedMapper.Map<Article>(model);
+            if (string.IsNullOrEmpty(model.Summary))
+            {
+                article.Summary = _articleEntity.GetSumarry(model.Body);
             }
+            _articleEntity.PublishArticle(article);
+            article.Author = new UserRepository(dbContext).Find(CurrentUserId);
+
+            //Get and save series with AD to article foregin key.
+            article.UseSeries.Id = new SeriesRepository(dbContext).GetSeries(model.ChoosSeries);
+            article.UseAd.Id = new ADRepository(dbContext).GetAD(model.ChoosAd);
+            int articleId = _repository.AddArticleToDatabase(article);
+
             {
-                //Save keywords and into n:n table.
-                IList<Keywords> keywords = new Keywords().GetKeywordList(model.Keywords);
-                KeywordRepository keywordRepository = new KeywordRepository(dbContext);
-                foreach (var item in keywords)
-                {
-                    int keywordId = 0;
-                    Keywords temp = keywordRepository.GetByKeyword(item);
-                    if (temp == null)
-                    {
-                        Keywords tempAdd = new Keywords();
-                        tempAdd = tempAdd.AddNewKeyword(item);
-                        keywordId = keywordRepository.AddKeywordToDatabase(tempAdd);
-                        dbContext.SaveChanges();
-                        keywordId = new KeywordRepository(dbContext).Find(item.Name);
-                    }
-                    else
-                    {
-                        temp = temp.AddUsed(temp);
-                        keywordId = keywordRepository.UpdateKeywordUsed(temp);
-                    }
-
-                    new KeywordAndArticleRepository(dbContext).AddDatabase(articleId, keywordId);
-                    dbContext.SaveChanges();
-
-                }
+                //Save keywords
+                new KeywordsService().SaveKeywords(articleId, model);
             }
             {
                 ///Minus article author BMoney
@@ -82,70 +65,48 @@ namespace ProductServices
                 BMoneyRepository bMoneyRepository = new BMoneyRepository(dbContext);
                 money = money.PublicArticleMinusBMoney(bMoneyRepository.GetByAuthorBMoney(CurrentUserId));
                 bMoneyRepository.AddNewRow(money);
-                dbContext.SaveChanges();
             }
             return articleId;
         }
-
-        public void Update(ArticleNewModel model)
+        /// <summary>
+        /// For change article content
+        /// </summary>
+        /// <param name="model">Need articleEditModel</param>
+        public void Update(AritcleEditModel model)
         {
             {
-                var articleRepo = new ArticleRepository(dbContext);
-                Article article = new Article();
-                article = articleRepo.GetEditArticle(model.Id);
+                _articleEntity = _repository.GetEditArticle(model.Id);
                 if (string.IsNullOrEmpty(model.Summary))
                 {
-                    article.Summary = article.GetSumarry(model.Body);
+                    _articleEntity.Summary = _articleEntity.GetSumarry(model.Body);
                 }
-                article.Title = model.Title;
-                article.Body = model.Body;
-                article.UseSeries = new SeriesRepository(dbContext).GetSeries(model.ChoosSeries);
-                article.UseAd = new ADRepository(dbContext).GetAD(model.ChoosAd);
-                articleRepo.UpdateEditArticle(article);
-                dbContext.SaveChanges();
+                _articleEntity.Title = model.Title;
+                _articleEntity.Body = model.Body;
+                _articleEntity.UseSeries.Id = new SeriesRepository(dbContext).GetSeries(model.ChoosSeries);
+                _articleEntity.UseAd.Id = new ADRepository(dbContext).GetAD(model.ChoosAd);
+                _repository.UpdateEditArticle(_articleEntity);
             }
             {
                 //Save keywords and into n:n table.
                 var middleTable = new KeywordAndArticleRepository(dbContext);
                 middleTable.DeleteOldRelation(model.Id);
 
-                IList<Keywords> keywords = new Keywords().GetKeywordList(model.Keywords);
-                KeywordRepository keywordRepository = new KeywordRepository(dbContext);
-                foreach (var item in keywords)
-                {
-                    int keywordId = 0;
-                    Keywords temp = keywordRepository.GetByKeyword(item);
-                    if (temp == null)
-                    {
-                        Keywords tempAdd = new Keywords();
-                        tempAdd = tempAdd.AddNewKeyword(item);
-                        keywordId = keywordRepository.AddKeywordToDatabase(tempAdd);
-                        dbContext.SaveChanges();
-                        keywordId = new KeywordRepository(dbContext).Find(item.Name);
-                    }
-                    else
-                    {
-                        temp = temp.AddUsed(temp);
-                        keywordId = keywordRepository.UpdateKeywordUsed(temp);
-                    }
-
-                    middleTable.AddDatabase(model.Id, keywordId);
-                    dbContext.SaveChanges();
-
-                }
+                new KeywordsService().SaveKeywords(model.Id,model);
             }
         }
 
         public AritcleEditModel GetEditArticle(int? id)
         {
-            Article article = new ArticleRepository(dbContext).GetEditArticle(id);
+            _articleEntity = _repository.GetEditArticle(id);
+
             AritcleEditModel articleEditModel = new AritcleEditModel();
-            articleEditModel = connectedMapper.Map<AritcleEditModel>(article);
-            articleEditModel.Author = article.Author.UserName;
-            articleEditModel.ChoosAd = article.UseAd.Id;
-            articleEditModel.WebSite = article.UseAd.WebSite;
-            articleEditModel.ContentOfAd = article.UseAd.ContentOfAd;
-            articleEditModel.ChoosSeries = article.UseSeries.Id;
+            articleEditModel = connectedMapper.Map<AritcleEditModel>(_articleEntity);
+
+            articleEditModel.Author = _articleEntity.Author.UserName;
+            articleEditModel.ChoosAd = _articleEntity.UseAd.Id;
+            articleEditModel.WebSite = _articleEntity.UseAd.WebSite;
+            articleEditModel.ContentOfAd = _articleEntity.UseAd.ContentOfAd;
+            articleEditModel.ChoosSeries = _articleEntity.UseSeries.Id;
 
             var keywords = new KeywordAndArticleRepository(dbContext).GetKeywords(id.Value);
             string keyWordOfArticle = string.Empty;
@@ -163,7 +124,7 @@ namespace ProductServices
             IList<KeywordsAndArticle> tempKeywords = new List<KeywordsAndArticle>();
 
 
-            tempArticle = new ArticleRepository(dbContext).GetArticles();
+            tempArticle = _repository.GetArticles();
             ArticleIndexModel articleIndex = new ArticleIndexModel
             {
                 Items = connectedMapper.Map<List<ArticleItemsModel>>(tempArticle),
@@ -185,10 +146,6 @@ namespace ProductServices
                     });
                 }
             }
-
-
-
-
             return articleIndex;
         }
     }

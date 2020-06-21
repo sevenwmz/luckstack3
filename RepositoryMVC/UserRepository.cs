@@ -32,6 +32,7 @@ namespace RepositoryMVC
         public int AddRegisterToDatabase(User regiserInfo)
         {
             entities.Add(regiserInfo);
+            context.SaveChanges();
             return regiserInfo.Id;
         }
     }

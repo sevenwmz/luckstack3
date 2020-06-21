@@ -19,9 +19,9 @@ namespace RepositoryMVC
         /// </summary>
         /// <param name="choosSeries">Need Series Name</param>
         /// <returns>Return Series</returns>
-        public Series GetSeries(int choosSeries)
+        public int GetSeries(int choosSeries)
         {
-            return entities.Where(s => s.Id == choosSeries).FirstOrDefault();
+            return entities.Where(s => s.Id == choosSeries).FirstOrDefault().Id;
         }
 
         public IList<Series> OnGetSeries(int userId)

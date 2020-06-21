@@ -8,29 +8,30 @@ using System.Threading.Tasks;
 using V = ViewModel;
 using System.Web;
 using RepositoryMVC;
+using System.Data.Entity;
 
 namespace ProductServices
-{ 
-    public class BaceService 
+{
+    public class BaceService
     {
         private static MapperConfiguration mapper;
         static BaceService()
         {
-            mapper = new MapperConfiguration(cfg=>
+            mapper = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<User, V.RegisterModel>()
-                    .ForMember(r=>r.PasswordAgain,opt=>opt.Ignore())
-                    .ForMember(r=>r.Captcha,opt=>opt.Ignore())
-                    .ForMember(r=>r.CookieId,opt=>opt.Ignore())
-                    .ForMember(r=>r.Inviter,opt=>opt.Ignore())
-                    .ForMember(r=>r.InviterNumber,opt=>opt.MapFrom(r=>r.MyInviterNumber))
+                    .ForMember(r => r.PasswordAgain, opt => opt.Ignore())
+                    .ForMember(r => r.Captcha, opt => opt.Ignore())
+                    .ForMember(r => r.CookieId, opt => opt.Ignore())
+                    .ForMember(r => r.Inviter, opt => opt.Ignore())
+                    .ForMember(r => r.InviterNumber, opt => opt.MapFrom(r => r.MyInviterNumber))
                     .ReverseMap()
-                    .ForMember(r=>r.Inviter,opt=>opt.Ignore())
+                    .ForMember(r => r.Inviter, opt => opt.Ignore())
                     ;
                 cfg.CreateMap<User, V.Log.OnModel>()
                     .ForMember(l => l.LogInName, opt => opt.MapFrom(l => l.UserName))
-                    .ForMember(l=>l.Captcha,opt=>opt.Ignore())
-                    .ForMember(l=>l.RemenberMe,opt=>opt.Ignore())
+                    .ForMember(l => l.Captcha, opt => opt.Ignore())
+                    .ForMember(l => l.RemenberMe, opt => opt.Ignore())
                     .ReverseMap()
                     ;
                 cfg.CreateMap<Article, V.ArticleNewModel>()
@@ -44,7 +45,7 @@ namespace ProductServices
                     .ForMember(a => a.Author, opt => opt.Ignore())
                     .ForMember(a => a.HasNewAd, opt => opt.Ignore())
                     .ReverseMap()
-                    .ForMember(a=>a.Author,opt=>opt.Ignore())
+                    .ForMember(a => a.Author, opt => opt.Ignore())
                     ;
 
                 cfg.CreateMap<Article, V.ArticleItemsModel>()
@@ -80,11 +81,6 @@ namespace ProductServices
 #endif
         }
 
-
-
-
-
-
         private const string COOKIE_NAME = "SevenMarkLogIn";
         public int? CurrentUserId
         {
@@ -107,29 +103,54 @@ namespace ProductServices
                 return Convert.ToInt32(id);
             }
         }
-
-        /// <summary>
-        /// Other place don't touch this function.just for filter use, all request use one of context.
-        /// if touch, biu biu biu.
-        /// </summary>
-        public void SaveChangesForFilter()
-        {
-            dbContext.SaveChanges();
-        }
-
         public SqlContext dbContext
         {
             get
             {
-                if (HttpContext.Current.Items["dbContext"] == null)
+                SqlContext context = HttpContext.Current.Items["dbContext"] as SqlContext;
+                if (context == null)
                 {
-                    HttpContext.Current.Items["dbContext"] = new SqlContext();
-                }
-                return (SqlContext)HttpContext.Current.Items["dbContext"];
+                    context = new SqlContext();
+                    context.Database.BeginTransaction();
+                    HttpContext.Current.Items["dbContext"] = context;
+                }//else nothing;
+                return context;
             }
         }
+        public void Commit()
+        {
+            using (SqlContext context = HttpContext.Current.Items["dbContext"] as SqlContext)
+            {
+                if (context != null)
+                {
+                    using (DbContextTransaction transaction = context.Database.CurrentTransaction)
+                    {
+                        try
+                        {
+                            context.SaveChanges();
+                            transaction.Commit();
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+                            throw;
+                        }
+                    }
+                }
+            }
 
 
+        }
+        public void RollBack()
+        {
+            using (SqlContext context = HttpContext.Current.Items["dbContext"] as SqlContext)
+            {
+                using (DbContextTransaction transaction = context.Database.CurrentTransaction)
+                {
+                    transaction.Rollback();
+                }
+            }
+        }
 
         protected IMapper connectedMapper
         {
