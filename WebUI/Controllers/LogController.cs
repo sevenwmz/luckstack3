@@ -39,13 +39,7 @@ namespace WebUI.Controllers
             }
 
             //Add cookie
-            HttpCookie logIncookie = new Cookie().AddCookie(user.Id, user.Password);
-            if (model.RemenberMe)
-            {
-                logIncookie.Expires = DateTime.Now.AddDays(15);
-            }
-            Response.Cookies.Add(logIncookie);
-
+            CookieHelper.AddCookie(user.Id, user.Password, model.RemenberMe);
             if (Request.QueryString == null)
             {
                 return View("~/Article");

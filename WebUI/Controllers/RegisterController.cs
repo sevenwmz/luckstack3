@@ -53,8 +53,7 @@ namespace WebUI.Controllers
             });
 
             //Add cookie
-            new Cookie().AddCookie(registerId, model.Password);
-
+            CookieHelper.AddCookie(registerId, model.Password);
             if (Request.QueryString == null)
             {
                 return View("/Article");
