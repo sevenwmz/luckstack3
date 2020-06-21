@@ -88,9 +88,7 @@ namespace ProductServices
             }
             {
                 //Save keywords and into n:n table.
-                var middleTable = new KeywordAndArticleRepository(dbContext);
-                middleTable.DeleteOldRelation(model.Id);
-
+                new KeywordAndArticleService().DeleteOldRelation(model.Id);
                 new KeywordsService().SaveKeywords(model.Id,model);
             }
         }

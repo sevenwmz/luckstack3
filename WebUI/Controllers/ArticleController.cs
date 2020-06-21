@@ -21,7 +21,6 @@ namespace WebUI.Controllers
             index = articleService.GetArticles();
             index.SumOfArticle = articleService.GetCount();
 
-
             return View(index);
         }
 
@@ -62,7 +61,7 @@ namespace WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(ArticleNewModel model)
+        public ActionResult Edit(AritcleEditModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -74,7 +73,6 @@ namespace WebUI.Controllers
                 new AdService().Add(model.ContentOfAd, model.WebSite);
             }
             new ArticleService().Update(model);
-
 
             return View("/Article");
         }

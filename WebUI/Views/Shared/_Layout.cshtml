@@ -49,9 +49,6 @@
                             prepage = (Context.Request.Path + Context.Request.QueryString);
                         }//else nothing
                         string queryStringPage = $"{Const.PREPAGE}={prepage}";
-                        //HttpCookie cookie = new HttpCookie(Const.COOKIE_NAME);
-
-
 
                         int? logInId = new BaceService().CurrentUserId;
                     }

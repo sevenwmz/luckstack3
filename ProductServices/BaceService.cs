@@ -85,6 +85,7 @@ namespace ProductServices
         public int? CurrentUserId
         {
             get
+            
             {
                 HttpCookie cookie = HttpContext.Current.Request.Cookies[COOKIE_NAME];
                 if (cookie == null)
@@ -138,7 +139,7 @@ namespace ProductServices
                     }
                 }
             }
-
+            HttpContext.Current.Items["dbContext"] = null;
 
         }
         public void RollBack()

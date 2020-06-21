@@ -27,9 +27,10 @@ namespace RepositoryMVC
                 .Where(k => k.ArticleId == id).ToList();
         }
 
-        public void DeleteOldRelation(int id)
+        public void DeleteOldRelation(KeywordsAndArticle keywordsAndArticle)
         {
-            entities.Where(ka => ka.ArticleId == id);
+            entities.Remove(keywordsAndArticle);
+            context.SaveChanges();
         }
     }
 }
