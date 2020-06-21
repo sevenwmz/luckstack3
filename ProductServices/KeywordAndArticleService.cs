@@ -18,18 +18,5 @@ namespace ProductServices
             _keywordsAndArticle = new KeywordsAndArticle();
         }
 
-        public void DeleteOldRelation(int articleId)
-        {
-            _keywordsAndArticle = _repo.Find(articleId);
-            _repo.DeleteOldRelation(_keywordsAndArticle);
-        }
-
-
-
-
-
-
-
-
     }
 }

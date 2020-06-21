@@ -27,12 +27,14 @@ namespace RepositoryMVC
             return entities.Where(a => a.Title == title).FirstOrDefault().Id;
         }
 
-        public IList<Article> GetArticles()
+        public IList<Article> GetArticles(int pageSize, int pageIndex)
         {
-            return entities
-                .Include(e=>e.Author)
+            return entities.Include(e=>e.Author)
                 .Include(k=>k.OwnKeyword)
-                .OrderByDescending(a => a.PublishTime).ToList();
+                .OrderByDescending(a => a.PublishTime)
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
         }
 
         public int ArticlesCount()
@@ -52,7 +54,7 @@ namespace RepositoryMVC
 
         public void UpdateEditArticle(Article article)
         {
-            entities.Attach(article);
+            context.SaveChanges();
         }
     }
 }

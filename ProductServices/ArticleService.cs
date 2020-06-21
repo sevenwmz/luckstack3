@@ -33,6 +33,13 @@ namespace ProductServices
             return dropDownList;
         }
 
+        //public IList<ArticleItemsModel> GetPaged(int pageSize, int id)
+        //{
+        //    IList<Article> tempArticle = new List<Article>();
+        //    tempArticle = _repository.GetArticles();
+        //    //return tempArticle.Skip((id - 1) * pageSize).Take(pageSize).ToList();
+        //}
+
         public int GetCount()
         {
             return _repository.ArticlesCount();
@@ -40,20 +47,19 @@ namespace ProductServices
 
         public int Add(ArticleNewModel model)
         {
-            Article _articleEntity = new Article();
 
-            Article article = connectedMapper.Map<Article>(model);
+            _articleEntity = connectedMapper.Map<Article>(model);
             if (string.IsNullOrEmpty(model.Summary))
             {
-                article.Summary = _articleEntity.GetSumarry(model.Body);
+                _articleEntity.Summary = _articleEntity.GetSumarry(model.Body);
             }
-            _articleEntity.PublishArticle(article);
-            article.Author = new UserRepository(dbContext).Find(CurrentUserId);
+            _articleEntity.PublishArticle(_articleEntity);
+            _articleEntity.Author = new UserRepository(dbContext).Find(CurrentUserId);
 
             //Get and save series with AD to article foregin key.
-            article.UseSeries.Id = new SeriesRepository(dbContext).GetSeries(model.ChoosSeries);
-            article.UseAd.Id = new ADRepository(dbContext).GetAD(model.ChoosAd);
-            int articleId = _repository.AddArticleToDatabase(article);
+            _articleEntity.UseSeries = new SeriesRepository(dbContext).GetSeries(model.ChoosSeries);
+            _articleEntity.UseAd = new ADRepository(dbContext).GetAD(model.ChoosAd);
+            int articleId = _repository.AddArticleToDatabase(_articleEntity);
 
             {
                 //Save keywords
@@ -76,19 +82,20 @@ namespace ProductServices
         {
             {
                 _articleEntity = _repository.GetEditArticle(model.Id);
+                _articleEntity.OwnKeyword.Clear();
+
                 if (string.IsNullOrEmpty(model.Summary))
                 {
                     _articleEntity.Summary = _articleEntity.GetSumarry(model.Body);
                 }
                 _articleEntity.Title = model.Title;
                 _articleEntity.Body = model.Body;
-                _articleEntity.UseSeries.Id = new SeriesRepository(dbContext).GetSeries(model.ChoosSeries);
-                _articleEntity.UseAd.Id = new ADRepository(dbContext).GetAD(model.ChoosAd);
+                _articleEntity.UseSeries = new SeriesRepository(dbContext).GetSeries(model.ChoosSeries);
+                _articleEntity.UseAd = new ADRepository(dbContext).GetAD(model.ChoosAd);
                 _repository.UpdateEditArticle(_articleEntity);
             }
             {
                 //Save keywords and into n:n table.
-                new KeywordAndArticleService().DeleteOldRelation(model.Id);
                 new KeywordsService().SaveKeywords(model.Id,model);
             }
         }
@@ -110,19 +117,19 @@ namespace ProductServices
             string keyWordOfArticle = string.Empty;
             foreach (var item in keywords)
             {
-                keyWordOfArticle = item.Keyword.Name + " ";
+                keyWordOfArticle += item.Keyword.Name + " ";
             }
             articleEditModel.Keywords = keyWordOfArticle;
             return articleEditModel;
         }
 
-        public ArticleIndexModel GetArticles()
+        public IList<ArticleItemsModel> GetArticles(int pageSize,int pageIndex)
         {
             IList<Article> tempArticle = new List<Article>();
             IList<KeywordsAndArticle> tempKeywords = new List<KeywordsAndArticle>();
 
 
-            tempArticle = _repository.GetArticles();
+            tempArticle = _repository.GetArticles( pageSize,pageIndex);
             ArticleIndexModel articleIndex = new ArticleIndexModel
             {
                 Items = connectedMapper.Map<List<ArticleItemsModel>>(tempArticle),
@@ -144,7 +151,7 @@ namespace ProductServices
                     });
                 }
             }
-            return articleIndex;
+            return articleIndex.Items;
         }
     }
 }

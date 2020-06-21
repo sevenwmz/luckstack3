@@ -22,15 +22,8 @@ namespace RepositoryMVC
 
         public IList<KeywordsAndArticle> GetKeywords(int id)
         {
-            return entities
-                .Include(k => k.Keyword)
-                .Where(k => k.ArticleId == id).ToList();
+            return entities.Include(k => k.Keyword).Where(k => k.ArticleId == id).ToList();
         }
 
-        public void DeleteOldRelation(KeywordsAndArticle keywordsAndArticle)
-        {
-            entities.Remove(keywordsAndArticle);
-            context.SaveChanges();
-        }
     }
 }

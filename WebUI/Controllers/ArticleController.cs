@@ -16,9 +16,9 @@ namespace WebUI.Controllers
         // GET: Article/Index
         public ActionResult Index(int id = 1)
         {
-            ArticleIndexModel index = new ArticleIndexModel();
+            ArticleIndexModel index = new ArticleIndexModel { Items = new List<ArticleItemsModel>()};
             ArticleService articleService = new ArticleService();
-            index = articleService.GetArticles();
+            index.Items = articleService.GetArticles(2, id);
             index.SumOfArticle = articleService.GetCount();
 
             return View(index);
@@ -49,7 +49,7 @@ namespace WebUI.Controllers
             new ArticleService().Add(model);
 
 
-            return View("/Article");
+            return Redirect("/Article/Page-1");
         }
 
         // GET: Article/Edit
@@ -74,7 +74,7 @@ namespace WebUI.Controllers
             }
             new ArticleService().Update(model);
 
-            return View("/Article");
+            return Redirect("/Article/Page-1");
         }
 
     }

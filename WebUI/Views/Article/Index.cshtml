@@ -21,9 +21,9 @@
             @foreach (var article in Model.Items)
             {
                 <div>
-                 
+
                     <span><i class="fa fa-calendar"></i>@article.PublishTime</span>
-                    <span class="float-md-right text-info">作者：@Html.Partial("_Author",article.Author)</span>
+                    <span class="float-md-right text-info">作者：@Html.Partial("_Author", article.Author)</span>
                     <p><a href="none" class="text-info">@article.Title</a></p>
                     <p>@article.Summary<a href="/Article/Edit/@article.Id" style="color:dodgerblue">……</a></p>
                     <label>
@@ -48,17 +48,15 @@
             }
             @{
                 int currentPageIndex;
-                //int currentPageIndex =  (Request.RouteValues["id"]) ? 1 : Convert.ToInt32(Request.RouteValues["id"]);
-                if (Request.QueryString["id"] == null)
+                if (ViewContext.RouteData.Values["id"] == null)
                 {
                     currentPageIndex = 1;
                 }
                 else
                 {
-                    currentPageIndex = Convert.ToInt32(Request.QueryString["id"]);
+                    currentPageIndex = Convert.ToInt32(ViewContext.RouteData.Values["id"]);
                 }
                 int pagingId = (currentPageIndex - 1) / 10 + 1;
-
             }
 
             <nav aria-label="Page navigation example">
@@ -67,20 +65,21 @@
                     @if (currentPageIndex > 1)
                     {
                         <li class="page-item">
-                            <a class="page-link" aria-label="Private" href="/Article/Index/Page-@(currentPageIndex-1)">
+                            <a class="page-link" aria-label="Private" href="/Article/Page-@(currentPageIndex-1)">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
                     }@*/*else nothing*/*@
                     @{
                         int pagingLength = 10;
-                        int startPaging = 1 + (pagingId - 1) * 10;
-                        if (pagingId * 10 > Model.SumOfArticle)
+                        int startPaging = 1 + (pagingId - 1) * pagingLength;
+
+                        if (pagingId * pagingLength * 2 > Model.SumOfArticle)
                         {
-                            pagingLength = Model.SumOfArticle % 10;
+                            pagingLength = (Model.SumOfArticle % pagingLength) / 2;
                         }
                     }
-                    @for (int i = 1; i <= (Model.SumOfArticle / Const.PAGE_SIZE); i++)
+                    @for (int i = startPaging; i <= startPaging + pagingLength - 1; i++)
                     {
                         if (currentPageIndex == i)
                         {
@@ -88,13 +87,13 @@
                         }
                         else
                         {
-                            <li class="page-item"><a class="page-link" href="/Article/Index/Page-@i">@(i)</a></li>
+                            <li class="page-item"><a class="page-link" href="/Article/Page-@i">@(i)</a></li>
                         }
                     }
                     @if (currentPageIndex < (Model.SumOfArticle / Const.PAGE_SIZE))
                     {
                         <li class="page-item">
-                            <a class="page-link" aria-label="Next" href="/Article/Index/Page-@(currentPageIndex+1) ">
+                            <a class="page-link" aria-label="Next" href="/Article/Page-@(currentPageIndex+1) ">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>

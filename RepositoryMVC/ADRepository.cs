@@ -22,9 +22,9 @@ namespace RepositoryMVC
         /// </summary>
         /// <param name="choosAd">Need AD name</param>
         /// <returns>Return AD</returns>
-        public int GetAD(int choosAd)
+        public AD GetAD(int choosAd)
         {
-            return entities.Where(a => a.Id == choosAd).FirstOrDefault().Id;
+            return entities.Where(a => a.Id == choosAd).FirstOrDefault();
         }
 
         /// <summary>

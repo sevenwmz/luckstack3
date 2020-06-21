@@ -16,9 +16,13 @@ namespace WebUI
 
             routes.MapRoute(
                 name: "ArticleIndex",
-                url: "Article/Page-{Id}",
+                url: "Article/Page-{id}",
                 defaults: new { controller = "Article", action = "Index", id = UrlParameter.Optional }
             );
+
+
+
+
             routes.MapRoute(
                 name: "ArticleNew",
                 url: "Article/New",

@@ -9,7 +9,7 @@ namespace WebUI
     {
         //For Page
         public const string PAGE_INDEX = "pageIndex";
-        public const int PAGE_SIZE = 10;
+        public const int PAGE_SIZE = 2;
 
         //For Cookie
         public const string COOKIE_USER = "user";
