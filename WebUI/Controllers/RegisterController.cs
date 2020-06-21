@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ViewModel;
+using WebUI.UIFunction;
 
 namespace WebUI.Controllers
 {
@@ -51,10 +52,8 @@ namespace WebUI.Controllers
                 Password = model.Password
             });
 
-            HttpCookie logIncookie = new HttpCookie(Const.COOKIE_NAME);
-            logIncookie.Values["id"] = registerId.ToString();
-            logIncookie.Values["pwd"] = model.Password;
-            HttpContext.Response.Cookies.Add(logIncookie);
+            //Add cookie
+            new Cookie().AddCookie(registerId, model.Password);
 
             if (Request.QueryString == null)
             {

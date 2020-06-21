@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ViewModel.Log;
+using WebUI.UIFunction;
 
 namespace WebUI.Controllers
 {
@@ -37,15 +38,13 @@ namespace WebUI.Controllers
                 return View(model);
             }
 
-            HttpCookie logIncookie = new HttpCookie(Const.COOKIE_NAME);
-            logIncookie.Values["id"] = user.Id.ToString();
-            logIncookie.Values["pwd"] = user.Password;
-            Response.Cookies.Add(logIncookie);
+            //Add cookie
+            HttpCookie logIncookie = new Cookie().AddCookie(user.Id, user.Password);
             if (model.RemenberMe)
             {
                 logIncookie.Expires = DateTime.Now.AddDays(15);
             }
-            HttpContext.Response.Cookies.Add(logIncookie);
+            Response.Cookies.Add(logIncookie);
 
             if (Request.QueryString == null)
             {
@@ -54,9 +53,6 @@ namespace WebUI.Controllers
             return Redirect(Request.QueryString[Const.PREPAGE]);
         }
 
-
-
-
         // GET: Off
         /// <summary>
         /// Log/Off
@@ -64,7 +60,8 @@ namespace WebUI.Controllers
         /// <returns></returns>
         public ActionResult Off()
         {
-            HttpContext.Response.Cookies.Clear();
+            HttpCookie cookie = HttpContext.Response.Cookies.Get(Const.COOKIE_NAME);
+            cookie.Expires = DateTime.Now.AddDays(-100);
             return Redirect(Request.QueryString[Const.PREPAGE]);
         }
 
