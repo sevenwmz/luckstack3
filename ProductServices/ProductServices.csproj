@@ -82,6 +82,7 @@
     <Compile Include="KeywordAndArticleService.cs" />
     <Compile Include="KeywordsService.cs" />
     <Compile Include="Log\OnService.cs" />
+    <Compile Include="ProblemService.cs" />
     <Compile Include="RegisterService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeriesService.cs" />

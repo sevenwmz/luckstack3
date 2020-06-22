@@ -140,6 +140,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogController.cs" />
+    <Compile Include="Controllers\ProblemController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Filter\ContextPreRequest.cs" />
@@ -237,6 +238,7 @@
     <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Views\Article\_Author.cshtml" />
     <Content Include="Views\Article\Edit.cshtml" />
+    <Content Include="Views\Problem\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

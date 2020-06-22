@@ -87,6 +87,7 @@
       <DependentUpon>202006181358334_ChangeKeywordsNullable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ProblemRepository.cs" />
     <Compile Include="SeriesRepository.cs" />
     <Compile Include="SqlContext.cs" />
     <Compile Include="UserRepository.cs" />

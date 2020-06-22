@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProductServices
 {
-    public class ProblemService
+    public class ProblemService : BaceService
     {
 
 

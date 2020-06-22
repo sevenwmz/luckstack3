@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ViewModel.Problem
 {
-    class New
+    public class ProblemNewModel
     {
     }
 }
