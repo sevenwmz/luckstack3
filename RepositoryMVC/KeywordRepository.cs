@@ -33,6 +33,15 @@ namespace RepositoryMVC
             return item.Id;
         }
 
+        public IList<Keywords> GetLevelKeywords(bool fristKeyword)
+        {
+            if (fristKeyword)
+            {
+                return entities.Where(k => k.LevelId == 1).ToList();
+            }
+            return entities.Where(k => k.LevelId == 2).ToList(); ;
+        }
+
         public int Find(string name)
         {
             return entities.Where(k => k.Name == name).FirstOrDefault().Id;

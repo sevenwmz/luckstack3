@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace EntityMVC
 {
-    class KeywordsAndProblem
+    public class KeywordsAndProblem : BaceEntity
     {
+        public int ProblemId { set; get; }
+        public Problem Problem { set; get; }
+        public int KeywordId { set; get; }
+        public Keywords Keyword{ set; get; }
+
     }
 }

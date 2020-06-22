@@ -63,6 +63,20 @@ namespace EntityMVC
                 Status = BMoneyDirection.BMoneyIn
             };
         }
+
+        public BMoney PublicProblemMinusBMoney(int RewardMoney, BMoney bMoney)
+        {
+            return new BMoney
+            {
+                OwnerId = bMoney.Id,
+                Latestime = DateTime.Now,
+                Detail = $"Publish Problem success Reward {RewardMoney} BMoney",
+                Freezing = bMoney.Freezing + RewardMoney,
+                Change = RewardMoney,
+                LeftBMoney = bMoney.LeftBMoney - RewardMoney,
+                Status = BMoneyDirection.BMoneyFreezing
+            };
+        }
     }
     public enum BMoneyDirection
     {

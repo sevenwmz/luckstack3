@@ -11,12 +11,17 @@ namespace EntityMVC
         public string Name { set; get; }
         public int Used { set; get; }
 
+        public int LevelId { set; get; }
+        public Keywords Level { set; get; }
+        #region Obsoletion
         public int? NormalLevelId { set; get; }
         public Keywords NormalLevel { set; get; }
         public int? SecendLevelId { set; get; }
         public Keywords SecendLevel { set; get; }
         public int? FristLevelId { set; get; }
         public Keywords FirstLevel { set; get; }
+        #endregion
+
 
         public IList<KeywordsAndArticle> UseArticle { set; get; }
 

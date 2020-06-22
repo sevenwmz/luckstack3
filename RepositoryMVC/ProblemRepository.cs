@@ -14,5 +14,10 @@ namespace RepositoryMVC
         {
 
         }
+
+        public int Add(Problem problemEntity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

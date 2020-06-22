@@ -14,11 +14,35 @@ namespace ProductServices
 {
     public class BaceService
     {
+        public UserRepository UserRepository;
+        public BaceService()
+        {
+            UserRepository = new UserRepository(dbContext);
+        }
+
         private static MapperConfiguration mapper;
         static BaceService()
         {
             mapper = new MapperConfiguration(cfg =>
             {
+                cfg.CreateMap<Problem, V.Problem.ProblemNewModel>()
+                   .ForMember(p=>p.FristDropDownKeywords , opt=>opt.Ignore())
+                   .ForMember(p=>p.SecendDropDownKeywords , opt=>opt.Ignore())
+                   .ForMember(p=>p.NeedSubKeyword , opt=>opt.Ignore())
+                   .ForMember(p=>p.HasLeftMoney , opt=>opt.Ignore())
+                   .ForMember(p=>p.HelpFrom, opt=>opt.Ignore())
+                   .ForMember(p=>p.Id, opt=>opt.Ignore())
+                   .ForMember(p=>p.Keywords, opt=>opt.Ignore())
+                   .ForMember(p=>p.RewardMoney, opt=>opt.Ignore())
+                   .ReverseMap()
+                   .ForMember(p => p.Id, opt => opt.Ignore())
+                   .ForMember(p => p.OwnKeyword, opt => opt.Ignore())
+                   .ForMember(p => p.PublishTime, opt => opt.Ignore())
+                   ;
+
+
+
+
                 cfg.CreateMap<User, V.RegisterModel>()
                     .ForMember(r => r.PasswordAgain, opt => opt.Ignore())
                     .ForMember(r => r.Captcha, opt => opt.Ignore())
@@ -96,7 +120,6 @@ namespace ProductServices
         public int? CurrentUserId
         {
             get
-            
             {
                 HttpCookie cookie = HttpContext.Current.Request.Cookies[COOKIE_NAME];
                 if (cookie == null)
@@ -106,8 +129,8 @@ namespace ProductServices
                 string id = cookie.Values["id"];
                 string pwd = cookie.Values["pwd"];
 
-                UserRepository repository = new UserRepository(dbContext);
-                User current = repository.Find(Convert.ToInt32(id));
+                User current = UserRepository.Find(Convert.ToInt32(id));
+
                 if (current.Password != pwd)
                 {
                     throw new ArgumentException("你的信息有点点问题呀,我们攻城狮已经记录在册,并解决这个问题呦！");
@@ -115,6 +138,12 @@ namespace ProductServices
                 return Convert.ToInt32(id);
             }
         }
+
+        public User CurrenUser
+        {
+            get => UserRepository.Find(CurrentUserId.Value);
+        }
+
         public SqlContext dbContext
         {
             get
