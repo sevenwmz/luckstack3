@@ -52,10 +52,11 @@
         <div class="form-group">
             <label><strong>验证码：（* 必填）</strong></label>
             <div>
-                @Html.TextBoxFor(o=>o.Captcha,new { @class="form-control" ,style="width:30%;display:inline;"})
-                @Html.ValidationMessageFor(o=>o.Captcha)
-                <a href="#">看不清楚</a>
+                @Html.TextBoxFor(o => o.Captcha, new { @class = "form-control", style = "width:30%;display:inline;" })
+                <img src="/Shared/Captcha" />
+                <a href="/Log/On">看不清楚</a>
             </div>
+            @Html.ValidationMessageFor(o => o.Captcha)
         </div>
         <button type="submit" class="btn btn-primary">提交</button>
         <label>@Html.CheckBoxFor(o=>o.RemenberMe,new {style="display:inline" , value="true" })记住我</label>

@@ -20,6 +20,7 @@ namespace ViewModel.Log
         [Required(/*AllowEmptyStrings = true, */ErrorMessage = "* 密码不能为空")]
         public string Password { set; get; }
         public bool RemenberMe { set; get; }
+        [Required(ErrorMessage = "* 验证码不能为空/填错啦")]
         public string Captcha { set; get; }
     }
 }

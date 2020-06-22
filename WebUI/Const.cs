@@ -30,6 +30,7 @@ namespace WebUI
         //For Session
         public const string SESSION_USER = "user";
         public const string SESSION_VALUE = "SevenMark";
+        public const string SESSION_CAPTCHA = "Captcha";
 
         //For UserID
         public const string USER_ID = "userId";

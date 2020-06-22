@@ -22,8 +22,13 @@ namespace WebUI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                return View(model);
             }
+            if (model.Captcha != Session[Const.SESSION_CAPTCHA].ToString())
+            {
+                return View(model);
+            }
+
 
             OnService logIn = new OnService();
             OnModel user = logIn.GetByName(model.LogInName);

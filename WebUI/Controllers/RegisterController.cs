@@ -25,6 +25,11 @@ namespace WebUI.Controllers
             {
                 return View();
             }
+            if (model.Captcha != Session[Const.SESSION_CAPTCHA].ToString())
+            {
+                return View(model);
+            }
+
             RegisterService registerService = new RegisterService();
             #region Check RegisterInfo Is Correct
             RegisterModel inviter = registerService.GetByName(model.Inviter);
