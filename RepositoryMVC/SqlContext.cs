@@ -36,14 +36,19 @@ namespace RepositoryMVC
             modelBuilder.Entity<BMoney>();
             modelBuilder.Entity<Article>();
             modelBuilder.Entity<Keywords>();
+            modelBuilder.Entity<Problem>();
+            modelBuilder.Entity<KeywordsAndProblem>();
             modelBuilder.Entity<KeywordsAndArticle>();
+
 
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>().Property(u => u.UserName).HasMaxLength(256);
             modelBuilder.Entity<KeywordsAndArticle>().HasKey(ka => new { ka.ArticleId, ka.KeywordId });
             modelBuilder.Entity<KeywordsAndArticle>().Ignore(ka => ka.Id);
-             
+            modelBuilder.Entity<KeywordsAndProblem>().HasKey(kp => new { kp.ProblemId, kp.KeywordId });
+            modelBuilder.Entity<KeywordsAndProblem>().Ignore(kp => kp.Id);
+
         }
 
 

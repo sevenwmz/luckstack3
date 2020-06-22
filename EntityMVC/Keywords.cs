@@ -11,7 +11,7 @@ namespace EntityMVC
         public string Name { set; get; }
         public int Used { set; get; }
 
-        public int LevelId { set; get; }
+        public int? LevelId { set; get; }
         public Keywords Level { set; get; }
         #region Obsoletion
         public int? NormalLevelId { set; get; }

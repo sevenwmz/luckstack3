@@ -86,6 +86,14 @@
     <Compile Include="Migrations\202006181358334_ChangeKeywordsNullable.designer.cs">
       <DependentUpon>202006181358334_ChangeKeywordsNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006221258225_AddProblemAndKeywords.cs" />
+    <Compile Include="Migrations\202006221258225_AddProblemAndKeywords.designer.cs">
+      <DependentUpon>202006221258225_AddProblemAndKeywords.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006221304416_AddAboutProblem.cs" />
+    <Compile Include="Migrations\202006221304416_AddAboutProblem.designer.cs">
+      <DependentUpon>202006221304416_AddAboutProblem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="SeriesRepository.cs" />
@@ -124,6 +132,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006181358334_ChangeKeywordsNullable.resx">
       <DependentUpon>202006181358334_ChangeKeywordsNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006221258225_AddProblemAndKeywords.resx">
+      <DependentUpon>202006221258225_AddProblemAndKeywords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006221304416_AddAboutProblem.resx">
+      <DependentUpon>202006221304416_AddAboutProblem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
