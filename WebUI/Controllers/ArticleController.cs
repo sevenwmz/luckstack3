@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.Mvc;
 using ViewModel;
 using ViewModel.Article;
-using ProductServices;
 
 namespace WebUI.Controllers
 {
@@ -16,9 +15,9 @@ namespace WebUI.Controllers
         // GET: Article/Index
         public ActionResult Index(int id = 1)
         {
-            ArticleIndexModel index = new ArticleIndexModel { Items = new List<ArticleItemsModel>()};
+            ArticleIndexModel index = new ArticleIndexModel { Items = new List<ArticleItemsModel>(), ListKeywords = new List<KeywordsModel>() };
             ArticleService articleService = new ArticleService();
-            index.Items = articleService.GetArticles(2, id);
+            index = articleService.GetArticles(2, id);
             index.SumOfArticle = articleService.GetCount();
 
             return View(index);

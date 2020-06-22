@@ -68,7 +68,6 @@
     <Compile Include="Article\AritcleEditModel.cs" />
     <Compile Include="Article\ArticleIndexModel.cs" />
     <Compile Include="Article\ArticleNewModel.cs" />
-    <Compile Include="Content.cs" />
     <Compile Include="KeywordsModel.cs" />
     <Compile Include="Log\OnModel.cs" />
     <Compile Include="Register\IndexModel.cs" />

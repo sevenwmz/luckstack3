@@ -8,8 +8,21 @@ using System.Web.Mvc;
 
 namespace ViewModel.Article
 {
-    public class AritcleEditModel : Content
+    public class AritcleEditModel 
     {
+        public int Id { set; get; }
+
+        public string Author { set; get; }
+
+        public string Title { set; get; }
+
+        public string Body { set; get; }
+
+        public string Summary { set; get; }
+
+        public DateTime PublishTime { get; set; }
+        public string Keywords { set; get; }
+
         public int ChoosSeries { set; get; }
         public IList<SelectListItem> Series { set; get; }
 

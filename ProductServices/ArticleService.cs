@@ -33,13 +33,6 @@ namespace ProductServices
             return dropDownList;
         }
 
-        //public IList<ArticleItemsModel> GetPaged(int pageSize, int id)
-        //{
-        //    IList<Article> tempArticle = new List<Article>();
-        //    tempArticle = _repository.GetArticles();
-        //    //return tempArticle.Skip((id - 1) * pageSize).Take(pageSize).ToList();
-        //}
-
         public int GetCount()
         {
             return _repository.ArticlesCount();
@@ -123,7 +116,7 @@ namespace ProductServices
             return articleEditModel;
         }
 
-        public IList<ArticleItemsModel> GetArticles(int pageSize,int pageIndex)
+        public ArticleIndexModel GetArticles(int pageSize,int pageIndex)
         {
             IList<Article> tempArticle = new List<Article>();
             IList<KeywordsAndArticle> tempKeywords = new List<KeywordsAndArticle>();
@@ -133,25 +126,10 @@ namespace ProductServices
             ArticleIndexModel articleIndex = new ArticleIndexModel
             {
                 Items = connectedMapper.Map<List<ArticleItemsModel>>(tempArticle),
+                //ListKeywords = connectedMapper.Map<List<KeywordsModel>>(tempArticle)
             };
 
-            articleIndex.ListKeywords = new List<KeywordsModel>();
-            foreach (var articleItem in tempArticle)
-            {
-                articleIndex.Author = articleItem.Author.UserName;
-                articleIndex.Level = articleItem.Author.Level;
-                articleIndex.Id = articleItem.Author.Id;
-                tempKeywords = new KeywordAndArticleRepository(dbContext).GetKeywords(articleItem.Id);
-
-                foreach (var keywordsItem in tempKeywords)
-                {
-                    articleIndex.ListKeywords.Add(new KeywordsModel
-                    {
-                        Name = keywordsItem.Keyword.Name
-                    });
-                }
-            }
-            return articleIndex.Items;
+            return articleIndex;
         }
     }
 }
