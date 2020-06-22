@@ -1,11 +1,10 @@
 ﻿using ProductServices.Log;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ViewModel.Log;
 using WebUI.UIFunction;
+using Global;
 
 namespace WebUI.Controllers
 {
@@ -37,7 +36,7 @@ namespace WebUI.Controllers
                 ModelState.AddModelError(model.LogInName, "用户名不正确，要不要在想一想");
                 return View(model);
             }
-            if (user.Password != model.Password)
+            if (user.Password != model.Password.Md5Encrypt())
             {
                 ModelState.AddModelError(model.Password, "密码不正确，要不要在想一想");
                 return View(model);

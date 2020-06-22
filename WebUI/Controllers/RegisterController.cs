@@ -1,8 +1,5 @@
-﻿using ProductServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Global;
+using ProductServices;
 using System.Web.Mvc;
 using ViewModel;
 using WebUI.UIFunction;
@@ -54,11 +51,11 @@ namespace WebUI.Controllers
                 Inviter = model.Inviter,
                 InviterNumber = model.InviterNumber,
                 UserName = model.UserName,
-                Password = model.Password
+                Password = model.Password.Md5Encrypt()
             });
 
             //Add cookie
-            CookieHelper.AddCookie(registerId, model.Password);
+            CookieHelper.AddCookie(registerId, model.Password.Md5Encrypt());
             if (Request.QueryString == null)
             {
                 return View("/Article");

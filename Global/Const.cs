@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Global
 {
-    class Const
+    public class Const
     {
+        public const string MD5ENCRYPT = "!wpz@2020";
     }
 }

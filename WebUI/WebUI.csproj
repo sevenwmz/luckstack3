@@ -261,6 +261,10 @@
       <Project>{b4089089-ce57-4840-8018-b4b46112ed0a}</Project>
       <Name>EntityMVC</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Global\Global.csproj">
+      <Project>{f1d095e4-037c-4d8b-9656-729a22ab14af}</Project>
+      <Name>Global</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProductServices\ProductServices.csproj">
       <Project>{941d9549-c6e7-4898-b6c7-61ec45d53ab0}</Project>
       <Name>ProductServices</Name>

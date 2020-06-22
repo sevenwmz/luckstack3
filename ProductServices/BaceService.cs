@@ -38,6 +38,7 @@ namespace ProductServices
                    .ForMember(p => p.Id, opt => opt.Ignore())
                    .ForMember(p => p.OwnKeyword, opt => opt.Ignore())
                    .ForMember(p => p.PublishTime, opt => opt.Ignore())
+                   .ForMember(p => p.HelpFrom, opt => opt.Ignore())
                    ;
 
 
