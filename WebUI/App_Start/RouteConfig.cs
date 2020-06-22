@@ -23,27 +23,27 @@ namespace WebUI
 
 
 
-            routes.MapRoute(
-                name: "ArticleNew",
-                url: "Article/New",
-                defaults: new { controller = "Article", action = "New" }
-            );
-            routes.MapRoute(
-                name: "ArticleEdit",
-                url: "Article/Edit",
-                defaults: new { controller = "Article", action = "Edit", id = UrlParameter.Optional }
-            );
-            routes.MapRoute(
-                name: "LogOnConfig",
-                url: "Log/On",
-                defaults: new { controller = "Log", action = "On" }
-            );
+            //routes.MapRoute(
+            //    name: "ArticleNew",
+            //    url: "Article/New",
+            //    defaults: new { controller = "Article", action = "New" }
+            //);
+            //routes.MapRoute(
+            //    name: "ArticleEdit",
+            //    url: "Article/Edit",
+            //    defaults: new { controller = "Article", action = "Edit", id = UrlParameter.Optional }
+            //);
+            //routes.MapRoute(
+            //    name: "LogOnConfig",
+            //    url: "Log/On",
+            //    defaults: new { controller = "Log", action = "On" }
+            //);
 
-            routes.MapRoute(
-                name: "LogOffConfig",
-                url: "Log/Off",
-                defaults: new { controller = "Log", action = "Off" }
-            );
+            //routes.MapRoute(
+            //    name: "LogOffConfig",
+            //    url: "Log/Off",
+            //    defaults: new { controller = "Log", action = "Off" }
+            //);
 
             routes.MapRoute(
                 name: "Default",

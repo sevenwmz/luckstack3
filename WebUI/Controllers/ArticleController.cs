@@ -19,7 +19,6 @@ namespace WebUI.Controllers
             ArticleService articleService = new ArticleService();
             index = articleService.GetArticles(2, id);
             index.SumOfArticle = articleService.GetCount();
-
             return View(index);
         }
 
