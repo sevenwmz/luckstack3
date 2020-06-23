@@ -144,6 +144,7 @@
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\FristProblemController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\ProblemController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -248,13 +249,13 @@
     <Content Include="Views\Credit\Index.cshtml" />
     <Content Include="Views\FAQ\Index.cshtml" />
     <Content Include="Views\FristProblem\Index.cshtml" />
+    <Content Include="Views\Index\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Email\" />
-    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
