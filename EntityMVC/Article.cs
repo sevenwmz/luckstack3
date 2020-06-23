@@ -13,7 +13,9 @@ namespace EntityMVC
         public string Body { set; get; }
         public DateTime PublishTime { set; get; }
         public User Author { set; get; }
+        public int? UseADId { set; get; }
         public AD UseAd { set; get; }
+        public int? UseSeriesId { set; get; }
         public Series UseSeries { set; get; }
         public IList<KeywordsAndArticle> OwnKeyword { set; get; }
 

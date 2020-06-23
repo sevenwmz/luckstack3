@@ -38,20 +38,18 @@ namespace ProductServices
         public void SaveKeywords(string needSubKeyword)
         {
             IList<Keywords> keywords = new Keywords().GetKeywordList(needSubKeyword);
-            Keywords saveKeyword = new Keywords();
-            KeywordRepository keywordRepository = new KeywordRepository(dbContext);
             foreach (var item in keywords)
             {
-                saveKeyword = keywordRepository.GetByKeyword(item);
-                if (saveKeyword == null)
+                _keywordsEntity = _repository.GetByKeyword(item);
+                if (_keywordsEntity == null)
                 {
-                    saveKeyword = saveKeyword.AddNewKeyword(item);
-                    keywordRepository.AddKeywordToDatabase(saveKeyword);
+                    _keywordsEntity = new Keywords().AddNewKeyword(item);
+                    _repository.AddKeywordToDatabase(_keywordsEntity);
                 }
                 else
                 {
-                    saveKeyword = saveKeyword.AddUsed(saveKeyword);
-                    keywordRepository.UpdateKeywordUsed(saveKeyword);
+                    _keywordsEntity = _keywordsEntity.AddUsed(_keywordsEntity);
+                    _repository.UpdateKeywordUsed(_keywordsEntity);
                 }
             }
         }

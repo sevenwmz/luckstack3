@@ -50,14 +50,22 @@ namespace ProductServices
             _articleEntity.Author = new UserRepository(dbContext).Find(CurrentUserId);
 
             //Get and save series with AD to article foregin key.
-            _articleEntity.UseSeries = new SeriesRepository(dbContext).GetSeries(model.ChoosSeries);
-            _articleEntity.UseAd = new ADRepository(dbContext).GetAD(model.ChoosAd);
-            int articleId = _repository.AddArticleToDatabase(_articleEntity);
-
+            _articleEntity.UseSeriesId = model.ChoosSeries;
+            _articleEntity.UseADId = model.ChoosAd;
             {
-                //Save keywords
-                new KeywordsService().SaveKeywords(articleId, model);
+                //save keywords
+                new KeywordsService().SaveKeywords(model.Keywords);
+
+                IList<Keywords> keywords = new Keywords().GetKeywordList(model.Keywords);
+                KeywordRepository keywordRepository = new KeywordRepository(dbContext);
+                _articleEntity.OwnKeyword = new List<KeywordsAndArticle>();
+                foreach (var item in keywords)
+                {
+                    _articleEntity.OwnKeyword.Select(k => k.Article = _articleEntity);
+                    _articleEntity.OwnKeyword.Select(k => k.Keyword = item);
+                }
             }
+
             {
                 ///Minus article author BMoney
                 BMoney money = new BMoney();
@@ -65,7 +73,7 @@ namespace ProductServices
                 money = money.PublicArticleMinusBMoney(bMoneyRepository.GetByAuthorBMoney(CurrentUserId));
                 bMoneyRepository.AddNewRow(money);
             }
-            return articleId;
+            return _repository.AddArticleToDatabase(_articleEntity);
         }
         /// <summary>
         /// For change article content

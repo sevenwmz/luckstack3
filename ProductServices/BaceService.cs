@@ -86,13 +86,8 @@ namespace ProductServices
                     .ForMember(k=>k.Id, opt => opt.Ignore())
                     .ReverseMap()
                     .ForMember(k => k.UseArticle, opt => opt.Ignore())
-                    .ForMember(k => k.SecendLevelId, opt => opt.Ignore())
-                    .ForMember(k => k.SecendLevel, opt => opt.Ignore())
-                    .ForMember(k => k.NormalLevelId, opt => opt.Ignore())
-                    .ForMember(k => k.NormalLevel, opt => opt.Ignore())
                     .ForMember(k => k.Id, opt => opt.Ignore())
-                    .ForMember(k => k.FristLevelId, opt => opt.Ignore())
-                    .ForMember(k => k.FirstLevel, opt => opt.Ignore())
+  
                     ;
                 cfg.CreateMap<Article, V.Article.AritcleEditModel>()
                     .ForMember(a => a.Keywords, opt => opt.Ignore())

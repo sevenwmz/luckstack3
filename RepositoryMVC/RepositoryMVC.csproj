@@ -94,6 +94,14 @@
     <Compile Include="Migrations\202006221304416_AddAboutProblem.designer.cs">
       <DependentUpon>202006221304416_AddAboutProblem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006230322511_FixArticleCanNullable.cs" />
+    <Compile Include="Migrations\202006230322511_FixArticleCanNullable.designer.cs">
+      <DependentUpon>202006230322511_FixArticleCanNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006230337023_DeleteUselessColumn.cs" />
+    <Compile Include="Migrations\202006230337023_DeleteUselessColumn.designer.cs">
+      <DependentUpon>202006230337023_DeleteUselessColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="SeriesRepository.cs" />
@@ -138,6 +146,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006221304416_AddAboutProblem.resx">
       <DependentUpon>202006221304416_AddAboutProblem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006230322511_FixArticleCanNullable.resx">
+      <DependentUpon>202006230322511_FixArticleCanNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006230337023_DeleteUselessColumn.resx">
+      <DependentUpon>202006230337023_DeleteUselessColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
