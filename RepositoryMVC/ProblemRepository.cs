@@ -17,7 +17,9 @@ namespace RepositoryMVC
 
         public int Add(Problem problemEntity)
         {
-            throw new NotImplementedException();
+            entities.Add(problemEntity);
+            context.SaveChanges();
+            return problemEntity.Id;
         }
     }
 }

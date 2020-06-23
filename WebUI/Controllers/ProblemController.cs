@@ -34,10 +34,9 @@ namespace WebUI.Controllers
             {
                 return View(model);
             }
-
             _problemService.Add(model);
 
-            return Redirect("/Problem/Page-1");
+            return RedirectToRoute("ArticleIndex");
         }
     }
 }

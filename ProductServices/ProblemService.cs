@@ -30,10 +30,11 @@ namespace ProductServices
             new KeywordsService().SaveKeywords(model.NeedSubKeyword);
 
             IList<Keywords> keywords = new Keywords().GetKeywordList(model.NeedSubKeyword);
+            KeywordRepository keywordRepository = new KeywordRepository(dbContext);
+            _problemEntity.OwnKeyword = new List<KeywordsAndProblem>();
             foreach (var item in keywords)
             {
                 _problemEntity.OwnKeyword.Select(k => k.Keyword.Name = item.Name);
-                _problemEntity.OwnKeyword.Select(k => k.Keyword.Used += 1);
             }
 
             //BMoney minus change

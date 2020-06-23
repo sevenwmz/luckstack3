@@ -44,9 +44,9 @@ namespace WebUI.Controllers
 
             //Add cookie
             CookieHelper.AddCookie(user.Id, user.Password, model.RemenberMe);
-            if (Request.QueryString == null)
+            if (Request.QueryString[Const.PREPAGE] == null)
             {
-                return View("~/Article");
+                return RedirectToRoute("ArticleIndex");
             }
             return Redirect(Request.QueryString[Const.PREPAGE]);
         }

@@ -68,7 +68,7 @@ namespace EntityMVC
         {
             return new BMoney
             {
-                OwnerId = bMoney.Id,
+                OwnerId = bMoney.OwnerId,
                 Latestime = DateTime.Now,
                 Detail = $"Publish Problem success Reward {RewardMoney} BMoney",
                 Freezing = bMoney.Freezing + RewardMoney,
