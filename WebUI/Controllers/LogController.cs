@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using ViewModel.Log;
 using WebUI.UIFunction;
 using Global;
+using ProductServices;
 
 namespace WebUI.Controllers
 {
@@ -41,6 +42,15 @@ namespace WebUI.Controllers
                 ModelState.AddModelError(model.Password, "密码不正确，要不要在想一想");
                 return View(model);
             }
+
+            //Add Email
+            new EmailController().ValideEmail
+                (new ViewModel.EmailModel
+                {
+                    EmailAddress = "616309891@qq.com",
+                    Expire = DateTime.Now.AddMinutes(10),
+                    UserName = "wpzwpz"
+                });
 
             //Add cookie
             CookieHelper.AddCookie(user.Id, user.Password, model.RemenberMe);

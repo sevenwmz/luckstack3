@@ -14,6 +14,7 @@ namespace EntityMVC
         public int? InviterId { set; get; }
         public User Inviter { set; get; }
         public int MyInviterNumber { set; get; }
+        public Email EmailAddress { set; get; }
         public IList<BMoney> Wallet { set; get; }
 
         /// <summary>

@@ -25,6 +25,12 @@ namespace RepositoryMVC
             return entities.Where(u => u.UserName == name).FirstOrDefault();
         }
 
+        public void Update(User repoUser)
+        {
+            entities.Attach(repoUser);
+            context.SaveChanges();
+        }
+
         /// <summary>
         /// Add data to database.
         /// </summary>

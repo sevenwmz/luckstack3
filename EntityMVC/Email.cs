@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace EntityMVC
 {
-    class Email
+    public class Email
     {
+        public string Address { set; get; }
+        public string Code { set; get; }
+        public DateTime? Expire { set; get; }
+        public bool IsActive { set; get; }
+
+
+
     }
 }

@@ -102,6 +102,14 @@
     <Compile Include="Migrations\202006230337023_DeleteUselessColumn.designer.cs">
       <DependentUpon>202006230337023_DeleteUselessColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006230443287_AddEmailToUser.cs" />
+    <Compile Include="Migrations\202006230443287_AddEmailToUser.designer.cs">
+      <DependentUpon>202006230443287_AddEmailToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006230902445_ChangeUserEmailName.cs" />
+    <Compile Include="Migrations\202006230902445_ChangeUserEmailName.designer.cs">
+      <DependentUpon>202006230902445_ChangeUserEmailName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="SeriesRepository.cs" />
@@ -152,6 +160,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006230337023_DeleteUselessColumn.resx">
       <DependentUpon>202006230337023_DeleteUselessColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006230443287_AddEmailToUser.resx">
+      <DependentUpon>202006230443287_AddEmailToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006230902445_ChangeUserEmailName.resx">
+      <DependentUpon>202006230902445_ChangeUserEmailName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

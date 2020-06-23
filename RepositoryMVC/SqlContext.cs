@@ -34,11 +34,14 @@ namespace RepositoryMVC
             modelBuilder.Entity<User>();
             modelBuilder.Entity<Series>();
             modelBuilder.Entity<BMoney>();
+            modelBuilder.Entity<Problem>();
             modelBuilder.Entity<Article>();
             modelBuilder.Entity<Keywords>();
-            modelBuilder.Entity<Problem>();
             modelBuilder.Entity<KeywordsAndProblem>();
             modelBuilder.Entity<KeywordsAndArticle>();
+
+
+            modelBuilder.ComplexType<Email>();
 
 
             base.OnModelCreating(modelBuilder);

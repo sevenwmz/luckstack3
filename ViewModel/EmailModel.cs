@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
-    class EmailModel
+    public class EmailModel
     {
+        public string UserName { set; get; }
+        public string EmailAddress { set; get; }
+        public string Code { set; get; }
+        public DateTime? Expire { set; get; }
+        public bool IsActive { set; get; }
     }
 }
