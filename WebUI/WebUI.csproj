@@ -141,6 +141,8 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CreditController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
+    <Compile Include="Controllers\FAQController.cs" />
+    <Compile Include="Controllers\FristProblemController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\ProblemController.cs" />
@@ -244,12 +246,14 @@
     <Content Include="Views\Problem\New.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Credit\Index.cshtml" />
+    <Content Include="Views\FAQ\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Email\" />
+    <Folder Include="Views\FristProblem\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
