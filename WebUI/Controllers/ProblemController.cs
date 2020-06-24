@@ -1,8 +1,5 @@
-﻿using ProductServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using InterfaceBang;
+using ProductServices;
 using System.Web.Mvc;
 using ViewModel.Problem;
 
@@ -13,6 +10,14 @@ namespace WebUI.Controllers
 
         private KeywordsService _keywordsService = new KeywordsService();
         private ProblemService _problemService;
+
+
+        private IProblemService _service;
+
+        public ProblemController(IProblemService service)
+        {
+            this._service = service;
+        }
         public ProblemController()
         {
             _problemService = new ProblemService();
