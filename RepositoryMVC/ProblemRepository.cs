@@ -21,5 +21,15 @@ namespace RepositoryMVC
             context.SaveChanges();
             return problemEntity.Id;
         }
+
+        public Problem GetEditProblem(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateEditProblem(Problem problemEntity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

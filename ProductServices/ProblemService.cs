@@ -44,14 +44,41 @@ namespace ProductServices
             return _repository.Add(_problemEntity);
         }
 
-        public object GetEditProblem(int id)
+        public ProblemEditModel GetEditProblem(int id)
         {
-            throw new NotImplementedException();
+            _problemEntity = _repository.GetEditProblem(id);
+
+            ProblemEditModel problemEditModel = new ProblemEditModel();
+            problemEditModel = connectedMapper.Map<ProblemEditModel>(_problemEntity);
+
+            //BMoneyRepository moneyRepository = new BMoneyRepository(dbContext);
+            //problemEditModel.HelpFrom = _problemEntity.HelpFrom.UserName;
+            //problemEditModel.HasLeftMoney = new BMoneyRepository(dbContext).GetByAuthorBMoney(CurrentUserId).LeftBMoney > 0;
+
+            var keywords = new KeywordAndProblemRepository(dbContext).GetKeywords(id);
+            string keyWordOfProblem = string.Empty;
+            foreach (var item in keywords)
+            {
+                keyWordOfProblem += item.Keyword.Name + " ";
+            }
+            problemEditModel.NeedSubKeyword = keyWordOfProblem;
+            return problemEditModel;
         }
 
         public void Update(ProblemNewModel model)
         {
-            throw new NotImplementedException();
+            _problemEntity = _repository.GetEditProblem(model.Id);
+            _problemEntity.OwnKeyword.Clear();
+            _problemEntity = connectedMapper.Map<Problem>(model);
+            _problemEntity.Author = CurrenUser;
+
+            _repository.UpdateEditProblem(_problemEntity);
+
+            {
+                //Save keywords and into n:n table.
+                new KeywordsService().SaveKeywords(model.NeedSubKeyword);
+                new KeywordAndProblemService().SaveMiddleTale(model.Id, model.NeedSubKeyword);
+            }
         }
     }
 }

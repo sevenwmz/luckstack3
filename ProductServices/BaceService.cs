@@ -25,15 +25,44 @@ namespace ProductServices
         {
             mapper = new MapperConfiguration(cfg =>
             {
+                cfg.CreateMap<Problem, V.Problem.ProblemEditModel>(MemberList.None)
+
+                   .ForMember(p => p.HelpFrom, opt => opt.MapFrom(p => p.HelpFrom.UserName))
+                   .ForMember(p => p.HasLeftMoney, opt => opt.MapFrom(p => p.Author.Wallet.OrderByDescending(m => m.Latestime).Where(m => m.LeftBMoney > 0)))
+
+                   .ForMember(p => p.FristDropDownKeywords, opt => opt.Ignore())
+                   .ForMember(p => p.SecendDropDownKeywords, opt => opt.Ignore())
+                   .ForMember(p => p.NeedSubKeyword, opt => opt.Ignore())
+                   .ForMember(p => p.HasLeftMoney, opt => opt.Ignore())
+                   .ForMember(p => p.Keywords, opt => opt.Ignore())
+                   .ForMember(p => p.RewardMoney, opt => opt.Ignore())
+                   .ReverseMap()
+                   ;
+
+
+                cfg.CreateMap<V.Problem.ProblemEditModel, Problem>(MemberList.None)
+                   .ReverseMap()
+                   .ForMember(p => p.HelpFrom, opt => opt.MapFrom(p => p.HelpFrom.UserName))
+                   .ForMember(p => p.HasLeftMoney, opt => opt.MapFrom(p => p.Author.Wallet.OrderByDescending(m => m.Latestime).Where(m => m.LeftBMoney > 0)))
+
+                   .ForMember(p => p.FristDropDownKeywords, opt => opt.Ignore())
+                   .ForMember(p => p.SecendDropDownKeywords, opt => opt.Ignore())
+                   .ForMember(p => p.NeedSubKeyword, opt => opt.Ignore())
+                   .ForMember(p => p.HasLeftMoney, opt => opt.Ignore())
+                   .ForMember(p => p.Keywords, opt => opt.Ignore())
+                   .ForMember(p => p.RewardMoney, opt => opt.Ignore())
+                   ;
+
+
+
                 cfg.CreateMap<Problem, V.Problem.ProblemNewModel>()
-                   .ForMember(p=>p.FristDropDownKeywords , opt=>opt.Ignore())
-                   .ForMember(p=>p.SecendDropDownKeywords , opt=>opt.Ignore())
-                   .ForMember(p=>p.NeedSubKeyword , opt=>opt.Ignore())
-                   .ForMember(p=>p.HasLeftMoney , opt=>opt.Ignore())
-                   .ForMember(p=>p.HelpFrom, opt=>opt.Ignore())
-                   .ForMember(p=>p.Id, opt=>opt.Ignore())
-                   .ForMember(p=>p.Keywords, opt=>opt.Ignore())
-                   .ForMember(p=>p.RewardMoney, opt=>opt.Ignore())
+                   .ForMember(p => p.FristDropDownKeywords, opt => opt.Ignore())
+                   .ForMember(p => p.SecendDropDownKeywords, opt => opt.Ignore())
+                   .ForMember(p => p.NeedSubKeyword, opt => opt.Ignore())
+                   .ForMember(p => p.HasLeftMoney, opt => opt.Ignore())
+                   .ForMember(p => p.HelpFrom, opt => opt.Ignore())
+                   .ForMember(p => p.Id, opt => opt.Ignore())
+                   .ForMember(p => p.Keywords, opt => opt.Ignore())
                    .ReverseMap()
                    .ForMember(p => p.Id, opt => opt.Ignore())
                    .ForMember(p => p.OwnKeyword, opt => opt.Ignore())
@@ -74,7 +103,7 @@ namespace ProductServices
                     ;
 
                 cfg.CreateMap<Article, V.ArticleItemsModel>()
-                    .ForMember(a => a.Keyword, opt => opt.MapFrom(a=>a.OwnKeyword.Select(o=>o.Keyword)))
+                    .ForMember(a => a.Keyword, opt => opt.MapFrom(a => a.OwnKeyword.Select(o => o.Keyword)))
                     .ForMember(a => a.Author, opt => opt.Ignore())
                     .ReverseMap()
                     .ForMember(a => a.Author, opt => opt.Ignore())
@@ -83,11 +112,11 @@ namespace ProductServices
                     .ForMember(a => a.UseAd, opt => opt.Ignore())
                     ;
                 cfg.CreateMap<Keywords, V.KeywordsModel>()
-                    .ForMember(k=>k.Id, opt => opt.Ignore())
+                    .ForMember(k => k.Id, opt => opt.Ignore())
                     .ReverseMap()
                     .ForMember(k => k.UseArticle, opt => opt.Ignore())
                     .ForMember(k => k.Id, opt => opt.Ignore())
-  
+
                     ;
                 cfg.CreateMap<Article, V.Article.AritcleEditModel>()
                     .ForMember(a => a.Keywords, opt => opt.Ignore())

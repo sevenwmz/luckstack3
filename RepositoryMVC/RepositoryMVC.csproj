@@ -57,6 +57,7 @@
     <Compile Include="BMoneyRepository.cs" />
     <Compile Include="Extension\BMoneyExtension.cs" />
     <Compile Include="KeywordAndArticleRepository.cs" />
+    <Compile Include="KeywordAndProblemRepository.cs" />
     <Compile Include="KeywordRepository.cs" />
     <Compile Include="Migrations\202006161339098_Init.cs" />
     <Compile Include="Migrations\202006161339098_Init.designer.cs">
@@ -109,6 +110,10 @@
     <Compile Include="Migrations\202006230902445_ChangeUserEmailName.cs" />
     <Compile Include="Migrations\202006230902445_ChangeUserEmailName.designer.cs">
       <DependentUpon>202006230902445_ChangeUserEmailName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006240303071_AddProblemReward.cs" />
+    <Compile Include="Migrations\202006240303071_AddProblemReward.designer.cs">
+      <DependentUpon>202006240303071_AddProblemReward.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
@@ -166,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006230902445_ChangeUserEmailName.resx">
       <DependentUpon>202006230902445_ChangeUserEmailName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006240303071_AddProblemReward.resx">
+      <DependentUpon>202006240303071_AddProblemReward.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
