@@ -10,18 +10,20 @@ namespace WebUI.Controllers
 
         private KeywordsService _keywordsService = new KeywordsService();
         private ProblemService _problemService;
-
-
+        public ProblemController()
+        {
+            _problemService = new ProblemService();
+        }
+        #region For DI
         private IProblemService _service;
 
         public ProblemController(IProblemService service)
         {
             this._service = service;
         }
-        public ProblemController()
-        {
-            _problemService = new ProblemService();
-        }
+
+        #endregion
+
 
 
         // GET: Problem
@@ -43,5 +45,31 @@ namespace WebUI.Controllers
 
             return RedirectToRoute("ArticleIndex");
         }
+
+
+
+        // GET: Problem
+        public ActionResult Edit(int Id)
+        {
+            ViewData["FristDropDownKeywords"] = _keywordsService.GetDropDownList(true);
+            ViewData["SecendDropDownKeywords"] = _keywordsService.GetDropDownList(false);
+            return View(new ProblemService().GetEditProblem(Id));
+        }
+        public ActionResult Edit(ProblemNewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            new ProblemService().Update(model);
+            return Redirect("/Article/Page-1");
+        }
+
+
+
+
+
+
+
     }
 }

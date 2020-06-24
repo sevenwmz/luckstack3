@@ -1,0 +1,115 @@
+﻿@model ViewModel.Problem.ProblemEditModel
+@{
+    Layout = "~/Views/Shared/_LayoutForNewTask.cshtml";
+    ViewData["Title"] = "我要求助·一起帮";
+}
+@*<script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>*@
+@section title{
+    <span class="fa fa-question-circle">我要求助</span>
+}
+@section LowRightSHow{
+    <div class="flex-column">
+        <p class="text-right" style="padding-top:30px;"><a href="/firstproblem">修改</a></p>
+        <div class="rounded-sm border justify-content-center">
+            <p style="padding-left:30%;padding-right:50%;"><i class="fa fa-picture-o"></i></p>
+            <span style="padding-left:50%;">等待上传中<i class="fa fa-hourglass-start"></i>...</span>
+        </div>
+        <span><strong>用户：</strong></span>
+        <a href="none">用户名</a>
+        <a href="/Credit" title="初级学徒">①</a>
+        <a href="none">修改</a>
+    </div>
+}
+@section style{
+    <style>
+    </style>
+}
+@using (Html.BeginForm())
+{
+    <div style="border:dashed#d8c8c8 3px;padding:25px;background-color:#f0f69c">
+        <p class="fa fa-info-circle" style="color:deepskyblue">这是你第一次发布求助，求助发布成功系统会奖励你 20<a href="/Credit" class="iconfont icon-drips">帮帮点</a></p>
+        <p style="color:deepskyblue">
+            你还没有<a href="/">自由发布权限</a>，为了保证求助的质量，我们会帮助你检查完善该求助内容，然后再公开显示，请耐心等待。
+            中途如有任何问题，工作人员会主动和你联系，请注意保持联系方式畅通。
+        </p>
+    </div>
+    <div style="text-align:right">
+        <label style="color:deepskyblue">
+            @Html.CheckBoxFor(p => p.NeedRemoteHelp)需要远程协助
+        </label>
+    </div>
+    <div class="form-group">
+        <label><strong>标题：（* 必填）</strong></label>
+        @Html.TextBoxFor(p => p.Title, new { @class = "form-control", placeholder = "简明扼要，不超过255字" })
+        @Html.ValidationMessageFor(p => p.Title)
+    </div>
+    <div class="form-group">
+        <label><strong>说明：（* 必填）</strong></label>
+        @Html.TextAreaFor(p => p.Body, 14, 4, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Body)
+    </div>
+
+    <div class="form-group">
+        <label><strong>关键字：（* 使用空格分隔）</strong></label>
+        <div class="input-group">
+            <div class="btn-group">
+                @Html.DropDownListFor(p => p.FristDropDownKeywords, ViewData["FristDropDownKeywords"] as List<SelectListItem>, "---1级---", new { @class = "form-control" })
+                <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                </div>
+                <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                @Html.DropDownListFor(p => p.SecendDropDownKeywords, ViewData["SecendDropDownKeywords"] as List<SelectListItem>, "---2级---", new { @class = "form-control" })
+            </div>
+            @Html.TextBoxFor(p => p.NeedSubKeyword, new { @class = "form-control", placeholder = "自定义关键字，使用空格分隔" })
+        </div>
+    </div>
+
+
+    <div>
+        <label><strong>定向求助：<a href="#">（推荐<span class="fa fa-question-circle"></span>）</a></strong></label>
+        <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">@@</div>
+            </div>
+            @Html.TextBoxFor(p => p.HelpFrom, new { @class = "form-control", placeholder = "输入你想要求助的大神用户名" })
+        </div>
+    </div>
+
+    <span>
+        <strong>
+            悬赏<a href="#">
+                <span class="iconfont icon-money" style="color:gold">帮帮币</span>
+            </a>
+            ：（<a href="#">
+                <span style="color:dodgerblue">现有</span>
+                <span style="color:gold">0</span>
+                <span style="color:dodgerblue">枚</span>
+
+            </a>）
+        </strong>
+    </span>
+    <span style="text-align:right">
+        <label style="color:deepskyblue">
+            @Html.CheckBoxFor(p => p.HasLeftMoney)
+        </label>
+    </span>
+
+    <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+            <div class="input-group-text"><a href="#"><span class="iconfont icon-money">$</span></a></div>
+        </div>
+        @Html.TextBoxFor(p => p.RewardMoney, new { @class = "form-control", id = "inlineFormInputGroupUsername2", placeholder = "正整数，建议10枚以上" })
+        <div class="input-group-append">
+            <div class="input-group-text iconfont icon-money"><a href="#">枚</a></div>
+        </div>
+    </div>
+    <p><a href="#" class="fa fa-question-circle">如何获得“帮帮币”</a></p>
+    <button type="submit" class="btn btn-primary">提交</button>
+    <button type="button" class="btn btn-light border border-secondary">保存基本内容</button>
+
+}

@@ -43,5 +43,15 @@ namespace ProductServices
 
             return _repository.Add(_problemEntity);
         }
+
+        public object GetEditProblem(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(ProblemNewModel model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
