@@ -8,7 +8,7 @@ namespace ViewModel.Problem
 {
     public class ProblemIndexModel
     {
-        public int SumOfArticle { set; get; }
+        public int SumOfProblem { set; get; }
         public ProblemPageChoose Status { set; get; }
         public IList<ProblemItemModel> Items { set; get; }
     }

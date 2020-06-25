@@ -19,8 +19,7 @@ namespace ViewModel
         public string Summary { set; get; }
 
         public DateTime PublishTime { get; set; }
-
-        public IList<KeywordsModel> Keyword { set; get; }
+        public IList<KeywordModel> ListKeyword { set; get; }
 
     }
 }

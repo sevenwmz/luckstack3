@@ -30,7 +30,7 @@ namespace RepositoryMVC
         public IList<Article> GetArticles(int pageSize, int pageIndex)
         {
             return entities.Include(e=>e.Author)
-                .Include(k=>k.OwnKeyword)
+                .Include(k=>k.OwnKeyword.Select(o=>o.Keyword))
                 .OrderByDescending(a => a.PublishTime)
                 .Skip((pageIndex - 1) * pageSize)
                 .Take(pageSize)

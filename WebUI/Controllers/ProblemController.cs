@@ -30,7 +30,8 @@ namespace WebUI.Controllers
         public ActionResult Index(int id = 1)
         {
             ProblemIndexModel problem = new ProblemIndexModel { Items = new List<ProblemItemModel>() };
-
+            problem = _problemService.GetIndexPage(2,id);
+            problem.SumOfProblem = _problemService.Count();
             return View(problem);
         }
 
@@ -63,14 +64,14 @@ namespace WebUI.Controllers
             ViewData["SecendDropDownKeywords"] = _keywordsService.GetDropDownList(false);
             return View(new ProblemService().GetEditProblem(Id));
         }
-        public ActionResult Edit(ProblemNewModel model)
+        public ActionResult Edit(ProblemEditModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
             new ProblemService().Update(model);
-            return Redirect("/Article/Page-1");
+            return Redirect("/Problem/Page-1");
         }
 
 

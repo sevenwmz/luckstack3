@@ -27,7 +27,7 @@ namespace ViewModel.Problem
         public int RewardMoney { set; get; }
 
 
-        public IList<KeywordsModel> Keywords { set; get; }
+        public IList<KeywordModel> Keywords { set; get; }
         public IList<SelectListItem> FristDropDownKeywords { set; get; }
         public IList<SelectListItem> SecendDropDownKeywords { set; get; }
     }

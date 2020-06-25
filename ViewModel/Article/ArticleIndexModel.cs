@@ -14,7 +14,6 @@ namespace ViewModel.Article
         public int Level { set; get; }
         public int Id { set; get; }
         public IList<ArticleItemsModel> Items { set; get; }
-        public IList<KeywordsModel> ListKeywords { set; get; }
 
     }
 }

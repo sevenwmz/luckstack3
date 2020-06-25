@@ -31,5 +31,20 @@ namespace RepositoryMVC
         {
             throw new NotImplementedException();
         }
+
+        public int Count()
+        {
+            return entities.Count();
+        }
+
+        public IList<Problem> GetProblems(int pageSize,int pageIndex)
+        {
+            return entities
+                .Include(p => p.OwnKeyword.Select(o=>o.Keyword))
+                .OrderByDescending(p => p.PublishTime)
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+        }
     }
 }

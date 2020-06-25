@@ -120,14 +120,11 @@ namespace ProductServices
             IList<Article> tempArticle = new List<Article>();
             IList<KeywordsAndArticle> tempKeywords = new List<KeywordsAndArticle>();
 
-
             tempArticle = _repository.GetArticles(pageSize, pageIndex);
             ArticleIndexModel articleIndex = new ArticleIndexModel
             {
                 Items = connectedMapper.Map<List<ArticleItemsModel>>(tempArticle),
-                //ListKeywords = connectedMapper.Map<List<KeywordsModel>>(tempArticle)
             };
-
             return articleIndex;
         }
     }

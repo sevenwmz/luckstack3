@@ -18,7 +18,7 @@ namespace ViewModel.Problem
         public string Body { set; get; }
         public string Summary { set; get; }
         public ProblemStatus Status { set; get; }
-        public IList<KeywordsModel> ListKeywords { set; get; }
+        public IList<KeywordModel> ListKeywords { set; get; }
 
     }
     public enum ProblemStatus

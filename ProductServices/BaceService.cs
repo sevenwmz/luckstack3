@@ -25,27 +25,25 @@ namespace ProductServices
         {
             mapper = new MapperConfiguration(cfg =>
             {
+                #region Problem Area
                 cfg.CreateMap<V.Problem.ProblemItemModel, Problem>(MemberList.None)
-                   .ForMember(p => p.Id, opt => opt.MapFrom(p=>p.ProblemId))
-                   .ForMember(p=>p.NeedRemoteHelp, opt => opt.Ignore())
-                   .ForMember(p=>p.RewardMoney, opt => opt.Ignore())
-                   .ForMember(p=>p.Status, opt => opt.MapFrom(p=>p.Status))
-                   .ForMember(p=>p.HelpFrom, opt => opt.Ignore())
-                   .ForMember(p=>p.Author, opt => opt.Ignore())
-                   .ReverseMap()
-                   .ForMember(p => p.Author, opt => opt.MapFrom(p=>p.Author.UserName))
-                   .ForMember(p => p.AuthorId, opt => opt.MapFrom(p=>p.Author.Id))
-                   .ForMember(p => p.Summary, opt => opt.Ignore())
-                   .ForMember(p => p.ListKeywords, opt => opt.Ignore())
-                   ;
-
-                cfg.CreateMap<V.Problem.ProblemIndexModel, Problem>(MemberList.None)
-                  .ReverseMap()
-                  ;
+                    .ForMember(p => p.Id, opt => opt.MapFrom(p => p.ProblemId))
+                    .ForMember(p => p.NeedRemoteHelp, opt => opt.Ignore())
+                    .ForMember(p => p.RewardMoney, opt => opt.Ignore())
+                    .ForMember(p => p.Status, opt => opt.MapFrom(p => p.Status))
+                    .ForMember(p => p.HelpFrom, opt => opt.Ignore())
+                    .ForMember(p => p.Author, opt => opt.Ignore())
+                    .ReverseMap()
+                    .ForMember(p => p.Author, opt => opt.MapFrom(p => p.Author.UserName))
+                    .ForMember(p => p.AuthorId, opt => opt.MapFrom(p => p.Author.Id))
+                    .ForMember(p => p.Summary, opt => opt.Ignore())
+                    .ForMember(p => p.ListKeywords, opt => opt.MapFrom(p => p.OwnKeyword.Select(o => o.Keyword)))
+                    ;
 
 
                 cfg.CreateMap<V.Problem.ProblemEditModel, Problem>(MemberList.None)
-                   .ForMember(p=>p.HelpFrom,opt=>opt.Ignore())
+                   .ForMember(p => p.PublishTime, opt => opt.Ignore())
+                   .ForMember(p => p.HelpFrom, opt => opt.Ignore())
                    .ReverseMap()
                    .ForMember(p => p.HelpFrom, opt => opt.Ignore())
                    .ForMember(p => p.HasLeftMoney, opt => opt.MapFrom(p => p.Author.Wallet.OrderByDescending(m => m.Latestime).Where(m => m.LeftBMoney > 0)))
@@ -72,10 +70,9 @@ namespace ProductServices
                    .ForMember(p => p.PublishTime, opt => opt.Ignore())
                    .ForMember(p => p.HelpFrom, opt => opt.Ignore())
                    ;
+                #endregion
 
-
-
-
+                #region User Area
                 cfg.CreateMap<User, V.RegisterModel>()
                     .ForMember(r => r.PasswordAgain, opt => opt.Ignore())
                     .ForMember(r => r.Captcha, opt => opt.Ignore())
@@ -91,10 +88,11 @@ namespace ProductServices
                     .ForMember(l => l.RemenberMe, opt => opt.Ignore())
                     .ReverseMap()
                     ;
+                #endregion
 
-
-                cfg.CreateMap<Article, V.ArticleItemsModel>()
-                    .ForMember(a => a.Keyword, opt => opt.MapFrom(a => a.OwnKeyword.Select(o => o.Keyword)))
+                #region Article Area
+                cfg.CreateMap<Article, V.ArticleItemsModel>(MemberList.None)
+                    .ForMember(a => a.ListKeyword, opt => opt.MapFrom(a => a.OwnKeyword.Select(o => o.Keyword)))
                     .ForMember(a => a.Author, opt => opt.Ignore())
                     .ReverseMap()
                     .ForMember(a => a.Author, opt => opt.Ignore())
@@ -102,28 +100,20 @@ namespace ProductServices
                     .ForMember(a => a.UseSeries, opt => opt.Ignore())
                     .ForMember(a => a.UseAd, opt => opt.Ignore())
                     ;
-                cfg.CreateMap<Keywords, V.KeywordsModel>()
-                    .ForMember(k => k.Id, opt => opt.Ignore())
-                    .ReverseMap()
-                    .ForMember(k => k.UseArticle, opt => opt.Ignore())
-                    .ForMember(k => k.Id, opt => opt.Ignore())
-                    ;
 
-
-
-                cfg.CreateMap<Article, V.ArticleNewModel>()
-                    .ForMember(a => a.ChoosAd, opt => opt.MapFrom(p => p.UseADId))
-                    .ForMember(a => a.ChoosSeries, opt => opt.MapFrom(p => p.UseSeriesId))
-                    .ForMember(a => a.ContentOfAd, opt => opt.Ignore())
-                    .ForMember(a => a.WebSite, opt => opt.Ignore())
-                    .ForMember(a => a.Series, opt => opt.Ignore())
-                    .ForMember(a => a.Ad, opt => opt.Ignore())
-                    .ForMember(a => a.Author, opt => opt.Ignore())
-                    .ForMember(a => a.HasNewAd, opt => opt.Ignore())
-                    .ForMember(a => a.Keywords, opt => opt.Ignore())
-                    .ReverseMap()
-                    .ForMember(a => a.Author, opt => opt.Ignore())
-                    ;
+                cfg.CreateMap<Article, V.ArticleNewModel>(MemberList.None)
+                   .ForMember(a => a.ChoosAd, opt => opt.MapFrom(p => p.UseADId))
+                   .ForMember(a => a.ChoosSeries, opt => opt.MapFrom(p => p.UseSeriesId))
+                   .ForMember(a => a.ContentOfAd, opt => opt.Ignore())
+                   .ForMember(a => a.WebSite, opt => opt.Ignore())
+                   .ForMember(a => a.Series, opt => opt.Ignore())
+                   .ForMember(a => a.Ad, opt => opt.Ignore())
+                   .ForMember(a => a.Author, opt => opt.Ignore())
+                   .ForMember(a => a.HasNewAd, opt => opt.Ignore())
+                   .ForMember(a => a.Keywords, opt => opt.Ignore())
+                   .ReverseMap()
+                   .ForMember(a => a.Author, opt => opt.Ignore())
+                   ;
 
 
                 cfg.CreateMap<Article, V.Article.AritcleEditModel>(MemberList.None)
@@ -141,6 +131,18 @@ namespace ProductServices
                     .ForMember(a => a.Author, opt => opt.Ignore())
                     .ForMember(a => a.PublishTime, opt => opt.Ignore())
                     ;
+
+
+                #endregion
+
+                #region Keyword Area
+                cfg.CreateMap<Keywords, V.KeywordModel>(MemberList.None)
+                    .ReverseMap()
+                    .ForMember(k => k.UseArticle, opt => opt.Ignore())
+                    .ForMember(k => k.Level, opt => opt.Ignore())
+                    .ForMember(k => k.LevelId, opt => opt.Ignore())
+                    ;
+                #endregion
 
             });
 #if DEBUG

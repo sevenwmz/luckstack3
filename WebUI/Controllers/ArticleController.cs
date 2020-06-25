@@ -21,7 +21,7 @@ namespace WebUI.Controllers
         // GET: Article/Index
         public ActionResult Index(int id = 1)
         {
-            ArticleIndexModel index = new ArticleIndexModel { Items = new List<ArticleItemsModel>(), ListKeywords = new List<KeywordsModel>() };
+            ArticleIndexModel index = new ArticleIndexModel { Items = new List<ArticleItemsModel>()};
             ArticleService articleService = new ArticleService();
             index = articleService.GetArticles(2, id);
             index.SumOfArticle = articleService.GetCount();

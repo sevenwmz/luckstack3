@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModel;
 using ViewModel.Problem;
 
 namespace ProductServices
@@ -18,7 +19,6 @@ namespace ProductServices
             _problemEntity = new Problem();
             _repository = new ProblemRepository(dbContext);
         }
-
         public int Add(ProblemNewModel model)
         {
             _problemEntity = connectedMapper.Map<Problem>(model);
@@ -37,9 +37,30 @@ namespace ProductServices
             //BMoney minus change
             _problemEntity.Author.Wallet = new List<BMoney>();
             _problemEntity.Author.Wallet.Add(new BMoney().PublicProblemMinusBMoney
-                (model.RewardMoney,new BMoneyRepository(dbContext).GetByAuthorBMoney(CurrentUserId)));
+                (model.RewardMoney, new BMoneyRepository(dbContext).GetByAuthorBMoney(CurrentUserId)));
             int problemId = _repository.Add(_problemEntity);
             return problemId; /*repository.Add(_problemEntity);*/
+        }
+
+        /// <summary>
+        /// Count total problem number
+        /// </summary>
+        /// <returns>Return all problem number</returns>
+        public int Count()
+        {
+            return _repository.Count();
+        }
+
+        public ProblemIndexModel GetIndexPage(int pageSize, int pageIndex)
+        {
+            IList<Problem> tempProblem = new List<Problem>();
+            tempProblem = _repository.GetProblems(pageSize,pageIndex);
+            ProblemIndexModel model = new ProblemIndexModel
+            {
+                 Items = connectedMapper.Map<List<ProblemItemModel>>(tempProblem)
+            };
+
+            return model;
         }
 
         public ProblemEditModel GetEditProblem(int id)
@@ -62,8 +83,7 @@ namespace ProductServices
             problemEditModel.NeedSubKeyword = keyWordOfProblem;
             return problemEditModel;
         }
-
-        public void Update(ProblemNewModel model)
+        public void Update(ProblemEditModel model)
         {
             _problemEntity = _repository.GetEditProblem(model.Id);
             _problemEntity.OwnKeyword.Clear();
