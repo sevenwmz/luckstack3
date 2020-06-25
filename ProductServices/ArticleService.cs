@@ -40,39 +40,22 @@ namespace ProductServices
 
         public int Add(ArticleNewModel model)
         {
-
             _articleEntity = connectedMapper.Map<Article>(model);
             if (string.IsNullOrEmpty(model.Summary))
             {
                 _articleEntity.Summary = _articleEntity.GetSumarry(model.Body);
             }
-            _articleEntity.PublishArticle(_articleEntity);
-            _articleEntity.Author = new UserRepository(dbContext).Find(CurrentUserId);
+            _articleEntity.PublishArticle();
+            _articleEntity.Author = CurrenUser;
 
-            //Get and save series with AD to article foregin key.
-            _articleEntity.UseSeriesId = model.ChoosSeries;
-            _articleEntity.UseADId = model.ChoosAd;
-            {
-                //save keywords
-                new KeywordsService().SaveKeywords(model.Keywords);
+            SaveKeyword(model.Keywords);
 
-                IList<Keywords> keywords = new Keywords().GetKeywordList(model.Keywords);
-                KeywordRepository keywordRepository = new KeywordRepository(dbContext);
-                _articleEntity.OwnKeyword = new List<KeywordsAndArticle>();
-                foreach (var item in keywords)
-                {
-                    _articleEntity.OwnKeyword.Select(k => k.Article = _articleEntity);
-                    _articleEntity.OwnKeyword.Select(k => k.Keyword = item);
-                }
-            }
+            //Add Bmoney
+            _articleEntity.Author.Wallet = new List<BMoney>();
+            _articleEntity.Author.Wallet.Add(
+                new BMoney().PublicArticleMinusBMoney(
+                    new BMoneyRepository(dbContext).GetByAuthorBMoney(CurrentUserId)));
 
-            {
-                ///Minus article author BMoney
-                BMoney money = new BMoney();
-                BMoneyRepository bMoneyRepository = new BMoneyRepository(dbContext);
-                money = money.PublicArticleMinusBMoney(bMoneyRepository.GetByAuthorBMoney(CurrentUserId));
-                bMoneyRepository.AddNewRow(money);
-            }
             return _repository.AddArticleToDatabase(_articleEntity);
         }
         /// <summary>
@@ -81,25 +64,36 @@ namespace ProductServices
         /// <param name="model">Need articleEditModel</param>
         public void Update(AritcleEditModel model)
         {
-            {
-                _articleEntity = _repository.GetEditArticle(model.Id);
-                _articleEntity.OwnKeyword.Clear();
+            _articleEntity = _repository.GetEditArticle(model.Id);
+            _articleEntity.OwnKeyword.Clear();
+            _articleEntity = connectedMapper.Map<Article>(model);
+            SaveKeyword(model.Keywords);
 
-                if (string.IsNullOrEmpty(model.Summary))
-                {
-                    _articleEntity.Summary = _articleEntity.GetSumarry(model.Body);
-                }
-                _articleEntity.Title = model.Title;
-                _articleEntity.Body = model.Body;
-                _articleEntity.UseSeries = new SeriesRepository(dbContext).GetSeries(model.ChoosSeries);
-                _articleEntity.UseAd = new ADRepository(dbContext).GetAD(model.ChoosAd);
-                _repository.UpdateEditArticle(_articleEntity);
-            }
+            _repository.UpdateEditArticle(_articleEntity);
+        }
+
+        private void SaveKeyword(string Keywords)
+        {
+            _articleEntity.OwnKeyword = new List<KeywordsAndArticle>();
+            IList<Keywords> keywords = new Keywords().GetKeywordList(Keywords);
+            Keywords checkExist = new Keywords();
+            foreach (var item in keywords)
             {
-                //Save keywords and into n:n table.
-                new KeywordsService().SaveKeywords(model.Id,model);
+                checkExist = new KeywordRepository(dbContext).FindKeyword(item.Name);
+                if (checkExist == null)
+                {
+                    _articleEntity.OwnKeyword.Add(new KeywordsAndArticle
+                    { Article = _articleEntity, Keyword = new Keywords { Name = item.Name, Used = 1 } });
+                }
+                else
+                {
+                    checkExist.Used += 1;
+                    _articleEntity.OwnKeyword.Add(new KeywordsAndArticle
+                    { Article = _articleEntity, Keyword = checkExist });
+                }
             }
         }
+
 
         public AritcleEditModel GetEditArticle(int? id)
         {
@@ -109,10 +103,8 @@ namespace ProductServices
             articleEditModel = connectedMapper.Map<AritcleEditModel>(_articleEntity);
 
             articleEditModel.Author = _articleEntity.Author.UserName;
-            articleEditModel.ChoosAd = _articleEntity.UseAd.Id;
             articleEditModel.WebSite = _articleEntity.UseAd.WebSite;
             articleEditModel.ContentOfAd = _articleEntity.UseAd.ContentOfAd;
-            articleEditModel.ChoosSeries = _articleEntity.UseSeries.Id;
 
             var keywords = new KeywordAndArticleRepository(dbContext).GetKeywords(id.Value);
             string keyWordOfArticle = string.Empty;
@@ -124,13 +116,13 @@ namespace ProductServices
             return articleEditModel;
         }
 
-        public ArticleIndexModel GetArticles(int pageSize,int pageIndex)
+        public ArticleIndexModel GetArticles(int pageSize, int pageIndex)
         {
             IList<Article> tempArticle = new List<Article>();
             IList<KeywordsAndArticle> tempKeywords = new List<KeywordsAndArticle>();
 
 
-            tempArticle = _repository.GetArticles( pageSize,pageIndex);
+            tempArticle = _repository.GetArticles(pageSize, pageIndex);
             ArticleIndexModel articleIndex = new ArticleIndexModel
             {
                 Items = connectedMapper.Map<List<ArticleItemsModel>>(tempArticle),

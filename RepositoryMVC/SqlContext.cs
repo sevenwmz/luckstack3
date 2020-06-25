@@ -26,6 +26,7 @@ namespace RepositoryMVC
         {
 #if DEBUG
             //Database.Log = s => File.AppendAllText("C:\\EF.log", s);
+            Database.Log = Console.Out.Write;
 #endif
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

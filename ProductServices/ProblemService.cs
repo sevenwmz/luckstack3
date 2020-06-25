@@ -36,11 +36,8 @@ namespace ProductServices
             {
                 _problemEntity.OwnKeyword.Select(k => k.Keyword.Name = item.Name);
             }
-
             //BMoney minus change
             new BMoneyService().PublishProblem(model.RewardMoney);
-
-
             return _repository.Add(_problemEntity);
         }
 

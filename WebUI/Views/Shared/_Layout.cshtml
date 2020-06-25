@@ -50,7 +50,7 @@
                         }//else nothing
                         string queryStringPage = $"{Const.PREPAGE}={prepage}";
 
-                        int? logInId = new BaceService().CurrentUserId;
+                        string logInId = "26"/* HttpContext.Current.Request.Cookies[Const.COOKIE_NAME].Values["id"]*/;
                     }
 
 

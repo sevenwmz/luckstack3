@@ -91,19 +91,7 @@ namespace ProductServices
                     .ForMember(l => l.RemenberMe, opt => opt.Ignore())
                     .ReverseMap()
                     ;
-                cfg.CreateMap<Article, V.ArticleNewModel>()
-                    .ForMember(a => a.ChoosAd, opt => opt.Ignore())
-                    .ForMember(a => a.ChoosSeries, opt => opt.Ignore())
-                    .ForMember(a => a.ContentOfAd, opt => opt.Ignore())
-                    .ForMember(a => a.WebSite, opt => opt.Ignore())
-                    .ForMember(a => a.Series, opt => opt.Ignore())
-                    .ForMember(a => a.Ad, opt => opt.Ignore())
-                    .ForMember(a => a.Author, opt => opt.Ignore())
-                    .ForMember(a => a.HasNewAd, opt => opt.Ignore())
-                    .ForMember(a => a.Keywords, opt => opt.Ignore())
-                    .ReverseMap()
-                    .ForMember(a => a.Author, opt => opt.Ignore())
-                    ;
+
 
                 cfg.CreateMap<Article, V.ArticleItemsModel>()
                     .ForMember(a => a.Keyword, opt => opt.MapFrom(a => a.OwnKeyword.Select(o => o.Keyword)))
@@ -119,23 +107,37 @@ namespace ProductServices
                     .ReverseMap()
                     .ForMember(k => k.UseArticle, opt => opt.Ignore())
                     .ForMember(k => k.Id, opt => opt.Ignore())
-
                     ;
-                cfg.CreateMap<Article, V.Article.AritcleEditModel>()
-                    .ForMember(a => a.Keywords, opt => opt.Ignore())
-                    .ForMember(a => a.Author, opt => opt.Ignore())
+
+
+
+                cfg.CreateMap<Article, V.ArticleNewModel>()
+                    .ForMember(a => a.ChoosAd, opt => opt.MapFrom(p => p.UseADId))
+                    .ForMember(a => a.ChoosSeries, opt => opt.MapFrom(p => p.UseSeriesId))
                     .ForMember(a => a.ContentOfAd, opt => opt.Ignore())
-                    .ForMember(a => a.ChoosSeries, opt => opt.Ignore())
-                    .ForMember(a => a.ChoosAd, opt => opt.Ignore())
-                    .ForMember(a => a.Ad, opt => opt.Ignore())
                     .ForMember(a => a.WebSite, opt => opt.Ignore())
-                    .ForMember(a => a.HasNewAd, opt => opt.Ignore())
                     .ForMember(a => a.Series, opt => opt.Ignore())
+                    .ForMember(a => a.Ad, opt => opt.Ignore())
+                    .ForMember(a => a.Author, opt => opt.Ignore())
+                    .ForMember(a => a.HasNewAd, opt => opt.Ignore())
+                    .ForMember(a => a.Keywords, opt => opt.Ignore())
                     .ReverseMap()
                     .ForMember(a => a.Author, opt => opt.Ignore())
-                    .ForMember(a => a.OwnKeyword, opt => opt.Ignore())
-                    .ForMember(a => a.UseSeries, opt => opt.Ignore())
-                    .ForMember(a => a.UseAd, opt => opt.Ignore())
+                    ;
+
+
+                cfg.CreateMap<Article, V.Article.AritcleEditModel>()
+                    .ForMember(a => a.ChoosAd, opt => opt.MapFrom(p => p.UseADId))
+                    .ForMember(a => a.ChoosSeries, opt => opt.MapFrom(p => p.UseSeriesId))
+                    .ForMember(a => a.ContentOfAd, opt => opt.Ignore())
+                    .ForMember(a => a.WebSite, opt => opt.Ignore())
+                    .ForMember(a => a.Series, opt => opt.Ignore())
+                    .ForMember(a => a.Ad, opt => opt.Ignore())
+                    .ForMember(a => a.Author, opt => opt.Ignore())
+                    .ForMember(a => a.HasNewAd, opt => opt.Ignore())
+                    .ForMember(a => a.Keywords, opt => opt.Ignore())
+                    .ReverseMap()
+                    .ForMember(a => a.Author, opt => opt.Ignore())
                     ;
 
             });
@@ -207,7 +209,7 @@ namespace ProductServices
                     }
                 }
             }
-            HttpContext.Current.Items["dbContext"] = null;
+            //HttpContext.Current.Items["dbContext"] = null;
 
         }
         public void RollBack()

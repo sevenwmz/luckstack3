@@ -19,10 +19,9 @@ namespace EntityMVC
         public Series UseSeries { set; get; }
         public IList<KeywordsAndArticle> OwnKeyword { set; get; }
 
-        public Article PublishArticle(Article article)
+        public void PublishArticle()
         {
-            article.PublishTime = DateTime.Now;
-            return article;
+            this.PublishTime = DateTime.Now;
         }
 
         public string GetSumarry(string body)

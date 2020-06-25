@@ -23,10 +23,10 @@ namespace ViewModel.Article
         public DateTime PublishTime { get; set; }
         public string Keywords { set; get; }
 
-        public int ChoosSeries { set; get; }
+        public int? ChoosSeries { set; get; }
         public IList<SelectListItem> Series { set; get; }
 
-        public int ChoosAd { set; get; }
+        public int? ChoosAd { set; get; }
         public IList<SelectListItem> Ad { set; get; }
 
         public string ContentOfAd { set; get; }

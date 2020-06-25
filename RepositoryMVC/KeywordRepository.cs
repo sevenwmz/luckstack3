@@ -46,5 +46,12 @@ namespace RepositoryMVC
         {
             return entities.Where(k => k.Name == name).FirstOrDefault().Id;
         }
+
+        public Keywords FindKeyword(string keywordName)
+        {
+            return entities.Where(k => k.Name == keywordName).FirstOrDefault();
+        }
+
+
     }
 }
