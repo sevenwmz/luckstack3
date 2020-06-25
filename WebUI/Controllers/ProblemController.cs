@@ -6,14 +6,15 @@ using ViewModel.Problem;
 
 namespace WebUI.Controllers
 {
-    public class ProblemController : Controller
+    public class ProblemController : BaseController
     {
 
-        private KeywordsService _keywordsService = new KeywordsService();
+        private KeywordsService _keywordsService ;
         private ProblemService _problemService;
         public ProblemController()
         {
             _problemService = new ProblemService();
+            _keywordsService = new KeywordsService();
         }
         #region For DI
         private IProblemService _service;
@@ -50,7 +51,7 @@ namespace WebUI.Controllers
             }
             _problemService.Add(model);
 
-            return RedirectToRoute("ArticleIndex");
+            return RedirectToAction("Index", new { id = 1 });
         }
 
 

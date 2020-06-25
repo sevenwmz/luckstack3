@@ -23,22 +23,23 @@ namespace ProductServices
         {
             _problemEntity = connectedMapper.Map<Problem>(model);
             _problemEntity.Author = CurrenUser;
-            _problemEntity.PublishTime = DateTime.Now;
+            _problemEntity.Publish(model.RewardMoney);
             _problemEntity.HelpFrom = new UserRepository(dbContext).GetBy(model.HelpFrom);
 
-            //save keywords
-            new KeywordsService().SaveKeywords(model.NeedSubKeyword);
-
-            IList<Keywords> keywords = new Keywords().GetKeywordList(model.NeedSubKeyword);
-            KeywordRepository keywordRepository = new KeywordRepository(dbContext);
             _problemEntity.OwnKeyword = new List<KeywordsAndProblem>();
-            foreach (var item in keywords)
+            _problemEntity.OwnKeyword.Add(new KeywordsAndProblem { Problem = _problemEntity, KeywordId = model.FristDropDownKeywordsId.Value });
+            _problemEntity.OwnKeyword.Add(new KeywordsAndProblem { Problem = _problemEntity, KeywordId = model.SecendDropDownKeywordsId.Value });
+
+            if (model.NeedSubKeyword != null)
             {
-                _problemEntity.OwnKeyword.Select(k => k.Keyword.Name = item.Name);
+                SaveKeyword(model.NeedSubKeyword);
             }
             //BMoney minus change
-            new BMoneyService().PublishProblem(model.RewardMoney);
-            return _repository.Add(_problemEntity);
+            _problemEntity.Author.Wallet = new List<BMoney>();
+            _problemEntity.Author.Wallet.Add(new BMoney().PublicProblemMinusBMoney
+                (model.RewardMoney,new BMoneyRepository(dbContext).GetByAuthorBMoney(CurrentUserId)));
+            int problemId = _repository.Add(_problemEntity);
+            return problemId; /*repository.Add(_problemEntity);*/
         }
 
         public ProblemEditModel GetEditProblem(int id)
@@ -75,6 +76,27 @@ namespace ProductServices
                 //Save keywords and into n:n table.
                 new KeywordsService().SaveKeywords(model.NeedSubKeyword);
                 new KeywordAndProblemService().SaveMiddleTale(model.Id, model.NeedSubKeyword);
+            }
+        }
+        private void SaveKeyword(string Keywords)
+        {
+            _problemEntity.OwnKeyword = new List<KeywordsAndProblem>();
+            IList<Keywords> keywords = new Keywords().GetKeywordList(Keywords);
+            Keywords checkExist = new Keywords();
+            foreach (var item in keywords)
+            {
+                checkExist = new KeywordRepository(dbContext).FindKeyword(item.Name);
+                if (checkExist == null)
+                {
+                    _problemEntity.OwnKeyword.Add(new KeywordsAndProblem
+                    { Problem = _problemEntity, Keyword = new Keywords { Name = item.Name, Used = 1 } });
+                }
+                else
+                {
+                    checkExist.Used += 1;
+                    _problemEntity.OwnKeyword.Add(new KeywordsAndProblem
+                    { Problem = _problemEntity, Keyword = checkExist });
+                }
             }
         }
     }

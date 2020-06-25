@@ -58,7 +58,7 @@ namespace ProductServices
                    ;
 
 
-                cfg.CreateMap<Problem, V.Problem.ProblemNewModel>()
+                cfg.CreateMap<Problem, V.Problem.ProblemNewModel>(MemberList.None)
                    .ForMember(p => p.FristDropDownKeywords, opt => opt.Ignore())
                    .ForMember(p => p.SecendDropDownKeywords, opt => opt.Ignore())
                    .ForMember(p => p.NeedSubKeyword, opt => opt.Ignore())
@@ -126,10 +126,11 @@ namespace ProductServices
                     ;
 
 
-                cfg.CreateMap<Article, V.Article.AritcleEditModel>()
+                cfg.CreateMap<Article, V.Article.AritcleEditModel>(MemberList.None)
                     .ForMember(a => a.ChoosAd, opt => opt.MapFrom(p => p.UseADId))
                     .ForMember(a => a.ChoosSeries, opt => opt.MapFrom(p => p.UseSeriesId))
                     .ForMember(a => a.ContentOfAd, opt => opt.Ignore())
+                    .ForMember(a => a.PublishTime, opt => opt.Ignore())
                     .ForMember(a => a.WebSite, opt => opt.Ignore())
                     .ForMember(a => a.Series, opt => opt.Ignore())
                     .ForMember(a => a.Ad, opt => opt.Ignore())
@@ -138,6 +139,7 @@ namespace ProductServices
                     .ForMember(a => a.Keywords, opt => opt.Ignore())
                     .ReverseMap()
                     .ForMember(a => a.Author, opt => opt.Ignore())
+                    .ForMember(a => a.PublishTime, opt => opt.Ignore())
                     ;
 
             });

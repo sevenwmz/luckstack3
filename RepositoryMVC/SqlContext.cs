@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,7 @@ namespace RepositoryMVC
         {
 #if DEBUG
             //Database.Log = s => File.AppendAllText("C:\\EF.log", s);
-            Database.Log = Console.Out.Write;
+            Database.Log = s => Debug.Write(s);
 #endif
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

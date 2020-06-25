@@ -26,9 +26,10 @@ namespace ViewModel.Problem
         [Required(ErrorMessage = "悬赏不能为空，最少1个帮帮币")]
         public int RewardMoney { set; get; }
 
-
         public IList<KeywordsModel> Keywords { set; get; }
+        public int? FristDropDownKeywordsId { set; get; }
         public IList<SelectListItem> FristDropDownKeywords { set; get; }
+        public int? SecendDropDownKeywordsId { set; get; }
         public IList<SelectListItem> SecendDropDownKeywords { set; get; }
     }
 }

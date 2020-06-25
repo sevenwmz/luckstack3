@@ -19,6 +19,12 @@ namespace EntityMVC
         public User Author { set; get; }
         public IList<KeywordsAndProblem> OwnKeyword { set; get; }
 
+        public void Publish(int rewardMoney)
+        {
+            this.PublishTime = DateTime.Now;
+            this.RewardMoney = rewardMoney;
+            this.Status = ProblemStatus.assist;
+        }
     }
     public enum ProblemStatus
     {

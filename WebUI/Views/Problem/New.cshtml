@@ -54,7 +54,7 @@
         <label><strong>关键字：（* 使用空格分隔）</strong></label>
         <div class="input-group">
             <div class="btn-group">
-                @Html.DropDownListFor(p => p.FristDropDownKeywords, ViewData["FristDropDownKeywords"] as List<SelectListItem>, "---1级---", new { @class = "form-control" })
+                @Html.DropDownListFor(p => p.FristDropDownKeywordsId, ViewData["FristDropDownKeywords"] as List<SelectListItem>, "---1级---", new { @class = "form-control" })
                 <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
@@ -63,7 +63,7 @@
                 <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
-                @Html.DropDownListFor(p => p.SecendDropDownKeywords, ViewData["SecendDropDownKeywords"] as List<SelectListItem>, "---2级---", new { @class = "form-control" })
+                @Html.DropDownListFor(p => p.SecendDropDownKeywordsId, ViewData["SecendDropDownKeywords"] as List<SelectListItem>, "---2级---", new { @class = "form-control" })
             </div>
             @Html.TextBoxFor(p=>p.NeedSubKeyword,new {@class="form-control", placeholder="自定义关键字，使用空格分隔" })
         </div>

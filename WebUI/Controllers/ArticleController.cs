@@ -11,7 +11,13 @@ namespace WebUI.Controllers
 {
     public class ArticleController : BaseController
     {
-        int userId = new BaceService().CurrentUserId.Value;
+        int userId;
+
+        public ArticleController()
+        {
+            userId = new BaceService().CurrentUserId.Value;
+        }
+
         // GET: Article/Index
         public ActionResult Index(int id = 1)
         {

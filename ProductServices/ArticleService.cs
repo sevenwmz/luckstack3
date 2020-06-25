@@ -66,10 +66,9 @@ namespace ProductServices
         {
             _articleEntity = _repository.GetEditArticle(model.Id);
             _articleEntity.OwnKeyword.Clear();
-            _articleEntity = connectedMapper.Map<Article>(model);
+            connectedMapper.Map(model, _articleEntity);
             SaveKeyword(model.Keywords);
 
-            _repository.UpdateEditArticle(_articleEntity);
         }
 
         private void SaveKeyword(string Keywords)
