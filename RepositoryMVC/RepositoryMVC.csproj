@@ -115,6 +115,10 @@
     <Compile Include="Migrations\202006240303071_AddProblemReward.designer.cs">
       <DependentUpon>202006240303071_AddProblemReward.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006250057505_ProblemChange.cs" />
+    <Compile Include="Migrations\202006250057505_ProblemChange.designer.cs">
+      <DependentUpon>202006250057505_ProblemChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="SeriesRepository.cs" />
@@ -174,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006240303071_AddProblemReward.resx">
       <DependentUpon>202006240303071_AddProblemReward.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006250057505_ProblemChange.resx">
+      <DependentUpon>202006250057505_ProblemChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

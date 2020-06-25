@@ -72,6 +72,8 @@
     <Compile Include="KeywordsModel.cs" />
     <Compile Include="Log\OnModel.cs" />
     <Compile Include="Problem\ProblemEditModel.cs" />
+    <Compile Include="Problem\ProblemIndexModel.cs" />
+    <Compile Include="Problem\ProblemItemModel.cs" />
     <Compile Include="Problem\ProblemNewModel.cs" />
     <Compile Include="Register\IndexModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

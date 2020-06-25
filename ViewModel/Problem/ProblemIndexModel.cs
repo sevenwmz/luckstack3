@@ -8,5 +8,17 @@ namespace ViewModel.Problem
 {
     public class ProblemIndexModel
     {
+        public int SumOfArticle { set; get; }
+        public ProblemPageChoose Status { set; get; }
+        public IList<ProblemItemModel> Items { set; get; }
     }
+
+    public enum ProblemPageChoose
+    {
+        cancelled,
+        Rewarded,
+        inprocess,
+        assist
+    }
+
 }

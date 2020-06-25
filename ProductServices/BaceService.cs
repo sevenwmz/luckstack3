@@ -25,26 +25,30 @@ namespace ProductServices
         {
             mapper = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Problem, V.Problem.ProblemEditModel>(MemberList.None)
-
-                   .ForMember(p => p.HelpFrom, opt => opt.MapFrom(p => p.HelpFrom.UserName))
-                   .ForMember(p => p.HasLeftMoney, opt => opt.MapFrom(p => p.Author.Wallet.OrderByDescending(m => m.Latestime).Where(m => m.LeftBMoney > 0)))
-
-                   .ForMember(p => p.FristDropDownKeywords, opt => opt.Ignore())
-                   .ForMember(p => p.SecendDropDownKeywords, opt => opt.Ignore())
-                   .ForMember(p => p.NeedSubKeyword, opt => opt.Ignore())
-                   .ForMember(p => p.HasLeftMoney, opt => opt.Ignore())
-                   .ForMember(p => p.Keywords, opt => opt.Ignore())
-                   .ForMember(p => p.RewardMoney, opt => opt.Ignore())
+                cfg.CreateMap<V.Problem.ProblemItemModel, Problem>(MemberList.None)
+                   .ForMember(p => p.Id, opt => opt.MapFrom(p=>p.ProblemId))
+                   .ForMember(p=>p.NeedRemoteHelp, opt => opt.Ignore())
+                   .ForMember(p=>p.RewardMoney, opt => opt.Ignore())
+                   .ForMember(p=>p.Status, opt => opt.MapFrom(p=>p.Status))
+                   .ForMember(p=>p.HelpFrom, opt => opt.Ignore())
+                   .ForMember(p=>p.Author, opt => opt.Ignore())
                    .ReverseMap()
+                   .ForMember(p => p.Author, opt => opt.MapFrom(p=>p.Author.UserName))
+                   .ForMember(p => p.AuthorId, opt => opt.MapFrom(p=>p.Author.Id))
+                   .ForMember(p => p.Summary, opt => opt.Ignore())
+                   .ForMember(p => p.ListKeywords, opt => opt.Ignore())
                    ;
+
+                cfg.CreateMap<V.Problem.ProblemIndexModel, Problem>(MemberList.None)
+                  .ReverseMap()
+                  ;
 
 
                 cfg.CreateMap<V.Problem.ProblemEditModel, Problem>(MemberList.None)
+                   .ForMember(p=>p.HelpFrom,opt=>opt.Ignore())
                    .ReverseMap()
-                   .ForMember(p => p.HelpFrom, opt => opt.MapFrom(p => p.HelpFrom.UserName))
+                   .ForMember(p => p.HelpFrom, opt => opt.Ignore())
                    .ForMember(p => p.HasLeftMoney, opt => opt.MapFrom(p => p.Author.Wallet.OrderByDescending(m => m.Latestime).Where(m => m.LeftBMoney > 0)))
-
                    .ForMember(p => p.FristDropDownKeywords, opt => opt.Ignore())
                    .ForMember(p => p.SecendDropDownKeywords, opt => opt.Ignore())
                    .ForMember(p => p.NeedSubKeyword, opt => opt.Ignore())
@@ -52,7 +56,6 @@ namespace ProductServices
                    .ForMember(p => p.Keywords, opt => opt.Ignore())
                    .ForMember(p => p.RewardMoney, opt => opt.Ignore())
                    ;
-
 
 
                 cfg.CreateMap<Problem, V.Problem.ProblemNewModel>()

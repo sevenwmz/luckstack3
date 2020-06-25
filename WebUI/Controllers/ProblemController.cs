@@ -1,5 +1,6 @@
 ﻿using InterfaceBang;
 using ProductServices;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using ViewModel.Problem;
 
@@ -24,7 +25,13 @@ namespace WebUI.Controllers
 
         #endregion
 
+        // GET: Problem
+        public ActionResult Index(int id = 1)
+        {
+            ProblemIndexModel problem = new ProblemIndexModel { Items = new List<ProblemItemModel>() };
 
+            return View(problem);
+        }
 
         // GET: Problem
         public ActionResult New()
