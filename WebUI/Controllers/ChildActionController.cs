@@ -11,6 +11,7 @@ namespace WebUI.Controllers
 {
     public class ChildActionController : BaseController
     {
+        #region _Keyword Area
         // GET: ChildAction
         public PartialViewResult _Keyword()
         {
@@ -23,12 +24,21 @@ namespace WebUI.Controllers
         {
             if (model.FindKeyword == null)
             {
-                return PartialView(new KeywordsService().GetChildKeywords(new Random().Next(1,10)));
+                return PartialView(new KeywordsService().GetChildKeywords(new Random().Next(1, 10)));
             }
 
             //Nothing for find keyword..
             return PartialView();
         }
+        #endregion
+
+        #region _Rank Area
+        public PartialViewResult _Rank()
+        {
+            return PartialView(new ChildRankService().GetRank(8));
+        }
+
+        #endregion
 
     }
 }

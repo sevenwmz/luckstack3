@@ -70,6 +70,7 @@
     <Compile Include="Article\ArticleNewModel.cs" />
     <Compile Include="Article\ArticleSingleModel.cs" />
     <Compile Include="ChildAction\ChildKeywordModel.cs" />
+    <Compile Include="ChildAction\ChildRankModel.cs" />
     <Compile Include="EmailModel.cs" />
     <Compile Include="KeywordsModel.cs" />
     <Compile Include="Log\OnModel.cs" />

@@ -25,6 +25,14 @@ namespace ProductServices
         {
             mapper = new MapperConfiguration(cfg =>
             {
+
+                #region ChildRank Area
+                cfg.CreateMap<V.ChildAction.ChildRankModel, User>(MemberList.None)
+                    .ReverseMap()
+                    .ForMember(u=>u.BMoney,opt=>opt.MapFrom(u=>u.Wallet.OrderByDescending(m => m.Latestime).FirstOrDefault().LeftBMoney))
+                    ;
+                #endregion
+
                 #region Problem Area
                 cfg.CreateMap<V.Problem.ProblemSingleModel, Problem>(MemberList.None)
                     .ForMember(p => p.NeedRemoteHelp, opt => opt.Ignore())

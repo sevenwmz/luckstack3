@@ -14,6 +14,19 @@ namespace RepositoryMVC
         {
 
         }
+        /// <summary>
+        /// Get ChildRank by user level in front of 8
+        /// </summary>
+        /// <returns>Return 8 user and money</returns>
+        public IList<User> GetUserRank(int takeRankNum)
+        {
+            return entities
+                    .Include(u => u.Wallet)
+                    .OrderByDescending(u => u.Level)
+                    .Take(takeRankNum)
+                    .ToList()
+                    ;
+        }
 
         /// <summary>
         /// Get Inviter From Database

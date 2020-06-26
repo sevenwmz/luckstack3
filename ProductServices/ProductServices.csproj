@@ -80,6 +80,7 @@
     <Compile Include="ArticleService.cs" />
     <Compile Include="BaceService.cs" />
     <Compile Include="BMoneyService.cs" />
+    <Compile Include="ChildRankService.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="KeywordAndArticleService.cs" />
     <Compile Include="KeywordAndProblemService.cs" />
