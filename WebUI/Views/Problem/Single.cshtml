@@ -1,0 +1,43 @@
+﻿@model ViewModel.Problem.ProblemSingleModel
+    @{
+        ViewBag.Title = Model.Title;
+    }
+
+
+
+    <main class="container">
+        <article class="row">
+            <div class="col-md-8" style="margin-top:90px;">
+                <div class="justify-content-between>
+                    <span><i class="fa fa fa-calendar"></i>@Model.PublishTime</span>
+                    <span><i class="fa fa-user-circle"></i>@Model.Author @Model.Level</span>
+                </div>
+                <div>
+                    <h4>
+                        <span class="text-white badge bg-primary">@Model.Status</span>
+                        @Model.Title
+                    </h4>
+                </div>
+                <div>
+                    <p class="col-9">@Model.Body</p>
+                    <div>
+                        <i class="fa fa-compress"></i>
+                    </div>
+                </div>
+                <div>
+                    <label>
+                        <span class="fa fa-tags mt-3"><strong>关键字：</strong></span>
+                        @foreach (var item in Model.Keywords)
+                        {
+                            <span class="text-white badge bg-dark">@item.Name</span>
+                        }
+                    </label>
+                </div>
+                <div>
+                    <span><i class="fa fa-money"></i>悬赏：@Model.RewardMoney</span>
+                    <span><i class="fa fa-heart"></i><a href="#">应答：</a>@Model.Answer</span>
+                    <span><i class="fa fa-key"></i><a href="#"> 总结： </a>@Model.Summarize</span>
+                </div>
+            </div>
+        </article>
+    </main>

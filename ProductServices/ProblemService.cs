@@ -19,6 +19,8 @@ namespace ProductServices
             _problemEntity = new Problem();
             _repository = new ProblemRepository(dbContext);
         }
+
+        #region Problem New
         public int Add(ProblemNewModel model)
         {
             _problemEntity = connectedMapper.Map<Problem>(model);
@@ -42,6 +44,18 @@ namespace ProductServices
             return problemId; /*repository.Add(_problemEntity);*/
         }
 
+        public ProblemSingleModel GetSingelProblem(int id)
+        {
+            Problem repoProblem = new Problem();
+            repoProblem = new ProblemRepository(dbContext).FindSingleProblem(id);
+            ProblemSingleModel singleModel = connectedMapper.Map<ProblemSingleModel>(repoProblem);
+
+            return singleModel;
+        }
+
+        #endregion
+
+        #region Problem Index
         /// <summary>
         /// Count total problem number
         /// </summary>
@@ -54,25 +68,23 @@ namespace ProductServices
         public ProblemIndexModel GetIndexPage(int pageSize, int pageIndex)
         {
             IList<Problem> tempProblem = new List<Problem>();
-            tempProblem = _repository.GetProblems(pageSize,pageIndex);
+            tempProblem = _repository.GetProblems(pageSize, pageIndex);
             ProblemIndexModel model = new ProblemIndexModel
             {
-                 Items = connectedMapper.Map<List<ProblemItemModel>>(tempProblem)
+                Items = connectedMapper.Map<List<ProblemItemModel>>(tempProblem)
             };
 
             return model;
         }
+        #endregion
 
+        #region Problem Edit
         public ProblemEditModel GetEditProblem(int id)
         {
             _problemEntity = _repository.GetEditProblem(id);
 
             ProblemEditModel problemEditModel = new ProblemEditModel();
             problemEditModel = connectedMapper.Map<ProblemEditModel>(_problemEntity);
-
-            //BMoneyRepository moneyRepository = new BMoneyRepository(dbContext);
-            //problemEditModel.HelpFrom = _problemEntity.HelpFrom.UserName;
-            //problemEditModel.HasLeftMoney = new BMoneyRepository(dbContext).GetByAuthorBMoney(CurrentUserId).LeftBMoney > 0;
 
             var keywords = new KeywordAndProblemRepository(dbContext).GetKeywords(id);
             string keyWordOfProblem = string.Empty;
@@ -98,6 +110,12 @@ namespace ProductServices
                 new KeywordAndProblemService().SaveMiddleTale(model.Id, model.NeedSubKeyword);
             }
         }
+        #endregion
+
+        #region Problem Single
+
+
+        #endregion
         private void SaveKeyword(string Keywords)
         {
             _problemEntity.OwnKeyword = new List<KeywordsAndProblem>();

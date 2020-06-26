@@ -46,5 +46,12 @@ namespace RepositoryMVC
                 .Take(pageSize)
                 .ToList();
         }
+
+        public Problem FindSingleProblem(int id)
+        {
+            return entities
+                    .Include(p => p.OwnKeyword.Select(o => o.Keyword))
+                    .Where(p => p.Id == id).FirstOrDefault();
+        }
     }
 }

@@ -26,6 +26,23 @@ namespace ProductServices
             mapper = new MapperConfiguration(cfg =>
             {
                 #region Problem Area
+                cfg.CreateMap<V.Problem.ProblemSingleModel, Problem>(MemberList.None)
+                    .ForMember(p => p.NeedRemoteHelp, opt => opt.Ignore())
+                    .ForMember(p => p.RewardMoney, opt => opt.Ignore())
+                    .ForMember(p => p.Status, opt => opt.MapFrom(p => p.Status))
+                    .ForMember(p => p.HelpFrom, opt => opt.Ignore())
+                    .ForMember(p => p.Author, opt => opt.Ignore())
+                    .ReverseMap()
+                    .ForMember(p => p.Author, opt => opt.MapFrom(p => p.Author.UserName))
+                    .ForMember(p => p.Level, opt => opt.MapFrom(p => p.Author.Level))
+                    .ForMember(p => p.Answer, opt => opt.Ignore())
+                    .ForMember(p => p.Summarize, opt => opt.Ignore())
+                    .ForMember(p => p.Keywords, opt => opt.MapFrom(p => p.OwnKeyword.Select(o => o.Keyword)))
+                    ;
+
+
+
+
                 cfg.CreateMap<V.Problem.ProblemItemModel, Problem>(MemberList.None)
                     .ForMember(p => p.Id, opt => opt.MapFrom(p => p.ProblemId))
                     .ForMember(p => p.NeedRemoteHelp, opt => opt.Ignore())

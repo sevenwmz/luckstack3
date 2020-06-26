@@ -26,15 +26,28 @@ namespace WebUI.Controllers
 
         #endregion
 
+
+        #region Problem Single Area
+        public ActionResult Single(int Id)
+        {
+            ProblemSingleModel singleModel = new ProblemSingleModel();
+            singleModel = _problemService.GetSingelProblem(Id);
+            return View(singleModel);
+        }
+        #endregion
+
+        #region Problem Index Area
         // GET: Problem
         public ActionResult Index(int id = 1)
         {
             ProblemIndexModel problem = new ProblemIndexModel { Items = new List<ProblemItemModel>() };
-            problem = _problemService.GetIndexPage(2,id);
+            problem = _problemService.GetIndexPage(2, id);
             problem.SumOfProblem = _problemService.Count();
             return View(problem);
         }
+        #endregion
 
+        #region Problem New Area
         // GET: Problem
         public ActionResult New()
         {
@@ -54,9 +67,9 @@ namespace WebUI.Controllers
 
             return RedirectToAction("Index", new { id = 1 });
         }
+        #endregion
 
-
-
+        #region Problem Edit Area
         // GET: Problem
         public ActionResult Edit(int Id)
         {
@@ -73,11 +86,7 @@ namespace WebUI.Controllers
             new ProblemService().Update(model);
             return Redirect("/Problem/Page-1");
         }
-
-
-
-
-
+        #endregion
 
 
     }
