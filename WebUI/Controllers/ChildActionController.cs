@@ -40,5 +40,11 @@ namespace WebUI.Controllers
 
         #endregion
 
+        #region _AD Area
+        public PartialViewResult _AD()
+        {
+            return PartialView(new AdService().GetChildAD(6));
+        }
+        #endregion
     }
 }

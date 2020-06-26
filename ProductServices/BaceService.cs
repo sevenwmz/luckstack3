@@ -25,6 +25,11 @@ namespace ProductServices
         {
             mapper = new MapperConfiguration(cfg =>
             {
+                #region ChildAD Area
+                cfg.CreateMap<V.ChildAction.ChildADModel, AD>(MemberList.None)
+                    .ReverseMap()
+                    ;
+                #endregion
 
                 #region ChildRank Area
                 cfg.CreateMap<V.ChildAction.ChildRankModel, User>(MemberList.None)

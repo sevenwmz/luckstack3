@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using ViewModel;
+using ViewModel.ChildAction;
 
 namespace ProductServices
 {
@@ -40,6 +41,23 @@ namespace ProductServices
                 tempADs.Add(new ADModel { Id = item.Id, ContentOfAd = item.ContentOfAd });
             }
             return tempADs;
+        }
+
+        /// <summary>
+        /// Get AD form repo
+        /// </summary>
+        /// <param name="getADSum">Need num of AD </param>
+        /// <returns>Return ChildAdModel with specified num</returns>
+        public ChildADModel GetChildAD(int getADSum)
+        {
+            IList<AD> aD = new List<AD>();
+            aD = new ADRepository(dbContext).GetChildAD(getADSum);
+
+            ChildADModel aDModel = new ChildADModel
+            {
+                Items = connectedMapper.Map<IList<ChildADModel>>(aD)
+            };
+            return aDModel;
         }
 
         /// <summary>

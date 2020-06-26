@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ViewModel.ChildAction
 {
-    class ChildADModel
+    public class ChildADModel
     {
+        public int Id { set; get; }
+        public string ContentOfAd { set; get; }
+        public IList<ChildADModel> Items { set; get; }
     }
 }

@@ -42,5 +42,18 @@ namespace RepositoryMVC
         {
             return entities.Where(a => a.OwnerId == userId).ToList();
         }
+
+        /// <summary>
+        /// Take specified ad of childAD
+        /// </summary>
+        /// <param name="getADSum">Need num of get AD count</param>
+        /// <returns>Return specified AD</returns>
+        public IList<AD> GetChildAD(int getADSum)
+        {
+            return entities.OrderBy(a => a.Id)
+                        .Take(getADSum)
+                        .ToList()
+                        ;
+        }
     }
 }

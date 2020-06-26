@@ -1,0 +1,8 @@
+﻿@model ViewModel.ChildAction.ChildADModel
+
+<div style="border:dashed#eae2e2 1px;border-radius:5px;padding:25px;margin-top:35px;">
+    @foreach (var item in Model.Items)
+    {
+        <p><span class="badge badge-secondary mr-3">@item.Id</span><a href="none">@item.ContentOfAd</a></p>
+    }
+</div>
