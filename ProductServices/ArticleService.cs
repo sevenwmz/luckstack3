@@ -41,18 +41,7 @@ namespace ProductServices
         public ArticleSingleModel GetSingleArticle(int id)
         {
             _articleEntity = _repository.Find(id);
-
-            ArticleSingleModel temp = new ArticleSingleModel();
-            connectedMapper.Map(_articleEntity, temp);
-            foreach (var item in _articleEntity.OwnKeyword)
-            {
-                temp.Keywords.Add(new KeywordModel
-                {
-                    Id = item.Keyword.Id,
-                    Name = item.Keyword.Name,
-                    Used = item.Keyword.Used
-                });
-            }
+            ArticleSingleModel temp = connectedMapper.Map<ArticleSingleModel>(_articleEntity);
             return temp;
         }
 

@@ -13,17 +13,27 @@ namespace WebUI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            #region Problem Route Area
             routes.MapRoute(
-                name: "ArticleSingle",
-                url: "Article/Single/{Id}",
-                defaults: new { controller = "Article", action = "Single", UrlParameter.Optional }
+                name: "ProblemSingle",
+                url: "Problem/{Id}",
+                defaults: new { controller = "Problem", action = "Single" },
+                constraints: new { id = "\\d+" }
             );
-
 
             routes.MapRoute(
                 name: "ProblemIndex",
                 url: "Problem/Page-{id}",
                 defaults: new { controller = "Problem", action = "Index", id = "1" }
+            );
+            #endregion
+
+            #region Article Route Area
+            routes.MapRoute(
+                name: "ArticleSingle",
+                url: "Article/{Id}",
+                defaults: new { controller = "Article", action = "Single" },
+                constraints: new { id = "\\d+" }
             );
 
             routes.MapRoute(
@@ -31,6 +41,7 @@ namespace WebUI
                 url: "Article/Page-{id}",
                 defaults: new { controller = "Article", action = "Index", id = "1" }
             );
+            #endregion
 
             routes.MapRoute(
                 name: "Default",

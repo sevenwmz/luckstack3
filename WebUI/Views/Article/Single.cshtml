@@ -23,23 +23,23 @@
                 <h4><i class="iconfont icon-article"></i>@Model.Title</h4>
                 <hr />
             </div>
-            <div>
-                <i class="fa fa-clender">@Model.PublishTime</i>
-                <span>作者：<a href="#">@Model.Author</a></span>
+            <div class="flex-md-wrap">
+                <i class="fa fa-chevron-left">@Model.PublishTime</i>
+                <span><strong>作者：</strong> <a href="#">@Model.Author</a></span>
             </div>
             <div>
                 @Model.Body
             </div>
             <div>
                 <label>
-                    <span class="fa fa-tags"><strong>关键字：</strong></span>
+                    <span class="fa fa-tags mt-3"><strong>关键字：</strong></span>
                     @foreach (var item in Model.Keywords)
                     {
-                        <span class="badge">@item.Name</span>
+                        <span class="text-white badge bg-dark">@item.Name</span>
                     }
                 </label>
             </div>
-            <div class="article-appraise appraise-status pull-right">
+            <div class="fa-dashboard mt-3 pull-right">
                 <span class="fa fa-thumbs-o-up"><span>赞：</span>0</span>
                 <span class="fa fa-thumbs-o-down"><span>踩：</span>0</span>
             </div>
