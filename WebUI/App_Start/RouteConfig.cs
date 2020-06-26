@@ -14,6 +14,13 @@ namespace WebUI
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "ArticleSingle",
+                url: "Article/Single/{Id}",
+                defaults: new { controller = "Article", action = "Single", UrlParameter.Optional }
+            );
+
+
+            routes.MapRoute(
                 name: "ProblemIndex",
                 url: "Problem/Page-{id}",
                 defaults: new { controller = "Problem", action = "Index", id = "1" }

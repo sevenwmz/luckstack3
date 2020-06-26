@@ -33,11 +33,43 @@ namespace ProductServices
             return dropDownList;
         }
 
+        /// <summary>
+        /// Get Single Article
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ArticleSingleModel GetSingleArticle(int id)
+        {
+            _articleEntity = _repository.Find(id);
+
+            ArticleSingleModel temp = new ArticleSingleModel();
+            connectedMapper.Map(_articleEntity, temp);
+            foreach (var item in _articleEntity.OwnKeyword)
+            {
+                temp.Keywords.Add(new KeywordModel
+                {
+                    Id = item.Keyword.Id,
+                    Name = item.Keyword.Name,
+                    Used = item.Keyword.Used
+                });
+            }
+            return temp;
+        }
+
+        /// <summary>
+        /// Get total article sum
+        /// </summary>
+        /// <returns>Return sum of article</returns>
         public int GetCount()
         {
             return _repository.ArticlesCount();
         }
 
+        /// <summary>
+        /// prepare save article
+        /// </summary>
+        /// <param name="model">Need ArticleNewModel</param>
+        /// <returns>Return article Id</returns>
         public int Add(ArticleNewModel model)
         {
             _articleEntity = connectedMapper.Map<Article>(model);
@@ -58,6 +90,7 @@ namespace ProductServices
 
             return _repository.AddArticleToDatabase(_articleEntity);
         }
+
         /// <summary>
         /// For change article content
         /// </summary>

@@ -12,11 +12,22 @@ namespace WebUI.Controllers
     public class ArticleController : BaseController
     {
         int userId;
-
+        private ArticleService _service;
         public ArticleController()
         {
             userId = new BaceService().CurrentUserId.Value;
+            _service = new ArticleService();
         }
+
+
+        // GET: Article/Single
+        public ActionResult Single(int id)
+        {
+            ArticleSingleModel model = new ArticleSingleModel();
+            model = _service.GetSingleArticle(id);
+            return View(model);
+        }
+
 
         // GET: Article/Index
         public ActionResult Index(int id = 1)

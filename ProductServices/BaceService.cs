@@ -91,6 +91,19 @@ namespace ProductServices
                 #endregion
 
                 #region Article Area
+                cfg.CreateMap< V.Article.ArticleSingleModel, Article>(MemberList.None)
+                    .ForMember(a => a.Summary, opt => opt.Ignore())
+                    .ForMember(a => a.UseAd, opt => opt.Ignore())
+                    .ForMember(a => a.UseADId, opt => opt.Ignore())
+                    .ForMember(a => a.UseSeriesId, opt => opt.Ignore())
+                    .ForMember(a => a.Author, opt => opt.Ignore())
+                    .ReverseMap()
+                    .ForMember(a => a.Keywords, opt => opt.MapFrom(a => a.OwnKeyword.Select(o => o.Keyword)))
+                    .ForMember(a => a.Author, opt => opt.MapFrom(a=>a.Author.UserName))
+                    .ForMember(a => a.ChoosSeries, opt => opt.MapFrom(a=>a.UseSeries.ContentOfSeries))
+                    .ForMember(a => a.Comments, opt => opt.Ignore())
+                    ;
+
                 cfg.CreateMap<Article, V.ArticleItemsModel>(MemberList.None)
                     .ForMember(a => a.ListKeyword, opt => opt.MapFrom(a => a.OwnKeyword.Select(o => o.Keyword)))
                     .ForMember(a => a.Author, opt => opt.Ignore())

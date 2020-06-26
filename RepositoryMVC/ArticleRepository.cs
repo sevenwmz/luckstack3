@@ -27,6 +27,13 @@ namespace RepositoryMVC
             return entities.Where(a => a.Title == title).FirstOrDefault().Id;
         }
 
+        public Article Find(int articleId)
+        {
+            return entities
+                .Include(p=>p.OwnKeyword.Select(o=>o.Keyword))
+                .Where(a => a.Id == articleId).FirstOrDefault();
+        }
+
         public IList<Article> GetArticles(int pageSize, int pageIndex)
         {
             return entities.Include(e=>e.Author)
@@ -52,9 +59,5 @@ namespace RepositoryMVC
                 .Where(a => a.Id == id).FirstOrDefault();
         }
 
-        public void UpdateEditArticle(Article article)
-        {
-            context.SaveChanges();
-        }
     }
 }
