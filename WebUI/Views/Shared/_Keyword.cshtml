@@ -1,0 +1,28 @@
+﻿@model ViewModel.ChildAction.ChildKeywordModel
+
+
+
+@using (Html.BeginForm())
+{
+    <div style="border:dashed#e4e0e0 1px;border-radius:5px;" class="container">
+        <h4 class="lead mt-md-4"><i class="fa fa-tags"></i>关键字</h4>
+        <hr />
+        <section>
+            @foreach (var item in Model.Item)
+            {
+                <span class="text-white badge bg-dark" style="border-radius:10px;font-size:large;height:25px;">
+                    @item.Name
+                </span>
+            }
+        </section>
+        <hr />
+        <div class="input-group mb-3 text-right">
+            @Html.TextBoxFor(k=>k.FindKeyword,new {@class="form-control", placeholder="直接输入关键字进行查找" })
+            @*<input type="text" class="form-control" placeholder="直接输入关键字进行查找" aria-label="Recipient's username" aria-describedby="basic-addon2">*@
+            <div class="input-group-append">
+                <span class="input-group-text "><button type="submit"><i class="fa fa-search"></i></button> </span>
+            </div>
+            <button class="btn btn-outline-dark my-2 my-sm-0 ml-4 border border-secondary" type="submit"><i class="fa fa-random"></i>换一批</button>
+        </div>
+    </div>
+}   

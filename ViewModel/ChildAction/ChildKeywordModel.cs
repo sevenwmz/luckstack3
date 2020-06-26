@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ViewModel.ChildAction
 {
-    class ChildKeywordsModel
+    public class ChildKeywordModel
     {
+        public string FindKeyword { set; get; }
+
+        public IList<KeywordModel> Item { set; get; }
     }
 }

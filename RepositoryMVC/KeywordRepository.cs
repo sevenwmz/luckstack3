@@ -52,6 +52,13 @@ namespace RepositoryMVC
             return entities.Where(k => k.Name == keywordName).FirstOrDefault();
         }
 
-
+        public IList<Keywords> GetChildKeyword(int takeKeywordPage)
+        {
+            return entities
+                .OrderByDescending(k=>k.Id)
+                .Skip((takeKeywordPage - 1) * 15)
+                .Take(15)
+                .ToList();
+        }
     }
 }

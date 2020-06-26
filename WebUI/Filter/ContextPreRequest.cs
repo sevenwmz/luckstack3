@@ -22,6 +22,7 @@ namespace WebUI.Filter
                 {
                     service.RollBack();
                 }
+                service.ClearContext();
             }
             base.OnActionExecuted(filterContext);
         }

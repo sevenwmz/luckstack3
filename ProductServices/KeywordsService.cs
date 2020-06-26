@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using ViewModel;
 using ViewModel.Article;
+using ViewModel.ChildAction;
 using ViewModel.Problem;
 
 namespace ProductServices
@@ -33,6 +34,19 @@ namespace ProductServices
                 tempKeyword.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
             }
             return tempKeyword;
+        }
+
+        public ChildKeywordModel GetChildKeywords(int takeKeywordPage)
+        {
+            KeywordRepository repo = new KeywordRepository(dbContext);
+      
+            ChildKeywordModel childKeyword = new ChildKeywordModel
+            {
+                Item = connectedMapper.Map<List<KeywordModel>>(repo.GetChildKeyword(takeKeywordPage))
+            };
+
+            return childKeyword;
+
         }
 
         public void SaveKeywords(string needSubKeyword)

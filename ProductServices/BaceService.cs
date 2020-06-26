@@ -262,6 +262,11 @@ namespace ProductServices
             get => mapper.CreateMapper();
         }
 
+        public void ClearContext()
+        {
+            HttpContext.Current.Items["dbContext"] = null;
+        }
+
 
     }
 }
