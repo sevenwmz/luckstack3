@@ -26,7 +26,7 @@ namespace ProductServices
             {
                 User user = new User();
                 UserRepository repo = new UserRepository(dbContext);
-                user = repo.Find(26);
+                user = repo.Find(CurrentUserId);
                 user.Password = newInfo.NewPwd;
             }
             catch (Exception)
