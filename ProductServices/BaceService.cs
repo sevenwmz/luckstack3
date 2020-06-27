@@ -256,8 +256,6 @@ namespace ProductServices
                     }
                 }
             }
-            //HttpContext.Current.Items["dbContext"] = null;
-
         }
         public void RollBack()
         {

@@ -75,6 +75,7 @@
     <Compile Include="EmailModel.cs" />
     <Compile Include="KeywordsModel.cs" />
     <Compile Include="Log\OnModel.cs" />
+    <Compile Include="Message\Mine.cs" />
     <Compile Include="Problem\ProblemEditModel.cs" />
     <Compile Include="Problem\ProblemIndexModel.cs" />
     <Compile Include="Problem\ProblemItemModel.cs" />
