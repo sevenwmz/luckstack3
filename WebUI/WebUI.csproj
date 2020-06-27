@@ -156,6 +156,7 @@
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ChildActionController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CreditController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
@@ -284,6 +285,7 @@
     <Content Include="Views\Shared\_Rank.cshtml" />
     <Content Include="Views\Shared\_AD.cshtml" />
     <Content Include="Views\Message\Mine.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

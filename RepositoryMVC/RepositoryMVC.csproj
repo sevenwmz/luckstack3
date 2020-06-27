@@ -55,6 +55,7 @@
     <Compile Include="ArticleRepository.cs" />
     <Compile Include="BaceRepository.cs" />
     <Compile Include="BMoneyRepository.cs" />
+    <Compile Include="ContactRepository.cs" />
     <Compile Include="Extension\BMoneyExtension.cs" />
     <Compile Include="KeywordAndArticleRepository.cs" />
     <Compile Include="KeywordAndProblemRepository.cs" />
@@ -119,6 +120,10 @@
     <Compile Include="Migrations\202006250057505_ProblemChange.designer.cs">
       <DependentUpon>202006250057505_ProblemChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006270515344_Add_Contact.cs" />
+    <Compile Include="Migrations\202006270515344_Add_Contact.designer.cs">
+      <DependentUpon>202006270515344_Add_Contact.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="SeriesRepository.cs" />
@@ -181,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006250057505_ProblemChange.resx">
       <DependentUpon>202006250057505_ProblemChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006270515344_Add_Contact.resx">
+      <DependentUpon>202006270515344_Add_Contact.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

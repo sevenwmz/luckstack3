@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace EntityMVC
 {
-    class Contact
+    public class Contact : BaceEntity
     {
+        public string QQ { set; get; }
+        public string WeChat { set; get; }
+        public int? CellPhone { set; get; }
+        public string OtherMark { set; get; }
+        public int OwnerId { set; get; }
+        public User Owner { set; get; }
     }
 }

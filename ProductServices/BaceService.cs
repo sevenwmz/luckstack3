@@ -25,6 +25,18 @@ namespace ProductServices
         {
             mapper = new MapperConfiguration(cfg =>
             {
+
+                #region Contact Area
+                cfg.CreateMap<Contact, V.Contact.ContactModel>(MemberList.None)
+                    .ReverseMap()
+                    ;
+
+                cfg.CreateMap<V.Contact.ContactModel, Contact>(MemberList.None)
+                    .ReverseMap()
+                    .ForMember(c => c.Email, opt => opt.MapFrom(c => c.Owner.EmailAddress.Address))
+                    ;
+                #endregion
+
                 #region ChildAD Area
                 cfg.CreateMap<V.ChildAction.ChildADModel, AD>(MemberList.None)
                     .ReverseMap()
@@ -34,7 +46,7 @@ namespace ProductServices
                 #region ChildRank Area
                 cfg.CreateMap<V.ChildAction.ChildRankModel, User>(MemberList.None)
                     .ReverseMap()
-                    .ForMember(u=>u.BMoney,opt=>opt.MapFrom(u=>u.Wallet.OrderByDescending(m => m.Latestime).FirstOrDefault().LeftBMoney))
+                    .ForMember(u => u.BMoney, opt => opt.MapFrom(u => u.Wallet.OrderByDescending(m => m.Latestime).FirstOrDefault().LeftBMoney))
                     ;
                 #endregion
 
@@ -121,7 +133,7 @@ namespace ProductServices
                 #endregion
 
                 #region Article Area
-                cfg.CreateMap< V.Article.ArticleSingleModel, Article>(MemberList.None)
+                cfg.CreateMap<V.Article.ArticleSingleModel, Article>(MemberList.None)
                     .ForMember(a => a.Summary, opt => opt.Ignore())
                     .ForMember(a => a.UseAd, opt => opt.Ignore())
                     .ForMember(a => a.UseADId, opt => opt.Ignore())
@@ -129,8 +141,8 @@ namespace ProductServices
                     .ForMember(a => a.Author, opt => opt.Ignore())
                     .ReverseMap()
                     .ForMember(a => a.Keywords, opt => opt.MapFrom(a => a.OwnKeyword.Select(o => o.Keyword)))
-                    .ForMember(a => a.Author, opt => opt.MapFrom(a=>a.Author.UserName))
-                    .ForMember(a => a.ChoosSeries, opt => opt.MapFrom(a=>a.UseSeries.ContentOfSeries))
+                    .ForMember(a => a.Author, opt => opt.MapFrom(a => a.Author.UserName))
+                    .ForMember(a => a.ChoosSeries, opt => opt.MapFrom(a => a.UseSeries.ContentOfSeries))
                     .ForMember(a => a.Comments, opt => opt.Ignore())
                     ;
 

@@ -9,7 +9,8 @@ namespace WebUI.Filter
 {
     public class ContextPreRequest : ActionFilterAttribute 
     {
-        public override void OnActionExecuted(ActionExecutedContext filterContext)
+
+        public override void OnResultExecuted(ResultExecutedContext filterContext)
         {
             if (!filterContext.IsChildAction)
             {
@@ -22,9 +23,9 @@ namespace WebUI.Filter
                 {
                     service.RollBack();
                 }
-                service.ClearContext();
+                //service.ClearContext();
             }
-            base.OnActionExecuted(filterContext);
+            base.OnResultExecuted(filterContext);
         }
     }
 }
