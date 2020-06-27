@@ -26,6 +26,15 @@ namespace ProductServices
             mapper = new MapperConfiguration(cfg =>
             {
 
+                #region ChangePassword
+                cfg.CreateMap<V.Password.ChangeModel, User>(MemberList.None)
+                    .ReverseMap()
+                    .ForMember(p=>p.NewPwd,opt=>opt.MapFrom(u=>u.Password))
+                    .ForMember(p=>p.ConfrimPwd,opt=>opt.Ignore())
+                    .ForMember(p=>p.OldPwd,opt=>opt.Ignore())
+                 ;
+                #endregion
+
                 #region Contact Area
                 cfg.CreateMap<Contact, V.Contact.ContactModel>(MemberList.None)
                     .ReverseMap()

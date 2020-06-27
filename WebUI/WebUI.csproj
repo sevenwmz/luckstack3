@@ -165,6 +165,7 @@
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\ProblemController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
@@ -286,6 +287,7 @@
     <Content Include="Views\Shared\_AD.cshtml" />
     <Content Include="Views\Message\Mine.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Password\Change.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

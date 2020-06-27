@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModel.Password;
 
 namespace ProductServices
 {
@@ -19,12 +20,14 @@ namespace ProductServices
             return new UserRepository(dbContext).Find(CurrentUserId).Password;
         }
 
-        public void AddNewPwd(string newPassword)
+        public void AddNewPwd(ChangeModel newInfo)
         {
             try
             {
-                connectedMapper.Map(
-                   newPassword, new UserRepository(dbContext).Find(CurrentUserId).Password);
+                User user = new User();
+                UserRepository repo = new UserRepository(dbContext);
+                user = repo.Find(26);
+                user.Password = newInfo.NewPwd;
             }
             catch (Exception)
             {
