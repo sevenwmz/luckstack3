@@ -59,5 +59,15 @@ namespace RepositoryMVC
             context.SaveChanges();
             return regiserInfo.Id;
         }
+
+        public User FindUserCodeBy(string email)
+        {
+            return entities.Where(u => u.EmailAddress.Address == email).FirstOrDefault();
+        }
+
+        public User FindUserBy(string code)
+        {
+            return entities.Where(u => u.EmailAddress.Code == code).FirstOrDefault();
+        }
     }
 }

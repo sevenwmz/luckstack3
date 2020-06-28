@@ -13,6 +13,15 @@ namespace WebUI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            #region ChangePassword Reset Area
+            routes.MapRoute(
+                name: "PasswordReset",
+                url: "Password/Reset/{code}",
+                defaults: new { controller = "Password", action = "Reset" },
+                constraints: new { code = "\\w*" }
+            );
+            #endregion
+
             #region Problem Route Area
             routes.MapRoute(
                 name: "ProblemSingle",

@@ -71,5 +71,26 @@ namespace ProductServices
             user.EmailAddress.Code = verifyCode.ToString();
             user.EmailAddress.Expire = DateTime.Now.AddMinutes(10);
         }
+
+        public ResetModel GetUserVerifyCode(string email)
+        {
+            User user = new User();
+            user = UserRepository.FindUserCodeBy(email);
+
+            ResetModel resetModel = new ResetModel();
+            if (user.EmailAddress.Expire == null)
+            {
+                return null;
+            }
+            resetModel.VerifyCode = user.EmailAddress.Code;
+            return resetModel;
+        }
+
+        public void ChangeNewPassword(string code,string password)
+        {
+            User user = new User();
+            user = UserRepository.FindUserBy(code);
+            user.Password = password;
+        }
     }
 }

@@ -100,14 +100,30 @@ namespace WebUI.Controllers
         #region Reset Password
         public ActionResult Reset(string code)
         {
-
-            return View();
+            string email = HttpContext.Request.QueryString["email"].ToString();
+            ResetModel resetModel = new ResetModel();
+            resetModel = new ChangePasswordService().GetUserVerifyCode(email);
+            if (resetModel == null)
+            {
+                ModelState.AddModelError(resetModel.VerifyCode, "验证时间过期啦，快一点，在快一点。");
+            }
+            if (code != resetModel.VerifyCode)
+            {
+                ModelState.AddModelError(resetModel.VerifyCode, "验证码不对，我有一点点问号，是不是填错了呢？");
+            }
+            return View(code);
         }
 
         [HttpPost]
         public ActionResult Reset(ResetModel model)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError(model.Password, "少些了一些东西呦");
+            }
+            new ChangePasswordService().ChangeNewPassword(model.VerifyCode,model.Password);
+
+            return View("home/Index");
         }
         #endregion
     }

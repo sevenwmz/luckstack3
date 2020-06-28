@@ -42,7 +42,8 @@ namespace WebUI.Controllers
 
             int valideCode = new Random().Next(1111, 9999);
             mail.Body = $@"感谢查询,{model.UserName},现在验证你的邮箱地址：你的验证码是{valideCode},
-                                也可以点击链接跳转修改密码(如浏览器不支持，请复制下面链接到地址栏) http://localhost:51543/Password/Reset/code={valideCode}";
+                                也可以点击链接跳转修改密码(如浏览器不支持，请复制下面链接到地址栏) 
+                                http://localhost:51543/Password/Reset/code={valideCode}?email={model.EmailAddress}";
 
             SmtpClient client = new SmtpClient("smtp.163.com");
             client.Port = 25;
@@ -56,10 +57,6 @@ namespace WebUI.Controllers
             ///here need attach db expair time. later
 
         }
-
-
-
-
 
     }
 }
