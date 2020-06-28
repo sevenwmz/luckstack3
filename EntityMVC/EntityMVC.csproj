@@ -61,6 +61,8 @@
     <Compile Include="KeywordsAndArticle.cs" />
     <Compile Include="KeywordsAndProblem.cs" />
     <Compile Include="Problem.cs" />
+    <Compile Include="Profile.cs" />
+    <Compile Include="ProfileToKeyword.cs" />
     <Compile Include="Series.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

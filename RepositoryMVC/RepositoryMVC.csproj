@@ -124,8 +124,14 @@
     <Compile Include="Migrations\202006270515344_Add_Contact.designer.cs">
       <DependentUpon>202006270515344_Add_Contact.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006281310515_Add_ProfileAndPtoK.cs" />
+    <Compile Include="Migrations\202006281310515_Add_ProfileAndPtoK.designer.cs">
+      <DependentUpon>202006281310515_Add_ProfileAndPtoK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
+    <Compile Include="ProfileRepository.cs" />
+    <Compile Include="ProfileToKeywordRepository.cs" />
     <Compile Include="SeriesRepository.cs" />
     <Compile Include="SqlContext.cs" />
     <Compile Include="UserRepository.cs" />
@@ -189,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006270515344_Add_Contact.resx">
       <DependentUpon>202006270515344_Add_Contact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006281310515_Add_ProfileAndPtoK.resx">
+      <DependentUpon>202006281310515_Add_ProfileAndPtoK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

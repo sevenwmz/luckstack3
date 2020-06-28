@@ -168,6 +168,7 @@
     <Compile Include="Controllers\MoneyTradeController.cs" />
     <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\ProblemController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Filter\ContextPreRequest.cs" />
@@ -292,9 +293,11 @@
     <Content Include="Views\Password\Forget.cshtml" />
     <Content Include="Views\Password\Reset.cshtml" />
     <Content Include="Views\MoneyTrade\Sale.cshtml" />
+    <Content Include="Views\Profile\Write.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Img\Icon\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Email\" />

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RepositoryMVC
 {
-    public class SqlContext : DbContext 
+    public class SqlContext : DbContext
     {
         #region DbSet
         //public DbSet<AD> ADs { set; get; }
@@ -40,21 +40,24 @@ namespace RepositoryMVC
             modelBuilder.Entity<Problem>();
             modelBuilder.Entity<Article>();
             modelBuilder.Entity<Keywords>();
+            modelBuilder.Entity<Profile>();
             modelBuilder.Entity<KeywordsAndProblem>();
             modelBuilder.Entity<KeywordsAndArticle>();
-
+            modelBuilder.Entity<ProfileToKeyword>();
 
             modelBuilder.ComplexType<Email>();
-
 
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>().Property(u => u.UserName).HasMaxLength(256);
             modelBuilder.Entity<KeywordsAndArticle>().HasKey(ka => new { ka.ArticleId, ka.KeywordId });
             modelBuilder.Entity<KeywordsAndArticle>().Ignore(ka => ka.Id);
+
             modelBuilder.Entity<KeywordsAndProblem>().HasKey(kp => new { kp.ProblemId, kp.KeywordId });
             modelBuilder.Entity<KeywordsAndProblem>().Ignore(kp => kp.Id);
 
+            modelBuilder.Entity<ProfileToKeyword>().HasKey(pk => new { pk.ProfileId, pk.KeywordId });
+            modelBuilder.Entity<ProfileToKeyword>().Ignore(pk => pk.Id);
         }
 
 

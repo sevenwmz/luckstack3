@@ -9,6 +9,7 @@ using V = ViewModel;
 using System.Web;
 using RepositoryMVC;
 using System.Data.Entity;
+using Profile = EntityMVC.Profile;
 
 namespace ProductServices
 {
@@ -25,6 +26,18 @@ namespace ProductServices
         {
             mapper = new MapperConfiguration(cfg =>
             {
+                #region Profile 
+                cfg.CreateMap<V.Profile.WriteModel, Profile>(MemberList.None)
+                        .ReverseMap()
+                        .ForMember(p=>p.NeedSubKeyword,opt=>opt.Ignore())
+                        .ForMember(p=>p.Constellation,opt=>opt.Ignore())
+                        .ForMember(p=>p.ConstellationName, opt=>opt.Ignore())
+                        .ForMember(p=>p.FristKeyword,opt=>opt.Ignore())
+                        .ForMember(p=>p.FristKeywordId,opt=>opt.Ignore())
+
+                        ;
+                #endregion
+
                 #region MoneyTrade and BMoney
                 cfg.CreateMap<V.MoneyTrade.SaleModel, BMoney>(MemberList.None)
                         .ReverseMap()
