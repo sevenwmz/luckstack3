@@ -78,6 +78,7 @@
     <Compile Include="Log\OnModel.cs" />
     <Compile Include="Message\Mine.cs" />
     <Compile Include="Password\ChangeModel.cs" />
+    <Compile Include="Password\ForgetModel.cs" />
     <Compile Include="Problem\ProblemEditModel.cs" />
     <Compile Include="Problem\ProblemIndexModel.cs" />
     <Compile Include="Problem\ProblemItemModel.cs" />

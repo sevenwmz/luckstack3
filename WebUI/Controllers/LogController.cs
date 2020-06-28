@@ -43,14 +43,7 @@ namespace WebUI.Controllers
                 return View(model);
             }
 
-            //Add Email
-            new EmailController().ValideEmail
-                (new ViewModel.EmailModel
-                {
-                    EmailAddress = "616309891@qq.com",
-                    Expire = DateTime.Now.AddMinutes(10),
-                    UserName = "wpzwpz"
-                });
+
 
             //Add cookie
             CookieHelper.AddCookie(user.Id, user.Password, model.RemenberMe);

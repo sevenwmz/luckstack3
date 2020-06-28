@@ -35,5 +35,41 @@ namespace ProductServices
                 throw;
             }
         }
+
+        public ForgetModel FindUserInfo(ForgetModel model)
+        {
+            User user = new User();
+            if (model.EmailAddress != null)
+            {
+                user = UserRepository.FindBy(model.EmailAddress);
+            }
+            else if (model.UserName != null)
+            {
+                user = UserRepository.GetBy(model.UserName);
+            }
+            else
+            {
+                return null;
+            }
+
+            ForgetModel forgetModel = connectedMapper.Map<ForgetModel>(user);
+            forgetModel.EmailAddress = user.EmailAddress.Address;
+            return forgetModel;
+        }
+
+        public void AddVerifyCode(ForgetModel model,int verifyCode)
+        {
+            User user = new User();
+            if (model.EmailAddress != null)
+            {
+                user = UserRepository.FindBy(model.EmailAddress);
+            }
+            else if (model.UserName != null)
+            {
+                user = UserRepository.GetBy(model.UserName);
+            }
+            user.EmailAddress.Code = verifyCode.ToString();
+            user.EmailAddress.Expire = DateTime.Now.AddMinutes(10);
+        }
     }
 }

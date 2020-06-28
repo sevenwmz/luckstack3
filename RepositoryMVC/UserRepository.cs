@@ -44,6 +44,11 @@ namespace RepositoryMVC
             context.SaveChanges();
         }
 
+        public User FindBy(string emailAddress)
+        {
+            return entities.Where(u => u.EmailAddress.Address == emailAddress).FirstOrDefault();
+        }
+
         /// <summary>
         /// Add data to database.
         /// </summary>

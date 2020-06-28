@@ -1,0 +1,87 @@
+﻿@model ViewModel.Password.ForgetModel
+@{
+    ViewData["Title"] = "忘了·一起帮";
+    Layout = "~/Views/Shared/_LayoutBigColumn.cshtml";
+}
+
+@section title{
+    (｡ŏ_ŏ) 忘了
+}
+@section Descirption {
+    <ol>
+        <li>重置密码的邮件会发送到你填写的Email中。</li>
+        <li>输入用户名之后，还要点击旁边的 按钮，以完成Email地址的填写。</li>
+        <li>现目前，还没有针对未激活Email做特殊提示，请务必确保Email正确。</li>
+    </ol>
+}
+@section style{
+    <style>
+        ol > li {
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+
+        .field-validation-error {
+            color: #b94a48;
+        }
+
+        .field-validation-valid {
+            display: none;
+        }
+
+        input.input-validation-error {
+            border: 1px solid #b94a48;
+        }
+
+        input[type="checkbox"].input-validation-error {
+            border: 0 none;
+        }
+
+        .validation-summary-errors {
+            color: #b94a48;
+        }
+
+        .validation-summary-valid {
+            display: none;
+        }
+    </style>
+}
+<div class="card col-md-4">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#"><i class="fa fa-lock"> 密码</i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#"><i class="fa fa-user-circle"> 用户名</i></a>
+            </li>
+        </ul>
+    </div>
+    @using (Html.BeginForm(new { @class = "card-body" }))
+    {
+        <div class="form-group">
+            <label><strong>Email：（* 必填）</strong></label>
+            @Html.TextBoxFor(f => f.EmailAddress, new { @class = "form-control", placeholder = "注册时填写的Email地址" })
+            @Html.ValidationMessageFor(f => f.EmailAddress)
+        </div>
+        <label><strong>通过用户名查找Email：</strong></label>
+        <div class="input-group">
+            @Html.TextBoxFor(f => f.UserName, new { @class = "form-control", placeholder = "必须全称，且不要忘了点击 搜索 按钮" })
+            <div class="input-group-append">
+                <button type="button" class="btn btn-outline-secondary"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+        <span asp-validation-for="UserForget.UserName"></span>
+        <div class="form-group">
+            <label><strong>验证码：（* 必填）</strong> </label>
+            <div>
+                @Html.TextBoxFor(f=>f.Captcha,new {@class="form-control" ,style="width:30%;display:inline;"})
+                <img src="/Shared/Captcha" />
+                <a href="/Password/Forget">看不清楚</a>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">发送邮件</button>
+        <button type="reset" class="btn btn-light border border-secondary">重置</button>
+    }
+
+</div>

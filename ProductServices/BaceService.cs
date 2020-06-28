@@ -33,6 +33,15 @@ namespace ProductServices
                     .ForMember(p=>p.ConfrimPwd,opt=>opt.Ignore())
                     .ForMember(p=>p.OldPwd,opt=>opt.Ignore())
                  ;
+                cfg.CreateMap<V.Password.ForgetModel, User>(MemberList.None)
+                    .ForMember(u => u.EmailAddress, opt => opt.Ignore())
+                    .ReverseMap()
+                    .ForMember(f=>f.UserName, opt=>opt.MapFrom(u=>u.UserName))
+                    .ForMember(f=>f.Captcha, opt=>opt.Ignore())
+                    ;
+
+
+
                 #endregion
 
                 #region Contact Area
