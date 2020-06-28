@@ -35,6 +35,13 @@ namespace EntityMVC
             };
         }
 
+        public BMoney FreezingSale()
+        {
+            this.Latestime = DateTime.Now;
+            this.Status = BMoneyDirection.BMoneyFreezing;
+            return this;
+        }
+
         public BMoney PublicArticleMinusBMoney(BMoney bMoney)
         {
             return new BMoney

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ViewModel.MoneyTrade
 {
-    public class Sale
+    public class SaleModel
     {
         public int LeftBMoney { set; get; }
         public int CanSale { set; get; }

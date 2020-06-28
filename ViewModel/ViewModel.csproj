@@ -77,6 +77,7 @@
     <Compile Include="KeywordsModel.cs" />
     <Compile Include="Log\OnModel.cs" />
     <Compile Include="Message\Mine.cs" />
+    <Compile Include="MoneyTrade\SaleModel.cs" />
     <Compile Include="Password\ChangeModel.cs" />
     <Compile Include="Password\ForgetModel.cs" />
     <Compile Include="Password\ResetModel.cs" />

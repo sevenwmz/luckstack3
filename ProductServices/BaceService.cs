@@ -25,6 +25,18 @@ namespace ProductServices
         {
             mapper = new MapperConfiguration(cfg =>
             {
+                #region MoneyTrade and BMoney
+                cfg.CreateMap<V.MoneyTrade.SaleModel, BMoney>(MemberList.None)
+                        .ReverseMap()
+                        .ForMember(m=>m.ByFrom,opt=>opt.Ignore())
+                        .ForMember(m=>m.SaleCount,opt=>opt.MapFrom(b=>b.Change))
+                        .ForMember(m=>m.Message,opt=>opt.MapFrom(b=>b.Detail))
+                        .ForMember(m=>m.TotalSaleMoney,opt=>opt.Ignore())
+                        .ForMember(m=>m.LeftBMoney,opt=>opt.MapFrom(b=>b.LeftBMoney + b.Freezing))
+                        .ForMember(m=>m.CanSale,opt=>opt.MapFrom(b=>b.LeftBMoney))
+                        ;
+
+                #endregion
 
                 #region ChangePassword
                 cfg.CreateMap<V.Password.ChangeModel, User>(MemberList.None)
