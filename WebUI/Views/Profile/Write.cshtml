@@ -34,6 +34,8 @@
     {
         <div class="form-group">
             <label><strong>头像：（* 仅限jpg/png/gif）</strong></label>
+            <input type="file" name="icon" accept="image/*" />
+
             <div class="custom-file">
                 <input type="file" name="icon" accept="image/*" class="custom-file-input" aria-describedby="inputGroupFileAddon01">
                 <label class="custom-file-label" for="inputGroupFile01">页面提交时上传文件</label>
@@ -58,7 +60,7 @@
                 <div class="input-group-append">
                     <span class="input-group-text">年</span>
                 </div>
-                @Html.DropDownListFor(p => p.MonthId,Model.Month, "---月---", new { @class = "form-control" })
+                @Html.DropDownListFor(p => p.MonthId, Model.Month, "---月---", new { @class = "form-control" })
                 <div class="input-group-append">
                     <span class="input-group-text">月</span>
                 </div>
@@ -80,14 +82,14 @@
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <div class="dropdown-menu">
-                        @Html.DropDownListFor(p => p.FristKeywordId, ViewData[Global.Const.FRISTKEYWORD] as List<SelectListItem>, "---1级---", new { @class = "form-control" })
+                        @Html.DropDownListFor(p => p.FristKeywordName, ViewData[Global.Const.FRISTKEYWORD] as List<SelectListItem>, "---1级---", new { @class = "form-control" })
                     </div>
                     <button type="button" class="btn btn-outline-dark">---2级---</button>
                     <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <div class="dropdown-menu">
-                        @Html.DropDownListFor(p => p.ScendKeywordId, ViewData[Global.Const.SCENDKEYWORD] as List<SelectListItem>, "---2级---", new { @class = "form-control" })
+                        @Html.DropDownListFor(p => p.ScendKeywordName, ViewData[Global.Const.SCENDKEYWORD] as List<SelectListItem>, "---2级---", new { @class = "form-control" })
                     </div>
                 </div>
                 @Html.TextBoxFor(w => w.NeedSubKeyword, new { @class = "form-control" })

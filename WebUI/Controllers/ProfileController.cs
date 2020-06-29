@@ -41,12 +41,27 @@ namespace WebUI.Controllers
         [HttpPost]
         public ActionResult Write(WriteModel model,HttpPostedFileBase icon)
         {
-            new ProfileService().SaveUserInfo(model);
+            try
+            {
+                int onwerId = 0;
+                if (model != null)
+                {
+                    onwerId = new ProfileService().SaveUserInfo(model);
+                }
 
+                if (icon != null)
+                {
+                    string fileExname = Path.GetExtension(icon.FileName);
 
-            string fileName = Path.GetFileName(icon.FileName);
-            string path = "/Img/Icon" + new BaceService().CurrentUserId.Value.ToString() + fileName; 
-            icon.SaveAs(Server.MapPath(path));
+                    icon.SaveAs(Server.MapPath(
+                        Path.Combine("/Img/Icon/", onwerId + fileExname)));
+                }
+            }
+            catch (Exception)
+            {
+                //Add Log save
+                throw;
+            }
 
 
             return Redirect("/Home/Index");

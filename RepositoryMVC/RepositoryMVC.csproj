@@ -128,6 +128,10 @@
     <Compile Include="Migrations\202006281310515_Add_ProfileAndPtoK.designer.cs">
       <DependentUpon>202006281310515_Add_ProfileAndPtoK.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006290225440_ChangeProfileBronTimeType.cs" />
+    <Compile Include="Migrations\202006290225440_ChangeProfileBronTimeType.designer.cs">
+      <DependentUpon>202006290225440_ChangeProfileBronTimeType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="ProfileRepository.cs" />
@@ -198,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006281310515_Add_ProfileAndPtoK.resx">
       <DependentUpon>202006281310515_Add_ProfileAndPtoK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006290225440_ChangeProfileBronTimeType.resx">
+      <DependentUpon>202006290225440_ChangeProfileBronTimeType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

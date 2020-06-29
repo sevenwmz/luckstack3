@@ -15,6 +15,12 @@ namespace RepositoryMVC
 
         }
 
+        public int AddUserInfo(Profile profile)
+        {
+            entities.Add(profile);
+            context.SaveChanges();
+            return profile.Id;
+        }
 
     }
 }
