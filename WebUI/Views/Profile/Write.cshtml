@@ -54,11 +54,11 @@
         <div class="form-group">
             <label><strong>生日：</strong></label>
             <div class="input-group mb-3">
-                @Html.DropDownListFor(p => p.YearId, ViewData[Global.Const.YEAR] as List<SelectListItem>, "---年---", new { @class = "form-control" })
+                @Html.DropDownListFor(p => p.YearId, Model.Year, "---年---", new { @class = "form-control" })
                 <div class="input-group-append">
                     <span class="input-group-text">年</span>
                 </div>
-                @Html.DropDownListFor(p => p.MonthId, ViewData[Global.Const.MONTH] as List<SelectListItem>, "---月---", new { @class = "form-control" })
+                @Html.DropDownListFor(p => p.MonthId,Model.Month, "---月---", new { @class = "form-control" })
                 <div class="input-group-append">
                     <span class="input-group-text">月</span>
                 </div>

@@ -30,7 +30,7 @@ namespace ProductServices
                 cfg.CreateMap<V.Profile.WriteModel, Profile>(MemberList.None)
                         .ReverseMap()
                         .ForMember(p=>p.NeedSubKeyword,opt=>opt.Ignore())
-                        .ForMember(p=>p.Constellation,opt=>opt.Ignore())
+                        //.ForMember(p=>p.Constellation,opt=>opt.Ignore())
                         .ForMember(p=>p.ConstellationName, opt=>opt.Ignore())
                         .ForMember(p=>p.FristKeyword,opt=>opt.Ignore())
                         .ForMember(p=>p.FristKeywordId,opt=>opt.Ignore())

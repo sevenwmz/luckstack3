@@ -22,25 +22,12 @@ namespace WebUI.Controllers
             {
                 model.Year.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
             }
-            ViewData[G.Const.YEAR] = model.Year;
 
             model.Month = new List<SelectListItem>();
             for (int i = 12; i > 0; i--)
             {
                 model.Month.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
             }
-            ViewData[G.Const.MONTH] = model.Month;
-            #endregion
-
-            #region Constellation
-            ////model.Constellation = new List<SelectListItem>();
-            //string[] prepareConstellation = ;
-            ////for (int i = 0; i < prepareConstellation.Length; i++)
-            ////{
-            ////    model.Constellation.Add(new SelectListItem { Text = prepareConstellation[i].ToString(), Value = i.ToString() });
-            ////}
-            //model.Constellation =;
-            //ViewData[G.Const.CONSTELLATION] = model.Constellation;
             #endregion
 
             #region Frist and Scend Keyword
@@ -48,7 +35,7 @@ namespace WebUI.Controllers
             ViewData[G.Const.FRISTKEYWORD] = keywordsService.GetDropDownList(true);
             ViewData[G.Const.SCENDKEYWORD] = keywordsService.GetDropDownList(false);
             #endregion
-            return View();
+            return View(model);
         }
 
         [HttpPost]
