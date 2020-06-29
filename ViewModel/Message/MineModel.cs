@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ViewModel.Message
 {
-    public class Mine
+    public class MineModel
     {
         public int Id { set; get; }
         public bool HasCheck { set; get; }
@@ -16,7 +16,7 @@ namespace ViewModel.Message
         public int SumOfMessage { set; get; }
         public DateTime PublishTime { set; get; }
         public MessageStatus MessageStatus { set; get; }
-        public IList<Mine> Items { set; get; }
+        public IList<MineModel> Items { set; get; }
     }
 
     public enum MessageStatus

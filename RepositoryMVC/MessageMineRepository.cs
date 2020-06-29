@@ -15,9 +15,18 @@ namespace RepositoryMVC
 
         }
 
+        public IList<MessageMine> GetMessage(int pageSize, int pageIndex)
+        {
+            return entities.Include(u=>u.Owner)
+                    .OrderByDescending(a => a.PublishTime)
+                    .Skip((pageIndex - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+        }
 
-
-
-
+        public int MessageCount(int currentUserId)
+        {
+            return entities.Count();
+        }
     }
 }

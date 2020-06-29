@@ -60,6 +60,7 @@
     <Compile Include="Keywords.cs" />
     <Compile Include="KeywordsAndArticle.cs" />
     <Compile Include="KeywordsAndProblem.cs" />
+    <Compile Include="MessageMine.cs" />
     <Compile Include="Problem.cs" />
     <Compile Include="Profile.cs" />
     <Compile Include="ProfileToKeyword.cs" />

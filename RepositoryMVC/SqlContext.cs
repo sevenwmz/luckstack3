@@ -39,17 +39,19 @@ namespace RepositoryMVC
             modelBuilder.Entity<Contact>();
             modelBuilder.Entity<Problem>();
             modelBuilder.Entity<Article>();
-            modelBuilder.Entity<Keywords>();
             modelBuilder.Entity<Profile>();
+            modelBuilder.Entity<Keywords>();
+            modelBuilder.Entity<MessageMine>();
             modelBuilder.Entity<KeywordsAndProblem>();
             modelBuilder.Entity<KeywordsAndArticle>();
             modelBuilder.Entity<ProfileToKeyword>();
 
             modelBuilder.ComplexType<Email>();
 
-            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>().Property(u => u.UserName).HasMaxLength(256);
+
+
             modelBuilder.Entity<KeywordsAndArticle>().HasKey(ka => new { ka.ArticleId, ka.KeywordId });
             modelBuilder.Entity<KeywordsAndArticle>().Ignore(ka => ka.Id);
 
@@ -58,6 +60,10 @@ namespace RepositoryMVC
 
             modelBuilder.Entity<ProfileToKeyword>().HasKey(pk => new { pk.ProfileId, pk.KeywordId });
             modelBuilder.Entity<ProfileToKeyword>().Ignore(pk => pk.Id);
+
+
+            base.OnModelCreating(modelBuilder);
+
         }
 
 

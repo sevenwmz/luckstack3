@@ -60,6 +60,7 @@
     <Compile Include="KeywordAndArticleRepository.cs" />
     <Compile Include="KeywordAndProblemRepository.cs" />
     <Compile Include="KeywordRepository.cs" />
+    <Compile Include="MessageMineRepository.cs" />
     <Compile Include="Migrations\202006161339098_Init.cs" />
     <Compile Include="Migrations\202006161339098_Init.designer.cs">
       <DependentUpon>202006161339098_Init.cs</DependentUpon>
@@ -131,6 +132,10 @@
     <Compile Include="Migrations\202006290225440_ChangeProfileBronTimeType.cs" />
     <Compile Include="Migrations\202006290225440_ChangeProfileBronTimeType.designer.cs">
       <DependentUpon>202006290225440_ChangeProfileBronTimeType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006290451282_AddMessageMine.cs" />
+    <Compile Include="Migrations\202006290451282_AddMessageMine.designer.cs">
+      <DependentUpon>202006290451282_AddMessageMine.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
@@ -205,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006290225440_ChangeProfileBronTimeType.resx">
       <DependentUpon>202006290225440_ChangeProfileBronTimeType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006290451282_AddMessageMine.resx">
+      <DependentUpon>202006290451282_AddMessageMine.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

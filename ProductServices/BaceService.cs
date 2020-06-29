@@ -26,6 +26,15 @@ namespace ProductServices
         {
             mapper = new MapperConfiguration(cfg =>
             {
+
+                #region MessageMine
+                cfg.CreateMap<MessageMine, V.Message.MineModel>(MemberList.None)
+                        .ReverseMap()
+                        .ForMember(m=>m.OwnerId, opt => opt.Ignore())
+                        .ForMember(m=>m.Owner, opt => opt.Ignore())
+                        ;
+                #endregion
+
                 #region Profile 
                 cfg.CreateMap<V.Profile.WriteModel, Profile>(MemberList.None)
                         .ForMember(p => p.Constellation, opt => opt.MapFrom(p => p.ConstellationName))
