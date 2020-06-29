@@ -8,7 +8,7 @@ using ViewModel.Message;
 
 namespace WebUI.Controllers
 {
-    public class MessageController : Controller
+    public class MessageController : BaseController
     {
         // GET: Message
         public ActionResult Mine(int id = 1)
@@ -26,9 +26,28 @@ namespace WebUI.Controllers
         [HttpPost]
         public ActionResult Mine(MineModel model)
         {
+            MessageMineService service = new MessageMineService();
 
-
-            return View();
+            string getReturn = HttpContext.Request.Form.Get("submit").ToString();
+            foreach (var item in model.Items)
+            {
+                if (item.CheckAll)
+                {
+                    item.HasCheck = true;
+                }
+                if (item.HasCheck)
+                {
+                    if ("read" == getReturn)
+                    {
+                        service.ChangeHasRead(item.Id);
+                    }
+                    else if ("delete" == getReturn)
+                    {
+                        service.RemoveMessage(item.Id);
+                    }
+                }
+            }
+            return Redirect("message/mine");
         }
     }
 }

@@ -50,8 +50,8 @@
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-6">
                 <label><input type="checkbox" asp-for="CheckAll" />全选</label>
-                <button type="submit" asp-page="/Message/Mine" asp-route-opt="read" class="btn btn-primary rounded fa fa-check-circle">已读</button>
-                <button type="submit" asp-page="/Message/Mine" asp-route-opt="delete" class="btn border-secondary rounded fa fa-times-circle">删除</button>
+                <button type="submit" asp-page="/Message/Mine" name="submit" value="read" class="btn btn-primary rounded fa fa-check-circle">已读</button>
+                <button type="submit" asp-page="/Message/Mine" name="submit" value="delete" class="btn border-secondary rounded fa fa-times-circle">删除</button>
             </div>
         </div>
         <div class="row">
@@ -70,13 +70,13 @@
             <div class="row text-bold" style="@fontWeight">
                 <div class="col-sm-1">
                     <label>
-                        <input type="checkbox" asp-for="Messages[i].HasCheck" />
-                        <input type="hidden" asp-for="Messages[i].Id" />
+                        @Html.CheckBoxFor(m=>m.Items[i].HasCheck)
+                        @Html.HiddenFor(m=>m.Items[i].Id)
                     </label>
                 </div>
                 @if (Model.Items[i].HasRead)
                 {
-                    <div class="col-sm-1"><a class="fa fa-calendar" @Model.Items[i].PublishTime></a></div>
+                    <div class="col-sm-1"><a class="fa fa-calendar">@Model.Items[i].PublishTime</a></div>
                     <div class="col-sm-2"><span><a href="#"><i class="fa fa-times-circle"></i></a>@Model.Items[i].MessageStatus.GetDescription()</span></div>
                     <div class="col-sm-8"><span>@Model.Items[i].Content</span></div>
                 }
@@ -91,8 +91,8 @@
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-6">
                 <label><input type="checkbox" asp-for="CheckAll" />全选</label>
-                <button type="submit" asp-page="/Message/Mine" asp-route-opt="read" class="btn btn-primary rounded fa fa-check-circle">已读</button>
-                <button type="submit" asp-page="/Message/Mine" asp-route-opt="delete" class="btn border-secondary rounded fa fa-times-circle">删除</button>
+                <button type="submit" asp-page="/Message/Mine" name="submit" value="read"  class="btn btn-primary rounded fa fa-check-circle">已读</button>
+                <button type="submit" asp-page="/Message/Mine" name="submit" value="delete" class="btn border-secondary rounded fa fa-times-circle">删除</button>
             </div>
         </div>
 

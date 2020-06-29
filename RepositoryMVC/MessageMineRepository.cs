@@ -28,5 +28,15 @@ namespace RepositoryMVC
         {
             return entities.Count();
         }
+
+        public MessageMine GetFindMessage(int id)
+        {
+            return entities.Find(id);
+        }
+
+        public void RemoveMessage(MessageMine message)
+        {
+            entities.Remove(message);
+        }
     }
 }

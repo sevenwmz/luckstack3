@@ -11,6 +11,7 @@ namespace ViewModel.Message
     {
         public int Id { set; get; }
         public bool HasCheck { set; get; }
+        public bool CheckAll { set; get; }
         public bool HasRead { set; get; }
         public string Content { set; get; }
         public int SumOfMessage { set; get; }
