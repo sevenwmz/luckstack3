@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace ViewModel.Article
 {
@@ -12,7 +10,7 @@ namespace ViewModel.Article
         public string Author { set; get; }
 
         public string Title { set; get; }
-
+        [AllowHtml]
         public string Body { set; get; }
 
         public DateTime PublishTime { get; set; }
