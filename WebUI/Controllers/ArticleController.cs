@@ -11,14 +11,13 @@ namespace WebUI.Controllers
 {
     public class ArticleController : BaseController
     {
-        int userId;
         private ArticleService _service;
         public ArticleController()
         {
-            userId = new BaceService().CurrentUserId.Value;
             _service = new ArticleService();
         }
 
+        #region Article Single
 
         // GET: Article/Single
         public ActionResult Single(int id)
@@ -27,24 +26,29 @@ namespace WebUI.Controllers
             model = _service.GetSingleArticle(id);
             return View(model);
         }
+        #endregion
 
+        #region Article Index
 
         // GET: Article/Index
         public ActionResult Index(int id = 1)
         {
-            ArticleIndexModel index = new ArticleIndexModel { Items = new List<ArticleItemsModel>()};
+            ArticleIndexModel index = new ArticleIndexModel { Items = new List<ArticleItemsModel>() };
             ArticleService articleService = new ArticleService();
             index = articleService.GetArticles(2, id);
             index.SumOfArticle = articleService.GetCount();
             return View(index);
         }
+        #endregion
+
+        #region Article New
 
         // GET: Article/New
         public ActionResult New()
         {
-
+            int userId = new ArticleService().CurrentUserId.Value;
             ViewData["SeriesDropDownList"] = new SeriesService().GetDropDownList(new SeriesService().GetSeries(userId));
-            ViewData["AdDropDownList"] = new AdService().GetDropDownList(new AdService().GetAD(4));
+            ViewData["AdDropDownList"] = new AdService().GetDropDownList(new AdService().GetAD(userId));
 
             return View();
         }
@@ -59,7 +63,7 @@ namespace WebUI.Controllers
 
             if (model.HasNewAd)
             {
-                new AdService().Add(model.ContentOfAd,model.WebSite);
+                new AdService().Add(model.ContentOfAd, model.WebSite);
             }
             new ArticleService().Add(model);
 
@@ -67,9 +71,13 @@ namespace WebUI.Controllers
             return Redirect("/Article/Page-1");
         }
 
+        #endregion
+
+        #region Article Edit
         // GET: Article/Edit
         public ActionResult Edit(int? Id)
         {
+            int userId = new ArticleService().CurrentUserId.Value;
             ViewData["SeriesDropDownList"] = new SeriesService().GetDropDownList(new SeriesService().GetSeries(userId));
             ViewData["AdDropDownList"] = new AdService().GetDropDownList(new AdService().GetAD(userId));
             return View(new ArticleService().GetEditArticle(Id));
@@ -92,5 +100,6 @@ namespace WebUI.Controllers
             return Redirect("/Article/Page-1");
         }
 
+        #endregion
     }
 }
