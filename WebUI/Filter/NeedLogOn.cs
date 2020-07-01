@@ -23,10 +23,10 @@ namespace WebUI.Filter
 
             string prePage = request.Path + request.QueryString;
 
-            string LogOnUser = httpContext.Session.GetString(Const.SESSION_USER);
+            string LogOnUser = httpContext.Request.Cookies.Get(Const.COOKIE_NAME).ToString();
             if (string.IsNullOrEmpty(LogOnUser))
             {
-                context.Result = new RedirectResult($"/Log/On?{Const.PREPAGE}={prePage}&{Const.ROLE}={_role}");
+                filterContext.Result = new RedirectResult($"/Log/On?{Const.PREPAGE}={prePage}&{Const.ROLE}={_role}");
             }//else nothing..
 
 
