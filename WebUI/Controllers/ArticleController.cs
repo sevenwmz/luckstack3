@@ -70,7 +70,7 @@ namespace WebUI.Controllers
             {
                 model.Summary = HtmlSecurityHelper.HtmlSecurity(model.Body,true);
             }
-            model.Summary = GetSumarry(model.Summary);
+            model.Summary = SummaryHelper.GetSumarry(model.Summary);
 
             int articleId = _service.Add(model);
 
@@ -78,23 +78,7 @@ namespace WebUI.Controllers
             return Redirect($"/Article/{articleId}");
         }
 
-        private string GetSumarry(string body)
-        {
-            string summary = string.Empty;
-            if (string.IsNullOrEmpty(summary))
-            {
-                summary = body.PadRight(255).Substring(0, 255).Trim();
-            }
-            else
-            {
-                summary = summary.Trim();
-                if (summary.Length > 255)
-                {
-                    summary = summary.Substring(0, 255);
-                }//else nothing.
-            }
-            return summary;
-        }
+
 
         #endregion
 
