@@ -119,17 +119,18 @@ namespace ProductServices
             AritcleEditModel articleEditModel = new AritcleEditModel();
             articleEditModel = connectedMapper.Map<AritcleEditModel>(_articleEntity);
 
-            articleEditModel.Author = _articleEntity.Author.UserName;
-            articleEditModel.WebSite = _articleEntity.UseAd.WebSite;
-            articleEditModel.ContentOfAd = _articleEntity.UseAd.ContentOfAd;
-
             var keywords = new KeywordAndArticleRepository(dbContext).GetKeywords(id.Value);
-            string keyWordOfArticle = string.Empty;
-            foreach (var item in keywords)
+
+            if (keywords != null)
             {
-                keyWordOfArticle += item.Keyword.Name + " ";
+                string keyWordOfArticle = string.Empty;
+                foreach (var item in keywords)
+                {
+                    keyWordOfArticle += item.Keyword.Name + " ";
+                }
+                articleEditModel.Keywords = keyWordOfArticle;
             }
-            articleEditModel.Keywords = keyWordOfArticle;
+
             return articleEditModel;
         }
 

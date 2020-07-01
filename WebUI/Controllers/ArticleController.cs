@@ -65,7 +65,6 @@ namespace WebUI.Controllers
             }
 
             model.Body = HtmlSecurityHelper.HtmlSecurity(model.Body);
-
             if (string.IsNullOrEmpty(model.Summary))
             {
                 model.Summary = HtmlSecurityHelper.HtmlSecurity(model.Body,true);
@@ -74,12 +73,8 @@ namespace WebUI.Controllers
 
             int articleId = _service.Add(model);
 
-
             return Redirect($"/Article/{articleId}");
         }
-
-
-
         #endregion
 
         #region Article Edit
@@ -104,7 +99,15 @@ namespace WebUI.Controllers
             {
                 new AdService().Add(model.ContentOfAd, model.WebSite);
             }
-            new ArticleService().Update(model);
+
+            model.Body = HtmlSecurityHelper.HtmlSecurity(model.Body);
+            if (string.IsNullOrEmpty(model.Summary))
+            {
+                model.Summary = HtmlSecurityHelper.HtmlSecurity(model.Body, true);
+            }
+            model.Summary = SummaryHelper.GetSumarry(model.Summary);
+
+            _service.Update(model);
 
             return Redirect("/Article/Page-1");
         }
