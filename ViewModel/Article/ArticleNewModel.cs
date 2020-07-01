@@ -18,6 +18,7 @@ namespace ViewModel
         public string Title { set; get; }
 
         [Required(ErrorMessage = "内容不能为空")]
+        [AllowHtml]
         public string Body { set; get; }
 
         public string Summary { set; get; }

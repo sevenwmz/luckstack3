@@ -1,8 +1,7 @@
 ﻿using ProductServices;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using WebUI.Helper;
 using System.Web.Mvc;
 using ViewModel;
 using ViewModel.Article;
@@ -34,9 +33,8 @@ namespace WebUI.Controllers
         public ActionResult Index(int id = 1)
         {
             ArticleIndexModel index = new ArticleIndexModel { Items = new List<ArticleItemsModel>() };
-            ArticleService articleService = new ArticleService();
-            index = articleService.GetArticles(2, id);
-            index.SumOfArticle = articleService.GetCount();
+            index = _service.GetArticles(2, id);
+            index.SumOfArticle = _service.GetCount();
             return View(index);
         }
         #endregion
@@ -46,7 +44,7 @@ namespace WebUI.Controllers
         // GET: Article/New
         public ActionResult New()
         {
-            int userId = new ArticleService().CurrentUserId.Value;
+            int userId = _service.CurrentUserId.Value;
             ViewData["SeriesDropDownList"] = new SeriesService().GetDropDownList(new SeriesService().GetSeries(userId));
             ViewData["AdDropDownList"] = new AdService().GetDropDownList(new AdService().GetAD(userId));
 
@@ -58,17 +56,44 @@ namespace WebUI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("New");
+                return Redirect("New");
             }
 
             if (model.HasNewAd)
             {
                 new AdService().Add(model.ContentOfAd, model.WebSite);
             }
-            new ArticleService().Add(model);
+
+            model.Body = HtmlSecurityHelper.HtmlSecurity(model.Body);
+
+            if (string.IsNullOrEmpty(model.Summary))
+            {
+                model.Summary = HtmlSecurityHelper.HtmlSecurity(model.Body,true);
+            }
+            model.Summary = GetSumarry(model.Summary);
+
+            int articleId = _service.Add(model);
 
 
-            return Redirect("/Article/Page-1");
+            return Redirect($"/Article/{articleId}");
+        }
+
+        private string GetSumarry(string body)
+        {
+            string summary = string.Empty;
+            if (string.IsNullOrEmpty(summary))
+            {
+                summary = body.PadRight(255).Substring(0, 255).Trim();
+            }
+            else
+            {
+                summary = summary.Trim();
+                if (summary.Length > 255)
+                {
+                    summary = summary.Substring(0, 255);
+                }//else nothing.
+            }
+            return summary;
         }
 
         #endregion
@@ -101,5 +126,9 @@ namespace WebUI.Controllers
         }
 
         #endregion
+
+
+
+       
     }
 }

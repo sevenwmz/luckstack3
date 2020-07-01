@@ -62,10 +62,6 @@ namespace ProductServices
         public int Add(ArticleNewModel model)
         {
             _articleEntity = connectedMapper.Map<Article>(model);
-            if (string.IsNullOrEmpty(model.Summary))
-            {
-                _articleEntity.Summary = _articleEntity.GetSumarry(model.Body);
-            }
             _articleEntity.PublishArticle();
             _articleEntity.Author = CurrenUser;
 

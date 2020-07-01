@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace WebUI.Helper
 {
-    public class ContentAndSummaryCheckHelper
+    public class HtmlSecurityHelper
     {
         #region Left here just understand for myself
         //Get HTML Tag.
@@ -37,20 +37,33 @@ namespace WebUI.Helper
                                                     ,"samp","!--","br/"};
         #endregion
 
-
         #region Check input html is security
 
-        public static string HtmlSecurity(string content, bool onlyContent = false)
+        /// <summary>
+        /// Check html content security,if not security will be repleace.
+        /// </summary>
+        /// <param name="content">Need html content</param>
+        /// <param name="onlyPureText">Without html tag,only pure text return</param>
+        /// <returns>Return security text.</returns>
+        public static string HtmlSecurity(string content, bool onlyPureText = false)
         {
             return Regex.Replace(content,
                             _fristGetElement,
-                            match => fixTag(match, allowTags, allowProprety, onlyContent),
+                            match => fixTag(match, allowTags, allowProprety, onlyPureText),
                             RegexOptions.IgnoreCase);
         }
 
-        private static string fixTag(Match thisMatch, string[] allowTags, string[] allowProprety, bool onlyContent = false)
+        /// <summary>
+        /// Check tag is security,if not security replace "",
+        /// </summary>
+        /// <param name="thisMatch">content text</param>
+        /// <param name="allowTags">White tag list</param>
+        /// <param name="allowProprety">White proprety list</param>
+        /// <param name="onlyPureText">Get only text without html tags</param>
+        /// <returns>Return after check text</returns>
+        private static string fixTag(Match thisMatch, string[] allowTags, string[] allowProprety, bool onlyPureText = false)
         {
-            if (onlyContent)
+            if (onlyPureText)
             {
                 return "";
             }
@@ -70,6 +83,12 @@ namespace WebUI.Helper
 
         }
 
+        /// <summary>
+        /// Further check html property,if have some danger remove.
+        /// </summary>
+        /// <param name="match">Need check element</param>
+        /// <param name="allowProprety">Need allow property white list</param>
+        /// <returns>Return security html</returns>
         private static string fixProprety(Match match, string[] allowProprety)
         {
             string proprety = match.Value;
@@ -85,7 +104,5 @@ namespace WebUI.Helper
             return proprety;
         }
         #endregion
-
-
     }
 }
