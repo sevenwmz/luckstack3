@@ -12,13 +12,12 @@ var problem = {
 
 //var problem = {};
 //problem.title = "new title";
-//problem.title = "new title";
 //problem.body = "fake here is body";
 //problem.reward = 100;
 //problem.needRemote = true;
 
 
-alert("Something comeing true");
+alert("here is js file");
 alert(sname);
 sname = "Li zhi bo";
 alert(sname);
