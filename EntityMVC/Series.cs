@@ -8,6 +8,7 @@ namespace EntityMVC
 {
     public class Series : BaceEntity
     {
+        public string Summary { set; get; }
         public string ContentOfSeries { set; get; }
         public int? OwnerId { set; get; }
         public User Owner { set; get; }

@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace ViewModel.ChildAction
 {
-    public class Series
+    public class ChildSeriesModel
     {
+        public int AuthorId { set; get; }
+
+        public string AuthorName { set; get; }
+
+        public int Id { set; get; }
+
+        public string Title { set; get; }
+
+        public string Summary { set; get; }
+
+        public IList<ChildSeriesModel> Items { set; get; }
+
     }
 }

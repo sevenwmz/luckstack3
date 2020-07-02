@@ -1,0 +1,15 @@
+﻿@model ViewModel.ChildAction.ChildSeriesModel
+
+<div style="border:dashed#e4e0e0 1px;border-radius:5px;" class="container mt-5 mb-3">
+    <h4 class="lead mt-md-4"><i class="fa fa-folder"></i><a href="/Article/User-@Model.AuthorId">@Model.AuthorName</a> 的系列文章</h4>
+    <hr />
+    <section>
+        @*循环出这个作者的文章*@
+        @foreach (var item in Model.Items)
+        {
+            <p><i class="fa fa-book"></i><a href="/Article">  @item.Title</a></p>
+            <p>@item.Summary</p>
+        }
+    </section>
+    <p class="text-right"><i class="fa fa-arrow-circle-o-right"></i><a href="/Article">全部</a></p>
+</div>

@@ -26,6 +26,15 @@ namespace ProductServices
         {
             mapper = new MapperConfiguration(cfg =>
             {
+                #region ChildSeries Area
+                cfg.CreateMap<V.ChildAction.ChildSeriesModel, Series>(MemberList.None)
+                        .ForMember(s => s.ContentOfSeries, opt => opt.MapFrom(s => s.Title))
+                        .ReverseMap()
+                        .ForMember(s => s.AuthorId, opt => opt.MapFrom(s => s.Owner.Id))
+                        .ForMember(s => s.AuthorName, opt => opt.MapFrom(s => s.Owner.UserName))
+
+                        ;
+                #endregion
 
                 #region MessageMine
                 cfg.CreateMap<MessageMine, V.Message.MineModel>(MemberList.None)

@@ -137,6 +137,10 @@
     <Compile Include="Migrations\202006290451282_AddMessageMine.designer.cs">
       <DependentUpon>202006290451282_AddMessageMine.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007020921518_AddSeriesSummary.cs" />
+    <Compile Include="Migrations\202007020921518_AddSeriesSummary.designer.cs">
+      <DependentUpon>202007020921518_AddSeriesSummary.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="ProfileRepository.cs" />
@@ -213,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006290451282_AddMessageMine.resx">
       <DependentUpon>202006290451282_AddMessageMine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007020921518_AddSeriesSummary.resx">
+      <DependentUpon>202007020921518_AddSeriesSummary.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

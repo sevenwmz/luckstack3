@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ProductServices;
 
 namespace WebUI.Controllers
 {
-    public class SeriesController : Controller
+    public class SeriesController : BaseController
     {
         // GET: Series
-        public ActionResult Index()
+        [ChildActionOnly]
+        public PartialViewResult _Series(int id)
         {
-            return View();
+            return PartialView(new SeriesService().GetSideSeries(id));
         }
     }
 }

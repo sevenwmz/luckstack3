@@ -26,7 +26,7 @@ namespace RepositoryMVC
 
         public IList<Series> OnGetSeries(int userId)
         {
-            return entities.Where(s=>s.OwnerId == userId).ToList();
+            return entities.Include(s=>s.Owner).Where(s=>s.OwnerId == userId).ToList();
         }
     }
 }
