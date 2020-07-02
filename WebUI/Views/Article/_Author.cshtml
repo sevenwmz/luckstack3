@@ -1,5 +1,4 @@
-﻿@model ViewModel.Article.ArticleIndexModel
-
+﻿
 @{ string color = "gray";
     if (Convert.ToInt32(Model.Level) == 0)
     {
@@ -20,4 +19,4 @@
 }
 
 
-<a href="/Suggest/?@Const.USER_ID=@Convert.ToInt32(Model.Id)" style="color:@color">@Model.Author</a>
+<a href="/Article/@Const.USER@Convert.ToInt32(Model.AuthorId)" style="color:@color">@Model.Author</a>

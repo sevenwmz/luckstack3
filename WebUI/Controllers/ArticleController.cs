@@ -16,6 +16,24 @@ namespace WebUI.Controllers
             _service = new ArticleService();
         }
 
+
+        #region Artile Auhtor
+        // GET: Article/Single
+        public ActionResult Author(int id,int pageId = 1)
+        {
+            AritcleAuthorModel model = new AritcleAuthorModel();
+            model = _service.GetAuthorArticle(id,2, pageId);
+            model.SumOfAuthor = _service.GetAuthorCount(id);
+
+            if (model.SumOfAuthor % 2 == 1)
+            {
+                model.SumOfAuthor += 1;
+            }
+
+            return View(model);
+        }
+        #endregion
+
         #region Article Single
 
         // GET: Article/Single

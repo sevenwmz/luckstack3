@@ -184,6 +184,20 @@ namespace ProductServices
                 #endregion
 
                 #region Article Area
+                cfg.CreateMap<Article, V.Article.AritcleAuthorModel>(MemberList.None)
+                    .ForMember(a => a.ListKeyword, opt => opt.MapFrom(a => a.OwnKeyword.Select(o => o.Keyword)))
+                    .ForMember(a => a.Author, opt => opt.MapFrom(a=>a.Author.UserName))
+                    .ForMember(a => a.AuthorId, opt => opt.MapFrom(a => a.Author.Id))
+                    .ForMember(a => a.Level, opt => opt.MapFrom(a => a.Author.Level))
+                    .ReverseMap()
+                    .ForMember(a => a.Author, opt => opt.Ignore())
+                    .ForMember(a => a.OwnKeyword, opt => opt.Ignore())
+                    .ForMember(a => a.UseSeries, opt => opt.Ignore())
+                    .ForMember(a => a.UseAd, opt => opt.Ignore())
+                    ;
+
+
+
                 cfg.CreateMap<V.Article.ArticleSingleModel, Article>(MemberList.None)
                     .ForMember(a => a.Summary, opt => opt.Ignore())
                     .ForMember(a => a.UseAd, opt => opt.Ignore())
@@ -199,7 +213,10 @@ namespace ProductServices
 
                 cfg.CreateMap<Article, V.ArticleItemsModel>(MemberList.None)
                     .ForMember(a => a.ListKeyword, opt => opt.MapFrom(a => a.OwnKeyword.Select(o => o.Keyword)))
-                    .ForMember(a => a.Author, opt => opt.Ignore())
+                    .ForMember(a => a.Author, opt => opt.MapFrom(a=>a.Author.UserName))
+                    .ForMember(a => a.AuthorId, opt => opt.MapFrom(a=>a.Author.Id))
+                    .ForMember(a => a.Level, opt => opt.MapFrom(a=>a.Author.Level))
+
                     .ReverseMap()
                     .ForMember(a => a.Author, opt => opt.Ignore())
                     .ForMember(a => a.OwnKeyword, opt => opt.Ignore())

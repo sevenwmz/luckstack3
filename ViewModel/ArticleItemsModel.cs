@@ -11,7 +11,11 @@ namespace ViewModel
         public int Id { set; get; }
 
         public string Author { set; get; }
-
+        
+        public int Level { set; get; }
+        
+        public int AuthorId { set; get; }
+        
         public string Title { set; get; }
 
         public string Body { set; get; }

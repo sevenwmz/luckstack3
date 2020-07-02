@@ -6,7 +6,27 @@ using System.Threading.Tasks;
 
 namespace ViewModel.Article
 {
-    class AritcleAuthorModel
+    public class AritcleAuthorModel
     {
+        public int Id { set; get; }
+
+        public string Author { set; get; }
+
+        public int Level { set; get; }
+
+        public int AuthorId { set; get; }
+
+        public string Title { set; get; }
+
+        public string Body { set; get; }
+
+        public string Summary { set; get; }
+
+        public DateTime PublishTime { get; set; }
+        public int SumOfAuthor { set; get; }
+
+        public IList<KeywordModel> ListKeyword { set; get; }
+
+        public IList<AritcleAuthorModel> Items { set; get; }
     }
 }

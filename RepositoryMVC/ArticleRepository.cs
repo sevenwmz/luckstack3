@@ -22,11 +22,6 @@ namespace RepositoryMVC
             return article.Id;
         }
 
-        public int Find(string title)
-        {
-            return entities.Where(a => a.Title == title).FirstOrDefault().Id;
-        }
-
         public Article Find(int articleId)
         {
             return entities
@@ -44,9 +39,26 @@ namespace RepositoryMVC
                 .ToList();
         }
 
+        public IList<Article> GetAuthorArticles(int authorId,int pageSize, int pageIndex)
+        {
+            return entities.Include(e => e.Author)
+                .Include(k => k.OwnKeyword.Select(o => o.Keyword))
+                .OrderByDescending(a => a.PublishTime)
+                .Where(a => a.Author.Id == authorId)
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+        }
+
+
         public int ArticlesCount()
         {
             return entities.Count();
+        }
+
+        public int GetAuthorCount(int id)
+        {
+            return entities.Where(a => a.Author.Id == id).Count();
         }
 
         public Article GetEditArticle(int? id)

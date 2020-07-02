@@ -39,6 +39,21 @@ namespace WebUI
 
             #region Article Route Area
             routes.MapRoute(
+                name: "ArticleAuthorPage",
+                url: "Article/User-{Id}/Page-{pageId}",
+                defaults: new { controller = "Article", action = "Author" },
+                constraints: new { id = "\\d+", pageId = "\\d+" }
+            );
+
+            routes.MapRoute(
+                name: "ArticleAuthor",
+                url: "Article/User-{Id}",
+                defaults: new { controller = "Article", action = "Author" },
+                constraints: new { id = "\\d+" }
+            );
+
+
+            routes.MapRoute(
                 name: "ArticleSingle",
                 url: "Article/{Id}",
                 defaults: new { controller = "Article", action = "Single" },

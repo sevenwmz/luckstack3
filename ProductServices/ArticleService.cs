@@ -21,16 +21,33 @@ namespace ProductServices
             _articleEntity = new Article();
         }
 
-
-        /// Infact I wanna use this function ,but when IList<T> inside i can't point something...faild
-        public IList<SelectListItem> GetDropDownList<T>(IList<T> ts)
+        /// <summary>
+        /// Get total article count of specified author.
+        /// </summary>
+        /// <param name="id">Need authorId</param>
+        /// <returns>Return specified author article count</returns>
+        public int GetAuthorCount(int id)
         {
-            List<SelectListItem> dropDownList = new List<SelectListItem>();
-            foreach (var item in ts)
+            return _repository.GetAuthorCount(id);
+        }
+
+        /// <summary>
+        /// Article author page need data.
+        /// </summary>
+        /// <param name="id">Need author id</param>
+        /// <param name="pageSize">For show page count</param>
+        /// <param name="pageIndex">Cruuent page id</param>
+        /// <returns>Return articleAuthorModel with info</returns>
+        public AritcleAuthorModel GetAuthorArticle(int id, int pageSize, int pageIndex)
+        {
+            IList<Article> tempArticle = new List<Article>();
+            tempArticle = _repository.GetAuthorArticles(id, pageSize, pageIndex);
+            AritcleAuthorModel model = new AritcleAuthorModel
             {
-                dropDownList.Add(new SelectListItem { Text = item.ToString(), Value = item.ToString() });
-            }
-            return dropDownList;
+                Items = connectedMapper.Map<List<AritcleAuthorModel>>(tempArticle)
+            };
+            model.Author = model.Items.Select(a => a.Author).FirstOrDefault();
+            return model;
         }
 
         /// <summary>

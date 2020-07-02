@@ -1,4 +1,4 @@
-﻿@model ViewModel.Article.ArticleIndexModel
+﻿@model ViewModel.Article.AritcleAuthorModel
 @{
     ViewData["Title"] = "精品文章 一起帮";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -17,12 +17,13 @@
 
 <main class="container">
     <article class="row">
-        <div class="col-md-8" style="margin-top:90px;"> 
+        <div class="col-md-8" style="margin-top:90px;">
+            <h2><i class="fa fa-wrench"></i> 文章路径：<span style="color:gray;font-size:small"><a href="/Article">全部</a>/</span><span style="font-size:medium;color:deepskyblue"> @Model.Author 的文章</span></h2>
             @foreach (var article in Model.Items)
             {
                 <div>
                     <span><i class="fa fa-calendar"></i>@article.PublishTime</span>
-                    <span class="float-md-right text-info">作者：@Html.Partial("_Author",article)</span>
+                    <span class="float-md-right text-info">作者：@Html.Partial("_Author", article)</span>
                     <p><a href="/Article/@article.Id" class="text-info">@article.Title</a></p>
                     <p>@article.Summary<a href="/Article/Edit/@article.Id" style="color:dodgerblue">……</a></p>
                     <label>
@@ -45,14 +46,15 @@
 
             }
             @{
+                int currentAuthorId = Convert.ToInt32(ViewContext.RouteData.Values["id"]);
                 int currentPageIndex;
-                if (ViewContext.RouteData.Values["id"] == null)
+                if (ViewContext.RouteData.Values["pageId"] == null)
                 {
                     currentPageIndex = 1;
                 }
                 else
                 {
-                    currentPageIndex = Convert.ToInt32(ViewContext.RouteData.Values["id"]);
+                    currentPageIndex = Convert.ToInt32(ViewContext.RouteData.Values["pageId"]);
                 }
                 int pagingId = (currentPageIndex - 1) / 10 + 1;
             }
@@ -63,7 +65,7 @@
                     @if (currentPageIndex > 1)
                     {
                         <li class="page-item">
-                            <a class="page-link" aria-label="Private" href="/Article/Page-@(currentPageIndex-1)">
+                            <a class="page-link" aria-label="Private" href="/Article/User-@currentAuthorId/Page-@(currentPageIndex-1)">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
@@ -72,9 +74,9 @@
                         int pagingLength = 10;
                         int startPaging = 1 + (pagingId - 1) * pagingLength;
 
-                        if (pagingId * pagingLength * 2 > Model.SumOfArticle)
+                        if (pagingId * pagingLength * 2 > Model.SumOfAuthor)
                         {
-                            pagingLength = Model.SumOfArticle % pagingLength;
+                            pagingLength = (Model.SumOfAuthor % pagingLength) / 2;
                         }
                     }
                     @for (int i = startPaging; i <= startPaging + pagingLength - 1; i++)
@@ -85,13 +87,13 @@
                         }
                         else
                         {
-                            <li class="page-item"><a class="page-link" href="/Article/Page-@i">@(i)</a></li>
+                            <li class="page-item"><a class="page-link" href="/Article/User-@currentAuthorId/Page-@i">@(i)</a></li>
                         }
                     }
-                    @if (currentPageIndex < (Model.SumOfArticle / Const.PAGE_SIZE))
+                    @if (currentPageIndex < (Model.SumOfAuthor / Const.PAGE_SIZE))
                     {
                         <li class="page-item">
-                            <a class="page-link" aria-label="Next" href="/Article/Page-@(currentPageIndex+1) ">
+                            <a class="page-link" aria-label="Next" href="/Article/User-@currentAuthorId/Page-@(currentPageIndex+1) ">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
