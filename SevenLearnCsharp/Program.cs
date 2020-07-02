@@ -43,7 +43,26 @@ namespace SevenLearnCsharp
         }
         static void Main(string[] args)
         {
+            int[] temp = { 3, 7, 2, 8, 6, 4, 1 };
+            for (int i = 0; i < temp.Length; i++)
+            {
+                for (int j = 0; j < temp.Length; j++)
+                {
+                    if (temp[i] < temp[j])
+                    {
+                        int w = 0;
+                        w = temp[i];
+                        temp[i] = temp[j];
+                        temp[j] = w;
+                    }
 
+                }
+            }
+            for (int i = 0; i < temp.Length; i++)
+            {
+                Console.WriteLine(temp[i]);
+            }
+            Console.WriteLine();
             #region ADO.NET HomeWork
             //            作业：
             //构建一个DBHelper，可以提供：
