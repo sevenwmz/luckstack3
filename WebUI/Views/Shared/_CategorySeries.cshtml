@@ -1,0 +1,26 @@
+﻿@model ViewModel.ChildAction.ChildCategorySeriesModel
+
+<div style="border:dashed#e4e0e0 1px;border-radius:5px;" class="container mt-5 mb-3">
+    <section>
+        @*循环出这个作者的文章*@
+        <h4><i class="fa fa-book"></i><a href="/Article/Category-@Model.Id">  @Model.Title</a></h4>
+        <p>@Model.Summary</p>
+        @if (Model.ChildSeries != null)
+        {
+            foreach (var insideSeries in Model.ChildSeries)
+            {
+                <p><i class="fa fa-book"></i><a href="/Article/Category-@insideSeries.Id">  @insideSeries.Title</a></p>
+                <p>@insideSeries.Summary</p>
+            }
+        }
+        @if (Model.BrotherItems != null)
+        {
+            foreach (var brotherItems in Model.BrotherItems)
+            {
+                <p><i class="fa fa-book"></i><a href="/Article/Category-@brotherItems.Id">  @brotherItems.Title</a></p>
+                <p>@brotherItems.Summary</p>
+            }
+        }
+    </section>
+    <p class="text-right"><i class="fa fa-arrow-circle-o-right"></i><a href="/Article">全部</a></p>
+</div>

@@ -156,6 +156,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CategorySeriesController.cs" />
     <Compile Include="Controllers\ChildActionController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CreditController.cs" />
@@ -302,12 +303,14 @@
     <Content Include="Views\Article\Author.cshtml" />
     <Content Include="Views\Shared\_Series.cshtml" />
     <Content Include="Views\Article\Category.cshtml" />
+    <Content Include="Views\Shared\_CategorySeries.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Img\Icon\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\CategorySeries\" />
     <Folder Include="Views\Email\" />
     <Folder Include="Views\Series\" />
   </ItemGroup>

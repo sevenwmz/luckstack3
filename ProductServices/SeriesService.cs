@@ -19,6 +19,18 @@ namespace ProductServices
             _repo = new SeriesRepository(dbContext);
         }
 
+        public ChildCategorySeriesModel GetCategorySeries(int id)
+        {
+
+            ChildCategorySeriesModel model = connectedMapper.Map<ChildCategorySeriesModel>(_repo.CategorySeries(id));
+            model.ChildSeries = connectedMapper.Map<List<ChildCategorySeriesModel>>(_repo.CategoryScendSeries(id));
+            model.BrotherItems = connectedMapper.Map<List<ChildCategoryInsideSeriesModel>>(_repo.GetBrotherSeries(id));
+
+
+
+            return model;
+        }
+
         /// <summary>
         /// Get Series date
         /// </summary>

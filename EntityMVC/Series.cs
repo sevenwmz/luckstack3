@@ -10,6 +10,8 @@ namespace EntityMVC
     {
         public string Summary { set; get; }
         public string ContentOfSeries { set; get; }
+        public int? SeriesLevelId { set; get; }
+        public Series SeriesLevel { set; get; }
         public int? OwnerId { set; get; }
         public User Owner { set; get; }
         public IList<Article> ArticleUse { set; get; }

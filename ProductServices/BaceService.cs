@@ -28,20 +28,34 @@ namespace ProductServices
             {
 
                 #region ChildSeries Area
+                cfg.CreateMap<V.ChildAction.ChildCategoryInsideSeriesModel, Series>(MemberList.None)
+                        .ForMember(s => s.ContentOfSeries, opt => opt.MapFrom(s => s.Title))
+                        .ForMember(s => s.Summary, opt => opt.MapFrom(s => s.Summary))
+                        .ReverseMap()
+                        .ForMember(s => s.Title, opt => opt.MapFrom(s => s.ContentOfSeries))
+                        ;
+
+                cfg.CreateMap<V.ChildAction.ChildCategorySeriesModel, Series>(MemberList.None)
+                        .ForMember(s => s.ContentOfSeries, opt => opt.MapFrom(s => s.ChildSeries.Select(m => m.Title)))
+                        .ForMember(s => s.Summary, opt => opt.MapFrom(s => s.ChildSeries.Select(m => m.Summary)))
+                        .ReverseMap()
+                        .ForMember(s => s.Title , opt=>opt.MapFrom(s=>s.ContentOfSeries))
+                        ;
+
+
                 cfg.CreateMap<V.ChildAction.ChildSeriesModel, Series>(MemberList.None)
                         .ForMember(s => s.ContentOfSeries, opt => opt.MapFrom(s => s.Title))
                         .ReverseMap()
                         .ForMember(s => s.AuthorId, opt => opt.MapFrom(s => s.Owner.Id))
                         .ForMember(s => s.AuthorName, opt => opt.MapFrom(s => s.Owner.UserName))
-
                         ;
                 #endregion
 
                 #region MessageMine
                 cfg.CreateMap<MessageMine, V.Message.MineModel>(MemberList.None)
                         .ReverseMap()
-                        .ForMember(m=>m.OwnerId, opt => opt.Ignore())
-                        .ForMember(m=>m.Owner, opt => opt.Ignore())
+                        .ForMember(m => m.OwnerId, opt => opt.Ignore())
+                        .ForMember(m => m.Owner, opt => opt.Ignore())
                         ;
                 #endregion
 
@@ -49,9 +63,9 @@ namespace ProductServices
                 cfg.CreateMap<V.Profile.WriteModel, Profile>(MemberList.None)
                         .ForMember(p => p.Constellation, opt => opt.MapFrom(p => p.ConstellationName))
                         .ReverseMap()
-                        .ForMember(p=>p.NeedSubKeyword,opt=>opt.Ignore())
-                        .ForMember(p=>p.FristKeyword,opt=>opt.Ignore())
-                        .ForMember(p=>p.FristKeywordName,opt=>opt.Ignore())
+                        .ForMember(p => p.NeedSubKeyword, opt => opt.Ignore())
+                        .ForMember(p => p.FristKeyword, opt => opt.Ignore())
+                        .ForMember(p => p.FristKeywordName, opt => opt.Ignore())
 
                         ;
                 #endregion
@@ -59,12 +73,12 @@ namespace ProductServices
                 #region MoneyTrade and BMoney
                 cfg.CreateMap<V.MoneyTrade.SaleModel, BMoney>(MemberList.None)
                         .ReverseMap()
-                        .ForMember(m=>m.ByFrom,opt=>opt.Ignore())
-                        .ForMember(m=>m.SaleCount,opt=>opt.MapFrom(b=>b.Change))
-                        .ForMember(m=>m.Message,opt=>opt.MapFrom(b=>b.Detail))
-                        .ForMember(m=>m.TotalSaleMoney,opt=>opt.Ignore())
-                        .ForMember(m=>m.LeftBMoney,opt=>opt.MapFrom(b=>b.LeftBMoney + b.Freezing))
-                        .ForMember(m=>m.CanSale,opt=>opt.MapFrom(b=>b.LeftBMoney))
+                        .ForMember(m => m.ByFrom, opt => opt.Ignore())
+                        .ForMember(m => m.SaleCount, opt => opt.MapFrom(b => b.Change))
+                        .ForMember(m => m.Message, opt => opt.MapFrom(b => b.Detail))
+                        .ForMember(m => m.TotalSaleMoney, opt => opt.Ignore())
+                        .ForMember(m => m.LeftBMoney, opt => opt.MapFrom(b => b.LeftBMoney + b.Freezing))
+                        .ForMember(m => m.CanSale, opt => opt.MapFrom(b => b.LeftBMoney))
                         ;
 
                 #endregion
@@ -72,15 +86,15 @@ namespace ProductServices
                 #region ChangePassword
                 cfg.CreateMap<V.Password.ChangeModel, User>(MemberList.None)
                     .ReverseMap()
-                    .ForMember(p=>p.NewPwd,opt=>opt.MapFrom(u=>u.Password))
-                    .ForMember(p=>p.ConfrimPwd,opt=>opt.Ignore())
-                    .ForMember(p=>p.OldPwd,opt=>opt.Ignore())
+                    .ForMember(p => p.NewPwd, opt => opt.MapFrom(u => u.Password))
+                    .ForMember(p => p.ConfrimPwd, opt => opt.Ignore())
+                    .ForMember(p => p.OldPwd, opt => opt.Ignore())
                  ;
                 cfg.CreateMap<V.Password.ForgetModel, User>(MemberList.None)
                     .ForMember(u => u.EmailAddress, opt => opt.Ignore())
                     .ReverseMap()
-                    .ForMember(f=>f.UserName, opt=>opt.MapFrom(u=>u.UserName))
-                    .ForMember(f=>f.Captcha, opt=>opt.Ignore())
+                    .ForMember(f => f.UserName, opt => opt.MapFrom(u => u.UserName))
+                    .ForMember(f => f.Captcha, opt => opt.Ignore())
                     ;
 
 
@@ -213,7 +227,7 @@ namespace ProductServices
 
                 cfg.CreateMap<Article, V.Article.AritcleAuthorModel>(MemberList.None)
                     .ForMember(a => a.ListKeyword, opt => opt.MapFrom(a => a.OwnKeyword.Select(o => o.Keyword)))
-                    .ForMember(a => a.Author, opt => opt.MapFrom(a=>a.Author.UserName))
+                    .ForMember(a => a.Author, opt => opt.MapFrom(a => a.Author.UserName))
                     .ForMember(a => a.AuthorId, opt => opt.MapFrom(a => a.Author.Id))
                     .ForMember(a => a.Level, opt => opt.MapFrom(a => a.Author.Level))
                     .ReverseMap()
@@ -240,9 +254,9 @@ namespace ProductServices
 
                 cfg.CreateMap<Article, V.ArticleItemsModel>(MemberList.None)
                     .ForMember(a => a.ListKeyword, opt => opt.MapFrom(a => a.OwnKeyword.Select(o => o.Keyword)))
-                    .ForMember(a => a.Author, opt => opt.MapFrom(a=>a.Author.UserName))
-                    .ForMember(a => a.AuthorId, opt => opt.MapFrom(a=>a.Author.Id))
-                    .ForMember(a => a.Level, opt => opt.MapFrom(a=>a.Author.Level))
+                    .ForMember(a => a.Author, opt => opt.MapFrom(a => a.Author.UserName))
+                    .ForMember(a => a.AuthorId, opt => opt.MapFrom(a => a.Author.Id))
+                    .ForMember(a => a.Level, opt => opt.MapFrom(a => a.Author.Level))
 
                     .ReverseMap()
                     .ForMember(a => a.Author, opt => opt.Ignore())
@@ -269,12 +283,12 @@ namespace ProductServices
                 cfg.CreateMap<Article, V.Article.AritcleEditModel>(MemberList.None)
                     .ForMember(a => a.ChoosAd, opt => opt.MapFrom(p => p.UseADId))
                     .ForMember(a => a.ChoosSeries, opt => opt.MapFrom(p => p.UseSeriesId))
-                    .ForMember(a => a.ContentOfAd, opt => opt.MapFrom(a=>a.UseAd.ContentOfAd))
+                    .ForMember(a => a.ContentOfAd, opt => opt.MapFrom(a => a.UseAd.ContentOfAd))
                     .ForMember(a => a.PublishTime, opt => opt.Ignore())
-                    .ForMember(a => a.WebSite, opt => opt.MapFrom(a=>a.UseAd.WebSite))
+                    .ForMember(a => a.WebSite, opt => opt.MapFrom(a => a.UseAd.WebSite))
                     .ForMember(a => a.Series, opt => opt.Ignore())
                     .ForMember(a => a.Ad, opt => opt.Ignore())
-                    .ForMember(a => a.Author, opt => opt.MapFrom(a=>a.Author.UserName))
+                    .ForMember(a => a.Author, opt => opt.MapFrom(a => a.Author.UserName))
                     .ForMember(a => a.HasNewAd, opt => opt.Ignore())
                     .ForMember(a => a.Keywords, opt => opt.Ignore())
                     .ReverseMap()

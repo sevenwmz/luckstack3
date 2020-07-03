@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProductServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,12 +7,13 @@ using System.Web.Mvc;
 
 namespace WebUI.Controllers
 {
-    public class CategorySeriesController : Controller
+    public class CategorySeriesController : BaseController
     {
         // GET: CategorySeries
-        public ActionResult Index()
+        [ChildActionOnly]
+        public PartialViewResult _CategorySeries(int id)
         {
-            return View();
+            return PartialView(new SeriesService().GetCategorySeries(id));
         }
     }
 }
