@@ -21,6 +21,26 @@ namespace ProductServices
             _articleEntity = new Article();
         }
 
+        public ArticleCategoryModel GetAuthorCategory(int id,bool asc, int takeArticleNum)
+        {
+            ArticleCategoryModel model = new ArticleCategoryModel
+            {
+                Items = connectedMapper.Map<List<ArticleCategoryModel>>(_repository.GetSeriesArticle(id, asc,takeArticleNum))
+            };
+
+            model.Author = model.Items.Select(a => a.Author).FirstOrDefault();
+            model.CategoryId = model.Items.Select(a => a.CategoryId).FirstOrDefault();
+            model.CategoryTitle = model.Items.Select(a => a.CategoryTitle).FirstOrDefault();
+            model.CategorySummary = model.Items.Select(a => a.CategorySummary).FirstOrDefault();
+
+            return model;
+        }
+
+        public int GetAuthorCategoryCount(int id)
+        {
+            return _repository.GetAuthorCategoryCount(id);
+        }
+
         /// <summary>
         /// Get total article count of specified author.
         /// </summary>

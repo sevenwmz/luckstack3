@@ -26,6 +26,8 @@ namespace WebUI
         public const string PRE_REGISTER = "preRegister";
         public const string ROLE = "role";
         public const string PRE_PAGE_INDEX = "path";
+        public const string SIZE = "size";
+        public const string SORT = "sort";
 
         //For Session
         public const string SESSION_USER = "user";

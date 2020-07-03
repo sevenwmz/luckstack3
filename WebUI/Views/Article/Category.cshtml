@@ -1,0 +1,191 @@
+﻿@model ViewModel.Article.ArticleCategoryModel
+@{
+    ViewData["Title"] = Model.CategoryTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section style{
+    <style>
+        aside section span {
+            margin: 5px 20px 5px 0px;
+        }
+
+        mb {
+            margin-bottom: 10px;
+        }
+    </style>
+}
+
+<main class="container">
+    <article class="row">
+        <div class="col-md-8" style="margin-top:90px;">
+            <h2>
+                <i class="fa fa-wrench"></i> 文章路径：
+                <span style="color:gray;font-size:small"><a href="/Article">全部</a>/</span>
+                <span style="font-size:small;color:deepskyblue">
+                    <a href="/Article/User-@Model.AuthorId">@Model.Author/</a>
+                    <a href="/Article/Category-@Model.CategoryId">@Model.CategoryTitle</a>
+                </span>
+            </h2>
+            <p style="border-left:5px solid; padding-left:10px;">@Model.CategorySummary</p>
+            <hr />
+
+            <div class="text-right" style="margin-bottom:15px;">
+                @if (string.IsNullOrEmpty(HttpContext.Current.Request.QueryString[Const.SIZE]))
+                {
+                    <div style="border:dashed 5px #cab74f">
+                        <a href="/Article/Category-@Model.CategoryId?size=10" class="btn yellow-highlight " data-toggle="tooltip" title="" data-original-title="切换为标题显示">
+                            <span class="fa fa-th-list"></span> 显示
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    if ("50" == HttpContext.Current.Request.QueryString[Const.SIZE].ToString())
+                    {
+                        <div style="border:dashed 5px #cab74f">
+                            <a href="/Article/Category-@Model.CategoryId?size=10" class="btn yellow-highlight " data-toggle="tooltip" title="" data-original-title="切换为标题显示">
+                                <span class="fa fa-th-list"></span> 显示
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="border:dashed 5px #cab74f">
+                            <a href="/Article/Category-@Model.CategoryId?size=50" class="btn yellow-highlight " data-toggle="tooltip" title="" data-original-title="切换为标题显示">
+                                <span class="fa fa-th-list"></span> 显示
+                            </a>
+                        </div>
+                    }
+                }
+
+
+                @if (string.IsNullOrEmpty(HttpContext.Current.Request.QueryString[Const.SORT]))
+                {
+                    <div style="border:dashed 5px #cab74f">
+                        <a href="/Article/Category-@Model.CategoryId?sort=Desc" class="btn yellow-highlight " data-toggle="tooltip" title="" data-original-title="点击切换为 顺序">
+                            <span class="fa fa-sort-amount-desc"></span> 排序
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    if ("Asc" == HttpContext.Current.Request.QueryString[Const.SORT].ToString())
+                    {
+                        <div style="border:dashed 5px #cab74f">
+                            <a href="/Article/Category-@Model.CategoryId?sort=Desc" class="btn yellow-highlight " data-toggle="tooltip" title="" data-original-title="点击切换为 顺序">
+                                <span class="fa fa-sort-amount-desc"></span> 排序
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="border:dashed 5px #cab74f">
+                            <a href="/Article/Category-@Model.CategoryId?sort=Asc" class="btn yellow-highlight " data-toggle="tooltip" title="" data-original-title="点击切换为 顺序">
+                                <span class="fa fa-sort-amount-asc"></span> 排序
+                            </a>
+                        </div>
+                    }
+                }
+            </div>
+            @if (string.IsNullOrEmpty(HttpContext.Current.Request.QueryString[Const.SIZE]))
+            {
+                foreach (var article in Model.Items)
+                {
+                    <div>
+                        <span><i class="fa fa-calendar"></i>@article.PublishTime</span>
+                        <span class="float-md-right text-info">作者：@Html.Partial("_Author", article)</span>
+                        <p><a href="/Article/@article.Id" class="text-info">@article.Title</a></p>
+                        <p>@article.Summary<a href="/Article/Edit/@article.Id" style="color:dodgerblue">……</a></p>
+                        <label>
+                            <strong><i class="fa fa-tags"></i>关键字： </strong>
+                            @if (article.ListKeyword != null)
+                            {
+                                foreach (var item in article.ListKeyword)
+                                {
+                                    <span class="text-white badge bg-dark">@item.Name</span>
+                                }
+                            }
+                        </label>
+                        <div class="text-md-right">
+                            <a href="none" class="text-info"> 评论：0 </a>
+                            <a href="none" class="text-success"> 赞： 0  </a>
+                            <a href="none" class="text-muted"> 踩：0 </a><br />
+                        </div>
+                        <hr />
+                    </div>
+                }
+            }
+            else
+            {
+                if ("50" == HttpContext.Current.Request.QueryString[Const.SIZE].ToString())
+                {
+                    foreach (var article in Model.Items)
+                    {
+                        <div>
+                            <p><a href="/Article/@article.Id" class="text-info">@article.Title</a></p>
+                            <hr />
+                        </div>
+                    }
+                }
+                else
+                {
+                    foreach (var article in Model.Items)
+                    {
+                        <div>
+                            <span><i class="fa fa-calendar"></i>@article.PublishTime</span>
+                            <span class="float-md-right text-info">作者：@Html.Partial("_Author", article)</span>
+                            <p><a href="/Article/@article.Id" class="text-info">@article.Title</a></p>
+                            <p>@article.Summary<a href="/Article/Edit/@article.Id" style="color:dodgerblue">……</a></p>
+                            <label>
+                                <strong><i class="fa fa-tags"></i>关键字： </strong>
+                                @if (article.ListKeyword != null)
+                                {
+                                    foreach (var item in article.ListKeyword)
+                                    {
+                                        <span class="text-white badge bg-dark">@item.Name</span>
+                                    }
+                                }
+                            </label>
+                            <div class="text-md-right">
+                                <a href="none" class="text-info"> 评论：0 </a>
+                                <a href="none" class="text-success"> 赞： 0  </a>
+                                <a href="none" class="text-muted"> 踩：0 </a><br />
+                            </div>
+                            <hr />
+                        </div>
+                    }
+                }
+            }
+
+
+            @{
+                int currentIndex = Convert.ToInt32(ViewContext.RouteData.Values["CurrentPageId"]);
+                if (currentIndex == 0)
+                {
+                    currentIndex = 1;
+                }
+            }
+
+            <ul class="pager">
+                <li><a href="/Article/Category-@Model.CategoryId?size=1000?sort=Desc"><span class="fa fa-angle-double-right"></span>全部</a></li>
+                @if (currentIndex > 1)
+                {
+                    <li class="next"><a href="/Article/Category-@Model.CategoryId/Backword-@(currentIndex-1)">上一页 <span class="fa fa-angle-double-right"></span></a></li>
+                }
+                @if (currentIndex < (Model.SumOfCategory / 2))
+                {
+                    <li class="next"><a href="/Article/Category-@Model.CategoryId/Forward-@(currentIndex+1)">下一页 <span class="fa fa-angle-double-right"></span></a></li>
+                }
+            </ul>
+
+
+        </div>
+        <aside class="col-md-4" style="margin-top:90px;">
+
+            @Html.Action("_Keyword", "ChildAction")
+            @Html.Action("_Rank", "ChildAction")
+            @Html.Action("_AD", "ChildAction")
+        </aside>
+    </article>
+</main>
+

@@ -16,13 +16,38 @@ namespace WebUI.Controllers
             _service = new ArticleService();
         }
 
+        #region Article Category
+        // GET: Article/Single
+        public ActionResult Category(int id)
+        {
+            bool asc = false;
+            if (!string.IsNullOrEmpty(HttpContext.Request.QueryString[Const.SORT]))
+            {
+                asc = HttpContext.Request.QueryString[Const.SORT].ToString() == "Asc" ? false : true ;
+            }
+
+            int takeArticleNum = 10;
+            if (!string.IsNullOrEmpty(HttpContext.Request.QueryString[Const.SIZE]))
+            {
+                takeArticleNum = HttpContext.Request.QueryString[Const.SIZE].ToString() == "50" ? 50 : 10;
+                if (HttpContext.Request.QueryString[Const.SIZE].Contains("1000"))
+                {
+                    takeArticleNum = 1000;
+                }
+            }
+            ArticleCategoryModel model = new ArticleCategoryModel();
+            model = _service.GetAuthorCategory(id, asc, takeArticleNum);
+            model.SumOfCategory = _service.GetAuthorCategoryCount(id);
+            return View(model);
+        }
+        #endregion
 
         #region Artile Auhtor
-        // GET: Article/Single
-        public ActionResult Author(int id,int pageId = 1)
+        // GET: Article/Auhtor
+        public ActionResult Author(int id, int pageId = 1)
         {
             AritcleAuthorModel model = new AritcleAuthorModel();
-            model = _service.GetAuthorArticle(id,2, pageId);
+            model = _service.GetAuthorArticle(id, 2, pageId);
             model.SumOfAuthor = _service.GetAuthorCount(id);
 
             if (model.SumOfAuthor % 2 == 1)
@@ -85,7 +110,7 @@ namespace WebUI.Controllers
             model.Body = HtmlSecurityHelper.HtmlSecurity(model.Body);
             if (string.IsNullOrEmpty(model.Summary))
             {
-                model.Summary = HtmlSecurityHelper.HtmlSecurity(model.Body,true);
+                model.Summary = HtmlSecurityHelper.HtmlSecurity(model.Body, true);
             }
             model.Summary = SummaryHelper.GetSumarry(model.Summary);
 
@@ -134,6 +159,6 @@ namespace WebUI.Controllers
 
 
 
-       
+
     }
 }

@@ -67,6 +67,7 @@
     <Compile Include="ArticleItemsModel.cs" />
     <Compile Include="Article\AritcleAuthorModel.cs" />
     <Compile Include="Article\AritcleEditModel.cs" />
+    <Compile Include="Article\ArticleCategoryModel.cs" />
     <Compile Include="Article\ArticleIndexModel.cs" />
     <Compile Include="Article\ArticleNewModel.cs" />
     <Compile Include="Article\ArticleSingleModel.cs" />

@@ -26,6 +26,7 @@ namespace ProductServices
         {
             mapper = new MapperConfiguration(cfg =>
             {
+
                 #region ChildSeries Area
                 cfg.CreateMap<V.ChildAction.ChildSeriesModel, Series>(MemberList.None)
                         .ForMember(s => s.ContentOfSeries, opt => opt.MapFrom(s => s.Title))
@@ -193,6 +194,23 @@ namespace ProductServices
                 #endregion
 
                 #region Article Area
+                cfg.CreateMap<Article, V.Article.ArticleCategoryModel>(MemberList.None)
+                    .ForMember(a => a.ListKeyword, opt => opt.MapFrom(a => a.OwnKeyword.Select(o => o.Keyword)))
+                    .ForMember(a => a.Author, opt => opt.MapFrom(a => a.Author.UserName))
+                    .ForMember(a => a.AuthorId, opt => opt.MapFrom(a => a.Author.Id))
+                    .ForMember(a => a.Level, opt => opt.MapFrom(a => a.Author.Level))
+                    .ForMember(a => a.CategoryId, opt => opt.MapFrom(a => a.UseSeries.Id))
+                    .ForMember(a => a.CategoryTitle, opt => opt.MapFrom(a => a.UseSeries.ContentOfSeries))
+                    .ForMember(a => a.CategorySummary, opt => opt.MapFrom(a => a.UseSeries.Summary))
+                    .ReverseMap()
+                    .ForMember(a => a.Author, opt => opt.Ignore())
+                    .ForMember(a => a.OwnKeyword, opt => opt.Ignore())
+                    .ForMember(a => a.UseSeries, opt => opt.Ignore())
+                    .ForMember(a => a.UseAd, opt => opt.Ignore())
+                    ;
+
+
+
                 cfg.CreateMap<Article, V.Article.AritcleAuthorModel>(MemberList.None)
                     .ForMember(a => a.ListKeyword, opt => opt.MapFrom(a => a.OwnKeyword.Select(o => o.Keyword)))
                     .ForMember(a => a.Author, opt => opt.MapFrom(a=>a.Author.UserName))

@@ -39,6 +39,27 @@ namespace WebUI
 
             #region Article Route Area
             routes.MapRoute(
+                name: "ArticleCategoryBackPage",
+                url: "Article/Category-{Id}/Backword-{CurrentPageId}",
+                defaults: new { controller = "Article", action = "Category" },
+                constraints: new { id = "\\d+" , CurrentPageId  = "\\d+"}
+            );
+
+            routes.MapRoute(
+                name: "ArticleCategoryForwardPage",
+                url: "Article/Category-{Id}/Forward-{CurrentPageId}",
+                defaults: new { controller = "Article", action = "Category" },
+                constraints: new { id = "\\d+", CurrentPageId = "\\d+" }
+            );
+
+            routes.MapRoute(
+                name: "ArticleCategory",
+                url: "Article/Category-{Id}",
+                defaults: new { controller = "Article", action = "Category" },
+                constraints: new { id = "\\d+" }
+            );
+
+            routes.MapRoute(
                 name: "ArticleAuthorPage",
                 url: "Article/User-{Id}/Page-{pageId}",
                 defaults: new { controller = "Article", action = "Author" },
@@ -51,7 +72,6 @@ namespace WebUI
                 defaults: new { controller = "Article", action = "Author" },
                 constraints: new { id = "\\d+" }
             );
-
 
             routes.MapRoute(
                 name: "ArticleSingle",

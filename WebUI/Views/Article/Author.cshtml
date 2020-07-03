@@ -19,6 +19,7 @@
     <article class="row">
         <div class="col-md-8" style="margin-top:90px;">
             <h2><i class="fa fa-wrench"></i> 文章路径：<span style="color:gray;font-size:small"><a href="/Article">全部</a>/</span><span style="font-size:medium;color:deepskyblue"> @Model.Author 的文章</span></h2>
+            <hr />
             @foreach (var article in Model.Items)
             {
                 <div>
@@ -103,7 +104,7 @@
 
         </div>
         <aside class="col-md-4" style="margin-top:90px;">
-            @Html.Action("_Series","Series")
+            @Html.Action("_Series", "Series")
             @Html.Action("_Keyword", "ChildAction")
             @Html.Action("_Rank", "ChildAction")
             @Html.Action("_AD", "ChildAction")

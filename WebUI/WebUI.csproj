@@ -301,6 +301,7 @@
     <Content Include="Views\Profile\Write.cshtml" />
     <Content Include="Views\Article\Author.cshtml" />
     <Content Include="Views\Shared\_Series.cshtml" />
+    <Content Include="Views\Article\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

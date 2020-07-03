@@ -7,7 +7,7 @@
         @*循环出这个作者的文章*@
         @foreach (var item in Model.Items)
         {
-            <p><i class="fa fa-book"></i><a href="/Article">  @item.Title</a></p>
+            <p><i class="fa fa-book"></i><a href="/Article/Category-@item.Id">  @item.Title</a></p>
             <p>@item.Summary</p>
         }
     </section>

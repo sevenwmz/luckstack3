@@ -6,7 +6,40 @@ using System.Threading.Tasks;
 
 namespace ViewModel.Article
 {
-    class ArticleCategoryModel
+    public class ArticleCategoryModel
     {
+
+        public int AuthorId { set; get; }
+
+        public string Author { set; get; }
+
+        public int Level { set; get; }
+
+
+
+        public int CategoryId { set; get; }
+        
+        public string CategoryTitle { set; get; }
+
+        public string CategorySummary { set; get; }
+
+
+
+        public int Id { set; get; }
+
+        public string Title { set; get; }
+
+        public string Body { set; get; }
+
+        public string Summary { set; get; }
+
+        public DateTime PublishTime { get; set; }
+        public int SumOfCategory { set; get; }
+
+        public IList<KeywordModel> ListKeyword { set; get; }
+
+        public IList<ArticleCategoryModel> Items { set; get; }
+
+
     }
 }
