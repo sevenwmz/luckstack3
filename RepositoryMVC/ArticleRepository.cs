@@ -98,6 +98,11 @@ namespace RepositoryMVC
             return entities.Count();
         }
 
+        public Article GetUseSeries(int id)
+        {
+            return entities.Include(a => a.UseSeries).Where(a => a.Id == id).FirstOrDefault();
+        }
+
         public int GetAuthorCount(int id)
         {
             return entities.Where(a => a.Author.Id == id).Count();
@@ -113,5 +118,12 @@ namespace RepositoryMVC
                 .Where(a => a.Id == id).FirstOrDefault();
         }
 
+        public IEnumerable<Article> GetNeighbourArticleInfo(int id)
+        {
+            IList<Article> temp = new List<Article>(); 
+            temp.Add(entities.OrderByDescending(a => a.Id).Where(a=>a.Id > id).FirstOrDefault());
+            temp.Add(entities.OrderByDescending(a => a.Id).Where(a => a.Id < id).FirstOrDefault());
+            return temp;
+        }
     }
 }

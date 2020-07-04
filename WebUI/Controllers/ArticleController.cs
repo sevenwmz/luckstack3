@@ -67,9 +67,7 @@ namespace WebUI.Controllers
         // GET: Article/Single
         public ActionResult Single(int id)
         {
-            ArticleSingleModel model = new ArticleSingleModel();
-            model = _service.GetSingleArticle(id);
-            return View(model);
+            return View(_service.GetSingleArticle(id));
         }
         #endregion
 

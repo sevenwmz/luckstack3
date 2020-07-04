@@ -21,11 +21,11 @@ namespace ProductServices
             _articleEntity = new Article();
         }
 
-        public ArticleCategoryModel GetAuthorCategory(int id,bool asc, int takeArticleNum)
+        public ArticleCategoryModel GetAuthorCategory(int id, bool asc, int takeArticleNum)
         {
             ArticleCategoryModel model = new ArticleCategoryModel
             {
-                Items = connectedMapper.Map<List<ArticleCategoryModel>>(_repository.GetSeriesArticle(id, asc,takeArticleNum))
+                Items = connectedMapper.Map<List<ArticleCategoryModel>>(_repository.GetSeriesArticle(id, asc, takeArticleNum))
             };
 
             model.Author = model.Items.Select(a => a.Author).FirstOrDefault();
@@ -79,6 +79,33 @@ namespace ProductServices
         {
             _articleEntity = _repository.Find(id);
             ArticleSingleModel temp = connectedMapper.Map<ArticleSingleModel>(_articleEntity);
+
+
+            _articleEntity = _repository.GetUseSeries(id);
+            temp.SeriesId = _articleEntity.UseSeries.Id;
+            temp.SeriesTitle = new SeriesRepository(dbContext).Find(temp.SeriesId).ContentOfSeries;
+
+            foreach (var item in _repository.GetNeighbourArticleInfo(id))
+            {
+                if (temp.LastArticleId == 0)
+                {
+                    temp.LastArticleId = 1;
+                    if (item != null)
+                    {
+                        temp.LastArticleId = item.Id;
+                        temp.LastArticleTitle = item.Title;
+                        continue;
+                    }
+                    continue;
+                }
+                if (item == null)
+                {
+                    return temp;
+                }
+                temp.NextArticleId = item.Id;
+                temp.NextArticleTitle = item.Title;
+                return temp;
+            }
             return temp;
         }
 

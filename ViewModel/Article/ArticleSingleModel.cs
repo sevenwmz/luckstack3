@@ -21,5 +21,20 @@ namespace ViewModel.Article
 
         public IList<string> Comments { set; get; }
 
+
+
+        public int SeriesId { set; get; }
+        public string SeriesTitle { set; get; }
+
+        public int LastArticleId { set; get; }
+        public string LastArticleTitle { set; get; }
+
+        public int NextArticleId { set; get; }
+        public string NextArticleTitle { set; get; }
+
+
+
+
+
     }
 }

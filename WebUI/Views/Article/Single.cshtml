@@ -81,7 +81,55 @@
             @Html.TextAreaFor(a => a.Comments, 4, 4, new { @style = "width: 100%; ,height: 100px;" });
             <button type="submit" class="btn btn-primary">提交</button>
             <button type="reset" class="btn btn-primary">重置</button>
+
+            <div style="margin-top: 25px;">
+                <div class="checkbox pull-left">
+                    @if (Model.SeriesTitle != null)
+                    {
+                        <label>
+                            <input id="inCategory" name="inCategory" type="checkbox" value="true" zyf-nav-in-category="" readonly=""><input name="inCategory" type="hidden" value="false">
+                            在系列 <a href="/Article/Category-@Model.SeriesId"><span class="fa fa-folder"></span>@Model.SeriesTitle</a>
+                            中的：
+                        </label>
+                    }@*Else nothing*@
+                </div>
+                <a class="btn btn-default btn-sm pull-right" href="/Article/Category-64?fulltext=1&amp;articleId=690">
+                    <span class="iconfont icon-pages"></span> 全系列阅读
+                </a>
+                <div zyf-article-nav-container="" style="clear:both; margin-bottom:20px; padding:10px 15px; border: 2px dashed #808080; border-radius:4px 5px;">
+                    <div>
+                        @if (Model.LastArticleTitle == null)
+                        {
+                            <span class="fa fa-arrow-down"></span>
+                            <span>上一篇：</span>
+                            <span class="text-info">这里已经是第一篇文章呦……</span>
+                        }
+                        else
+                        {
+                            <span class="fa fa-arrow-up"></span>
+                            <span>上一篇：</span>
+                            <a href="/Article/@Model.LastArticleId">@Model.LastArticleTitle</a>
+                        }
+                    </div>
+                    <div style="margin-top:6px;">
+                        @if (Model.NextArticleTitle == null)
+                        {
+                            <span class="fa fa-arrow-down"></span>
+                            <span>下一篇：</span>
+                            <span class="text-info">已经是最后一篇了……</span>
+                        }
+                        else
+                        {
+                            <span class="fa fa-arrow-down"></span>
+                            <span>下一篇：</span>
+                            <a href="/Article/@Model.NextArticleId">@Model.NextArticleTitle</a>
+                        }
+                    </div>
+                </div>
+
+            </div>
         </div>
+
     </article>
 </main>
 
