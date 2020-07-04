@@ -5,6 +5,9 @@ using WebUI.Helper;
 using System.Web.Mvc;
 using ViewModel;
 using ViewModel.Article;
+using System.Web.Caching;
+using System.Diagnostics;
+using DevTrends.MvcDonutCaching;
 
 namespace WebUI.Controllers
 {
@@ -23,7 +26,7 @@ namespace WebUI.Controllers
             bool asc = false;
             if (!string.IsNullOrEmpty(HttpContext.Request.QueryString[Const.SORT]))
             {
-                asc = HttpContext.Request.QueryString[Const.SORT].ToString() == "Asc" ? false : true ;
+                asc = HttpContext.Request.QueryString[Const.SORT].ToString() == "Asc" ? false : true;
             }
 
             int takeArticleNum = 10;
@@ -73,11 +76,33 @@ namespace WebUI.Controllers
         #region Article Index
 
         // GET: Article/Index
+        [DonutOutputCache(CacheProfile = "Nomal")]
         public ActionResult Index(int id = 1)
         {
             ArticleIndexModel index = new ArticleIndexModel { Items = new List<ArticleItemsModel>() };
             index = _service.GetArticles(2, id);
             index.SumOfArticle = _service.GetCount();
+
+
+            //string cacheKey = "CurrentArticle";
+
+            //ArticleIndexModel index = HttpContext.Cache.Get(cacheKey) as ArticleIndexModel;
+
+            //if (index == null)
+            //{
+            //    index = _service.GetArticles(2, id);
+            //    index.SumOfArticle = _service.GetCount();
+
+            //    HttpContext.Cache.Add(cacheKey,
+            //         index,
+            //        null,
+            //        DateTime.MaxValue,
+            //        new TimeSpan(0, 0, 15),
+            //        CacheItemPriority.Default,
+            //        (k, v, r) => { Trace.WriteLine($"cache with key:{k},and value:{v} is deleted ,resion:{r}"); }
+            //        );
+            //}
+
             return View(index);
         }
         #endregion
