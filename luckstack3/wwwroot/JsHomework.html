@@ -226,73 +226,72 @@
 
 
         //去除一个数组中重复的值（提示：仔细思考需求）
-        //var testArray = [12, 12, 43, 43, 22, 22, 57, 3, 22, 33, 32, 56, 31, 33];
-        //var repetNum = testArray[0];
+        var testArray = [12, 12, 43, 43, 22, 22, 57, 3, 22, 33, 32, 56, 31, 33];
+        //var repetnum = testarray[0];
 
-        ////Remove repeat rigt one;
-        //for (var i = 0; i < testArray.length; i++) {
-        //    for (var j = i + 1; j < testArray.length; j++) {
-        //        if (testArray[i] === testArray[j]) {
-        //            testArray.splice(j, 1);
+        //remove repeat rigt one;
+        //for (var i = 0; i < testarray.length; i++) {
+        //    for (var j = i + 1; j < testarray.length; j++) {
+        //        if (testarray[i] === testarray[j]) {
+        //            testarray.splice(j, 1);
         //            j--;
         //        }
         //    }
         //}
 
         ////Remove repeat all;
+        //var dup = false;
         //for (var i = 0; i < testArray.length; i++) {
         //    var temp = testArray[i];
         //    for (var j = i + 1; j < testArray.length; j++) {
         //        if (temp === testArray[j]) {
-        //            testArray[i] = 0;
-        //            testArray[j] = 0;
+        //            testArray.splice(j, 1);
+        //            j--;
+        //            dup = true;
         //        }
         //    }
-
-        //}
-        //for (var i = 0; i < testArray.length; i++) {
-        //    if (testArray[i] == 0) {
+        //    if (dup) {
         //        testArray.splice(i, 1);
         //        i--;
+        //        dup = false;
         //    }
         //}
 
 
+            ////完成冒泡排序（必做，参考）
+            //var bubbleSort = [3, 1, 5, 2, 6, 4, 7];
+            //for (var i = 0; i < bubbleSort.length; i++) {
+            //    for (var j = 0; j < bubbleSort.length; j++) {
+            //        if (bubbleSort[i] > bubbleSort[j]) {
+            //            var temp = 0;
+            //            temp = bubbleSort[i];
+            //            bubbleSort[i] = bubbleSort[j];
+            //            bubbleSort[j] = temp;
+            //        }
+            //    }
+            //}
 
-        ////完成冒泡排序（必做，参考）
-        //var bubbleSort = [3, 1, 5, 2, 6, 4, 7];
-        //for (var i = 0; i < bubbleSort.length; i++) {
-        //    for (var j = 0; j < bubbleSort.length; j++) {
-        //        if (bubbleSort[i] > bubbleSort[j]) {
-        //            var temp = 0;
-        //            temp = bubbleSort[i];
-        //            bubbleSort[i] = bubbleSort[j];
-        //            bubbleSort[j] = temp;
-        //        }
-        //    }
-        //}
 
+            ////完成：二分查找/快速排序（选做，参考：）
+            //var left = bubbleSort[0],
+            //    right = bubbleSort[bubbleSort.length - 1],
+            //    middle = 0;
 
-        ////完成：二分查找/快速排序（选做，参考：）
-        //var left = bubbleSort[0],
-        //    right = bubbleSort[bubbleSort.length - 1],
-        //    middle = 0;
+            //var needFind = 5;
+            //while (left >= right) {
+            //    middle = (left + right) / 2;
+            //    middle = Math.floor(middle);
+            //    if (needFind == bubbleSort[middle]) {
+            //        console.log(`find number at bubbleSort index of ${middle}`);
+            //        break;
+            //    }
 
-        //var needFind = 5;
-        //while (left >= right) {
-        //    middle = (left + right) / 2;
-        //    middle = Math.floor(middle);
-        //    if (needFind == bubbleSort[middle]) {
-        //        console.log(`find number at bubbleSort index of ${middle}`);
-        //        break;
-        //    }
-
-        //    if (bubbleSort[middle] > needFind) {
-        //        right = middle;
-        //    } else {
-        //        left = middle;
-        //    }
-        //}
+            //    if (bubbleSort[middle] > needFind) {
+            //        right = middle;
+            //    } else {
+            //        left = middle;
+            //    }
+            //}
 
 
 
@@ -301,6 +300,6 @@
 
 
     </script>
-    
+
 </body>
 </html>

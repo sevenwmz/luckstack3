@@ -147,25 +147,31 @@
 //}
 //getRandomArray(7,5);
 
-//不使用JavaScript内置函数，将一个字符串顺序颠倒，比如：'hello,yuanzhan' 变成 'nahznauy,olleh'。
-var needSort = 'hello,yuanzhan';
-function sortString(needSort) {
-    var afterSort = "";
+////不使用JavaScript内置函数，将一个字符串顺序颠倒，比如：'hello,yuanzhan' 变成 'nahznauy,olleh'。
+//var needSort = 'hello,yuanzhan';
+//function sortString(needSort) {
+//    var afterSort = "";
 
-    for (var i = (needSort.length-1); i > 0; i--) {
-        afterSort += needSort[i];
-    }
+//    for (var i = (needSort.length-1); i >= 0; i--) {
+//        afterSort += needSort[i];
+//    }
 
-    return afterSort;
-}
-sortString(needSort);
+//    return afterSort;
+//}
+//sortString(needSort);
 
 
 
 //统计出这段文字中有多少个单词：
 
-    //There are two ways to create a RegExp object :
-    //a literal notation and a constructor.To indicate strings, the parameters to the literal notation
-    //do not use quotation marks while the parameters to the constructor function do use quotation - marks.So
-    //the following expressions create the same regular expression
+//There are two ways to create a RegExp object :
+//a literal notation and a constructor.To indicate strings, the parameters to the literal notation
+//do not use quotation marks while the parameters to the constructor function do use quotation - marks.So
+//the following expressions create the same regular expression
 
+//var needCount = "There are two ways to create a RegExp object : a literal notation and a constructor.To indicate strings, the parameters to the literal notation" +
+//    "do not use quotation marks while the parameters to the constructor function do use quotation - marks.So" +
+//    "the following expressions create the same regular expression";
+
+//// Separater by speace
+//needCount.split(" ");
