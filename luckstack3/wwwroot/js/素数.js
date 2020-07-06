@@ -1,4 +1,87 @@
-﻿///http://17bang.ren/Article/482 将之前“找出素数”的代码封装成一个函数findPrime(max)，可以打印出max以内的所有素数。
+﻿////作业（一）
+////构建一个函数has9(number) ，可以判断number中是否带有数字9；（19 / 98）
+//function has9(number, findNum) {
+
+//    if (findNum == undefined) {
+//        findNum = 9;
+//    }
+
+//    var temp = `${number}`;
+//    for (var i = 0; i < temp.length; i++) {
+//        if (temp[i] == findNum) {
+//            return true;
+//        }
+//    }
+//    return false;
+//}
+
+////构建一个函数has8(number) ，可以判断number中是否带有数字8；
+//function has8(number) {
+//    return has9(number, 8);
+//}
+////构建一个函数has6(number) ，可以判断number中是否带有数字6；
+//function has6(number) {
+//    return has9(number, 6);
+//}
+////使用上述函数，找出10000以内有多少个数字包含：9或者8或者6。
+//var count9 = 0,
+//    count8 = 0,
+//    count6 = 0;
+
+//for (var i = 0; i < 10001; i++) {
+//    has9(i) ? count9++ : 0 ;
+//    has8(i) ? count8++ : 0 ;
+//    has6(i) ? count6++ : 0 ;
+//}
+//console.log(`In 10000 have ${count9} - 9,and have ${count8} - 8, and ${count6} - 6`);
+
+
+//让get986()通过调用has9() / has8() / has6() ，能找出number以内有多少个数字包含：9或者8或6。
+
+//function get986(number) {
+//    var count9 = 0,
+//        count8 = 0,
+//        count6 = 0;
+//    var temp = `${number}`;
+
+//    for (var i = 0; i < temp; i++) {
+//        has9(i) ? count9++ : 0;
+//        has8(i) ? count8++ : 0;
+//        has6(i) ? count6++ : 0;
+//    }
+//    console.log(`In ${temp} have ${count9} - 9,and have ${count8} - 8, and ${count6} - 6`);
+//    var arr = [count9, count8, count6];
+//    return arr;
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///http://17bang.ren/Article/482 将之前“找出素数”的代码封装成一个函数findPrime(max)，可以打印出max以内的所有素数。
+
 //     作业：
 
 //将之前“找出素数”的代码封装成一个函数findPrime(max)，可以打印出max以内的所有素数。
