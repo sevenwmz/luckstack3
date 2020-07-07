@@ -1,13 +1,13 @@
 ﻿//作业：
 //使用setTimeout() （不是setInterval() ）实现每隔1秒钟显示一次：第n周，源栈同学random人。（n逐次递增，random随机）
-function weekAndRandom(week) {
+function weekAndRandom() {
+    var randomPerson = Math.floor(Math.random() * 10);
     week++;
-    var randomPerson = Math.floor(Math.random() * 1000);
     console.log(`第${week}周，源栈同学${randomPerson}人。`);
-    setTimeout(weekAndRandom(week), 1000);
+    setTimeout(weekAndRandom, 1000);
 }
-
-//setTimeout(weekAndRandom(0),10000);
+var week = 0;
+setTimeout(weekAndRandom,1000);
 
 
 //完成猜数字的游戏：
