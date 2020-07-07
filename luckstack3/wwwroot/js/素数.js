@@ -1,9 +1,9 @@
 ﻿////作业（一）
-////构建一个函数has9(number) ，可以判断number中是否带有数字9；（19 / 98）
-//function has9(number, findNum) {
+////构建一个函数has9(number) ，可以判断number中是否带有数字9；（19 / 98）     
+//function hasSpecifiedNum(number, findNum) {
 
 //    if (findNum == undefined) {
-//        findNum = 9;
+//        return false;///  excption
 //    }
 
 //    var temp = `${number}`;
@@ -15,14 +15,25 @@
 //    return false;
 //}
 
+//function has9(number) {
+//    return hasSpecifiedNum(number, 9);
+//}
+
 ////构建一个函数has8(number) ，可以判断number中是否带有数字8；
+
 //function has8(number) {
-//    return has9(number, 8);
+//    return hasSpecifiedNum(number, 8);
 //}
+
 ////构建一个函数has6(number) ，可以判断number中是否带有数字6；
+
 //function has6(number) {
-//    return has9(number, 6);
+//    return hasSpecifiedNum(number, 6);
 //}
+
+
+
+
 ////使用上述函数，找出10000以内有多少个数字包含：9或者8或者6。
 //var count9 = 0,
 //    count8 = 0,
