@@ -79,7 +79,26 @@
 
 ////参考用户资料页面，控制台显示出用户的：性别 / 出生年月 / 关注（关键字）/ 自我介绍 
 
+//function userProfile() {
+//    var gender = document.getElementsByName("Gender");
+//    for (var i = 0; i < gender.length; i++) {
+//        if (gender[i].checked) {
+//            console.log("choose gender is =>  " + gender[i].value);
+//        }
+//    }
 
+//    var year = document.getElementsByName("year")[0];
+//    var outputYear = year.children.item(year.selectedIndex).innerText;
+//    console.log("choose year is =>    " +  outputYear);
+
+//    var mouth = document.getElementsByName("mouth")[0];
+//    var outputMouth = mouth.children.item(mouth.selectedIndex).innerText;
+//    console.log("choose mouth is =>    " +outputMouth);
+
+//    console.log("user input self defined keyword is =>    " +  document.querySelector("[js-userDefinedKeyword]").value);
+
+//    console.log("user input self introduce is =>    " + document.querySelector("[js-userInfo]").value);
+//}
 
 
 
