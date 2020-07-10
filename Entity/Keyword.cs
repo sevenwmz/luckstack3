@@ -9,6 +9,7 @@ namespace Entity
         public int Id { set; get; }
 
         public string Name { get; set; }
+        public int Used { get; set; }
 
         public IList<Article> articles { set; get; }
 
