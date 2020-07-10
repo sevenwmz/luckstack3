@@ -23,6 +23,18 @@ function usedKeyword(keywordId,usedCount) {
 //参考一起帮首页，实现右侧漂浮并底对齐左侧文本框的效果
 
 //参考消息页面：完成勾选全选功能
+function messageCheckAll() {
+    var message = document.querySelectorAll('[js-messagehascheck]');
+    if (document.querySelector("[js-messageCheckAll ]").checked) {
+        for (var i = 0; i < message.length; i++) {
+            message[i].checked = true;
+        }
+    } else {
+        for (var i = 0; i < message.length; i++) {
+            message[i].checked = false;
+        }
+    }
+}
 
 //参考注册页面：
 

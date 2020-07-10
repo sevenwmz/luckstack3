@@ -48,7 +48,7 @@
 <form method="post">
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-md-6">
-            <label><input type="checkbox" asp-for="CheckAll" />全选</label>
+            <label><input js-messageCheckAll onclick="messageCheckAll()" type="checkbox" asp-for="CheckAll" />全选</label>
             <button type="submit" asp-page="/Message/Mine" asp-route-opt="read" class="btn btn-primary rounded fa fa-check-circle">已读</button>
             <button type="submit" asp-page="/Message/Mine" asp-route-opt="delete" class="btn border-secondary rounded fa fa-times-circle">删除</button>
         </div>
@@ -68,7 +68,7 @@
         <div class="row text-bold" style="@fontWeight">
             <div class="col-sm-1">
                 <label>
-                    <input type="checkbox" asp-for="Messages[i].HasCheck" />
+                    <input js-messageHasCheck type="checkbox" asp-for="Messages[i].HasCheck" />
                     <input type="hidden" asp-for="Messages[i].Id" />
                 </label>
             </div>
@@ -89,7 +89,7 @@
     }
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-md-6">
-            <label><input type="checkbox" asp-for="CheckAll" />全选</label>
+            <label><input js-messageCheckAll onclick="messageCheckAll()" type="checkbox" asp-for="CheckAll" />全选</label>
             <button type="submit" asp-page="/Message/Mine" asp-route-opt="read" class="btn btn-primary rounded fa fa-check-circle">已读</button>
             <button type="submit" asp-page="/Message/Mine" asp-route-opt="delete" class="btn border-secondary rounded fa fa-times-circle">删除</button>
         </div>
@@ -142,3 +142,4 @@
         </ul>
     </nav>
 </form>
+<script src="~/js/EventAndBind.js"></script>

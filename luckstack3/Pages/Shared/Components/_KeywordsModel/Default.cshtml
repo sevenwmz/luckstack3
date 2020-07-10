@@ -8,7 +8,7 @@
         <section>
             @foreach (var item in Model)
             {
-                <span @*onmouseout="removeKeywordUsed()"*@ `js-${@item.id}` onmouseover="usedKeyword(@item.Id,@item.Used)" class="text-white badge bg-dark" id="@item.Id" style="border-radius:10px;font-size:large;height:25px;">
+                <span @*onmouseout="removeKeywordUsed()"*@  onmouseover="usedKeyword(@item.Id,@item.Used)" class="text-white badge bg-dark" id="@item.Id" style="border-radius:10px;font-size:large;height:25px;">
                     @item.Name
                 </span>
             }
