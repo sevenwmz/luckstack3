@@ -37,9 +37,41 @@ function messageCheckAll() {
 }
 
 //参考注册页面：
-
 //提交时，如果用户名重复（已有用户名用数组保存），阻止form提交，提示“用户名重复”。
+function userNameHasRepeat() {
+    var registered = ["wpzwpz", "yefei", "atai", "duande"];
+
+    for (var i of registered) {
+        if (document.querySelector("[js-registerUserName]").value == i) {
+            var addRemind = document.createElement("span");
+            addRemind.setAttribute("js-remindInputWrong","");
+            addRemind.style.color = "red";
+            var text = document.createTextNode("* Input name already exist ,please try again!");
+            addRemind.appendChild(text);
+
+            document.querySelector("[js-addrigstererror]").appendChild(addRemind);
+            return false;
+        }
+    }
+}
+document.querySelector("[js-registerUserName]").onkeyup = userNameHasRepeat;
+
+
 //重新输入用户名，一旦输入用户名部分没有重复，“用户名重复”的提示消失
+function removeUserNameRemind() {
+    var registered = ["wpzwpz", "yefei", "atai", "duande"];
+
+    for (var i of registered) {
+        if (document.querySelector("[js-registerUserName]").value != i) {
+            var errorTag = document.querySelector("[js-remindinputwrong]");
+            if (errorTag != null) {
+                errorTag.remove();
+            }
+        }
+    }
+}
+document.querySelector("[js-registerUserName]").onkeydown = removeUserNameRemind;
+
 //当用户名或密码等有值时，关闭页面前弹出确认框
 
 //参考求助首页侧边栏“免费广告发布”弹出Modal，实现（不需要弹出Modal）：
