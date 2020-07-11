@@ -2,7 +2,7 @@
 //document.querySelector("[js-usedKeyword]").onmousemove = function () {
 
 //};
-function usedKeyword(keywordId,usedCount) {
+function usedKeyword(keywordId, usedCount) {
     //var showKeywordUsed = document.createElement("span");
     //showKeywordUsed.innerText = `已使用${usedCount}次`;
     //showKeywordUsed.className = "js-onMouseOutRemove";
@@ -21,6 +21,19 @@ function usedKeyword(keywordId,usedCount) {
 
 
 //参考一起帮首页，实现右侧漂浮并底对齐左侧文本框的效果
+window.onload = function () {
+
+    this.document.body.getElementsByTagName("aside")[0].onscroll = function () {
+        var currentTop = document.documentElement.scrollTop;
+        if (currentTop > 770) {
+            document.getElementsByTagName("aside").style.top = 20 % - (currentTop - 430);
+        } else {
+            document.getElementsByTagName("aside").style.top = "20%"; 
+        }
+    }
+}
+
+
 
 //参考消息页面：完成勾选全选功能
 function messageCheckAll() {
@@ -44,7 +57,7 @@ function userNameHasRepeat() {
     for (var i of registered) {
         if (document.querySelector("[js-registerUserName]").value == i) {
             var addRemind = document.createElement("span");
-            addRemind.setAttribute("js-remindInputWrong","");
+            addRemind.setAttribute("js-remindInputWrong", "");
             addRemind.style.color = "red";
             var text = document.createTextNode("* Input name already exist ,please try again!");
             addRemind.appendChild(text);
