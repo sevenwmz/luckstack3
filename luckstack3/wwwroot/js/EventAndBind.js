@@ -54,7 +54,7 @@ function userNameHasRepeat() {
         }
     }
 }
-document.querySelector("[js-registerUserName]").onkeyup = userNameHasRepeat;
+document.querySelector("[js-registerUserName]").onblur = userNameHasRepeat;
 
 
 //重新输入用户名，一旦输入用户名部分没有重复，“用户名重复”的提示消失
@@ -73,6 +73,14 @@ function removeUserNameRemind() {
 document.querySelector("[js-registerUserName]").onkeydown = removeUserNameRemind;
 
 //当用户名或密码等有值时，关闭页面前弹出确认框
+window.onbeforeunload = function () {
+    if (this.document.querySelector("[js-registerUserName]").value != "") {
+        return "";
+    }
+    if (this.document.querySelector("[js-registerPwd]").value != "") {
+        return "";
+    }
+}
 
 //参考求助首页侧边栏“免费广告发布”弹出Modal，实现（不需要弹出Modal）：
 
