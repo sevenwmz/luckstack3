@@ -3,22 +3,20 @@
 
 //};
 function usedKeyword(keywordId, usedCount) {
-    //var showKeywordUsed = document.createElement("span");
-    //showKeywordUsed.innerText = `已使用${usedCount}次`;
-    //showKeywordUsed.className = "js-onMouseOutRemove";
+
+    var showKeywordUsed = document.createElement("span");
+    showKeywordUsed.setAttribute("js-onmouseout", "");
+    showKeywordUsed.innerText = `已使用${usedCount}次`;
+    //showKeywordUsed.style.top = -this.clientHeight + 'px';
+    //showKeywordUsed.style.left = (this.clientWidth - showKeywordUsed.clientWidth) / 2 + 'px';
 
     var section = document.getElementById(keywordId);
-    //section.appendChild(showKeywordUsed);
-    section.title = `已使用${usedCount}次`;
+    section.appendChild(showKeywordUsed);
 }
 
-//function removeKeywordUsed() {
-//    var section = document.getElementsByClassName("js-onMouseOutRemove");
-//    section.innerText = null;
-//}
-
-
-
+function keywordUsedRemove() {
+    document.querySelector("[js-onmouseout]").remove();
+}
 
 //参考一起帮首页，实现右侧漂浮并底对齐左侧文本框的效果
 window.onload = function () {
@@ -28,7 +26,7 @@ window.onload = function () {
         if (currentTop > 770) {
             document.getElementsByTagName("aside").style.top = 20 % - (currentTop - 430);
         } else {
-            document.getElementsByTagName("aside").style.top = "20%"; 
+            document.getElementsByTagName("aside").style.top = "20%";
         }
     }
 }
