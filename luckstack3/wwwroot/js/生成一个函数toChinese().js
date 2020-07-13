@@ -17,6 +17,20 @@ function toChinese(date) {
 }
 
 //生成一个函数addDays(number) ，可在当前日期的基础上增加number天
+
+function addDays(number) {
+    if (isNaN(number)) {
+        return false;
+    }
+
+    var result = new Date();
+    result.setDate(result.getDate() + number);
+    var month = result.getMonth();
+    var day = result.getDay();
+
+    return result.getFullYear() + '-' + (result.getMonth() + 1) + '-' + result.getDate();
+}
+
 //JSON生成和解析：
 //按自己的情况，生成一个JSON字符串，包括真实姓名、QQ昵称、年龄、性别、兴趣爱好、自我介绍……，上传到QQ群：一起帮·有意向（729600626）
 //根据其他同学的JSON获得其个人资料，生成一个表格显示。
