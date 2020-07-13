@@ -3,13 +3,13 @@
 
 // Just see out,I think can't test TDD;
 
-function weekAndRandom(week) {
-    var randomPerson = Math.floor(Math.random() * 10);
-    week++;
-    console.log(`第${week}周，源栈同学${randomPerson}人。`);
-    setTimeout(weekAndRandom, 1000, week);
-}
-setTimeout(weekAndRandom,1000,0);
+//function weekAndRandom(week) {
+//    var randomPerson = Math.floor(Math.random() * 10);
+//    week++;
+//    console.log(`第${week}周，源栈同学${randomPerson}人。`);
+//    setTimeout(weekAndRandom, 1000, week);
+//}
+//setTimeout(weekAndRandom,1000,0);
 
 ////完成猜数字的游戏：
 ////弹出游戏玩法说明，等待用户点击“确认”，开始游戏；
