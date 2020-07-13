@@ -36,16 +36,13 @@ window.onload = function () {
 //参考消息页面：完成勾选全选功能
 function messageCheckAll() {
     var message = document.querySelectorAll('[js-messagehascheck]');
-    if (document.querySelector("[js-messageCheckAll ]").checked) {
-        for (var i = 0; i < message.length; i++) {
-            message[i].checked = true;
-        }
-    } else {
-        for (var i = 0; i < message.length; i++) {
-            message[i].checked = false;
-        }
+    for (var i = 0; i < message.length; i++) {
+        message[i].checked = this.checked;
     }
 }
+
+
+
 
 //参考注册页面：
 //提交时，如果用户名重复（已有用户名用数组保存），阻止form提交，提示“用户名重复”。
@@ -61,7 +58,7 @@ function userNameHasRepeat() {
             addRemind.appendChild(text);
 
             document.querySelector("[js-addrigstererror]").appendChild(addRemind);
-            return false;
+            break;
         }
     }
 }
@@ -85,11 +82,9 @@ document.querySelector("[js-registerUserName]").onkeydown = removeUserNameRemind
 
 //当用户名或密码等有值时，关闭页面前弹出确认框
 window.onbeforeunload = function () {
-    if (this.document.querySelector("[js-registerUserName]").value != "") {
-        return "";
-    }
-    if (this.document.querySelector("[js-registerPwd]").value != "") {
-        return "";
+    if (this.document.querySelector("[js-registerUserName]").value != "" ||
+        this.document.querySelector("[js-registerPwd]").value != "") {
+        return "信息还没有填写完成，是否要退出？";
     }
 }
 
