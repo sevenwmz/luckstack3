@@ -112,7 +112,15 @@ function getTd(innerText) {
 //利用新学到的Array函数，重新完成之前的数组相关作业
 //使用正则表达式判断某个字符串:
 //是否是合格的Email格式
+function isEmail(email) {
+    var regMatch = new RegExp("(\w*@\w*)\.[a-z]*", "gim");
+    return regMatch.exec(email) != null;
+}
 //是否是小数（正负小数都可以）
+function isEmail(number) {
+    var regMatch = new RegExp("((-[0-9]*|[0-9]*)\.[0-9]+");
+    return regMatch.exec(number) != null;
+}
 //将所有以zyf - 开头的属性去掉zyf - （尽可能多的制造测试用例，比如：<a lzyf-old=''， 或者：<span>zyf---+---fyz</span> ……）
 
 
