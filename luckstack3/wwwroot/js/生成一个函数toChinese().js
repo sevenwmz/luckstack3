@@ -123,7 +123,14 @@ function isEmail(number) {
 }
 //将所有以zyf - 开头的属性去掉zyf - （尽可能多的制造测试用例，比如：<a lzyf-old=''， 或者：<span>zyf---+---fyz</span> ……）
 
+function kill_zyf_withKnife(tag) {
+    var regMatch = new RegExp("", "gim");
+    //<[a-z]+\szyf-\w*\s*>
+    for (var i = 0; i < length; i++) {
 
+    }
+
+}
 
 
 
