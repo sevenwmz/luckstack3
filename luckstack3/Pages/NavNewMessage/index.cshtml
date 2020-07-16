@@ -1,0 +1,28 @@
+﻿@page
+@model _17bang.Index
+
+@{
+    Layout = null;
+}
+
+
+@if (Model.NewMessage.IsAward)
+{
+    <span>
+        <i class="fa fa-calendar" title="@Model.NewMessage.CreateTime"></i>@Model.NewMessage.ContentType
+        <a href="#" class="text-muted">@Model.NewMessage.InfoContent </a>被
+        <a href="#" class="text-muted">@Model.NewMessage.FromWho.UserName</a>@Model.NewMessage.BehaviorType
+        <a href="#" class="text-muted"><i class="fa fa-jpy"></i>@Model.NewMessage.TransactionBy</a>@Model.NewMessage.MonetaryUnit 枚
+    </span>
+}
+else
+{
+    <span>
+        <i class="fa fa-calendar" title="@Model.NewMessage.CreateTime"></i>恭喜
+        <a href="#" class="text-muted">@Model.NewMessage.FromWho.UserName</a>邀请成功了，系统奖励给
+        <a href="#" class="text-muted">@Model.NewMessage.GiveTo.UserName</a>
+        <a href="#" class="text-muted"><i class="fa fa-jpy"></i>@Model.NewMessage.TransactionBy</a>@Model.NewMessage.MonetaryUnit 枚
+    </span>
+}
+<a href="#"><i class="fa fa-hand-o-right"></i>全部消息</a>
+
