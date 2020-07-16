@@ -57,6 +57,21 @@ document.querySelector("[js-keywordProblemAjax]").onclick = function () {
 };
 
 //能通过Json获得（有无未读消息的）数据，决定是否闪烁铃铛图标（注意：要能闪还能不闪）
+function messageBell() {
+
+    if (document.cookie.includes("HasUnreadMessage")) {
+        var bellColor = document.querySelector("[js-danceBell]").style;
+        if (bellColor.color === "cadetblue") {
+            bellColor.color = "blueviolet";
+            setTimeout(messageBell, 200);
+        }
+        else {
+            bellColor.color = "cadetblue";
+            setTimeout(messageBell, 200);
+        }
+    }
+}
+
 //发布求助时，能够
 //根据一级关键字，通过Ajax获取到改一级关键字下的二级关键字，并予以显示
 //定向求助时移出焦点，就能找到相关用户

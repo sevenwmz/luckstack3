@@ -56,6 +56,20 @@ namespace _17bang
                 ++SumOfArticle;
             }
             Messages = Messages.GetPaged(Const.PAGE_SIZE, pageIndex);
+
+            foreach (var item in Messages)
+            {
+                if (!item.HasRead)
+                {
+                    HttpContext.Response.Cookies.Append("HasUnreadMessage", "true");
+                    break;
+                }
+                else
+                {
+                    HttpContext.Response.Cookies.Delete("HasUnreadMessage");
+                }
+            }
+
         }
         public ActionResult OnPost()
         {
