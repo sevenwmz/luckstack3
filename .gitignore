@@ -343,3 +343,4 @@ healthchecksdb
 /SevenLearnCsharp/Generic.cs
 /ZeroOfStart
 *.cs
+*.csproj

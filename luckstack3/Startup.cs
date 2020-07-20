@@ -48,6 +48,7 @@ namespace _17bang
                         .AddPageRoute("/Message/Mine", "/Message/Mine/{id:int=1}/{opt?}")
                         .AddPageRoute("/Problem/Edit", "/Problem/Edit/{id:int}")
                         .AddPageRoute("/Article/Edit", "/Article/Edit/{id:int}")
+                        .AddPageRoute("/Article/Single", "/Article/Single/{id:int}")
                         ;
                 })
                 .AddMvcOptions(options =>
