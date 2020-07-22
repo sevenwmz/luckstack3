@@ -11,7 +11,7 @@ namespace WebUI.Controllers
     {
         // GET: _LogOn
         [ChildActionOnly]
-        public ActionResult LogOn()
+        public ActionResult _LogOn()
         {
             return View(new BaceService().CurrentUserId);
         }

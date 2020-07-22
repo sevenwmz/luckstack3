@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+}
+
+
+@{
+    string prepage = Context.Request.QueryString[Const.PREPAGE];
+    if (string.IsNullOrEmpty(prepage))
+    {
+        //目的是为了控制Url参数长度，从而在显示的模块里不会出现其他页面的多余参数
+        prepage = (Context.Request.Path + Context.Request.QueryString);
+    }//else nothing
+    string queryStringPage = $"{Const.PREPAGE}={prepage}";
+
+    string logInId = Model/* HttpContext.Current.Request.Cookies[Const.COOKIE_NAME].Values["id"]*/;
+}
+
+<li class="nav-item dropdown">
+    @if (logInId == null)
+    {
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user"></i>未登录
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/Log/On">登录</a>
+            <a class="dropdown-item" href="/Register">注册</a>
+            <a class="dropdown-item" href="/Forget/Password">忘记密码</a>
+        </div>
+    }
+    else
+    {
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user"></i>name
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">新手任务</a>
+            <a class="dropdown-item" href="/">我的主页</a>
+            <hr />
+            <a class="dropdown-item" href="#">帮帮豆 <span></span></a>
+            <a class="dropdown-item" href="#">帮帮点 <span></span></a>
+            <a class="dropdown-item" href="#">帮帮币 <span></span></a>
+            <hr />
+            <small>修改</small>
+            <a class="dropdown-item" href="#">我的密码</a>
+            <a class="dropdown-item" href="#">联系方式</a>
+            <a class="dropdown-item" href="/Profile/Write">个人资料</a>
+            <hr />
+            <a class="dropdown-item" href="/Log/Off">退出登陆</a>
+        </div>
+    }
+</li>

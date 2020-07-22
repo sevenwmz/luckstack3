@@ -37,108 +37,7 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse flex-row-reverse">
-                <ul class="navbar-nav">
-
-
-                    @{
-                        string prepage = Context.Request.QueryString[Const.PREPAGE];
-                        if (string.IsNullOrEmpty(prepage))
-                        {
-                            //目的是为了控制Url参数长度，从而在显示的模块里不会出现其他页面的多余参数
-                            prepage = (Context.Request.Path + Context.Request.QueryString);
-                        }//else nothing
-                        string queryStringPage = $"{Const.PREPAGE}={prepage}";
-
-                        string logInId = "26"/* HttpContext.Current.Request.Cookies[Const.COOKIE_NAME].Values["id"]*/;
-                    }
-
-
-                    @*临时登陆显示partial*@
-                    @*<partial name="TempLogOn" />*@
-                    @if (logInId == null)
-                    {
-                        <a href="/Register?@queryStringPage">注册      |</a>
-                        <a href="/Log/On?@queryStringPage">登陆         |</a>
-                        <a href="/Home?@queryStringPage">主页</a>
-                    }
-                    else
-                    {
-
-                        <a href="/Log/Off?@queryStringPage">退出登陆         |</a>
-                        <a href="/Home?@queryStringPage">主页</a>
-                    }
-
-
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-question-circle"></i>求助
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-header">督导班</a>
-                            <a class="dropdown-item" href="#">督导班</a>
-                            <a class="dropdown-item" href="#">列表</a>
-                            <a class="dropdown-item">疑问发布</a>
-                            <a class="dropdown-item">疑问列表</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">列表</a>
-                            <a class="dropdown-item" href="#">发布</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-eye"></i>督促
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">求督促</a>
-                            <a class="dropdown-item" href="#">督促别人</a>
-                            <a class="dropdown-item" href="#">我的目标</a>
-                            <a class="dropdown-item" href="#">我的督促</a>
-                            <a class="dropdown-item" href="#">未交作业</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-area-chart"></i>文章
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">列表</a>
-                            <a class="dropdown-item" href="#">开通</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-user"></i>未登录
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">登录</a>
-                            <a class="dropdown-item" href="#">注册</a>
-                            <a class="dropdown-item" href="#">忘记密码</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown" style="padding-right:75px">
-                        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-tachometer"></i>后台
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-header">邀请注册</a>
-                            <a class="dropdown-item" href="#">我的消息</a>
-                            <a class="dropdown-item" href="#">我的草稿</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-header">广告推广</a>
-                            <a class="dropdown-item">联系方式</a>
-                            <a class="dropdown-item">侧边栏</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-header">购买</a>
-                            <a class="dropdown-item" href="#">出售</a>
-                            <a class="dropdown-item" href="#">已购买</a>
-                            <a class="dropdown-item" href="#">已出售</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
+            @Html.Partial("_Nav")
         </nav>
     </header>
 
@@ -152,8 +51,6 @@
         <vc:notice-model></vc:notice-model>
         @RenderBody()
     </main>
-
-
 
     <footer class="container">
         <hr />
@@ -174,5 +71,8 @@
             </div>
         </div>
     </footer>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
 </body>
 </html>

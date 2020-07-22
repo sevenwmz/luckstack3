@@ -177,6 +177,7 @@
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SeriesController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
+    <Compile Include="Controllers\LogOnController.cs" />
     <Compile Include="Filter\ContextPreRequest.cs" />
     <Compile Include="Filter\NeedLogOn.cs" />
     <Compile Include="Global.asax.cs">
@@ -278,7 +279,7 @@
     <Content Include="Views\Shared\_LayoutForNewTask.cshtml" />
     <Content Include="Views\Shared\_LayoutSmallColumn.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\TempLogOn.cshtml" />
+    <Content Include="Views\Shared\_Nav.cshtml" />
     <Content Include="Views\Log\On.cshtml" />
     <Content Include="Views\Log\Off.cshtml" />
     <Content Include="Views\Article\New.cshtml" />
@@ -308,6 +309,7 @@
     <Content Include="Views\Shared\_Series.cshtml" />
     <Content Include="Views\Article\Category.cshtml" />
     <Content Include="Views\Shared\_CategorySeries.cshtml" />
+    <Content Include="Views\Shared\_LogOn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -317,6 +319,7 @@
     <Folder Include="Views\CategorySeries\" />
     <Folder Include="Views\Email\" />
     <Folder Include="Views\Series\" />
+    <Folder Include="Views\_LogOn\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
