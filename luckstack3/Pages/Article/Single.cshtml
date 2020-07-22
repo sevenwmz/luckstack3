@@ -35,9 +35,9 @@
                 <label>
                     <span class="fa fa-tags mt-3"><strong>关键字：</strong></span>
                     @*@foreach (var item in Model.Keywords)
-                    {
-                        <span class="text-white badge bg-dark">@item.Name</span>
-                    }*@
+                        {
+                            <span class="text-white badge bg-dark">@item.Name</span>
+                        }*@
                 </label>
             </div>
             <div class="fa-dashboard mt-3 pull-right">
@@ -76,12 +76,15 @@
                 <a style="color:#354756" title="" data-toggle="tooltip" href="/FAQ/Ad#article" data-original-title="这是什么？">投稿人推广：</a>
                 <a href="#">@Model.ChoosSeries</a>
             </div>
-            <h4>
-                <span class="fa fa-send"></span> <label>我有话说：</label>
-            </h4>
-            @Html.TextAreaFor(a => a.Comments, 4, 4, new { @style = "width: 100%; ,height: 100px;" });
-            <button type="submit" class="btn btn-primary">提交</button>
-            <button type="reset" class="btn btn-primary">重置</button>
+
+            <form method="post" class="mt-5">
+                <h4>
+                    <span class="fa fa-send"></span> <label>我有话说：</label>
+                </h4>
+                <textarea js-myComments asp-for="Comments" style="width: 100%; ,height: 100px;"></textarea>
+                <button js-Comments type="submit" class="btn btn-primary">提交</button>
+                <button type="reset" class="btn btn-primary">重置</button>
+            </form>
 
             <div style="margin-top: 25px;">
                 <div class="checkbox pull-left">
@@ -129,10 +132,77 @@
                 </div>
 
             </div>
+            <div style="margin-top: 15px;">
+                <span class="lead" style="margin-right:20px">
+                    <span class="fa fa-comments-o"></span>
+                    <span class="visible-sm-inline visible-md-inline visible-lg-inline">评论</span><small>
+                        （ <span zyf-comment-of-article-count="" title="" data-toggle="tooltip" data-original-title="精选评论">0</span> / <span title="" data-toggle="tooltip" data-original-title="全部评论">0</span> ）
+                    </small>
+                </span>
+            </div>
+            <div>
+                @for (int i = 0; i < Model.BelongArticleComments.Count; i++)
+                {
+                    <div js-addComments data-has-handpicked="False" class="clearfix comment-container" style="background-color: aliceblue;">
+                        <div>
+                            <small class="text-muted">
+                                <span>
+                                    <span class="fa fa-calendar"></span> <span js-dateNow > @Model.BelongArticleComments[i].PublishTime</span>
+                                </span>
+                            </small>
+
+                            <small js-num class="text-primary">--- 第 @(i+1) 楼 ---</small>
+                            <a href="/Article/Comment/Handpick?id=5" zyf-comment-of-article-handpick="" class=""><span class="fa fa-flag"></span> 推荐</a>
+                            <span class="pull-right">
+
+                                <span data-toggle="tooltip" title="" data-original-title="捐赠 9.9">
+                                    <span class="fa fa-user-circle-o" style="color:#DCB962"></span>
+                                    <a href="/User/7" zyf-show-contact="7" style="color:#DCB962">
+                                        A
+                                    </a>
+                                </span>
+                                <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
+                                    <span>④</span>
+                                </a>
+                            </span>
+                        </div>
+                        <div js-newComments class="comment-body clearfix">
+                            @Model.BelongArticleComments[i].Comments
+                        </div>
+                        <div class="appraise-status pull-right">
+                            <span zyf-comment-hide="" class="hide">
+                                <a href="#new-comment" zyf-comment-delete="" data-current-comment-id="5" data-current-comment-layer="1" class="" style="margin-left:20px;">
+                                    <span class="fa fa-trash"></span> 删除
+                                </a>
+                                <a href="#new-comment" zyf-comment-reply="" data-current-comment-id="5" data-current-comment-layer="1" style="margin-left:20px;">
+                                    <span class="fa fa-send"></span> 回复
+                                </a>
+                            </span>
+
+                            <a href="/Article/Comment/Appraise?id=5&amp;direction=1" class="appraise-status-item" zyf-vote="" data-author-id="7">
+                                <span class="fa fa-thumbs-o-up text-success"></span> 支持
+                                <span zyf-votes-count="">0</span>
+                            </a>
+                            <a href="/Article/Comment/Appraise?id=5&amp;direction=-1" class="appraise-status-item" zyf-vote="" data-author-id="7">
+                                <span class="fa fa-thumbs-o-down text-success"></span> 反对
+                                <span zyf-votes-count="">0</span>
+                            </a>
+                        </div>
+                    </div>
+
+                }
+            </div>
         </div>
 
     </article>
 </main>
 
+<script>
+    $("[js-Comments]").click(function (event) {
+        var comments = $("[js-myComments]").val();
+        var newComments = $("[js-addComments]").find
 
+
+    })
+</script>
 

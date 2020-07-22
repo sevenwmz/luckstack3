@@ -11,14 +11,27 @@ namespace _17bang.Repository
     public class CommoentsRepository
     {
         private DBHelper _helper;
+        public CommoentsRepository()
+        {
+            _helper = new DBHelper();
+        }
 
-      
-        public IList<Ad> Get()
+        public void SaveComments(string comment, int articleId)
+        {
+            _helper.ExcuteNonQuery("insert Comments Values(@comment,@DateTime,@ArticleId)",
+                new SqlParameter[] {
+                            new SqlParameter("@comment", comment) ,
+                            new SqlParameter("@DateTime",DateTime.Now),
+                            new SqlParameter("@ArticleId",articleId)
+                        });
+        }
+
+        public IList<Comment> Get(int articleId)
         {
             using (DbConnection connection = _helper.Connection)
             {
-                IList<Ad> result = new List<Ad> { };
-                using (DbCommand cmd = new SqlCommand("Select ContentOfAd,Id From AD", (SqlConnection)connection))
+                IList<Comment> result = new List<Comment> { };
+                using (DbCommand cmd = new SqlCommand($"Select * From Comments where BelongArticle = {articleId}", (SqlConnection)connection))
                 {
                     connection.Open();
                     SqlDataReader reader = (SqlDataReader)cmd.ExecuteReader();
@@ -28,7 +41,13 @@ namespace _17bang.Repository
                     }
                     while (reader.Read())
                     {
-                        result.Add(new Ad { AdName = reader["ContentOfAd"].ToString(), Id = Convert.ToInt32(reader["Id"]) });
+                        result.Add(new Comment 
+                        { 
+                            Id = Convert.ToInt32(reader["Id"]),
+                            PublishTime = (DateTime)reader["PublishTime"],
+                            Comments = reader["Comments"].ToString(),
+                            
+                        });
                     }
                     return result;
                 }

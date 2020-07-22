@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using _17bang.Pages.Repository;
+using _17bang.Repository;
 using Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -19,6 +20,7 @@ namespace _17bang
         public string Author { set; get; }
         public string Body { set; get; }
         public string ChoosSeries { set; get; }
+        [BindProperty]
         public string Comments { set; get; }
         public string SeriesTitle { set; get; }
         public string LastArticleTitle { set; get; }
@@ -26,6 +28,7 @@ namespace _17bang
         public int LastArticleId { set; get; }
         public int NextArticleId { set; get; }
         public IList<Keyword> Keywords { set; get; }
+        public IList<Comment> BelongArticleComments { set; get; }
 
         #endregion
 
@@ -40,7 +43,16 @@ namespace _17bang
                 Author = "HandSome wpz",
                 Body = "123111111111111111111111111111111111111111"
             };
-
+            BelongArticleComments = new CommoentsRepository().Get(id);
         }
+
+        public void OnPost(int id)
+        {
+            new CommoentsRepository().SaveComments(Comments, id);
+        }
+
     }
+
+
+
 }
