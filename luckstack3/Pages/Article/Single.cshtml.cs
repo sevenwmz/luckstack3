@@ -46,9 +46,11 @@ namespace _17bang
             BelongArticleComments = new CommoentsRepository().Get(id);
         }
 
-        public void OnPost(int id)
+        public IActionResult OnPost(int id)
         {
             new CommoentsRepository().SaveComments(Comments, id);
+
+            return Redirect($"/Article/Single/{id}");
         }
 
     }
