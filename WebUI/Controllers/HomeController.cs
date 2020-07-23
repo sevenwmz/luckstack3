@@ -26,5 +26,12 @@ namespace WebUI.Controllers
 
             return View();
         }
+
+        public PartialViewResult ChatRoom()
+        {
+
+            return PartialView();
+        }
+
     }
 }

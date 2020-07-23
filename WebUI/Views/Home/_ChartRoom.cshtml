@@ -1,0 +1,21 @@
+﻿
+
+
+@for (int i = 0; i < length; i++)
+{
+    @if (Model.id != currentId)
+    {
+        @Html.Partial("_HistoryChat")
+    }
+    else
+    {
+        if (true)
+        {
+            @Html.Partial("_MyChat")
+        }
+        else
+        {
+            @Html.Partial("_ChatWithOther")
+        }
+    }
+}

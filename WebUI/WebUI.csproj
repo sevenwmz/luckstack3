@@ -310,16 +310,15 @@
     <Content Include="Views\Article\Category.cshtml" />
     <Content Include="Views\Shared\_CategorySeries.cshtml" />
     <Content Include="Views\Shared\_LogOn.cshtml" />
+    <Content Include="Views\Home\_ChartRoom.cshtml" />
+    <Content Include="Views\Home\_MyChat.cshtml" />
+    <Content Include="Views\Home\_ChatWithOther.cshtml" />
+    <Content Include="Views\Home\_HistoryChat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Img\Icon\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Base\" />
-    <Folder Include="Views\CategorySeries\" />
-    <Folder Include="Views\Email\" />
-    <Folder Include="Views\Series\" />
-    <Folder Include="Views\_LogOn\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

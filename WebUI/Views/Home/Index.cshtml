@@ -25,7 +25,7 @@
                 <a href="none" style="padding-left:260px;">更多历史</a>
             </div>
 
-            <ul class="list-unstyled pre-scrollable">
+            <ul js-chatRoom class="list-unstyled pre-scrollable">
                 <li class="media">
                     <button type="button" class="btn btn-outline-secondary">@@TA<br />回复</button>
                     <div class="media-body ml-2">
@@ -112,16 +112,16 @@
                         <span>嗨</span>
                     </div>
                 </li>
+                @Html.Action("_ChatRoom", "ChatRoom")
             </ul>
 
-            <div class="input-group mb-3">
+            <form class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="我来说两句" aria-label="Recipient's username" aria-describedby="button-addon2">
                 <div class="input-group-append">
-                    <button type="button" class="btn btn-outline-secondary">发送</button>
+                    <button js-send type="submit" class="btn btn-outline-secondary">发送</button>
                 </div>
-            </div>
+            </form>
         </section>
-
         <aside style="position:fixed;left:60%;top:20%;">
             <h4>“源栈”web开发培训班</h4>
             <h4><i class="fa fa-fire" style="color:red"></i>火热<span>招生中：</span></h4>
@@ -130,12 +130,24 @@
             <p>有意向的同学，可以加qq群：326801052</p>
             <img src="~/img/二维码.png" alt="qq学习群326801052" />
         </aside>
-
     </div>
 </main>
 
+<script>
+    var jumpTo = @Model.ChatWithOther ? '/_ChatWithOther' : '/_MyChat';
 
-
-
-
-
+    $('[js-send]').on('click', function () {
+        $.ajax({
+            error: function () {
+                console.log('Has some problem now!!!');
+            },
+            success: function (data) {
+                $data = data;
+                $('[js-chatRoom]').html(data);
+            },
+            url: jumpTo,
+            
+            
+        });
+    });
+</script>
