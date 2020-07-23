@@ -11,20 +11,13 @@ namespace WebUI.Controllers
     {
         // GET: _LogOn
         [ChildActionOnly]
-        public ActionResult _LogOn()
+        public PartialViewResult _LogOn()
         {
-            return View(new BaceService().CurrentUserId);
+            return PartialView(new LogOnService().GetCurrentUserInfo());
         }
 
 
 
-        //[HttpPost]
-        //public PartialViewResult LogOn()
-        //{
-
-
-        //    return PartialView();
-        //}
 
     }
 }

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ViewModel.ChildAction.LogOnModel
+@{
     Layout = null;
 }
 
@@ -11,26 +12,24 @@
         prepage = (Context.Request.Path + Context.Request.QueryString);
     }//else nothing
     string queryStringPage = $"{Const.PREPAGE}={prepage}";
-
-    string logInId = Model/* HttpContext.Current.Request.Cookies[Const.COOKIE_NAME].Values["id"]*/;
 }
 
 <li class="nav-item dropdown">
-    @if (logInId == null)
+    @if (Model.Id == 0)
     {
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-user"></i>未登录
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/Log/On">登录</a>
-            <a class="dropdown-item" href="/Register">注册</a>
+            <a class="dropdown-item" href="/Log/On?@queryStringPage">登录</a>
+            <a class="dropdown-item" href="/Register?@queryStringPage">注册</a>
             <a class="dropdown-item" href="/Forget/Password">忘记密码</a>
         </div>
     }
     else
     {
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-user"></i>name
+            <i class="fa fa-user"></i>@Model.UserName
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#">新手任务</a>
@@ -38,14 +37,39 @@
             <hr />
             <a class="dropdown-item" href="#">帮帮豆 <span></span></a>
             <a class="dropdown-item" href="#">帮帮点 <span></span></a>
-            <a class="dropdown-item" href="#">帮帮币 <span></span></a>
+            <a style="color:gold" class="dropdown-item" href="#"><i class="fa fa-optin-monster"> </i>帮帮币 <span>@Model.LeftBMoney</span></a>
             <hr />
-            <small>修改</small>
+            <small class="pt-2">修改</small>
             <a class="dropdown-item" href="#">我的密码</a>
             <a class="dropdown-item" href="#">联系方式</a>
             <a class="dropdown-item" href="/Profile/Write">个人资料</a>
             <hr />
-            <a class="dropdown-item" href="/Log/Off">退出登陆</a>
+            <a class="dropdown-item" href="/Log/Off?@queryStringPage">退出登陆</a>
         </div>
+
+
     }
 </li>
+
+@if (Model.Id != 0)
+{
+    <li class="nav-item dropdown" style="padding-right:75px">
+        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-tachometer"></i>后台
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-header">邀请注册</a>
+            <a class="dropdown-item" href="/Message/Mine">我的消息</a>
+            <a class="dropdown-item" href="#">我的草稿</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-header">广告推广</a>
+            <a class="dropdown-item">联系方式</a>
+            <a class="dropdown-item">侧边栏</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-header">购买</a>
+            <a class="dropdown-item" href="#">出售</a>
+            <a class="dropdown-item" href="#">已购买</a>
+            <a class="dropdown-item" href="#">已出售</a>
+        </div>
+    </li>
+}

@@ -14,6 +14,12 @@ namespace RepositoryMVC
         {
 
         }
+
+        public User GetLogOnInfo(int userId)
+        {
+            return entities.Include(m => m.Wallet).Where(u=>u.Id == userId).FirstOrDefault();
+        }
+
         /// <summary>
         /// Get ChildRank by user level in front of 8
         /// </summary>

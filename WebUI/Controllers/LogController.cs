@@ -63,7 +63,7 @@ namespace WebUI.Controllers
         {
             HttpCookie cookie = HttpContext.Response.Cookies.Get(Const.COOKIE_NAME);
             cookie.Expires = DateTime.Now.AddDays(-100);
-            return Redirect(Request.QueryString[Const.PREPAGE]);
+            return RedirectToAction("on");
         }
 
     }

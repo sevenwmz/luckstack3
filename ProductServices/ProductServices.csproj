@@ -87,6 +87,7 @@
     <Compile Include="KeywordAndArticleService.cs" />
     <Compile Include="KeywordAndProblemService.cs" />
     <Compile Include="KeywordsService.cs" />
+    <Compile Include="LogOnService.cs" />
     <Compile Include="Log\OnService.cs" />
     <Compile Include="MessageMineService.cs" />
     <Compile Include="MoneyTradeService.cs" />

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ViewModel.ChildAction
 {
-    class LogOnModel
+    public class LogOnModel
     {
+        public int Id { set; get; }
+        public string UserName { set; get; }
+        public int LeftBMoney { set; get; }
     }
 }
