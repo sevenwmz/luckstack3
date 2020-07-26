@@ -310,7 +310,7 @@
     <Content Include="Views\Article\Category.cshtml" />
     <Content Include="Views\Shared\_CategorySeries.cshtml" />
     <Content Include="Views\Shared\_LogOn.cshtml" />
-    <Content Include="Views\Home\_ChartRoom.cshtml" />
+    <Content Include="Views\Home\_ChatRoom.cshtml" />
     <Content Include="Views\Home\_MyChat.cshtml" />
     <Content Include="Views\Home\_ChatWithOther.cshtml" />
     <Content Include="Views\Home\_HistoryChat.cshtml" />

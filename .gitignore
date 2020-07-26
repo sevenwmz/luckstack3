@@ -344,3 +344,4 @@ healthchecksdb
 /ZeroOfStart
 *.cs
 *.csproj
+/RepositoryMVC/Migrations

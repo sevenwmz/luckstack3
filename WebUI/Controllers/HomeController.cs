@@ -1,13 +1,16 @@
-﻿using System;
+﻿using ProductServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ViewModel.ChildAction;
 
 namespace WebUI.Controllers
 {
     public class HomeController : BaseController
     {
+        #region Old Area
         public ActionResult Index()
         {
             return View();
@@ -26,12 +29,21 @@ namespace WebUI.Controllers
 
             return View();
         }
+        #endregion
 
-        public PartialViewResult ChatRoom()
+
+        public PartialViewResult _ChatRoom(int count = 0)
         {
 
-            return PartialView();
+            return PartialView(new ChatService().GetHistoryChat(count));
         }
 
+        [HttpPost]
+        [ChildActionOnly]
+        public PartialViewResult _ChatRoom(ChatRoomModel chatModel)
+        {
+            new ChatService().SaveCurrentChat(chatModel);
+            return PartialView();
+        }
     }
 }

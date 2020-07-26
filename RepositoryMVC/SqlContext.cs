@@ -35,6 +35,7 @@ namespace RepositoryMVC
             modelBuilder.Entity<AD>();
             modelBuilder.Entity<User>();
             modelBuilder.Entity<Series>();
+            modelBuilder.Entity<Chat>();
             modelBuilder.Entity<BMoney>();
             modelBuilder.Entity<Contact>();
             modelBuilder.Entity<Problem>();

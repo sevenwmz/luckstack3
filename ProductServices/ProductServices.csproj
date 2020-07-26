@@ -81,6 +81,7 @@
     <Compile Include="BaceService.cs" />
     <Compile Include="BMoneyService.cs" />
     <Compile Include="ChangePasswordService.cs" />
+    <Compile Include="ChatService.cs" />
     <Compile Include="ChildRankService.cs" />
     <Compile Include="ContactService.cs" />
     <Compile Include="EmailService.cs" />

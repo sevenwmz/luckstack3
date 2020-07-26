@@ -71,6 +71,7 @@
     <Compile Include="Article\ArticleIndexModel.cs" />
     <Compile Include="Article\ArticleNewModel.cs" />
     <Compile Include="Article\ArticleSingleModel.cs" />
+    <Compile Include="ChildAction\ChatRoomModel.cs" />
     <Compile Include="ChildAction\ChildADModel.cs" />
     <Compile Include="ChildAction\ChildCategorySeriesModel.cs" />
     <Compile Include="ChildAction\ChildKeywordModel.cs" />

@@ -1,8 +1,8 @@
-﻿<li>
+﻿<li id="@Model.Id">
     <div js-chatWithOther class=" ml-2">
-        <h5 class="mt-0 mb-1">2020/2/19 12:39:21<a href="none">harriethwikk</a><a href="/credit">②</a></h5>
-        <p style="background-color:aqua" class="text-right">@@<span>@username</span><span>level</span></p>
-        <p style="background-color:aqua" class="text-right"><i class="fa fa-scissors"></i>content</p>
-        <span>嗨</span>
+        <h5 class="mt-0 mb-1">@Model.PublishTime @Html.Partial("~/Views/Article/_Author",(object)Model)</h5>
+        <p style="background-color:aqua" class="text-right">@@<span>@Html.Partial("~/Views/Article/_Author",(object)Model)</span></p>
+        <p style="background-color:aqua" class="text-right"><i class="fa fa-scissors"></i>@Model.ChatWithContent</p>
+        <span>@Model.MyChatContent</span>
     </div>
 </li>

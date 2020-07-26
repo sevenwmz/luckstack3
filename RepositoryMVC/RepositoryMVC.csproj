@@ -55,6 +55,7 @@
     <Compile Include="ArticleRepository.cs" />
     <Compile Include="BaceRepository.cs" />
     <Compile Include="BMoneyRepository.cs" />
+    <Compile Include="ChatRepository.cs" />
     <Compile Include="ContactRepository.cs" />
     <Compile Include="Extension\BMoneyExtension.cs" />
     <Compile Include="KeywordAndArticleRepository.cs" />
@@ -145,6 +146,18 @@
     <Compile Include="Migrations\202007030331549_AddSeriesLevel.designer.cs">
       <DependentUpon>202007030331549_AddSeriesLevel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007241132592_AddChat.cs" />
+    <Compile Include="Migrations\202007241132592_AddChat.designer.cs">
+      <DependentUpon>202007241132592_AddChat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007241200023_AddTableChat.cs" />
+    <Compile Include="Migrations\202007241200023_AddTableChat.designer.cs">
+      <DependentUpon>202007241200023_AddTableChat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007241222166_AddTableChatUse.cs" />
+    <Compile Include="Migrations\202007241222166_AddTableChatUse.designer.cs">
+      <DependentUpon>202007241222166_AddTableChatUse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="ProfileRepository.cs" />
@@ -227,6 +240,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007030331549_AddSeriesLevel.resx">
       <DependentUpon>202007030331549_AddSeriesLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007241132592_AddChat.resx">
+      <DependentUpon>202007241132592_AddChat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007241200023_AddTableChat.resx">
+      <DependentUpon>202007241200023_AddTableChat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007241222166_AddTableChatUse.resx">
+      <DependentUpon>202007241222166_AddTableChatUse.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
