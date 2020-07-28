@@ -28,6 +28,10 @@
                 @Html.Action("_ChatRoom", "Home")
             </ul>
 
+            <div hidden js-hiddenReply>
+                <i class="fa fa-reply"></i>
+                <span></span>
+            </div>
             <div class="input-group mb-3">
                 @if (Model == null)
                 {

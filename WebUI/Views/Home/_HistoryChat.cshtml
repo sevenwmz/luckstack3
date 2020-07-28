@@ -1,7 +1,7 @@
 ﻿<li id="@Model.Id" class="media">
-    <button type="button" class="btn btn-outline-secondary">@@TA<br />回复</button>
+    <button js-reply type="button" class="btn btn-outline-secondary">@@TA<br />回复</button>
     <div class="media-body ml-2">
         <h5 class="mt-0 mb-1">@Model.PublishTime @Html.Partial("_Author",(object)Model.Author)</h5>
-        <span>@Model.Content</span>
+        <span js-showContent>@Model.Content</span>
     </div>
 </li>

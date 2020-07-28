@@ -17,4 +17,13 @@
     })
 });
 
-/*on('click', function (e)*/
+$('[js-reply]').click(function () {
+    var replyId = this.parentElement.id;
+    var replyText = $(this).parent().find("[js-showContent]").text();
+
+    $('[js-hiddenReply]').removeAttr('hidden');
+
+    $addReply = $('[js-hiddenReply]').find('span');
+    $addReply.attr('id', replyId);
+    $addReply.text(replyText);
+})
