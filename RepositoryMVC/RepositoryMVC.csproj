@@ -158,6 +158,14 @@
     <Compile Include="Migrations\202007241222166_AddTableChatUse.designer.cs">
       <DependentUpon>202007241222166_AddTableChatUse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007271208596_ChangeChatContent.cs" />
+    <Compile Include="Migrations\202007271208596_ChangeChatContent.designer.cs">
+      <DependentUpon>202007271208596_ChangeChatContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007271213110_ChangeChatReplyName.cs" />
+    <Compile Include="Migrations\202007271213110_ChangeChatReplyName.designer.cs">
+      <DependentUpon>202007271213110_ChangeChatReplyName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="ProfileRepository.cs" />
@@ -249,6 +257,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007241222166_AddTableChatUse.resx">
       <DependentUpon>202007241222166_AddTableChatUse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007271208596_ChangeChatContent.resx">
+      <DependentUpon>202007271208596_ChangeChatContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007271213110_ChangeChatReplyName.resx">
+      <DependentUpon>202007271213110_ChangeChatReplyName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

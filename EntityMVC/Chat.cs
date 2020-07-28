@@ -9,13 +9,15 @@ namespace EntityMVC
     public class Chat : BaceEntity
     {
         public DateTime PublishTime { set; get; }
-
-        public int? ChatWithId { set; get; }
-        public User ChatWith { set; get; }
-
-        public int ChatUserId{ set; get; }
-        public User ChatUser { set; get; }
-
         public string Content { set; get; }
+        public int AuthorId { set; get; }
+        public User Author { set; get; }
+
+
+        public int? ReplyId { set; get; }
+        public Chat Reply { set; get; }
+
+
+
     }
 }

@@ -29,17 +29,16 @@ namespace ProductServices
                 #region ChatRoom Area
                 cfg.CreateMap<V.ChildAction.ChatRoomModel,Chat>(MemberList.None)
                         .ReverseMap()
-                        .ForMember(c => c.HistoryUserId, opt => opt.MapFrom(u => u.ChatUser.Id))
-                        .ForMember(c => c.HistoryUserName, opt => opt.MapFrom(u => u.ChatUser.UserName))
-                        .ForMember(c => c.HistoryUserLevel, opt => opt.MapFrom(u => u.ChatUser.Level))
-                        .ForMember(c => c.HistoryContent, opt => opt.MapFrom(u => u.Content))
-                        .ForMember(c => c.HistoryContent, opt => opt.MapFrom(u => u.Content))
+                         ;
 
-                        //.ForMember(c => c.ChatWithId, opt => opt.MapFrom(u => u.ChatWithId.Value))
-                        //.ForMember(c => c.ChatWithUserId, opt => opt.MapFrom(u => u.ChatWith.Id))
-                        //.ForMember(c => c.ChatWithUserName, opt => opt.MapFrom(u => u.ChatWith.UserName))
-                        //.ForMember(c => c.ChatWithUserLevel, opt => opt.MapFrom(u => u.ChatWith.Level))
-                        //.ForMember(c => c.ChatWithContent, opt => opt.MapFrom(u => u.Content))
+                cfg.CreateMap<V.ChildAction.ChatItemModel, Chat>(MemberList.None)
+                        .ReverseMap()
+                         ;
+
+                cfg.CreateMap<V.ChildAction.User, User>(MemberList.None)
+                        .ForMember(u=>u.UserName,opt=>opt.MapFrom(c=>c.Author))                            
+                        .ForMember(u=>u.Id,opt=>opt.MapFrom(c=>c.AuthorId))
+                        .ReverseMap()
                          ;
 
                 #endregion

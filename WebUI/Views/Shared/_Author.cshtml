@@ -1,0 +1,22 @@
+﻿
+@{ string color = "gray";
+    if (Convert.ToInt32(Model.Level) == 0)
+    {
+        Model.Level = 1;
+    }
+    if (Convert.ToInt32(Model.Level) < 3)
+    {
+        color = "gray";
+    }
+    else if (Convert.ToInt32(Model.Level) < 8)
+    {
+        color = "blue";
+    }
+    else
+    {
+        color = "red";
+    }
+}
+
+
+<a href="/Article/@Const.USER@Convert.ToInt32(Model.AuthorId)" style="color:@color">@Model.Author</a>

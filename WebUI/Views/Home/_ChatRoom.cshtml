@@ -4,21 +4,25 @@
 
 @foreach (var item in Model.ChatRooms)
 {
+    @Html.Partial("_HistoryChat", item)
+
+
+
     //如果不等于当前Id就是历史用户，如果没登陆能不能发不考虑
-    @if (item.ChatWithUserId.Value != Model.CurrentUserId)
+    @*@if (item.ChatWithUserId.Value != Model.CurrentUserId)
     {
-        @Html.Partial("_HistoryChat",item)
+        @Html.Partial("_HistoryChat", item)
     }
     else
     {
         if (item.HasChoose)
         {
-            @Html.Partial("_MyChat",item)
+            @Html.Partial("_MyChat", item)
         }
         else
         {
-            @Html.Partial("_ChatWithOther",item)
+            @Html.Partial("_ChatWithOther", item)
         }
-    }
+    }*@
 }
 

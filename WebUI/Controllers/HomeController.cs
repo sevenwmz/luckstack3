@@ -31,19 +31,30 @@ namespace WebUI.Controllers
         }
         #endregion
 
+        #region ChatRoom Area
+        private ChatService _service;
+        public HomeController()
+        {
+            _service = new ChatService();
+        }
 
         public PartialViewResult _ChatRoom(int count = 0)
         {
+            return PartialView(_service.GetHistoryChat(count));
+        }
 
-            return PartialView(new ChatService().GetHistoryChat(count));
+        public ActionResult _MyChat(int id)
+        {
+            return View(_service.GetChat(id));
         }
 
         [HttpPost]
-        [ChildActionOnly]
-        public PartialViewResult _ChatRoom(ChatRoomModel chatModel)
+        public ActionResult _MyChat(ChatItemModel chatModel)
         {
-            new ChatService().SaveCurrentChat(chatModel);
-            return PartialView();
+            int id = _service.SaveCurrentChat(chatModel);
+            return Redirect($"/Home/_MyChat?id={id}");
         }
+        #endregion
+
     }
 }

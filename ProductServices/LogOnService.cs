@@ -19,7 +19,7 @@ namespace ProductServices
                 return model;
             }
 
-            User findUserInfo = new UserRepository(dbContext).GetLogOnInfo(CurrentUserId.Value);
+            EntityMVC.User findUserInfo = new UserRepository(dbContext).GetLogOnInfo(CurrentUserId.Value);
             model.Id = findUserInfo.Id;
             model.UserName = findUserInfo.UserName;
             model.LeftBMoney = findUserInfo.Wallet.OrderByDescending(m=>m.Latestime).Select(m => m.LeftBMoney).FirstOrDefault();

@@ -115,12 +115,12 @@
                 @Html.Action("_ChatRoom", "Home")
             </ul>
 
-            <form class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="我来说两句" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group mb-3">
+                <input js-content type="text" class="form-control" placeholder="我来说两句" aria-label="Recipient's username" aria-describedby="button-addon2">
                 <div class="input-group-append">
                     <button js-send type="submit" class="btn btn-outline-secondary">发送</button>
                 </div>
-            </form>
+            </div>
         </section>
         <aside style="position:fixed;left:60%;top:20%;">
             <h4>“源栈”web开发培训班</h4>
@@ -133,21 +133,4 @@
     </div>
 </main>
 
-<script>
-    var jumpTo = @Model.ChatWithOther ? '/_ChatWithOther' : '/_MyChat';
-
-    $('[js-send]').on('click', function () {
-        $.ajax({
-            error: function () {
-                console.log('Has some problem now!!!');
-            },
-            success: function (data) {
-                $data = data;
-                $('[js-chatRoom]').html(data);
-            },
-            url: jumpTo,
-            
-            
-        });
-    });
-</script>
+<script src="~/Scripts/MyJavaScript/IndexScript.js"></script>

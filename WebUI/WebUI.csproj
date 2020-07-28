@@ -243,6 +243,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\MyJavaScript\IndexScript.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -311,14 +312,14 @@
     <Content Include="Views\Shared\_CategorySeries.cshtml" />
     <Content Include="Views\Shared\_LogOn.cshtml" />
     <Content Include="Views\Home\_ChatRoom.cshtml" />
-    <Content Include="Views\Home\_MyChat.cshtml" />
     <Content Include="Views\Home\_ChatWithOther.cshtml" />
     <Content Include="Views\Home\_HistoryChat.cshtml" />
+    <Content Include="Views\Shared\_Author.cshtml" />
+    <Content Include="Views\Home\_MyChat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Img\Icon\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

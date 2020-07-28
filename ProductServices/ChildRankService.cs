@@ -12,7 +12,7 @@ namespace ProductServices
     {
         public ChildRankModel GetRank(int getRankSum)
         {
-            IList<User> users = new List<User>();
+            IList<EntityMVC.User> users = new List<EntityMVC.User>();
             users = UserRepository.GetUserRank(getRankSum);
 
             ChildRankModel childRank = new ChildRankModel()
