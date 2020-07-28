@@ -35,7 +35,7 @@ namespace ProductServices
                         .ReverseMap()
                          ;
 
-                cfg.CreateMap<V.ChildAction.User, User>(MemberList.None)
+                cfg.CreateMap<V.ChildAction.UserModel, User>(MemberList.None)
                         .ForMember(u=>u.UserName,opt=>opt.MapFrom(c=>c.Author))                            
                         .ForMember(u=>u.Id,opt=>opt.MapFrom(c=>c.AuthorId))
                         .ReverseMap()

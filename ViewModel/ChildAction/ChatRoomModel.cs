@@ -17,12 +17,12 @@ namespace ViewModel.ChildAction
 
         public DateTime PublishTime { set; get; }
         public string Content { set; get; }
-        public User Author { set; get; }
+        public UserModel Author { set; get; }
         public ChatItemModel Reply { set; get; }
 
     }
 
-    public class User
+    public class UserModel
     {
         public int AuthorId { set; get; }
         public string Author { set; get; }

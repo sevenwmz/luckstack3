@@ -10,10 +10,16 @@ namespace WebUI.Controllers
 {
     public class HomeController : BaseController
     {
+        private ChatService _service;
+        public HomeController()
+        {
+            _service = new ChatService();
+        }
+
         #region Old Area
         public ActionResult Index()
         {
-            return View();
+            return View(_service.CurrentUserId);
         }
 
         public ActionResult About()
@@ -32,11 +38,7 @@ namespace WebUI.Controllers
         #endregion
 
         #region ChatRoom Area
-        private ChatService _service;
-        public HomeController()
-        {
-            _service = new ChatService();
-        }
+
 
         public PartialViewResult _ChatRoom(int count = 0)
         {
