@@ -1,8 +1,8 @@
-﻿<li id="@Model.Id">
+﻿<li id="@Model.Id" class="text-right pr-5">
     <div js-chatWithOther class=" ml-2">
-        <h5 class="mt-0 mb-1">@Model.PublishTime @Html.Partial("~/Views/Article/_Author",(object)Model)</h5>
-        <p style="background-color:aqua" class="text-right">@@<span>@Html.Partial("~/Views/Article/_Author",(object)Model)</span></p>
-        <p style="background-color:aqua" class="text-right"><i class="fa fa-scissors"></i>@Model.ChatWithContent</p>
-        <span>@Model.MyChatContent</span>
+        <h5 class="mt-0 mb-1">@Model.PublishTime @Html.Partial("_Author", (object)Model.Author)</h5>
+        <p class="text-right">@@<span style="background-color:aqua">@Html.Partial("_Author", (object)Model.Reply.Author)</span></p>
+        <p class="text-right"><span style="background-color:aqua"><i class="fa fa-scissors"></i>@Model.Reply.Content</span></p>
+        <span>@Model.Content</span>
     </div>
 </li>

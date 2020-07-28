@@ -8,6 +8,7 @@ namespace ViewModel.ChildAction
 {
     public class ChatRoomModel
     {
+        public int? CurrentUserId { set; get; }
         public IList<ChatItemModel> ChatRooms { set; get; }
     }
 

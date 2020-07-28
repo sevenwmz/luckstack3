@@ -26,7 +26,7 @@ namespace ProductServices
             {
                 ChatRooms = connectedMapper.Map<List<ChatItemModel>>(chats)
             };
-
+            model.CurrentUserId = CurrentUserId;
             return model;
         }
 
