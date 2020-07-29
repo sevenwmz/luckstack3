@@ -39,9 +39,9 @@ namespace WebUI.Controllers
 
         #region ChatRoom Area
 
-        public ActionResult _ChatRoomAjax(int count = 0)
+        public ActionResult _ChatRoomAjax(int id = 0)
         {
-            return View(_service.GetHistoryChat(count));
+            return View(_service.GetlatestChat(id));
         }
         public PartialViewResult _ChatRoom(int count = 0)
         {

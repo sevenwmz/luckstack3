@@ -30,6 +30,18 @@ namespace ProductServices
             return model;
         }
 
+        public ChatRoomModel GetlatestChat(int id)
+        {
+            IList<Chat> chats = _repo.GetlatestChat(id);
+            ChatRoomModel model = new ChatRoomModel
+            {
+                ChatRooms = connectedMapper.Map<List<ChatItemModel>>(chats)
+            };
+            model.CurrentUserId = CurrentUserId;
+            return model;
+        }
+
+
         public int SaveCurrentChat(ChatItemModel chatModel)
         {
             Chat newChat = connectedMapper.Map<Chat>(chatModel);

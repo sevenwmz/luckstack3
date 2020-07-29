@@ -24,12 +24,27 @@ namespace RepositoryMVC
         {
             return entities.Include(c => c.Author)
                         .Include(c => c.Reply)
+                        .Include(c => c.Reply.Author)
                         .OrderBy(c => c.PublishTime)
                         .Skip(count)
                         .Take(20)
                         .ToList()
                         ;
         }
+
+
+        public IList<Chat> GetlatestChat(int id)
+        {
+            return entities.Include(c => c.Author)
+                        .Include(c => c.Reply)
+                        .Include(c => c.Reply.Author)
+                        .OrderBy(c => c.PublishTime)
+                        .Where(c=>c.Id > id)
+                        .Take(30)
+                        .ToList()
+                        ;
+        }
+
 
         /// <summary>
         /// Save chat to Db

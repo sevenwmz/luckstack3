@@ -1,7 +1,7 @@
 ﻿'use strict'
 $().ready(function () {
     var timeOut = 2000;
-
+    var setTimeoutId = 0;
     $('[js-send]').click(function (e) {
         e.preventDefault();
         var content = $('[js-content]').val();
@@ -13,7 +13,7 @@ $().ready(function () {
         if (content == "") {
             $addSuggest.parent().removeAttr('hidden');
             $addSuggest.text('Can not input space or nothing');
-            timeOut = 2000;
+            newSetTimeOut(setTimeoutId, timeOut);
             return false;
         }//else nothing
 
@@ -39,8 +39,8 @@ $().ready(function () {
             },
             complete: function () {
                 $this.removeAttr('disabled');
-                timeOut = 2000;
-                console.log('complete');
+
+                newSetTimeOut(setTimeoutId, timeOut);
             },
             error: function (a, b, c) {
                 console.log('Has some problem now!!!');
@@ -58,20 +58,19 @@ $().ready(function () {
         $addReply.attr('id', replyId);
         $addReply.text(replyText);
 
-        timeOut = 2000;
+        newSetTimeOut(setTimeoutId, timeOut);
     });
 
-    refreshChat(timeOut);
+    refreshChat(setTimeoutId,timeOut);
 });
-function refreshChat(timeOut) {
-    var setTimeoutId = setTimeout(function () {
+function refreshChat(setTimeoutId,timeOut) {
+    setTimeoutId = setTimeout(function () {
+        var lastId = $('[js-chatroom]').children().last().attr('id');
         $.ajax({
-            url: '/Home/_ChatRoomAjax',
+            url: '/Home/_ChatRoomAjax?id=' + lastId,
             method: 'GET',
             success: function (data) {
-                var $chatRoom = $('[js-chatRoom]')
-                $chatRoom.children().remove();
-                $chatRoom.append(data);
+                $('[js-chatRoom]').append(data);
             },
             complete: function () {
                 console.log(timeOut);
@@ -82,10 +81,16 @@ function refreshChat(timeOut) {
         });
         timeOut += 1000;
         if (timeOut <= 60000) {
-            refreshChat(timeOut);
+            refreshChat(setTimeoutId,timeOut);
         } else {
             alert("longtime you was doing nothing ,now system will break connect. if you wanna connect again ,please refresh current page")
             clearTimeout(setTimeoutId);
         }
     }, timeOut)
+}
+function newSetTimeOut(setTimeoutId, timeOut) {
+    for (var i = setTimeoutId-20; i < setTimeoutId; i++) {
+        clearTimeout(i);
+    }
+    refreshChat(setTimeoutId, timeOut);
 }
