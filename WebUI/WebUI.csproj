@@ -318,6 +318,7 @@
     <Content Include="Views\Home\_MyHistoryChat.cshtml" />
     <Content Include="Views\Home\_HistoryChatWith.cshtml" />
     <Content Include="Views\Home\_MyChat.cshtml" />
+    <Content Include="Views\Home\_ChatRoomAjax.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

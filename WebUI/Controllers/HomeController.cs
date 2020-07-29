@@ -39,17 +39,21 @@ namespace WebUI.Controllers
 
         #region ChatRoom Area
 
-
+        public ActionResult _ChatRoomAjax(int count = 0)
+        {
+            return View(_service.GetHistoryChat(count));
+        }
         public PartialViewResult _ChatRoom(int count = 0)
         {
             return PartialView(_service.GetHistoryChat(count));
         }
 
+
+
         public ActionResult _MyChat(int id)
         {
             return View(_service.GetChat(id));
         }
-
         [HttpPost]
         public ActionResult _MyChat(ChatItemModel chatModel)
         {
@@ -63,11 +67,11 @@ namespace WebUI.Controllers
         }
 
 
+
         public ActionResult _MyReplyChat(int id)
         {
             return View(_service.GetChat(id));
         }
-
         [HttpPost]
         public ActionResult _MyReplyChat(ChatItemModel chatModel)
         {
