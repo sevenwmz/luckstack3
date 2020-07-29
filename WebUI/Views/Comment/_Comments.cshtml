@@ -1,0 +1,31 @@
+﻿@model ViewModel.ChildAction.ChildCommentModel
+@{
+    Layout = null;
+}
+<div js-allComments>
+    @for (int i = 0; i < Model.Comments.Count; i++)
+    {
+        <div js-addComments id="@Model.Comments[i].Id" style="background-color: aliceblue;">
+            <div>
+                <small class="text-muted"><span class="fa fa-calendar"></span>@Model.Comments[i].PublishTime</small>
+                <small js-num class="text-primary">--- 第 @(i + 1) 楼 ---</small>
+                <a href="none"><span class="fa fa-flag"></span> 推荐</a>
+                <span class="text-right">@Model.Comments[i].Author.Author @Model.Comments[i].Author.Level</span>
+            </div>
+            @if (Model.Comments[i].Reply != null)
+            {
+                <div><small js-layer class="text-primary">--- 第 @(i) 楼 ---</small></div>
+            }
+            <div js-newComments class="comment-body clearfix">@Model.Comments[i].Comment</div>
+            <div class="pull-right">
+                @if (Model.CurrentId == Model.Comments[i].Author.AuthorId)
+                {
+                    <a style="margin-left:20px;"><span class="fa fa-trash"></span> 删除</a>
+                    <a style="margin-left:20px;"><span class="fa fa-send"></span> 回复</a>
+                }
+                <a><span class="fa fa-thumbs-o-up text-success">支持</span>@Model.Comments[i].Agree</a>
+                <a><span class="fa fa-thumbs-o-down text-success">反对</span>@Model.Comments[i].DisAgree</a>
+            </div>
+        </div>
+    }
+</div>

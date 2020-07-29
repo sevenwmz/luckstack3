@@ -75,13 +75,7 @@
                 <a style="color:#354756" title="" data-toggle="tooltip" href="/FAQ/Ad#article" data-original-title="这是什么？">投稿人推广：</a>
                 <a href="#">@Model.ChoosSeries</a>
             </div>
-            <h4>
-                <span class="fa fa-send"></span> <label>我有话说：</label>
-            </h4>
-            @Html.TextAreaFor(a => a.Comments, 4, 4, new { @style = "width: 100%; ,height: 100px;" });
-            <button type="submit" class="btn btn-primary">提交</button>
-            <button type="reset" class="btn btn-primary">重置</button>
-
+            @Html.Partial("/Comment/_CommentInput")
             <div style="margin-top: 25px;">
                 <div class="checkbox pull-left">
                     @if (Model.SeriesTitle != null)
@@ -128,8 +122,10 @@
                 </div>
 
             </div>
-        </div>
 
+            @Html.Action("/Comment/_Comments","_ExistComments")
+
+        </div>
     </article>
 </main>
 

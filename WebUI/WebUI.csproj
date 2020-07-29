@@ -319,6 +319,9 @@
     <Content Include="Views\Home\_HistoryChatWith.cshtml" />
     <Content Include="Views\Home\_MyChat.cshtml" />
     <Content Include="Views\Home\_ChatRoomAjax.cshtml" />
+    <Content Include="Views\Comment\_CommentInput.cshtml" />
+    <Content Include="Views\Comment\_Comments.cshtml" />
+    <Content Include="Views\Comment\_CommentAjax.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
