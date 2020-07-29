@@ -53,8 +53,31 @@ namespace WebUI.Controllers
         [HttpPost]
         public ActionResult _MyChat(ChatItemModel chatModel)
         {
+            //here i don't know how to send error to ajax suggest.
+            if (string.IsNullOrWhiteSpace(chatModel.Content))
+            {
+                return View(false);
+            }
             int id = _service.SaveCurrentChat(chatModel);
             return Redirect($"/Home/_MyChat?id={id}");
+        }
+
+
+        public ActionResult _MyReplyChat(int id)
+        {
+            return View(_service.GetChat(id));
+        }
+
+        [HttpPost]
+        public ActionResult _MyReplyChat(ChatItemModel chatModel)
+        {
+            if (string.IsNullOrWhiteSpace(chatModel.Content))
+            {
+                return View(false);
+            }
+
+            int id = _service.SaveCurrentChat(chatModel);
+            return Redirect($"/Home/_MyReplyChat?id={id}");
         }
         #endregion
 

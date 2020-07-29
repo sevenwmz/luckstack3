@@ -314,9 +314,10 @@
     <Content Include="Views\Home\_ChatWithOther.cshtml" />
     <Content Include="Views\Home\_HistoryChat.cshtml" />
     <Content Include="Views\Shared\_Author.cshtml" />
-    <Content Include="Views\Home\_MyChat.cshtml" />
+    <Content Include="Views\Home\_MyReplyChat.cshtml" />
     <Content Include="Views\Home\_MyHistoryChat.cshtml" />
     <Content Include="Views\Home\_HistoryChatWith.cshtml" />
+    <Content Include="Views\Home\_MyChat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
