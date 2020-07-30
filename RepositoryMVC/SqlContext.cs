@@ -42,6 +42,7 @@ namespace RepositoryMVC
             modelBuilder.Entity<Article>();
             modelBuilder.Entity<Profile>();
             modelBuilder.Entity<Keywords>();
+            modelBuilder.Entity<Comments>();
             modelBuilder.Entity<MessageMine>();
             modelBuilder.Entity<KeywordsAndProblem>();
             modelBuilder.Entity<KeywordsAndArticle>();

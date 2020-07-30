@@ -18,6 +18,7 @@ namespace EntityMVC
         public int? UseSeriesId { set; get; }
         public Series UseSeries { set; get; }
         public IList<KeywordsAndArticle> OwnKeyword { set; get; }
+        public IList<Comments> HasComments { set; get; }
 
         public void PublishArticle()
         {

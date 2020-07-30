@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace RepositoryMVC
 {
@@ -14,9 +15,27 @@ namespace RepositoryMVC
 
         }
 
-        public int SaveComment(Comments commentModel)
+        public int SaveComment(Comments comment)
         {
-            throw new NotImplementedException();
+            entities.Add(comment);
+            context.SaveChanges();
+            return comment.Id;
+        }
+
+        public Comments GetSingleComment(int id)
+        {
+            return entities.Where(c => c.Id == id)
+                        .Single();
+        }
+
+        public IList<Comments> GetArticleComments(int id)
+        {
+            return entities.Include(c=>c.Author)
+                        .Include(c=>c.Reply)
+                        .OrderByDescending(c => c.PublishTime)
+                        .Where(c => c.BelongArticleId == id)
+                        .ToList()
+                        ;
         }
     }
 }

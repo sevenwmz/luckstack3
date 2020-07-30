@@ -26,6 +26,17 @@ namespace ProductServices
         {
             mapper = new MapperConfiguration(cfg =>
             {
+                #region Comments Area
+                cfg.CreateMap<V.ChildAction.ChildCommentModel,Comments>(MemberList.None)
+                        .ReverseMap()
+                         ;
+
+                cfg.CreateMap<V.ChildAction.ChildCommentItem, Comments>(MemberList.None)
+                        .ReverseMap()
+                         ;
+
+                #endregion
+
                 #region ChatRoom Area
                 cfg.CreateMap<V.ChildAction.ChatRoomModel,Chat>(MemberList.None)
                         .ReverseMap()

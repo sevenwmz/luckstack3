@@ -12,14 +12,14 @@
                 <a href="none"><span class="fa fa-flag"></span> 推荐</a>
                 <span class="text-right">@Model.Comments[i].Author.Author @Model.Comments[i].Author.Level</span>
             </div>
-            @if (Model.Comments[i].Reply != null)
+            @if (Model.Comments[i].Reply.Id != 0)
             {
                 <div><small js-layer class="text-primary">--- 第 @(i) 楼 ---</small></div>
             }
             <div js-newComments class="comment-body clearfix">@Model.Comments[i].Comment</div>
-            <div class="pull-right">
+            <div class="text-right">
                 @if (Model.CurrentId == Model.Comments[i].Author.AuthorId)
-                {
+                {//Here have problem.Do it by js on tomorrow
                     <a style="margin-left:20px;"><span class="fa fa-trash"></span> 删除</a>
                     <a style="margin-left:20px;"><span class="fa fa-send"></span> 回复</a>
                 }

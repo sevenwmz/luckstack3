@@ -17,9 +17,9 @@
 <script>
     'use strict'
     $(document).ready(function () {
-        $('[js-Comments]').click(function () {
+        $('[js-Comments]').click(function (e) {
+            e.preventDefault();
             let comment = $('[js-myComment]').val();
-            let layerId = $('[js-layer]').text();
             let $this = $(this);
             let $addSuggest = $('[js-hiddenReply]').find('span');
             let replyId = $addSuggest.parent().attr('id');
@@ -38,7 +38,6 @@
                 },
                 success: function (data) {
                     $('[js-allComments]').prepend(data);
-                    $this.removeAttr('disabled');
 
                     $addSuggest.text('');
                     $('[js-myComment]').val('');

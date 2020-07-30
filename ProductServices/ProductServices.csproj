@@ -83,6 +83,7 @@
     <Compile Include="ChangePasswordService.cs" />
     <Compile Include="ChatService.cs" />
     <Compile Include="ChildRankService.cs" />
+    <Compile Include="CommentService.cs" />
     <Compile Include="ContactService.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="KeywordAndArticleService.cs" />

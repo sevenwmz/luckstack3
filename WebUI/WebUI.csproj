@@ -161,6 +161,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategorySeriesController.cs" />
     <Compile Include="Controllers\ChildActionController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CreditController.cs" />
     <Compile Include="Controllers\EmailController.cs" />

@@ -56,6 +56,7 @@
     <Compile Include="BaceRepository.cs" />
     <Compile Include="BMoneyRepository.cs" />
     <Compile Include="ChatRepository.cs" />
+    <Compile Include="CommentsRepository.cs" />
     <Compile Include="ContactRepository.cs" />
     <Compile Include="Extension\BMoneyExtension.cs" />
     <Compile Include="KeywordAndArticleRepository.cs" />
@@ -166,6 +167,10 @@
     <Compile Include="Migrations\202007271213110_ChangeChatReplyName.designer.cs">
       <DependentUpon>202007271213110_ChangeChatReplyName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007300832495_Add_Comments.cs" />
+    <Compile Include="Migrations\202007300832495_Add_Comments.designer.cs">
+      <DependentUpon>202007300832495_Add_Comments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="ProfileRepository.cs" />
@@ -263,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007271213110_ChangeChatReplyName.resx">
       <DependentUpon>202007271213110_ChangeChatReplyName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007300832495_Add_Comments.resx">
+      <DependentUpon>202007300832495_Add_Comments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

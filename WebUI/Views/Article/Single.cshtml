@@ -75,7 +75,7 @@
                 <a style="color:#354756" title="" data-toggle="tooltip" href="/FAQ/Ad#article" data-original-title="这是什么？">投稿人推广：</a>
                 <a href="#">@Model.ChoosSeries</a>
             </div>
-            @Html.Partial("/Comment/_CommentInput")
+            @Html.Partial("~/Views/Comment/_CommentInput.cshtml")
             <div style="margin-top: 25px;">
                 <div class="checkbox pull-left">
                     @if (Model.SeriesTitle != null)
@@ -123,7 +123,7 @@
 
             </div>
 
-            @Html.Action("/Comment/_Comments","_ExistComments")
+            @Html.Action("_Comments","Comment")
 
         </div>
     </article>
