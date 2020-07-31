@@ -2,76 +2,16 @@
     Layout = null;
 }
 
-<div class="mt-5">
-    <div hidden js-hiddenReply>
-        <i class="fa fa-reply"></i>
-        <span js-hiddenReplyId></span>
+    <div class="mt-5">
+        <h4><span class="fa fa-send"></span><a id="ITolk">我有话说：</a></h4>
+        <div js-hiddenReply style="display:none">
+            <i class="fa fa-reply"></i>
+            <span js-hiddenReplyIdAndText></span>
+        </div>
+        @*@Html.TextAreaFor(a => a.Comments, 4, 4, new { @style = "width: 100%; ,height: 100px;" })*@
+        <textarea js-myComment style="width: 100%;height: 100px;"></textarea>
+        <button js-Comments type="button" class="btn btn-primary">提交</button>
+        <button type="reset" class="btn btn-primary">重置</button>
     </div>
-    <h4><span class="fa fa-send"></span> <label>我有话说：</label></h4>
-    @*@Html.TextAreaFor(a => a.Comments, 4, 4, new { @style = "width: 100%; ,height: 100px;" })*@
-    <textarea js-myComment style="width: 100%; ,height: 100px;"></textarea>
-    <button js-Comments type="button" class="btn btn-primary">提交</button>
-    <button type="reset" class="btn btn-primary">重置</button>
-</div>
 
-<script>
-    'use strict'
-    $(document).ready(function () {
-        $('[js-Comments]').click(function (e) {
-            e.preventDefault();
-            let comment = $('[js-myComment]').val();
-            let $this = $(this);
-            let $addSuggest = $('[js-hiddenReply]').find('span');
-            let replyId = $addSuggest.parent().attr('id');
-            if (content == "") {
-                $addSuggest.parent().removeAttr('hidden');
-                $addSuggest.text('Can not input space or nothing');
-                return false;
-            }//else nothing
-
-            $.ajax({
-                url: '/Comment/_CommentAjax',
-                method: 'POST',
-                data: { 'Comment': comment, 'Reply.Id': replyId },
-                beforeSend: function () {
-                    $this.attr('disabled', 'disabled');
-                },
-                success: function (data) {
-                    $('[js-allComments]').prepend(data);
-
-                    $addSuggest.text('');
-                    $('[js-myComment]').val('');
-                },
-                complete: function () {
-                    $this.removeAttr('disabled');
-                },
-                error: function (a, b, c) {
-                    console.log('Has some problem now!!!');
-                }
-            })
-        })
-
-        $('[js-addComments]').click(function () {
-            let replyId = this.id;
-            let replyText = $(this).children.find('[js-layer]').text();
-
-            let $hiddenReply = $('[js-hiddenReply]');
-            $hiddenReply.removeAttr('hidden');
-
-            let $addReply = $hiddenReply.find('span');
-            $addReply.attr('id', replyId);
-            $addReply.text('---回复：' + replyText);
-        });
-
-        //Background-Color change none
-        $('[js-addComments]').mouseover(function () {
-            $(this).css('background-color', '');
-            $(this).find('[js-reply]').css('display', '');
-        });
-        //Background-Color change back
-        $('[js-addComments]').mouseout(function () {
-            $(this).css('background-color', 'aliceblue');
-            $(this).find('[js-reply]').css('display', 'none');
-        });
-    });
-</script>
+<script src="~/Scripts/MyJavaScript/CommentScript.js"></script>

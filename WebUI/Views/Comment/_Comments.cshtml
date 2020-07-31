@@ -22,7 +22,7 @@
                 {//Here have problem.Do it by js on tomorrow
                     <a style="margin-left:20px;"><span class="fa fa-trash"></span> 删除</a>
                 }
-                <a js-reply style="margin-left:20px;display:none"><span class="fa fa-send"></span> 回复</a>
+                <a js-reply href="/Article/@Model.Comments[i].BelongArticleId#ITolk" style="margin-left:20px;display:none"><span class="fa fa-send"></span> 回复</a>
                 <a><span class="fa fa-thumbs-o-up text-success">支持</span>@Model.Comments[i].Agree</a>
                 <a><span class="fa fa-thumbs-o-down text-success">反对</span>@Model.Comments[i].DisAgree</a>
             </div>

@@ -20,6 +20,7 @@ namespace ViewModel.ChildAction
         public UserModel Author { set; get; }
         public string Comment { set; get; }
         public ChildCommentItem Reply { set; get; }
+        public int BelongArticleId { set; get; }
         public int Agree { set; get; }
         public int DisAgree { set; get; }
     }
