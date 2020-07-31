@@ -43,6 +43,7 @@ namespace ProductServices
                          ;
 
                 cfg.CreateMap<V.ChildAction.ChatItemModel, Chat>(MemberList.None)
+                        .ForMember(m=>m.Reply,opt=>opt.Ignore())
                         .ReverseMap()
                          ;
 

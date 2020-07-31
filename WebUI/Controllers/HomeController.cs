@@ -57,10 +57,9 @@ namespace WebUI.Controllers
         [HttpPost]
         public ActionResult _MyChat(ChatItemModel chatModel)
         {
-            //here i don't know how to send error to ajax suggest.
             if (string.IsNullOrWhiteSpace(chatModel.Content))
             {
-                return View(false);
+                throw new Exception("Content is null or with space");
             }
             int id = _service.SaveCurrentChat(chatModel);
             return Redirect($"/Home/_MyChat?id={id}");
@@ -77,7 +76,7 @@ namespace WebUI.Controllers
         {
             if (string.IsNullOrWhiteSpace(chatModel.Content))
             {
-                return View(false);
+                throw new Exception("Content is null or with space");
             }
 
             int id = _service.SaveCurrentChat(chatModel);

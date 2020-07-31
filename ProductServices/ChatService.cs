@@ -46,7 +46,7 @@ namespace ProductServices
         {
             Chat newChat = connectedMapper.Map<Chat>(chatModel);
             newChat.PublishTime = DateTime.Now;
-            newChat.Reply = null;
+            //newChat.Reply = null;
             newChat.Author = CurrenUser;
 
             return _repo.SaveChat(newChat);
