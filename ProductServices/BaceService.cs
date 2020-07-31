@@ -28,10 +28,12 @@ namespace ProductServices
             {
                 #region Comments Area
                 cfg.CreateMap<V.ChildAction.ChildCommentModel,Comments>(MemberList.None)
+                        .ForMember(m => m.Reply, opt => opt.Ignore())
                         .ReverseMap()
                          ;
 
                 cfg.CreateMap<V.ChildAction.ChildCommentItem, Comments>(MemberList.None)
+                        
                         .ReverseMap()
                          ;
 

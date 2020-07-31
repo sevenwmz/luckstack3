@@ -63,5 +63,15 @@
             $addReply.text('---回复：' + replyText);
         });
 
+        //Background-Color change none
+        $('[js-addComments]').mouseover(function () {
+            $(this).css('background-color', '');
+            $(this).find('[js-reply]').css('display', '');
+        });
+        //Background-Color change back
+        $('[js-addComments]').mouseout(function () {
+            $(this).css('background-color', 'aliceblue');
+            $(this).find('[js-reply]').css('display', 'none');
+        });
     });
 </script>

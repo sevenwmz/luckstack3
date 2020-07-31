@@ -5,7 +5,7 @@
 <div js-allComments>
     @for (int i = 0; i < Model.Comments.Count; i++)
     {
-        <div js-addComments id="@Model.Comments[i].Id" style="background-color: aliceblue;">
+        <div js-addComments id="@Model.Comments[i].Id" style="margin-bottom:10px;background-color: aliceblue;">
             <div>
                 <small class="text-muted"><span class="fa fa-calendar"></span>@Model.Comments[i].PublishTime</small>
                 <small js-num class="text-primary">--- 第 @(i + 1) 楼 ---</small>
@@ -21,11 +21,12 @@
                 @if (Model.CurrentId == Model.Comments[i].Author.AuthorId)
                 {//Here have problem.Do it by js on tomorrow
                     <a style="margin-left:20px;"><span class="fa fa-trash"></span> 删除</a>
-                    <a style="margin-left:20px;"><span class="fa fa-send"></span> 回复</a>
                 }
+                <a js-reply style="margin-left:20px;display:none"><span class="fa fa-send"></span> 回复</a>
                 <a><span class="fa fa-thumbs-o-up text-success">支持</span>@Model.Comments[i].Agree</a>
                 <a><span class="fa fa-thumbs-o-down text-success">反对</span>@Model.Comments[i].DisAgree</a>
             </div>
+            <hr />
         </div>
     }
 </div>
