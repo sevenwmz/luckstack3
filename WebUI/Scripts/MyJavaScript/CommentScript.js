@@ -46,19 +46,11 @@ $(document).ready(function () {
     //    $addReply.text('---回复：' + replyText);
     //});
 
-    //Background-Color change none
-    $('[js-addComments]').mouseover(function () {
-        $(this).css('background-color', '');
-        $(this).find('[js-reply]').css('display', '');
-    });
-    //Background-Color change back
-    $('[js-addComments]').mouseout(function () {
-        $(this).css('background-color', 'aliceblue');
-        $(this).find('[js-reply]').css('display', 'none');
-    });
 
-    $('[js-reply]').click(function (e) {
-        e.preventDefault();
+
+
+
+    $('[js-reply]').click(function () {
         let currentModel = $(this).parent().parent();
         let replyId = currentModel.attr('id');
         let numText = currentModel.find('[js-num]').text();
@@ -70,5 +62,26 @@ $(document).ready(function () {
             .css('background-color', 'yellow');
 
         $('[js-hiddenReply]').css('display', '');
+    });
+
+
+    //show delete and reply
+    $('[js-addComments]').mouseover(function () {
+        let $this = $(this);
+        $this.css('background-color', '');
+        $this.find('[js-reply]').css('display', '');
+
+        //delete show.
+        let deleteId = $this.find('[js-commentDelete]').attr('id');
+        let currentId = $('[js-currentUserId]').attr('id');
+        if (deleteId === currentId) {
+            $this.find('[js-commentDelete]').css('display', '');
+        }//else nothing
+    });
+    $('[js-addComments]').mouseout(function () {
+        let $this = $(this);
+        $this.css('background-color', 'aliceblue');
+        $this.find('[js-reply]').css('display', 'none');
+        $this.find('[js-commentDelete]').css('display', 'none');
     });
 });
