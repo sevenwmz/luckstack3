@@ -39,5 +39,14 @@ namespace ProductServices
             return model;
 
         }
+
+        /// <summary>
+        /// Remove comment from db
+        /// </summary>
+        /// <param name="deleteCommentId">Need comment id</param>
+        public void DeleteCommentBy(int deleteCommentId)
+        {
+            _repo.DeleteCommentBy(_repo.Find(deleteCommentId));
+        }
     }
 }

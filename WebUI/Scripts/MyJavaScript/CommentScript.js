@@ -48,6 +48,28 @@ $(document).ready(function () {
 
 
 
+    //one thing not solution , is remove comment,but this comment used by other comment...
+    $('[js-commentDelete]').click(function (e) {
+        e.preventDefault();
+        let $this = $(this);
+        var commentAuthorId = $this.attr('id');
+        var deleteCommentId = $this.parent().parent().attr('id');
+
+        $.ajax({
+            url: '/Comment/_CommentDelete?deleteCommentId=' + deleteCommentId + '&commentAuthorId=' + commentAuthorId,
+            method: 'GET',
+            beforeSend: function () {
+                $this.css('display', 'none');
+            },
+            success: function () {
+                $this.parent().parent().remove();
+            },
+            complete: function () {
+                $this.css('display', '');
+            },
+            error: errorFedback
+        });
+    });
 
 
     $('[js-reply]').click(function () {
@@ -85,3 +107,8 @@ $(document).ready(function () {
         $this.find('[js-commentDelete]').css('display', 'none');
     });
 });
+
+
+function errorFedback(a, b, c) {
+    console.log('Has some problem now!!!');
+}

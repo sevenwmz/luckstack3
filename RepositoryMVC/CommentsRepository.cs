@@ -32,10 +32,15 @@ namespace RepositoryMVC
         {
             return entities.Include(c=>c.Author)
                         .Include(c=>c.Reply)
-                        .OrderByDescending(c => c.PublishTime)
+                        .OrderByDescending(c => c.Id)
                         .Where(c => c.BelongArticleId == id)
                         .ToList()
                         ;
+        }
+
+        public void DeleteCommentBy(Comments comments)
+        {
+            entities.Remove(comments);
         }
     }
 }

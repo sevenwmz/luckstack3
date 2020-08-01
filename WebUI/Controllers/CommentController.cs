@@ -35,7 +35,14 @@ namespace WebUI.Controllers
         {
             return View(_service.GetArticleComments(id));
         }
-
-
+        
+        public void _CommentDelete(int deleteCommentId,int commentAuthorId)
+        {
+            if (commentAuthorId != _service.CurrentUserId)
+            {
+                throw new Exception("Is not currentUser");
+            }
+            _service.DeleteCommentBy(deleteCommentId);
+        }
     }
 }
