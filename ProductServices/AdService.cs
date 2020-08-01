@@ -55,7 +55,7 @@ namespace ProductServices
 
             ChildADModel aDModel = new ChildADModel
             {
-                Items = connectedMapper.Map<IList<ChildADModel>>(aD)
+                Items = Mapper.Map<IList<ChildADModel>>(aD)
             };
             return aDModel;
         }

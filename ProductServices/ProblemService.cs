@@ -23,7 +23,7 @@ namespace ProductServices
         #region Problem New
         public int Add(ProblemNewModel model)
         {
-            _problemEntity = connectedMapper.Map<Problem>(model);
+            _problemEntity = Mapper.Map<Problem>(model);
             _problemEntity.Author = CurrenUser;
             _problemEntity.Publish(model.RewardMoney);
             _problemEntity.HelpFrom = new UserRepository(dbContext).GetBy(model.HelpFrom);
@@ -48,7 +48,7 @@ namespace ProductServices
         {
             Problem repoProblem = new Problem();
             repoProblem = new ProblemRepository(dbContext).FindSingleProblem(id);
-            ProblemSingleModel singleModel = connectedMapper.Map<ProblemSingleModel>(repoProblem);
+            ProblemSingleModel singleModel = Mapper.Map<ProblemSingleModel>(repoProblem);
 
             return singleModel;
         }
@@ -71,7 +71,7 @@ namespace ProductServices
             tempProblem = _repository.GetProblems(pageSize, pageIndex);
             ProblemIndexModel model = new ProblemIndexModel
             {
-                Items = connectedMapper.Map<List<ProblemItemModel>>(tempProblem)
+                Items = Mapper.Map<List<ProblemItemModel>>(tempProblem)
             };
 
             return model;
@@ -84,7 +84,7 @@ namespace ProductServices
             _problemEntity = _repository.GetEditProblem(id);
 
             ProblemEditModel problemEditModel = new ProblemEditModel();
-            problemEditModel = connectedMapper.Map<ProblemEditModel>(_problemEntity);
+            problemEditModel = Mapper.Map<ProblemEditModel>(_problemEntity);
 
             var keywords = new KeywordAndProblemRepository(dbContext).GetKeywords(id);
             string keyWordOfProblem = string.Empty;
@@ -99,7 +99,7 @@ namespace ProductServices
         {
             _problemEntity = _repository.GetEditProblem(model.Id);
             _problemEntity.OwnKeyword.Clear();
-            _problemEntity = connectedMapper.Map<Problem>(model);
+            _problemEntity = Mapper.Map<Problem>(model);
             _problemEntity.Author = CurrenUser;
 
             _repository.UpdateEditProblem(_problemEntity);

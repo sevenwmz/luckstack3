@@ -29,7 +29,7 @@ namespace ProductServices
         public RegisterModel GetByName(string name)
         {
             User userInfo = _userRepository.GetBy(name);
-            return connectedMapper.Map<RegisterModel>(userInfo);
+            return Mapper.Map<RegisterModel>(userInfo);
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace ProductServices
         /// <param name="user">Need registerInfo</param>
         public int Add(RegisterModel user)
         {
-            User newUser = connectedMapper.Map<User>(user);
+            User newUser = Mapper.Map<User>(user);
 
             BMoney award = new BMoney();
             award = award.RegisterAwardBMoney();

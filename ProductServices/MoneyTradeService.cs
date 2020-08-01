@@ -13,7 +13,7 @@ namespace ProductServices
     {
         public SaleModel GetCurrentUserLeftBMoney()
         {
-            SaleModel model = connectedMapper.Map<SaleModel>(new BMoneyRepository(dbContext).GetByAuthorBMoney(CurrentUserId));
+            SaleModel model = Mapper.Map<SaleModel>(new BMoneyRepository(dbContext).GetByAuthorBMoney(CurrentUserId));
             model.SaleCount = 0;
             model.Message = null; 
             return model;

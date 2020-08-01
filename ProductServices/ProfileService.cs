@@ -19,7 +19,7 @@ namespace ProductServices
         /// <param name="model">Need user Info</param>
         public int SaveUserInfo(WriteModel model)
         {
-            Profile profile = connectedMapper.Map<Profile>(model);
+            Profile profile = Mapper.Map<Profile>(model);
             profile.BornTime = $"{model.YearId}年{model.MonthId}月";
             profile.Owner = CurrenUser;
 

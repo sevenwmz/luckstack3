@@ -29,7 +29,7 @@ namespace ProductServices.Log
         public OnModel GetByName(string name)
         {
             User userInfo = _userRepository.GetBy(name);
-            return connectedMapper.Map<OnModel>(userInfo);
+            return Mapper.Map<OnModel>(userInfo);
         }
 
     }

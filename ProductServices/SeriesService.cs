@@ -22,9 +22,9 @@ namespace ProductServices
         public ChildCategorySeriesModel GetCategorySeries(int id)
         {
 
-            ChildCategorySeriesModel model = connectedMapper.Map<ChildCategorySeriesModel>(_repo.CategorySeries(id));
-            model.ChildSeries = connectedMapper.Map<List<ChildCategorySeriesModel>>(_repo.CategoryScendSeries(id));
-            model.BrotherItems = connectedMapper.Map<List<ChildCategoryInsideSeriesModel>>(_repo.GetBrotherSeries(id));
+            ChildCategorySeriesModel model = Mapper.Map<ChildCategorySeriesModel>(_repo.CategorySeries(id));
+            model.ChildSeries = Mapper.Map<List<ChildCategorySeriesModel>>(_repo.CategoryScendSeries(id));
+            model.BrotherItems = Mapper.Map<List<ChildCategoryInsideSeriesModel>>(_repo.GetBrotherSeries(id));
 
 
 
@@ -73,7 +73,7 @@ namespace ProductServices
         {
             ChildSeriesModel model = new ChildSeriesModel 
             {
-                Items = connectedMapper.Map<IList<ChildSeriesModel>>(_repo.OnGetSeries(userId))
+                Items = Mapper.Map<IList<ChildSeriesModel>>(_repo.OnGetSeries(userId))
             };
             model.AuthorId = model.Items.Select(s => s.AuthorId).FirstOrDefault();
             model.AuthorName = model.Items.Select(s => s.AuthorName).FirstOrDefault();

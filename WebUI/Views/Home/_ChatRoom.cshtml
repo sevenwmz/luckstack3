@@ -2,7 +2,7 @@
 
 
 
-@foreach (var item in Model.ChatRooms)
+@foreach (var item in Model.ChatItems)
 {
     if (Model.CurrentUserId == null)
     {
@@ -13,7 +13,7 @@
 
     if (item.Author.AuthorId == Model.CurrentUserId)
     {
-        if (item.Reply.Id == 0)
+        if (item.Reply == null)
         {
             @Html.Partial("_MyHistoryChat", item)
         }
@@ -24,7 +24,7 @@
     }
     else
     {
-        if (item.Reply.Id == 0)
+        if (item.Reply == null)
         {
             @Html.Partial("_HistoryChat", item)
         }

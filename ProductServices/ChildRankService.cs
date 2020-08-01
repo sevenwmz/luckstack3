@@ -17,7 +17,7 @@ namespace ProductServices
 
             ChildRankModel childRank = new ChildRankModel()
             {
-                Items = connectedMapper.Map<List<ChildRankModel>>(users)
+                Items = Mapper.Map<List<ChildRankModel>>(users)
             };
 
             return childRank;

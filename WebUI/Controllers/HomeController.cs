@@ -41,7 +41,7 @@ namespace WebUI.Controllers
 
         public ActionResult _ChatRoomAjax(int id = 0)
         {
-            return View(_service.GetlatestChat(id));
+            return View(_service.GetLatest(id));
         }
         public PartialViewResult _ChatRoom(int count = 0)
         {

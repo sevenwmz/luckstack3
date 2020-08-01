@@ -18,7 +18,7 @@ namespace ProductServices
             tempMessageMine = new MessageMineRepository(dbContext).GetMessage(pageSize, pageIndex);
             MineModel messageMine = new MineModel
             {
-                Items = connectedMapper.Map<List<MineModel>>(tempMessageMine),
+                Items = Mapper.Map<List<MineModel>>(tempMessageMine),
             };
             return messageMine;
         }

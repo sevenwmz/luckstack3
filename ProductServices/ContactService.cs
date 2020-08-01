@@ -17,7 +17,7 @@ namespace ProductServices
         /// <param name="model">Need info</param>
         public void Add(ContactModel model)
         {
-            Contact contact = connectedMapper.Map<Contact>(model);
+            Contact contact = Mapper.Map<Contact>(model);
             contact.Owner = CurrenUser;
             contact.Owner.EmailAddress.Address = model.Email;
             new ContactRepository(dbContext).AddContact(contact);
@@ -25,13 +25,13 @@ namespace ProductServices
 
         public void Change(ContactModel model)
         {
-            connectedMapper.Map(
+            Mapper.Map(
                 model,new ContactRepository(dbContext).FindContact(CurrentUserId));
         }
 
         public ContactModel GetContactInfo()
         {
-            return connectedMapper.Map<ContactModel>(new ContactRepository(dbContext).GetCurrentUserInfo(CurrenUser));
+            return Mapper.Map<ContactModel>(new ContactRepository(dbContext).GetCurrentUserInfo(CurrenUser));
         }
     }
 }

@@ -52,7 +52,7 @@ namespace ProductServices
                 return null;
             }
 
-            ForgetModel forgetModel = connectedMapper.Map<ForgetModel>(user);
+            ForgetModel forgetModel = Mapper.Map<ForgetModel>(user);
             forgetModel.EmailAddress = user.EmailAddress.Address;
             return forgetModel;
         }

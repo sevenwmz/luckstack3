@@ -46,7 +46,6 @@ namespace ProductServices
                          ;
 
                 cfg.CreateMap<Chat, V.ChildAction.ChatItemModel>(MemberList.None)
-                        .ForMember(m => m.Reply, opt => opt.Ignore())
                         .ReverseMap()
                          ;
 
@@ -420,7 +419,7 @@ namespace ProductServices
             }
         }
 
-        protected IMapper connectedMapper
+        protected IMapper Mapper
         {
             get => mapper.CreateMapper();
         }

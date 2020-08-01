@@ -38,7 +38,7 @@ namespace RepositoryMVC
             return entities.Include(c => c.Author)
                         .Include(c => c.Reply)
                         .Include(c => c.Reply.Author)
-                        .OrderBy(c => c.PublishTime)
+                        .OrderBy(c => c.Id)
                         .Where(c=>c.Id > id)
                         .Take(30)
                         .ToList()

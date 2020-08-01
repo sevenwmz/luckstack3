@@ -24,18 +24,23 @@ namespace ProductServices
             IList<Chat> chats = _repo.GetChatHistory(count);
             ChatRoomModel model = new ChatRoomModel
             {
-                ChatRooms = connectedMapper.Map<List<ChatItemModel>>(chats)
+                ChatItems = Mapper.Map<List<ChatItemModel>>(chats)
             };
             model.CurrentUserId = CurrentUserId;
             return model;
         }
 
-        public ChatRoomModel GetlatestChat(int id)
+        /// <summary>
+        /// Get lates chat by chat id from db
+        /// </summary>
+        /// <param name="fromId">Need chat id from which chat after</param>
+        /// <returns>Return ChatRoomModel</returns>
+        public ChatRoomModel GetLatest(int fromId)
         {
-            IList<Chat> chats = _repo.GetlatestChat(id);
+            IList<Chat> chats = _repo.GetlatestChat(fromId);
             ChatRoomModel model = new ChatRoomModel
             {
-                ChatRooms = connectedMapper.Map<List<ChatItemModel>>(chats)
+                ChatItems = Mapper.Map<List<ChatItemModel>>(chats)
             };
             model.CurrentUserId = CurrentUserId;
             return model;
@@ -44,9 +49,9 @@ namespace ProductServices
 
         public int SaveCurrentChat(ChatItemModel chatModel)
         {
-            Chat newChat = connectedMapper.Map<Chat>(chatModel);
+            Chat newChat = Mapper.Map<Chat>(chatModel);
             newChat.PublishTime = DateTime.Now;
-            //newChat.Reply = null;
+            newChat.Reply = null;
             newChat.Author = CurrenUser;
 
             return _repo.SaveChat(newChat);
@@ -54,7 +59,7 @@ namespace ProductServices
 
         public ChatItemModel GetChat(int id)
         {
-            return connectedMapper.Map<ChatItemModel>(_repo.GetChat(id));
+            return Mapper.Map<ChatItemModel>(_repo.GetChat(id));
         }
     }
 }

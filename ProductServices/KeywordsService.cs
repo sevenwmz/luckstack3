@@ -42,7 +42,7 @@ namespace ProductServices
       
             ChildKeywordModel childKeyword = new ChildKeywordModel
             {
-                Item = connectedMapper.Map<List<KeywordModel>>(repo.GetChildKeyword(takeKeywordPage))
+                Item = Mapper.Map<List<KeywordModel>>(repo.GetChildKeyword(takeKeywordPage))
             };
 
             return childKeyword;

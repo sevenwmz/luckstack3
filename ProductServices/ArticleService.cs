@@ -25,7 +25,7 @@ namespace ProductServices
         {
             ArticleCategoryModel model = new ArticleCategoryModel
             {
-                Items = connectedMapper.Map<List<ArticleCategoryModel>>(_repository.GetSeriesArticle(id, asc, takeArticleNum))
+                Items = Mapper.Map<List<ArticleCategoryModel>>(_repository.GetSeriesArticle(id, asc, takeArticleNum))
             };
 
             model.Author = model.Items.Select(a => a.Author).FirstOrDefault();
@@ -64,7 +64,7 @@ namespace ProductServices
             tempArticle = _repository.GetAuthorArticles(id, pageSize, pageIndex);
             AritcleAuthorModel model = new AritcleAuthorModel
             {
-                Items = connectedMapper.Map<List<AritcleAuthorModel>>(tempArticle)
+                Items = Mapper.Map<List<AritcleAuthorModel>>(tempArticle)
             };
             model.Author = model.Items.Select(a => a.Author).FirstOrDefault();
             return model;
@@ -78,7 +78,7 @@ namespace ProductServices
         public ArticleSingleModel GetSingleArticle(int id)
         {
             _articleEntity = _repository.Find(id);
-            ArticleSingleModel temp = connectedMapper.Map<ArticleSingleModel>(_articleEntity);
+            ArticleSingleModel temp = Mapper.Map<ArticleSingleModel>(_articleEntity);
 
 
             _articleEntity = _repository.GetUseSeries(id);
@@ -125,7 +125,7 @@ namespace ProductServices
         /// <returns>Return article Id</returns>
         public int Add(ArticleNewModel model)
         {
-            _articleEntity = connectedMapper.Map<Article>(model);
+            _articleEntity = Mapper.Map<Article>(model);
             _articleEntity.PublishArticle();
             _articleEntity.Author = CurrenUser;
 
@@ -148,7 +148,7 @@ namespace ProductServices
         {
             _articleEntity = _repository.GetEditArticle(model.Id);
             _articleEntity.OwnKeyword.Clear();
-            connectedMapper.Map(model, _articleEntity);
+            Mapper.Map(model, _articleEntity);
             SaveKeyword(model.Keywords);
 
         }
@@ -181,7 +181,7 @@ namespace ProductServices
             _articleEntity = _repository.GetEditArticle(id);
 
             AritcleEditModel articleEditModel = new AritcleEditModel();
-            articleEditModel = connectedMapper.Map<AritcleEditModel>(_articleEntity);
+            articleEditModel = Mapper.Map<AritcleEditModel>(_articleEntity);
 
             var keywords = new KeywordAndArticleRepository(dbContext).GetKeywords(id.Value);
 
@@ -206,7 +206,7 @@ namespace ProductServices
             tempArticle = _repository.GetArticles(pageSize, pageIndex);
             ArticleIndexModel articleIndex = new ArticleIndexModel
             {
-                Items = connectedMapper.Map<List<ArticleItemsModel>>(tempArticle),
+                Items = Mapper.Map<List<ArticleItemsModel>>(tempArticle),
             };
             return articleIndex;
         }
