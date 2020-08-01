@@ -24,7 +24,10 @@ namespace RepositoryMVC
 
         public Comments GetSingleComment(int id)
         {
-            return entities.Where(c => c.Id == id)
+            return entities.Include(c => c.Author)
+                        .Include(c => c.Reply)
+                        .Include(c => c.Reply.Author)
+                        .Where(c => c.Id == id)
                         .Single();
         }
 
@@ -32,6 +35,7 @@ namespace RepositoryMVC
         {
             return entities.Include(c=>c.Author)
                         .Include(c=>c.Reply)
+                        .Include(c => c.Reply.Author)
                         .OrderByDescending(c => c.Id)
                         .Where(c => c.BelongArticleId == id)
                         .ToList()

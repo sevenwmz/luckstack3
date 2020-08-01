@@ -18,12 +18,12 @@ namespace ProductServices
         }
 
 
-        public ChildCommentModel GetComment(int id)
+        public ChildCommentAjax GetComment(int id)
         {
-            return connectedMapper.Map<ChildCommentModel>(_repo.GetSingleComment(id));
+            return connectedMapper.Map<ChildCommentAjax>(_repo.GetSingleComment(id));
         }
 
-        public int SaveComment(ChildCommentModel model)
+        public int SaveComment(ChildCommentAjax model)
         {
             Comments commentModel = connectedMapper.Map<Comments>(model);
             commentModel.FillComment(CurrenUser);

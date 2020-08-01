@@ -8,13 +8,13 @@
         <div js-addComments id="@Model.Comments[i].Id" style="margin-bottom:10px;background-color: aliceblue;">
             <div>
                 <small class="text-muted"><span class="fa fa-calendar"></span>@Model.Comments[i].PublishTime</small>
-                <small js-num class="text-primary">--- 第 @(i + 1) 楼 ---</small>
+                <small class="text-primary">--- 第 <span js-num="@Model.Comments[i].Id">@(Model.Comments.Count - i)</span> 楼 ---</small>
                 <a href="none"><span class="fa fa-flag"></span> 推荐</a>
                 <span class="text-right">@Model.Comments[i].Author.Author @Model.Comments[i].Author.Level</span>
             </div>
             @if (Model.Comments[i].Reply.Id != 0)
             {
-                <div><small js-layer class="text-primary">--- 第 @(i) 楼 ---</small></div>
+                <div><small js-layer data-id="@Model.Comments[i].Reply.Id"   class="text-primary"></small></div>
             }
             <div js-newComments class="comment-body clearfix">@Model.Comments[i].Comment</div>
             <div class="text-right">
@@ -27,3 +27,9 @@
         </div>
     }
 </div>
+<script>
+    $('[js-layer]').each(function () {
+        let replyLayerNum = $('[js-num="' + $(this).data("id") + '"]').text();
+        $(this).text(`---回复： 第 ${replyLayerNum} 楼 ---`);
+    });
+</script>

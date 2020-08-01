@@ -24,4 +24,17 @@ namespace ViewModel.ChildAction
         public int Agree { set; get; }
         public int DisAgree { set; get; }
     }
+
+
+    public class ChildCommentAjax
+    {
+        public int Id { set; get; }
+        public DateTime PublishTime { set; get; }
+        public UserModel Author { set; get; }
+        public string Comment { set; get; }
+        public int? ReplyId { set; get; }
+        public int BelongArticleId { set; get; }
+        public int Agree { set; get; }
+        public int DisAgree { set; get; }
+    }
 }

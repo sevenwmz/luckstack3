@@ -27,31 +27,32 @@ namespace ProductServices
             mapper = new MapperConfiguration(cfg =>
             {
                 #region Comments Area
-                cfg.CreateMap<V.ChildAction.ChildCommentModel,Comments>(MemberList.None)
-                        .ForMember(m => m.Reply, opt => opt.Ignore())
+                cfg.CreateMap<V.ChildAction.ChildCommentModel, Comments>(MemberList.None)
                         .ReverseMap()
                          ;
 
                 cfg.CreateMap<V.ChildAction.ChildCommentItem, Comments>(MemberList.None)
-                        
                         .ReverseMap()
                          ;
 
+                cfg.CreateMap<V.ChildAction.ChildCommentAjax, Comments>(MemberList.None)
+                        .ReverseMap()
+                         ;
                 #endregion
 
                 #region ChatRoom Area
-                cfg.CreateMap<V.ChildAction.ChatRoomModel,Chat>(MemberList.None)
+                cfg.CreateMap<V.ChildAction.ChatRoomModel, Chat>(MemberList.None)
                         .ReverseMap()
                          ;
 
-                cfg.CreateMap<V.ChildAction.ChatItemModel, Chat>(MemberList.None)
-                        .ForMember(m=>m.Reply,opt=>opt.Ignore())
+                cfg.CreateMap<Chat, V.ChildAction.ChatItemModel>(MemberList.None)
+                        .ForMember(m => m.Reply, opt => opt.Ignore())
                         .ReverseMap()
                          ;
 
                 cfg.CreateMap<V.ChildAction.UserModel, User>(MemberList.None)
-                        .ForMember(u=>u.UserName,opt=>opt.MapFrom(c=>c.Author))                            
-                        .ForMember(u=>u.Id,opt=>opt.MapFrom(c=>c.AuthorId))
+                        .ForMember(u => u.UserName, opt => opt.MapFrom(c => c.Author))
+                        .ForMember(u => u.Id, opt => opt.MapFrom(c => c.AuthorId))
                         .ReverseMap()
                          ;
 
@@ -69,7 +70,7 @@ namespace ProductServices
                         .ForMember(s => s.ContentOfSeries, opt => opt.MapFrom(s => s.ChildSeries.Select(m => m.Title)))
                         .ForMember(s => s.Summary, opt => opt.MapFrom(s => s.ChildSeries.Select(m => m.Summary)))
                         .ReverseMap()
-                        .ForMember(s => s.Title , opt=>opt.MapFrom(s=>s.ContentOfSeries))
+                        .ForMember(s => s.Title, opt => opt.MapFrom(s => s.ContentOfSeries))
                         ;
 
 

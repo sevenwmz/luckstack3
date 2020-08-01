@@ -24,7 +24,7 @@ namespace WebUI.Controllers
 
 
         [HttpPost]
-        public ActionResult _CommentAjax(ChildCommentModel model)
+        public ActionResult _CommentAjax(ChildCommentAjax model)
         {
             int id = _service.SaveComment(model);
             return Redirect($"/Comment/_CommentAjax?id={id}");

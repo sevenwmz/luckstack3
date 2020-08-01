@@ -2,53 +2,70 @@
 $(document).ready(function () {
     $('[js-Comments]').click(function (e) {
         e.preventDefault();
-        let comment = $('[js-myComment]').val();
         let $this = $(this);
-        let $addSuggest = $('[js-hiddenReply]').find('span');
-        let replyId = $addSuggest.parent().attr('id');
-        if (content) {
-            $addSuggest.parent().removeAttr('hidden');
-            $addSuggest.text('Can not input space or nothing');
+        let $allComment = $('[js-allComments]');
+        let $myComment = $('[js-myComment]');
+        let $hiddenReply = $('[js-hiddenReply]');
+        let $reminderInfo = $('[js-hiddenReplyIdAndText]');
+
+        let comment = $myComment.val();
+        let replyId = $reminderInfo.attr('id');
+        let currentArticleId = $('[js-articleId]').attr('id');
+
+        ///if only content ...... input anything will be in go in
+        if (content === '') {
+            $hiddenReply.css('display', '').css('background-color','yellow');
+            $reminderInfo.text('Can not input space or nothing');
             return false;
-        }//else nothing
+        }
 
         $.ajax({
             url: '/Comment/_CommentAjax',
             method: 'POST',
-            data: { 'Comment': comment, 'Reply.Id': replyId },
+            data: { 'Comment': comment, 'ReplyId': replyId, 'BelongArticleId': currentArticleId},
             beforeSend: function () {
-                $this.attr('disabled', 'disabled');
+                $this.css('display', 'none');
             },
             success: function (data) {
-                $('[js-allComments]').prepend(data);
+                let $data = $(data);
+                //here have some problem ,if other page touch same method,this [$allComment] is preciselly?
+                if ($data.ReplyId !== null) {
+                    let layer = $allComment.children().first().find('[js-num]').text();
+                    
+                    $data.find('[js-num]').text(+layer + 1);
+                    $data.find('[js-layer]').text($reminderInfo.text());
+                }//else nothing
 
-                $addSuggest.text('');
-                $('[js-myComment]').val('');
+                $('[js-allComments]').prepend($data);
+                $myComment.val('');
             },
             complete: function () {
-                $this.removeAttr('disabled');
+                $this.css('display', '');
+                $reminderInfo.text('').removeAttr('id');
             },
-            error: function (a, b, c) {
-                console.log('Has some problem now!!!');
-            }
+            error: errorFedback
         });
     });
 
-    //$('[js-addComments]').click(function () {
-    //    let replyId = this.id;
-    //    let replyText = $(this).children.find('[js-layer]').text();
+    
+    //Show reply layer and add void replyId .
+    $('[js-reply]').click(function () {
+        let currentModel = $(this).parent().parent();
+        let replyId = currentModel.attr('id');
+        let numText = currentModel.find('[js-num]').text();
 
-    //    let $hiddenReply = $('[js-hiddenReply]');
-    //    $hiddenReply.removeAttr('hidden');
+        $('[js-hiddenReplyIdAndText]')
+            .attr('id', replyId)
+            .text(`--- 回复：第 ${numText} 楼 ---`)
+            .css('color', 'blue')
+            .css('background-color', 'yellow');
 
-    //    let $addReply = $hiddenReply.find('span');
-    //    $addReply.attr('id', replyId);
-    //    $addReply.text('---回复：' + replyText);
-    //});
-
+        $('[js-hiddenReply]').css('display', '');
+    });
 
 
     //one thing not solution , is remove comment,but this comment used by other comment...
+    //Remove choose comment
     $('[js-commentDelete]').click(function (e) {
         e.preventDefault();
         let $this = $(this);
@@ -69,21 +86,6 @@ $(document).ready(function () {
             },
             error: errorFedback
         });
-    });
-
-
-    $('[js-reply]').click(function () {
-        let currentModel = $(this).parent().parent();
-        let replyId = currentModel.attr('id');
-        let numText = currentModel.find('[js-num]').text();
-
-        $('[js-hiddenReplyIdAndText]')
-            .attr('id', replyId)
-            .text('--- 回复：' + numText.substr(3, 20))
-            .css('color', 'blue')
-            .css('background-color', 'yellow');
-
-        $('[js-hiddenReply]').css('display', '');
     });
 
 
@@ -112,3 +114,4 @@ $(document).ready(function () {
 function errorFedback(a, b, c) {
     console.log('Has some problem now!!!');
 }
+
