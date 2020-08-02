@@ -2,6 +2,7 @@
     <label><strong>关键字：（* 使用空格分隔）</strong></label>
 
     <div js-checkedKeyword style="display:none">
+
     </div>
 
     <span js-checkedKeywordId style="display:none"></span>
@@ -26,6 +27,5 @@
             </div>
         </div>
         @Html.TextBox("customKeyword", "",new { @class = "form-control",js_SelfDefind = "" ,placeholder = "自定义关键字，使用空格分隔" })
-        @*@Html.TextBoxFor(p => p.NeedSubKeyword, new { @class = "form-control", placeholder = "自定义关键字，使用空格分隔" })*@
     </div>
 </div>
