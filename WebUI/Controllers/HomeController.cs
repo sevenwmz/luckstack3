@@ -38,16 +38,16 @@ namespace WebUI.Controllers
         #endregion
 
         #region ChatRoom Area
-
         public ActionResult _ChatRoomAjax(int id = 0)
         {
             return View(_service.GetLatest(id));
         }
+
+
         public PartialViewResult _ChatRoom(int count = 0)
         {
             return PartialView(_service.GetHistoryChat(count));
         }
-
 
 
         public ActionResult _MyChat(int id)
@@ -55,7 +55,7 @@ namespace WebUI.Controllers
             return View(_service.GetChat(id));
         }
         [HttpPost]
-        public ActionResult _MyChat(ChatItemModel chatModel)
+        public ActionResult _MyChat(ChatAjaxModel chatModel)
         {
             if (string.IsNullOrWhiteSpace(chatModel.Content))
             {
@@ -63,24 +63,6 @@ namespace WebUI.Controllers
             }
             int id = _service.SaveCurrentChat(chatModel);
             return Redirect($"/Home/_MyChat?id={id}");
-        }
-
-
-
-        public ActionResult _MyReplyChat(int id)
-        {
-            return View(_service.GetChat(id));
-        }
-        [HttpPost]
-        public ActionResult _MyReplyChat(ChatItemModel chatModel)
-        {
-            if (string.IsNullOrWhiteSpace(chatModel.Content))
-            {
-                throw new Exception("Content is null or with space");
-            }
-
-            int id = _service.SaveCurrentChat(chatModel);
-            return Redirect($"/Home/_MyReplyChat?id={id}");
         }
         #endregion
 

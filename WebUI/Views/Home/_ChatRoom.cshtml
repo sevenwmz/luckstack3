@@ -13,25 +13,11 @@
 
     if (item.Author.AuthorId == Model.CurrentUserId)
     {
-        if (item.Reply == null)
-        {
-            @Html.Partial("_MyHistoryChat", item)
-        }
-        else
-        {
-            @Html.Partial("_ChatWithOther", item)
-        }
+        @Html.Partial("_MyHistoryChat", item)
     }
     else
     {
-        if (item.Reply == null)
-        {
-            @Html.Partial("_HistoryChat", item)
-        }
-        else
-        {
-            @Html.Partial("_HistoryChatWith", item)
-        }
+        @Html.Partial("_HistoryChat", item)
     }
 }
 

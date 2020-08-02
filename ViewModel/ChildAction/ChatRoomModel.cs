@@ -23,11 +23,13 @@ namespace ViewModel.ChildAction
 
     }
 
-    public class UserModel
+    public class ChatAjaxModel
     {
-        public int AuthorId { set; get; }
-        public string Author { set; get; }
-        public int Level { set; get; }
-    }
+        public int Id { set; get; }
+        public DateTime PublishTime { set; get; }
+        public string Content { set; get; }
+        public UserModel Author { set; get; }
+        public int? ReplyId { set; get; }
 
+    }
 }

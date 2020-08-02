@@ -97,6 +97,7 @@
     <Compile Include="Register\IndexModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeriesModel.cs" />
+    <Compile Include="UserModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EntityMVC\EntityMVC.csproj">

@@ -37,23 +37,19 @@ namespace ProductServices
         /// <returns>Return ChatRoomModel</returns>
         public ChatRoomModel GetLatest(int fromId)
         {
-            IList<Chat> chats = _repo.GetlatestChat(fromId);
             ChatRoomModel model = new ChatRoomModel
             {
-                ChatItems = Mapper.Map<List<ChatItemModel>>(chats)
+                ChatItems = Mapper.Map<List<ChatItemModel>>(_repo.GetlatestChat(fromId))
             };
             model.CurrentUserId = CurrentUserId;
             return model;
         }
 
 
-        public int SaveCurrentChat(ChatItemModel chatModel)
+        public int SaveCurrentChat(ChatAjaxModel chatModel)
         {
             Chat newChat = Mapper.Map<Chat>(chatModel);
-            newChat.PublishTime = DateTime.Now;
-            newChat.Reply = null;
-            newChat.Author = CurrenUser;
-
+            newChat.FillChat(CurrenUser);
             return _repo.SaveChat(newChat);
         }
 

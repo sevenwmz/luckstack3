@@ -1,9 +1,0 @@
-﻿<li id="@Model.Id" class="media">
-    <button js-reply type="button" class="btn btn-outline-secondary">@@TA<br />回复</button>
-    <div class="media-body ml-2">
-        <h5 class="mt-0 mb-1">@Model.PublishTime @Html.Partial("_Author", (object)Model.Author)</h5>
-        <p>@@<span style="background-color:aqua">@Html.Partial("_Author", (object)Model.Reply.Author)</span></p>
-        <p><span style="background-color:aqua"><i class="fa fa-scissors"></i>@Model.Reply.Content</span></p>
-        <span js-showContent>@Model.Content</span>
-    </div>
-</li>

@@ -18,6 +18,10 @@ namespace EntityMVC
         public Chat Reply { set; get; }
 
 
-
+        public void FillChat(User author)
+        {
+            this.PublishTime = DateTime.Now;
+            this.Author = author;
+        }
     }
 }

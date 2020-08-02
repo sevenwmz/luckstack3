@@ -1,39 +1,18 @@
 ﻿@model ViewModel.ChildAction.ChatRoomModel
 
-@{ 
+@{
     Layout = null;
 }
-
-@foreach (var item in Model.ChatRooms)
+@foreach (var item in Model.ChatItems)
 {
-    if (Model.CurrentUserId == null)
-    {
-        @Html.Partial("_HistoryChat", item)
-        continue;
-    }//else nothing
-
-
     if (item.Author.AuthorId == Model.CurrentUserId)
     {
-        if (item.Reply.Id == 0)
-        {
-            @Html.Partial("_MyHistoryChat", item)
-        }
-        else
-        {
-            @Html.Partial("_ChatWithOther", item)
-        }
+        @Html.Partial("_MyHistoryChat", item)
     }
     else
     {
-        if (item.Reply.Id == 0)
-        {
-            @Html.Partial("_HistoryChat", item)
-        }
-        else
-        {
-            @Html.Partial("_HistoryChatWith", item)
-        }
+        @Html.Partial("_HistoryChat", item)
     }
 }
+
 

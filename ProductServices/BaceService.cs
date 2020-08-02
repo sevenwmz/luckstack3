@@ -41,20 +41,25 @@ namespace ProductServices
                 #endregion
 
                 #region ChatRoom Area
-                cfg.CreateMap<V.ChildAction.ChatRoomModel, Chat>(MemberList.None)
+                cfg.CreateMap<V.ChildAction.ChatRoomModel,Chat>(MemberList.None)
                         .ReverseMap()
                          ;
 
-                cfg.CreateMap<Chat, V.ChildAction.ChatItemModel>(MemberList.None)
+                cfg.CreateMap<V.ChildAction.ChatItemModel,Chat>(MemberList.None)
                         .ReverseMap()
                          ;
 
-                cfg.CreateMap<V.ChildAction.UserModel, User>(MemberList.None)
+                cfg.CreateMap<V.ChildAction.ChatAjaxModel,Chat>(MemberList.None)
+                        .ReverseMap()
+                         ;
+                #endregion
+
+                #region User Area
+                cfg.CreateMap<V.UserModel, User>(MemberList.None)
                         .ForMember(u => u.UserName, opt => opt.MapFrom(c => c.Author))
                         .ForMember(u => u.Id, opt => opt.MapFrom(c => c.AuthorId))
                         .ReverseMap()
                          ;
-
                 #endregion
 
                 #region ChildSeries Area

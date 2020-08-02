@@ -1,6 +1,11 @@
 ﻿<li id="@Model.Id" class="text-right pr-5">
-    <div js-myChat class=" ml-2">
+    <div js-chatWithOther class=" ml-2">
         <h5 class="mt-0 mb-1">@Model.PublishTime @Html.Partial("_Author", (object)Model.Author)</h5>
+        @if (Model.Reply.Id != 0)
+        {
+            <p class="text-right">@@<span style="background-color:aqua">@Html.Partial("_Author", (object)Model.Reply.Author)</span></p>
+            <p class="text-right"><span style="background-color:aqua"><i class="fa fa-scissors"></i>@Model.Reply.Content</span></p>
+        }
         <span>@Model.Content</span>
     </div>
 </li>
