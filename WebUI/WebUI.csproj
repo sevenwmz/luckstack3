@@ -201,7 +201,9 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="DevTrends.MvcDonutCaching.README.txt" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="FontAwesome\Content\font-awesome.css" />
+    <Content Include="FontAwesome\Content\font-awesome.min.css" />
+    <Content Include="FontAwesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Img\一起帮主页logo左上角.png" />
@@ -227,11 +229,11 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="fonts\fontawesome-webfont.woff2" />
-    <Content Include="fonts\fontawesome-webfont.woff" />
-    <Content Include="fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="FontAwesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="FontAwesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="FontAwesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="FontAwesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="FontAwesome\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -243,6 +245,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\MyJavaScript\KeywordRefresh.js" />
     <Content Include="Scripts\MyJavaScript\CommentScript.js" />
     <Content Include="Scripts\MyJavaScript\IndexScript.js" />
     <Content Include="Scripts\popper-utils.js" />
@@ -321,6 +324,7 @@
     <Content Include="Views\Comment\_CommentInput.cshtml" />
     <Content Include="Views\Comment\_Comments.cshtml" />
     <Content Include="Views\Comment\_CommentAjax.cshtml" />
+    <Content Include="Views\Shared\_SelectKeyword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

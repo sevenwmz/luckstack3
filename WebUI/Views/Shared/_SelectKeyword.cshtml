@@ -1,0 +1,31 @@
+﻿<div class="form-group">
+    <label><strong>关键字：（* 使用空格分隔）</strong></label>
+
+    <div js-checkedKeyword style="display:none">
+    </div>
+
+    <span js-checkedKeywordId style="display:none"></span>
+
+    <div class="input-group">
+        <div class="btn-group nav-item dropdown">
+            <button type="button" class="btn btn-outline-dark btn-default">--- 1级 ---</button>
+            <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only"></span>
+            </button>
+            <div js-fristKeyword class="dropdown-menu">
+                <a class="dropdown-item" id="41">编程开发语言</a>
+                <a class="dropdown-item" id="42">工具软件</a>
+                <a class="dropdown-item" id="43">操作系统 </a>
+                <a class="dropdown-item" id="44">顾问咨询 </a>
+            </div>
+            <button js-refreshSecendKeyword type="button" class="btn btn-outline-dark btn-default">--- 2级 ---</button>
+            <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only"></span>
+            </button>
+            <div js-secendKeyword class="dropdown-menu">
+            </div>
+        </div>
+        @Html.TextBox("customKeyword", "",new { @class = "form-control",js_SelfDefind = "" ,placeholder = "自定义关键字，使用空格分隔" })
+        @*@Html.TextBoxFor(p => p.NeedSubKeyword, new { @class = "form-control", placeholder = "自定义关键字，使用空格分隔" })*@
+    </div>
+</div>

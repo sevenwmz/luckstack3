@@ -345,3 +345,4 @@ healthchecksdb
 *.cs
 *.csproj
 /RepositoryMVC/Migrations
+/WebUI/fonts/Content
