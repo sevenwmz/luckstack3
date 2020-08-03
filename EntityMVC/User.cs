@@ -11,6 +11,7 @@ namespace EntityMVC
         public string UserName { set; get; }
         public string Password { set; get; }
         public int Level { set; get; }
+        public Token Token { set; get; }
         public int? InviterId { set; get; }
         public User Inviter { set; get; }
         public int MyInviterNumber { set; get; }
@@ -41,5 +42,35 @@ namespace EntityMVC
             return random.Next(1000, 9999);
         }
 
+        public void AddToken(Token role)
+        {
+            this.Token = this.Token | role;
+        }
+
+        public void RemoveToken(Token role)
+        {
+            if (HasToken(role))
+            {
+                this.Token = this.Token ^ role;
+            }
+        }
+
+        public bool HasToken(Token role)
+        {
+            return (role & this.Token) == role;
+        }
     }
+
+
+    [Flags]
+    public enum Token
+    {
+        none = 0,
+        Registered = 1<<0,
+        Newbie = 1<<1,
+        Blogger = 1<<2,
+        Admin = 1<<3,
+        SuperAdmin = 1<<4
+    }
+
 }
