@@ -168,6 +168,7 @@
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\FristProblemController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KeywordController.cs" />
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\MoneyTradeController.cs" />
@@ -324,7 +325,8 @@
     <Content Include="Views\Comment\_CommentInput.cshtml" />
     <Content Include="Views\Comment\_Comments.cshtml" />
     <Content Include="Views\Comment\_CommentAjax.cshtml" />
-    <Content Include="Views\Shared\_SelectKeyword.cshtml" />
+    <Content Include="Views\Keyword\_SelectKeyword.cshtml" />
+    <Content Include="Views\Keyword\_SecendKeywordItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

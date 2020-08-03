@@ -335,6 +335,11 @@ namespace ProductServices
                 #endregion
 
                 #region Keyword Area
+                cfg.CreateMap<V.ChildAction._SecendKeywordItem, Keywords>(MemberList.None)
+                    .ForMember(k=>k.Name,opt=>opt.MapFrom(k=>k.SecendKeywordName))
+                    .ReverseMap()
+                    ;
+
                 cfg.CreateMap<Keywords, V.KeywordModel>(MemberList.None)
                     .ReverseMap()
                     .ForMember(k => k.UseArticle, opt => opt.Ignore())

@@ -1,8 +1,6 @@
 ﻿<div class="form-group">
     <label><strong>关键字：（* 使用空格分隔）</strong></label>
-
     <div js-checkedKeyword style="display:none">
-
     </div>
 
     <span js-checkedKeywordId style="display:none"></span>
@@ -14,18 +12,21 @@
                 <span class="sr-only"></span>
             </button>
             <div js-fristKeyword class="dropdown-menu">
-                <a class="dropdown-item" id="41">编程开发语言</a>
-                <a class="dropdown-item" id="42">工具软件</a>
-                <a class="dropdown-item" id="43">操作系统 </a>
-                <a class="dropdown-item" id="44">顾问咨询 </a>
+                <a class="dropdown-item" title="已被使用次数 99" id="41">编程开发语言</a>
+                <a class="dropdown-item" title="已被使用次数 99" id="42">工具软件</a>
+                <a class="dropdown-item" title="已被使用次数 99" id="43">顾问咨询 </a>
+                <a class="dropdown-item" title="已被使用次数 99" id="44">操作系统 </a>
             </div>
+        </div>
+
+        <div class="btn-group nav-item dropdown">
             <button js-refreshSecendKeyword type="button" class="btn btn-outline-dark btn-default">--- 2级 ---</button>
-            <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button js-secendKeywordButton type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="sr-only"></span>
             </button>
             <div js-secendKeyword class="dropdown-menu">
             </div>
         </div>
-        @Html.TextBox("customKeyword", "",new { @class = "form-control",js_SelfDefind = "" ,placeholder = "自定义关键字，使用空格分隔" })
+        @Html.TextBox("customKeyword", "", new { @class = "form-control", js_SelfDefind = "", placeholder = "自定义关键字，使用空格分隔" })
     </div>
 </div>

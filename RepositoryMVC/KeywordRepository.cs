@@ -52,6 +52,12 @@ namespace RepositoryMVC
             return entities.Where(k => k.Name == keywordName).FirstOrDefault();
         }
 
+        public IList<Keywords> GetSecendKeywordBy(int fristKeywordId)
+        {
+            return entities.Where(k => k.LevelId == fristKeywordId)
+                .ToList();
+        }
+
         public IList<Keywords> GetChildKeyword(int takeKeywordPage)
         {
             return entities

@@ -1,0 +1,9 @@
+﻿@model ViewModel.ChildAction._SecendKeywordModel
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model.Items)
+{
+    <a class="dropdown-item" title="已被使用次数 @item.Used" id="@item.Id">@item.SecendKeywordName <span ></span></a>
+}

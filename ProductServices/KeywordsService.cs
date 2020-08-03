@@ -36,6 +36,19 @@ namespace ProductServices
             return tempKeyword;
         }
 
+        /// <summary>
+        /// For ajax refresh secend keyword
+        /// </summary>
+        /// <param name="fristKeywordId">need frist keyword id</param>
+        /// <returns>return model</returns>
+        public _SecendKeywordModel GetSecendKeywordBy(int fristKeywordId)
+        {
+            return new _SecendKeywordModel
+            {
+                Items = Mapper.Map<List<_SecendKeywordItem>>(_repository.GetSecendKeywordBy(fristKeywordId))
+            };
+        }
+
         public ChildKeywordModel GetChildKeywords(int takeKeywordPage)
         {
             KeywordRepository repo = new KeywordRepository(dbContext);

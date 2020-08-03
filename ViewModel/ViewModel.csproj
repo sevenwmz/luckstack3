@@ -79,6 +79,7 @@
     <Compile Include="ChildAction\ChildRankModel.cs" />
     <Compile Include="ChildAction\ChildSeriesModel.cs" />
     <Compile Include="ChildAction\LogOnModel.cs" />
+    <Compile Include="ChildAction\_SecendKeywordItem.cs" />
     <Compile Include="Contact\ContactModel.cs" />
     <Compile Include="EmailModel.cs" />
     <Compile Include="KeywordsModel.cs" />

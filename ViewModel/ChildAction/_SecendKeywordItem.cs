@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace ViewModel.ChildAction
 {
-    public class _SecendKeywordItem
+    public class _SecendKeywordModel
     {
-        public IList<Item> Items { set; get; }
+        public IList<_SecendKeywordItem> Items { set; get; }
     }
 
-    public class Item
+    public class _SecendKeywordItem
     {
         public int Id { set; get; }
+        public int Used { set; get; }
         public string SecendKeywordName { set; get; }
     }
 }
