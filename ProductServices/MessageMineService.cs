@@ -11,6 +11,13 @@ namespace ProductServices
 {
     public class MessageMineService : BaceService
     {
+        private MessageMineRepository _repo;
+        public MessageMineService()
+        {
+            _repo = new MessageMineRepository(dbContext);
+        }
+
+
         public MineModel GetMessage(int pageIndex, int pageSize)
         {
             IList<MessageMine> tempMessageMine = new List<MessageMine>();
@@ -37,6 +44,26 @@ namespace ProductServices
         {
             MessageMineRepository repo = new MessageMineRepository(dbContext);
             repo.RemoveMessage(repo.GetFindMessage(id));
+        }
+
+        public bool HasNewMessage()
+        {
+            if (!CurrentUserId.HasValue)
+            {
+                return false;
+            }
+            IList<MessageMine> messages = _repo.HasNewMessage(CurrentUserId.Value);
+
+            bool result = false;
+            foreach (var item in messages)
+            {
+                if (!item.HasRead)
+                {
+                    result = true;
+                    break;
+                }
+            }
+            return result;
         }
     }
 }

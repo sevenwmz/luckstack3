@@ -38,5 +38,10 @@ namespace RepositoryMVC
         {
             entities.Remove(message);
         }
+
+        public IList<MessageMine> HasNewMessage(int messageOwner)
+        {
+            return entities.Where(m => m.OwnerId == messageOwner).ToList();
+        }
     }
 }

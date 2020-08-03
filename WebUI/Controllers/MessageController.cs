@@ -10,6 +10,13 @@ namespace WebUI.Controllers
 {
     public class MessageController : BaseController
     {
+        private MessageMineService _service;
+        public MessageController()
+        {
+            _service = new MessageMineService();
+        }
+
+
         // GET: Message
         public ActionResult Mine(int id = 1)
         {
@@ -48,6 +55,11 @@ namespace WebUI.Controllers
                 }
             }
             return Redirect("message/mine");
+        }
+
+        public JsonResult _New()
+        {
+            return Json(_service.HasNewMessage(),JsonRequestBehavior.AllowGet);
         }
     }
 }
