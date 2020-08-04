@@ -4,17 +4,14 @@ $(document).ready(function () {
         let $this = $(this);
         checkedKeyword($this);
         $('[js-checkedKeywordId]').attr('id', $this.attr('id'));
+        $('[js-keywordReminder]').css('display', 'none');
+        $('[js-secendKeywordButton]').css('display','');
     });
 
     $('[js-secendKeywordButton]').click(function () {
         let $this = $(this),
             $secendKeyword = $('[js-secendKeyword]'),
             takeSecendKeywordById = $('[js-checkedkeywordid]').attr('id');
-        if (!takeSecendKeywordById) {
-            alert('Secend keyword show before you should checked frist keyword');
-            return false;
-        }//else nothing
-
 
         $.ajax({
             url: '/Keyword/_SecendKeywordItem?fristKeywordId=' + takeSecendKeywordById,
