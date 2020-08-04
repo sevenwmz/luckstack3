@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ViewModel.AdInWidget
 {
-    class Write
+    public class WriteModel
     {
     }
 }

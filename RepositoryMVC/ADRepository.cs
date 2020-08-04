@@ -38,9 +38,13 @@ namespace RepositoryMVC
             return aD.Id;
         }
 
+
         public IList<AD> OnGetAD(int userId)
         {
-            return entities.Where(a => a.OwnerId == userId).ToList();
+            return entities.OrderByDescending(a=>a.Id)
+                        .Where(a => a.OwnerId == userId)
+                        .ToList()
+                        ;
         }
 
         /// <summary>

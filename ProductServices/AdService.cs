@@ -13,6 +13,11 @@ namespace ProductServices
 {
     public class AdService : BaceService
     {
+        private ADRepository _repo;
+        public AdService()
+        {
+            _repo = new ADRepository(dbContext);
+        }
         public int Add(string contentOfAd, string webSite)
         {
             AD aD = new AD
@@ -23,6 +28,18 @@ namespace ProductServices
             aD = aD.PublishAd(aD);
 
             return new ADRepository(dbContext).AddADToDatabase(aD);
+        }
+
+        public ChildADModel GetChildAD()
+        {
+            if (CurrentUserId == null)
+            {
+                throw new Exception("Current user was null.");
+            }
+            return new ChildADModel
+            {
+                Items = Mapper.Map<List<ChildADModel>>(_repo.OnGetAD(CurrentUserId.Value))
+            };
         }
 
         /// <summary>

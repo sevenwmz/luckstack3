@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdInWidget\WriteModel.cs" />
     <Compile Include="ADModel.cs" />
     <Compile Include="ArticleItemsModel.cs" />
     <Compile Include="Article\AritcleAuthorModel.cs" />
