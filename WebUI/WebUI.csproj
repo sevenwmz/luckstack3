@@ -331,7 +331,8 @@
     <Content Include="Views\Keyword\_SelectKeyword.cshtml" />
     <Content Include="Views\Keyword\_SecendKeywordItem.cshtml" />
     <Content Include="Views\AdInWidget\Write.cshtml" />
-    <Content Include="Views\Ad\Index.cshtml" />
+    <Content Include="Views\Ad\_Index.cshtml" />
+    <Content Include="Views\Ad\_AdPosition.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

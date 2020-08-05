@@ -74,6 +74,7 @@
     <Compile Include="Article\ArticleSingleModel.cs" />
     <Compile Include="ChildAction\ChatRoomModel.cs" />
     <Compile Include="ChildAction\ChildADModel.cs" />
+    <Compile Include="ChildAction\ChildAdPositionModel.cs" />
     <Compile Include="ChildAction\ChildCategorySeriesModel.cs" />
     <Compile Include="ChildAction\ChildCommentModel.cs" />
     <Compile Include="ChildAction\ChildKeywordModel.cs" />

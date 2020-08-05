@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace ViewModel.ChildAction
 {
-    class ChildAdPositionModel
+    public class ChildAdPositionModel
     {
+        public int Id { set; get; }
+        public UserModel Owner { set; get; }
+        public int? ChoosAdPosition { set; get; }
+        public int TotalUse { set; get; }
+        public int BMoneyLeft { set; get; }
+        public IList<ChildAdPositionModel> Items { set; get; }
     }
 }

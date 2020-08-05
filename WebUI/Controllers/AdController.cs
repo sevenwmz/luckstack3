@@ -17,11 +17,17 @@ namespace WebUI.Controllers
 
         // GET: Ad
         [ChildActionOnly]
-        public ActionResult Index()
+        public ActionResult _Index()
         {
             return View(_service.GetChildAD());
         }
 
+
+        [ChildActionOnly]
+        public ActionResult _AdPosition()
+        {
+            return View();
+        }
 
         public void _DeleteAd(int id)
         {

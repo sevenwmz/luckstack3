@@ -1,0 +1,37 @@
+﻿@model ViewModel.ChildAction.ChildAdPositionModel
+@{
+    Layout = null;
+}
+
+<div class="clearfix">
+    <div>
+        <p><strong>选择广告位：（* 必选）</strong></p>
+    </div>
+    <div class="form-group">
+        <select class="form-control" js-adPositionChoose>
+            <option value="0">-------</option>
+            @for (int i = 1; i < 6; i++)
+            {
+                <option value="@i">  ---第 @i  位---  </option>
+            }
+        </select>
+    </div>
+    <p><strong>选择日期：（鼠标点击选中/取消）</strong></p>
+    <div js-chooseAdReminder style="background-color:lightyellow">
+        <p class="text-info yellow-highlight" style="border:1px dashed; padding:5px; border-radius:3px 4px;">* 请首先选择广告位</p>
+    </div>
+    <div class="offset-5">
+        <hr />
+        <div class="pull-right">
+            <label>
+                <a href="/FAQ/Money" data-toggle="tooltip" class="credit" title="点击了解">
+                    <span class="iconfont icon-money"></span> 帮帮币
+                </a>
+                花费
+            </label>
+            <label>   每天需要： </label><span class="text-info" js-BmoneyPreDay></span> 枚
+            <label>   一共需要 ：</label><span class="text-warning" js-BmoneyTotal>@*@Model.TotalUse*@ 0</span> 枚
+            <label>   剩余 ：</label><span class="text-warning" js-BmoneyLeft>@*@Model.BMoneyLeft*@ 0</span> 枚
+        </div>
+    </div>
+</div>
