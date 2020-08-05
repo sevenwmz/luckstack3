@@ -5,9 +5,9 @@
 
 <div class="form-group">
     <label><i class="fa fa-question-circle"></i><strong>之前用过的广告：</strong></label>
-        <label style="float:right"><a href="" style="color:sandybrown"><i class="fa fa-remove"></i>删除</a></label>
+    <label style="float:right"><a href="" style="color:sandybrown"><i class="fa fa-remove"></i>删除</a></label>
     <div class="input-group input-group-combined">
-        @Html.DropDownListFor(a => a.ChoosAd, new SelectList(Model.Items, "Id", "ContentOfAd"), "---Select---", new { @class = "form-control" ,@js_adDropDown=""})
+        @Html.DropDownListFor(a => a.ChoosAd, new SelectList(Model.Items, "Id", "ContentOfAd"), "---Select---", new { @class = "form-control", @js_adDropDown = "" })
     </div>
     <ul js-hideWebsite style="display:none">
         @foreach (var item in Model.Items)
@@ -19,15 +19,15 @@
 <div style="border:dashed#d8c8c8 3px;padding:25px;background-color:#f0f69c">
     <p class="text-right">
         @Html.LabelFor(a => a.HasNewAd)
-        @Html.CheckBoxFor(a => a.HasNewAd)
+        @Html.CheckBoxFor(a => a.HasNewAd, new { @js_alter = "" })
     </p>
     <div class="form-group">
         <label><strong>文字内容：（* 必填）</strong></label>
-        @Html.TextBoxFor(a => a.ContentOfAd, new { @class = "form-control",@js_contentOfAd="", placeholder = "最多不超过24个字符" ,})
+        @Html.TextBoxFor(a => a.ContentOfAd, new { @class = "form-control", @js_contentOfAd = "", placeholder = "最多不超过24个字符", })
     </div>
     <div class="form-group">
         <label><strong>链接：（* 必填）</strong></label>
-        @Html.TextBoxFor(a => a.WebSite, new { @class = "form-control",@js_webSite="", placeholder = "http或https开头的网址" })
+        @Html.TextBoxFor(a => a.WebSite, new { @class = "form-control", @js_webSite = "", placeholder = "http或https开头的网址" })
     </div>
 </div>
 
@@ -40,5 +40,18 @@
 
         $('[js-contentOfAd]').attr('readonly', 'readonly').val(adText);
         $('[js-webSite]').attr('readonly', 'readonly').val(adUrl);
+    });
+
+    $('[js-alter]').click(function () {
+        var $contentAd = $('[js-contentOfAd]'),
+            $webSite = $('[js-webSite]');
+
+        if (this.checked) {
+            $contentAd.removeAttr('readonly');
+            $webSite.removeAttr('readonly');
+        } else {
+            $contentAd.attr('readonly', 'readonly');
+            $webSite.attr('readonly', 'readonly');
+        }
     });
 </script>
