@@ -175,6 +175,10 @@
     <Compile Include="Migrations\202008031301432_Added_Token.designer.cs">
       <DependentUpon>202008031301432_Added_Token.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008051216402_adAddChangeHasNewAdToDeleted.cs" />
+    <Compile Include="Migrations\202008051216402_adAddChangeHasNewAdToDeleted.designer.cs">
+      <DependentUpon>202008051216402_adAddChangeHasNewAdToDeleted.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="ProfileRepository.cs" />
@@ -278,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008031301432_Added_Token.resx">
       <DependentUpon>202008031301432_Added_Token.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008051216402_adAddChangeHasNewAdToDeleted.resx">
+      <DependentUpon>202008051216402_adAddChangeHasNewAdToDeleted.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

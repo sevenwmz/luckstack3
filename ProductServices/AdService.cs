@@ -30,6 +30,11 @@ namespace ProductServices
             return new ADRepository(dbContext).AddADToDatabase(aD);
         }
 
+        public void Delete(int id)
+        {
+            _repo.Find(id).IsDeletedAd = true;
+        }
+
         public ChildADModel GetChildAD()
         {
             if (CurrentUserId == null)

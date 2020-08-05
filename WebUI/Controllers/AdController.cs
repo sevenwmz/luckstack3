@@ -7,15 +7,25 @@ using System.Web.Mvc;
 
 namespace WebUI.Controllers
 {
-    public class AdController : Controller
+    public class AdController : BaseController
     {
-
+        private AdService _service;
+        public AdController()
+        {
+            _service = new AdService();
+        }
 
         // GET: Ad
         [ChildActionOnly]
         public ActionResult Index()
         {
-            return View(new AdService().GetChildAD());
+            return View(_service.GetChildAD());
+        }
+
+
+        public void _DeleteAd(int id)
+        {
+            _service.Delete(id);
         }
 
     }

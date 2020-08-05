@@ -10,14 +10,14 @@ namespace EntityMVC
     {
         public string ContentOfAd { set; get; }
         public string WebSite { set; get; }
-        public bool HasNewAd { set; get; }
+        public bool IsDeletedAd { set; get; }
         public int? OwnerId { set; get; }
         public User Owner { set; get; }
         public IList<Article> ArticleUse { set; get; }
 
         public AD PublishAd(AD aD)
         {
-            aD.HasNewAd = false;
+            aD.IsDeletedAd = false;
             return aD;
         }
     }

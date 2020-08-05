@@ -24,7 +24,10 @@ namespace RepositoryMVC
         /// <returns>Return AD</returns>
         public AD GetAD(int choosAd)
         {
-            return entities.Where(a => a.Id == choosAd).FirstOrDefault();
+            return entities.Where(a => a.Id == choosAd)
+                    .Where(a => a.IsDeletedAd == false)
+                    .FirstOrDefault()
+                    ;
         }
 
         /// <summary>
@@ -43,6 +46,7 @@ namespace RepositoryMVC
         {
             return entities.OrderByDescending(a=>a.Id)
                         .Where(a => a.OwnerId == userId)
+                        .Where(a=>a.IsDeletedAd == false)
                         .ToList()
                         ;
         }
@@ -55,6 +59,7 @@ namespace RepositoryMVC
         public IList<AD> GetChildAD(int getADSum)
         {
             return entities.OrderBy(a => a.Id)
+                        .Where(a=>a.IsDeletedAd == false)
                         .Take(getADSum)
                         .ToList()
                         ;
