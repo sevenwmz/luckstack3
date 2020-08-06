@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+    <table js-adTableDate class="table table-bordered">
+        <thead>
+            <tr>
+                <th><input type="checkbox" class="checkbox" js-selectAll=""></th>
+                <th>一</th>
+                <th>二</th>
+                <th>三</th>
+                <th>四</th>
+                <th>五</th>
+                <th>六</th>
+                <th>天</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ int dayPlus = 0; }
+            @for (int i = 0; i < 5; i++)
+            {
+                <tr>
+                    <td><input type="checkbox" class="checkbox" js-selectRow=""></td>
+                    @for (int j = 0; j < 7; j++)
+                    {
+                        if (i == 0)
+                        {
+                            if (j < (int)DateTime.Now.DayOfWeek)
+                            {
+                                <td></td>
+                                continue;
+                            }
+                        }//else nothing;
+
+                        dayPlus++;
+                        <td>@DateTime.Now.AddDays(dayPlus).ToString("MM月dd日")</td>
+                        if (dayPlus == 28)
+                        {
+                            break;
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>

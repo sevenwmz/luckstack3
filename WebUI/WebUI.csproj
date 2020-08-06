@@ -333,6 +333,7 @@
     <Content Include="Views\AdInWidget\Write.cshtml" />
     <Content Include="Views\Ad\_Index.cshtml" />
     <Content Include="Views\Ad\_AdPosition.cshtml" />
+    <Content Include="Views\Ad\_DateOfAd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

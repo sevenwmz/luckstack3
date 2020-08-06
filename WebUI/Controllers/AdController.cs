@@ -14,7 +14,7 @@ namespace WebUI.Controllers
         {
             _service = new AdService();
         }
-
+        #region AdContent
         // GET: Ad
         [ChildActionOnly]
         public ActionResult _Index()
@@ -22,17 +22,24 @@ namespace WebUI.Controllers
             return View(_service.GetChildAD());
         }
 
+        public void _DeleteAd(int id)
+        {
+            _service.Delete(id);
+        }
+        #endregion
 
+        #region AdDate
         [ChildActionOnly]
         public ActionResult _AdPosition()
         {
             return View();
         }
 
-        public void _DeleteAd(int id)
+        public ActionResult _DateOfAd()
         {
-            _service.Delete(id);
+            return View();
         }
+        #endregion
 
     }
 }

@@ -16,9 +16,11 @@
             }
         </select>
     </div>
-    <p><strong>选择日期：（鼠标点击选中/取消）</strong></p>
-    <div js-chooseAdReminder style="background-color:lightyellow">
-        <p class="text-info yellow-highlight" style="border:1px dashed; padding:5px; border-radius:3px 4px;">* 请首先选择广告位</p>
+    <div js-adPosition>
+        <p><strong>选择日期：（鼠标点击选中/取消）</strong></p>
+        <div js-adChooseReminder style="background-color:lightyellow">
+            <p class="text-info yellow-highlight" style="border:1px dashed; padding:5px; border-radius:3px 4px;">* 请首先选择广告位</p>
+        </div>
     </div>
     <div class="offset-5">
         <hr />
@@ -30,8 +32,35 @@
                 花费
             </label>
             <label>   每天需要： </label><span class="text-info" js-BmoneyPreDay></span> 枚
-            <label>   一共需要 ：</label><span class="text-warning" js-BmoneyTotal>@*@Model.TotalUse*@ 0</span> 枚
-            <label>   剩余 ：</label><span class="text-warning" js-BmoneyLeft>@*@Model.BMoneyLeft*@ 0</span> 枚
+            <label>   一共需要 ：</label><span class="text-warning" js-BmoneyTotal></span> 枚
+            <label>   剩余 ：</label><span class="text-warning" js-BmoneyLeft></span> 枚
         </div>
     </div>
 </div>
+
+<script>
+    $('[js-adPositionChoose]').change(function () {
+        var $this = $(this),
+            adId = $this.val(),
+            $adDate = $('[js-adTableDate]'),
+            $adReminder = $('[js-adChooseReminder]');
+
+        if (adId == 0) {
+            $adDate.remove();
+            $adReminder.css('display', '');
+            return false;
+        }
+        $.ajax({
+            url: '/Ad/_DateOfAd',
+            method: 'GET',
+            success: function (showDate) {
+                $adDate.remove();
+                $adReminder.css('display', 'none')
+                $('[js-adPosition]').append(showDate);
+            },
+            error: function (a, b, c) {
+                console.log('has some problem');
+            }
+        });
+    });
+</script>
