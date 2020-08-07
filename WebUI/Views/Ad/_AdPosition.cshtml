@@ -31,9 +31,9 @@
                 </a>
                 花费
             </label>
-            <label>   每天需要： </label><span class="text-info" js-BmoneyPreDay></span> 枚
-            <label>   一共需要 ：</label><span class="text-warning" js-BmoneyTotal></span> 枚
-            <label>   剩余 ：</label><span class="text-warning" js-BmoneyLeft></span> 枚
+            <label>每天需要： </label><span class="text-info" js-BmoneyPreDay>0</span> 枚
+            <label>一共需要 ：</label><span class="text-warning" js-BmoneyTotal>0</span> 枚
+            <label>剩余 ：</label><span class="text-warning" js-BmoneyLeft></span> 枚
         </div>
     </div>
 </div>
@@ -44,7 +44,7 @@
             adId = $this.val(),
             $adDate = $('[js-adTableDate]'),
             $adReminder = $('[js-adChooseReminder]');
-
+        
         if (adId == 0) {
             $adDate.remove();
             $adReminder.css('display', '');

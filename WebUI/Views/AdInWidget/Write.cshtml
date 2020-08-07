@@ -8,6 +8,22 @@
 @section LowRightShow{
 }
 
-
-@Html.Action("_AdPosition","Ad")
-@Html.Action("_Index", "Ad")
+@using (Html.BeginForm())
+{
+    @Html.Action("_AdPosition", "Ad")
+    @Html.Action("_Index", "Ad")
+    @Html.TextBoxFor(a=>a.AllSelectDate,new {@style="display:none",@js_allSelectDate="" })
+    <div>
+        <input type="submit" class="btn btn-primary loading" value="提交">
+        <input type="reset" class="btn btn-default" value="重填">
+    </div>
+    <script>
+        $('form').submit(function () {
+            var allSelectDate = '';
+            $('td.bg_Blue').each(function () {
+                allSelectDate += $(this).attr('data-fullDate') + ',';
+            })
+            $('[js-allSelectDate]').text(allSelectDate);
+        });
+    </script>
+}

@@ -2,7 +2,7 @@
     Layout = null;
 }
 <style>
-    .blue {
+    .bg_Blue {
         background-color: aqua;
     }
 </style>
@@ -48,26 +48,25 @@
             }
         </tbody>
     </table>
-    <span style="display:none" js-allSelectDate></span>
     <script>
         $('[js-selectAll]').click(function () {
-            $('td[js-date]').toggleClass('blue');
+            $('td[js-date]').toggleClass('bg_Blue');
+            showAdMoney($('[js-adPositionChoose]').val());
         });
 
         $('[js-selectRow]').click(function () {
-            $(this).parent().siblings().parent().find('td[js-date]').toggleClass('blue');
+            $(this).parent().siblings().parent().find('td[js-date]').toggleClass('bg_Blue');
+            showAdMoney($('[js-adPositionChoose]').val());
         });
 
         $('[js-date]').click(function () {
-            var $this = $(this),
-            //    $allDate = $('[js-allSelectDate]'),
-            //    date = $this.attr('data-fullDate'),
-            //    allSelectDate = $allDate.text();
-
-            //$allDate.text(allSelectDate + date + ',');
-
-            $this.toggleClass('blue');
+            $(this).toggleClass('bg_Blue');
+            showAdMoney($('[js-adPositionChoose]').val());
         });
-
+        function showAdMoney(adPosition) {
+            $('[js-BmoneyPreDay]').text(6 - adPosition);
+            var selectMoney = $('[js-BmoneyTotal]').text($('td.bg_Blue').length * (6 - adPosition));
+            $('[js-BmoneyLeft]').text(+$('[js-allMyBMoney]').text() - +selectMoney.text());
+        }
     </script>
 </div>
