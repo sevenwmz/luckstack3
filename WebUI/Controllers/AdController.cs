@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ViewModel.AdInWidget;
 
 namespace WebUI.Controllers
 {
@@ -35,11 +36,10 @@ namespace WebUI.Controllers
             return View();
         }
 
-        public ActionResult _DateOfAd()
+        public ActionResult _DateOfAd(int id)
         {
-            return View();
+            return View(new AdDateService().GetAdPositionBy(id));
         }
         #endregion
-
     }
 }

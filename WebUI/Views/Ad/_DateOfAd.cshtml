@@ -1,9 +1,18 @@
-﻿@{
+﻿@model ViewModel.AdInWidget._DateOfAd
+@{
     Layout = null;
 }
 <style>
     .bg_Blue {
         background-color: aqua;
+    }
+
+    .bg_DarkBlue {
+        background-color:blueviolet;
+    }
+
+    .bg_Pink {
+        background-color: pink;
     }
 </style>
 <div>
@@ -24,45 +33,75 @@
             @{ int dayPlus = 0; }
             @for (int i = 0; i < 5; i++)
             {
-                <tr js-row>
-                    <td><input type="checkbox" class="checkbox" js-selectRow=""></td>
-                    @for (int j = 0; j < 7; j++)
+            <tr js-row>
+                <td><input type="checkbox" class="checkbox" js-selectRow=""></td>
+                @for (int j = 0; j < 7; j++)
+                {
+                    if (i == 0)
                     {
-                        if (i == 0)
+                        if (j < (int)DateTime.Now.DayOfWeek)
                         {
-                            if (j < (int)DateTime.Now.DayOfWeek)
-                            {
-                                <td js-none></td>
-                                continue;
-                            }
-                        }//else nothing;
+                            <td js-none></td>
+                            continue;
+                        }
+                    }//else nothing;
+                    dayPlus++;
 
-                        dayPlus++;
-                        <td js-date data-fullDate="@DateTime.Now.AddDays(dayPlus).ToString("yyyy/MM/dd/")">@DateTime.Now.AddDays(dayPlus).ToString("MM月dd日")</td>
-                        if (dayPlus == 28)
+                    bool dateNotShow = true;
+                    DateTime date = DateTime.Now.AddDays(dayPlus);
+                    foreach (var item in Model.AdPosition)
+                    {
+                        if (item.UsedDay.ToString("yyyy/MM/dd/") == date.ToString("yyyy/MM/dd/"))
                         {
+                            <td js-hasAd id="@item.UsedBy.AuthorId" class="bg_DarkBlue" data-fullDate="@date.ToString("yyyy/MM/dd/")">@date.ToString("MM月dd日")</td>
+                            dateNotShow = false;
                             break;
                         }
                     }
-                </tr>
+                    if (dateNotShow)
+                    {
+                        <td js-date data-fullDate="@date.ToString("yyyy/MM/dd/")">@date.ToString("MM月dd日")</td>
+                    }
+
+                    if (dayPlus == 28)
+                    {
+                        <td js-none></td>
+                        i = 5;
+                        break;
+                    }
+                }
+            </tr>
             }
         </tbody>
     </table>
     <script>
-        $('[js-selectAll]').click(function () {
-            $('td[js-date]').toggleClass('bg_Blue');
-            showAdMoney($('[js-adPositionChoose]').val());
+        $(document).ready(function () {
+            var currentUserId = $('[js-currentUserId]').attr('id');
+
+            $('[js-hasAd]').each(function () {
+                var $this = $(this);
+                if ($this.attr('id') == currentUserId) {
+                    $this.removeClass('bg_DarkBlue');
+                    $this.addClass('bg_Pink');
+                }
+            });
+
+            $('[js-date]').click(function () {
+                $(this).toggleClass('bg_Blue');
+                showAdMoney($('[js-adPositionChoose]').val());
+            });
+
+            $('[js-selectAll]').click(function () {
+                $('td[js-date]').toggleClass('bg_Blue');
+                showAdMoney($('[js-adPositionChoose]').val());
+            });
+
+            $('[js-selectRow]').click(function () {
+                $(this).parent().siblings().parent().find('td[js-date]').toggleClass('bg_Blue');
+                showAdMoney($('[js-adPositionChoose]').val());
+            });
         });
 
-        $('[js-selectRow]').click(function () {
-            $(this).parent().siblings().parent().find('td[js-date]').toggleClass('bg_Blue');
-            showAdMoney($('[js-adPositionChoose]').val());
-        });
-
-        $('[js-date]').click(function () {
-            $(this).toggleClass('bg_Blue');
-            showAdMoney($('[js-adPositionChoose]').val());
-        });
         function showAdMoney(adPosition) {
             $('[js-BmoneyPreDay]').text(6 - adPosition);
             var selectMoney = $('[js-BmoneyTotal]').text($('td.bg_Blue').length * (6 - adPosition));

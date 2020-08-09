@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EntityMVC
 {
-    public class InUseDate
+    public class InUseDate : BaceEntity
     {
         public DateTime UsedDay { set; get; }
         public int AdPositionId { set; get; }

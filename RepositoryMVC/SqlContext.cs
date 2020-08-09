@@ -32,8 +32,11 @@ namespace RepositoryMVC
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            #region Entity
             modelBuilder.Entity<AD>();
             modelBuilder.Entity<User>();
+            modelBuilder.Entity<AdDate>();
+            modelBuilder.Entity<InUseDate>();
             modelBuilder.Entity<Series>();
             modelBuilder.Entity<Chat>();
             modelBuilder.Entity<BMoney>();
@@ -47,13 +50,14 @@ namespace RepositoryMVC
             modelBuilder.Entity<KeywordsAndProblem>();
             modelBuilder.Entity<KeywordsAndArticle>();
             modelBuilder.Entity<ProfileToKeyword>();
+            #endregion
 
             modelBuilder.ComplexType<Email>();
 
-
             modelBuilder.Entity<User>().Property(u => u.UserName).HasMaxLength(256);
 
-
+            modelBuilder.Entity<AdDate>().HasKey(a => a.PositionId);
+            #region Doouble primary key
             modelBuilder.Entity<KeywordsAndArticle>().HasKey(ka => new { ka.ArticleId, ka.KeywordId });
             modelBuilder.Entity<KeywordsAndArticle>().Ignore(ka => ka.Id);
 
@@ -62,13 +66,11 @@ namespace RepositoryMVC
 
             modelBuilder.Entity<ProfileToKeyword>().HasKey(pk => new { pk.ProfileId, pk.KeywordId });
             modelBuilder.Entity<ProfileToKeyword>().Ignore(pk => pk.Id);
-
+            #endregion
 
             base.OnModelCreating(modelBuilder);
 
         }
-
-
 
     }
 }

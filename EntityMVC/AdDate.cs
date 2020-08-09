@@ -8,6 +8,7 @@ namespace EntityMVC
 {
     public class AdDate : BaceEntity
     {
+        public int PositionId { set; get; }
         public IList<InUseDate> AdPosition { set; get; }
     }
 }

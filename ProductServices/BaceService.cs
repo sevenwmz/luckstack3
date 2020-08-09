@@ -26,6 +26,15 @@ namespace ProductServices
         {
             mapper = new MapperConfiguration(cfg =>
             {
+                #region InUseDate Area
+                cfg.CreateMap<V.AdInWidget.InUseDate, InUseDate>(MemberList.None)
+                      .ReverseMap()
+                       ;
+                cfg.CreateMap<V.AdInWidget._DateOfAd, AdDate>(MemberList.None)
+                      .ReverseMap()
+                       ;
+                #endregion
+
                 #region Comments Area
                 cfg.CreateMap<V.ChildAction.ChildCommentModel, Comments>(MemberList.None)
                         .ReverseMap()
@@ -41,15 +50,15 @@ namespace ProductServices
                 #endregion
 
                 #region ChatRoom Area
-                cfg.CreateMap<V.ChildAction.ChatRoomModel,Chat>(MemberList.None)
+                cfg.CreateMap<V.ChildAction.ChatRoomModel, Chat>(MemberList.None)
                         .ReverseMap()
                          ;
 
-                cfg.CreateMap<V.ChildAction.ChatItemModel,Chat>(MemberList.None)
+                cfg.CreateMap<V.ChildAction.ChatItemModel, Chat>(MemberList.None)
                         .ReverseMap()
                          ;
 
-                cfg.CreateMap<V.ChildAction.ChatAjaxModel,Chat>(MemberList.None)
+                cfg.CreateMap<V.ChildAction.ChatAjaxModel, Chat>(MemberList.None)
                         .ReverseMap()
                          ;
                 #endregion
@@ -336,7 +345,7 @@ namespace ProductServices
 
                 #region Keyword Area
                 cfg.CreateMap<V.ChildAction._SecendKeywordItem, Keywords>(MemberList.None)
-                    .ForMember(k=>k.Name,opt=>opt.MapFrom(k=>k.SecendKeywordName))
+                    .ForMember(k => k.Name, opt => opt.MapFrom(k => k.SecendKeywordName))
                     .ReverseMap()
                     ;
 

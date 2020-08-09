@@ -4,14 +4,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
+
 
 namespace RepositoryMVC
 {
-    public class AdDateRepository : BaceRepository<InUseDate>
+    public class InUseRepository : BaceRepository<InUseDate>
     {
-        public AdDateRepository(SqlContext context) :base(context)
+        public InUseRepository(SqlContext context) :base(context)
         {
 
         }
+
+        public IList<InUseDate> GetUsedAdPositionDateBy(int positionId)
+        {
+            return entities.Include(a=>a.UsedBy)
+                        .Where(a => a.AdPositionId == positionId)
+                        .ToList()
+                        ;
+        }
+
     }
 }

@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AD.cs" />
+    <Compile Include="AdDate.cs" />
     <Compile Include="Article.cs" />
     <Compile Include="BaceEntity.cs" />
     <Compile Include="BMoney.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Comments.cs" />
     <Compile Include="Contact.cs" />
     <Compile Include="Email.cs" />
+    <Compile Include="InUseDate.cs" />
     <Compile Include="Keywords.cs" />
     <Compile Include="KeywordsAndArticle.cs" />
     <Compile Include="KeywordsAndProblem.cs" />

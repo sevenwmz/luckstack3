@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InUseRepository.cs" />
     <Compile Include="ADRepository.cs" />
     <Compile Include="ArticleRepository.cs" />
     <Compile Include="BaceRepository.cs" />
@@ -179,6 +180,10 @@
     <Compile Include="Migrations\202008051216402_adAddChangeHasNewAdToDeleted.designer.cs">
       <DependentUpon>202008051216402_adAddChangeHasNewAdToDeleted.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008080241573_Add_AdDate_and_InUseDate.cs" />
+    <Compile Include="Migrations\202008080241573_Add_AdDate_and_InUseDate.designer.cs">
+      <DependentUpon>202008080241573_Add_AdDate_and_InUseDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="ProfileRepository.cs" />
@@ -285,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008051216402_adAddChangeHasNewAdToDeleted.resx">
       <DependentUpon>202008051216402_adAddChangeHasNewAdToDeleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008080241573_Add_AdDate_and_InUseDate.resx">
+      <DependentUpon>202008080241573_Add_AdDate_and_InUseDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

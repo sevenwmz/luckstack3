@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using ViewModel;
+using ViewModel.AdInWidget;
 using ViewModel.ChildAction;
 
 namespace ProductServices
@@ -46,6 +47,8 @@ namespace ProductServices
                 Items = Mapper.Map<List<ChildADModel>>(_repo.OnGetAD(CurrentUserId.Value))
             };
         }
+
+
 
         /// <summary>
         /// Get Ad date

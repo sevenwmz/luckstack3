@@ -44,14 +44,14 @@
             adId = $this.val(),
             $adDate = $('[js-adTableDate]'),
             $adReminder = $('[js-adChooseReminder]');
-        
+
         if (adId == 0) {
             $adDate.remove();
             $adReminder.css('display', '');
             return false;
         }
         $.ajax({
-            url: '/Ad/_DateOfAd',
+            url: '/Ad/_DateOfAd?id=' + adId,
             method: 'GET',
             success: function (showDate) {
                 $adDate.remove();
